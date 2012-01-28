@@ -1,0 +1,54 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Multi Device Switcher\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-01-17 22:01+0900\n"
+"PO-Revision-Date: 2012-01-28 18:19+0900\n"
+"Last-Translator: Yousuke Mizuno <thingsym@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Multi Device Switcher"
+msgstr "マルチデバイス"
+
+msgid "Theme"
+msgstr "テーマ"
+
+msgid "UserAgent"
+msgstr "ユーザーエージェント"
+
+msgid "Smart Phone Theme"
+msgstr "スマートフォン用テーマ"
+
+msgid "Tablet PC Theme"
+msgstr "タブレット端末用テーマ"
+
+msgid "Mobile Phone Theme"
+msgstr "携帯モバイル端末用テーマ"
+
+msgid "Game Platforms Theme"
+msgstr "ゲームプラットフォーム用テーマ"
+
+msgid "Smart Phone"
+msgstr "スマートフォン"
+
+msgid "Tablet PC"
+msgstr "タブレット端末"
+
+msgid "Mobile Phone"
+msgstr "携帯モバイル端末"
+
+msgid "Game Platforms"
+msgstr "ゲームプラットフォーム"
+
+msgid "Reset Settings to Default UserAgent"
+msgstr "ユーザーエージェントをデフォルトにもどす"
+
+msgid "Donationware"
+msgstr "ドネーションウェア (寄付)"
+
+msgid "If you like this plugin, please donate to support development and maintenance."
+msgstr "よろしければ、開発とメンテナンスのために寄付していただければうれしいです。"
+
