@@ -10,7 +10,7 @@ License: GPL2
 */
 
 /*
-    Copyright 2012 thingsym (http://cms.thingslabo.com/)
+    Copyright 2012 thingsym (http://www.thingslabo.com/)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -81,7 +81,7 @@ class Multi_Device_Switcher {
 	}
 
 	function get_stylesheet($stylesheet = '') {
-		$name = $this->get_theme();
+		$name = $this->get_device_theme();
 
 		if ( empty($name) ) 
 			return $stylesheet;
@@ -98,7 +98,7 @@ class Multi_Device_Switcher {
 	}
 
 	function get_template($template = '') {
-		$name = $this->get_theme();
+		$name = $this->get_device_theme();
 
 		if ( empty($name) )
 			return $template;
@@ -114,7 +114,7 @@ class Multi_Device_Switcher {
 		return $theme['Template'];
 	}
 
-	function get_theme() {
+	function get_device_theme() {
 		$options = get_option('multi_device_switcher_options');
 
 		if ($this->device == 'smart') {
