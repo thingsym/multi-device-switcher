@@ -167,8 +167,6 @@ function multi_device_switcher_init() {
 	if ( false === multi_device_switcher_get_options() )
 		add_option( 'multi_device_switcher_options' );
 
-	load_plugin_textdomain('multi-device-switcher', false, 'multi-device-switcher/languages');
-
 	register_setting(
 		'multi_device_switcher',       // Options group, see settings_fields() call in multi_device_switcher_render_page()
 		'multi_device_switcher_options', // Database option, see multi_device_switcher_get_options()
