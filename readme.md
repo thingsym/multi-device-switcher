@@ -13,7 +13,9 @@ This plugin detects if your site is being viewed by UserAgent and switches to se
 6. Configure settings to your needs. Select Theme by Theme option. Add and fix UserAgent by UserAgent option if necessary.
 7. Have fun!
 
-## Changelog 
+## Changelog
 
+* Version 1.0.1
+	* fixed: split multi_device_switcher_init() into two functions
 * Version 1.0.0
 	* Initial release.
