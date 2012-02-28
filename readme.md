@@ -7,7 +7,7 @@ This plugin detects if your site is being viewed by UserAgent and switches to se
 
 1. Unzip files.
 2. Upload "multi-device-switcher" to the "/wp-content/plugins/" directory.
-3. Activate the plugin through the 'Plugins' menu in WordPress
+3. Activate the plugin through the 'Plugins' menu in WordPress.
 4. Upload a separate theme to the "/wp-content/themes/" directory.
 5. Go to the "Multi Device Switcher" options page through the 'Appearance' menu in WordPress.
 6. Configure settings to your needs. Select Theme by Theme option. Add and fix UserAgent by UserAgent option if necessary.
