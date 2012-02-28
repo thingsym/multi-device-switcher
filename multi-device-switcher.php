@@ -138,7 +138,7 @@ if ( ! is_admin() )
 	$multi_device_switcher = new Multi_Device_Switcher;
 
 /**
- * Properly enqueue styles and scripts for our multi_device_switcher options page.
+ * Properly enqueue scripts for our multi_device_switcher options page.
  *
  * This function is attached to the admin_enqueue_scripts action hook.
  *
@@ -146,10 +146,21 @@ if ( ! is_admin() )
  *
  */
 function multi_device_switcher_admin_enqueue_scripts( $hook_suffix ) {
-	wp_enqueue_style( 'multi-device-switcher-options', WP_PLUGIN_URL . '/multi-device-switcher/multi-device-switcher.css', false, '2011-08-22' );
-	wp_enqueue_style( 'thickbox', includes_url() . '/js/thickbox/thickbox.css', false, '20090514' );
 	wp_enqueue_script('jquery-ui-tabs');
 	wp_enqueue_script( 'multi-device-switcher-options', WP_PLUGIN_URL . '/multi-device-switcher/multi-device-switcher.js', array( 'jquery' ), '2011-08-22' );
+}
+
+/**
+ * Properly enqueue styles for our multi_device_switcher options page.
+ *
+ * This function is attached to the admin_enqueue_styles action hook.
+ *
+ * @since 1.0
+ *
+ */
+function multi_device_switcher_admin_enqueue_styles( $hook_suffix ) {
+	wp_enqueue_style( 'multi-device-switcher-options', WP_PLUGIN_URL . '/multi-device-switcher/multi-device-switcher.css', false, '2011-08-22' );
+	wp_enqueue_style( 'thickbox', includes_url() . '/js/thickbox/thickbox.css', false, '20090514' );
 }
 
 /**
@@ -221,7 +232,8 @@ function multi_device_switcher_add_page() {
 	if ($help) 
 		add_contextual_help( $theme_page, $help );
 
-	add_action( "admin_print_styles-$theme_page", 'multi_device_switcher_admin_enqueue_scripts' );
+	add_action( "admin_print_scripts-$theme_page", 'multi_device_switcher_admin_enqueue_scripts' );
+	add_action( "admin_print_styles-$theme_page", 'multi_device_switcher_admin_enqueue_styles' );
 }
 add_action( 'admin_menu', 'multi_device_switcher_add_page' );
 
