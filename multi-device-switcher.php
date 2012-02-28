@@ -134,7 +134,8 @@ class Multi_Device_Switcher {
 	}
 }
 
-$multi_device_switcher = new Multi_Device_Switcher;
+if ( ! is_admin() )
+	$multi_device_switcher = new Multi_Device_Switcher;
 
 /**
  * Properly enqueue styles and scripts for our multi_device_switcher options page.
