@@ -15,6 +15,10 @@ This plugin detects if your site is being viewed by UserAgent and switches to se
 
 ## Changelog
 
+* Version 1.0.2
+	* added: add file uninstall.php
+	* fixed: split admin_enqueue_scripts() into two functions
+	* fixed: detects is_admin()
 * Version 1.0.1
 	* fixed: split multi_device_switcher_init() into two functions
 * Version 1.0.0
