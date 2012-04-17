@@ -460,7 +460,7 @@ function multi_device_switcher_render_page() {
 					<td><textarea name="multi_device_switcher_options[userAgent_game]" rows="4" cols="42"><?php echo $options['userAgent_game']; ?></textarea></td>
 				</tr>
 				<tr><th></th>
-					<td><input type="submit" name="multi_device_switcher_options[restore_UserAgent]" value="<?php _e( 'Reset Settings to Default UserAgent', 'multi-device-switcher' ); ?>"></td>
+					<td><p class="submit"><input type="submit" name="multi_device_switcher_options[restore_UserAgent]" value="<?php _e( 'Reset Settings to Default UserAgent', 'multi-device-switcher' ); ?>"></p></td>
 				</tr>
 			</table>
 			</fieldset>
