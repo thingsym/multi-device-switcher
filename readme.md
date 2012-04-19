@@ -15,6 +15,9 @@ This plugin detects if your site is being viewed by UserAgent and switches to se
 
 ## Changelog
 
+* Version 1.0.3
+	* updated: update screenshots
+	* fixed: fix reset button
 * Version 1.0.2
 	* added: add file uninstall.php
 	* fixed: split admin_enqueue_scripts() into two functions
