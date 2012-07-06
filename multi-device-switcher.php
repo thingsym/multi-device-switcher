@@ -29,7 +29,7 @@ License: GPL2
 
 class Multi_Device_Switcher {
 
-	function Multi_Device_Switcher() {
+	public function __construct() {
 
 		$userAgent = $this->get_options_userAgent();
 
@@ -55,7 +55,7 @@ class Multi_Device_Switcher {
 		}
 	}
 
-	function get_options_userAgent() {
+	public function get_options_userAgent() {
 		$options = get_option('multi_device_switcher_options');
 		$default_options = multi_device_switcher_get_default_options();
 
@@ -80,7 +80,7 @@ class Multi_Device_Switcher {
 		return $userAgent;
 	}
 
-	function get_stylesheet($stylesheet = '') {
+	public function get_stylesheet($stylesheet = '') {
 		$name = $this->get_device_theme();
 
 		if ( empty($name) ) 
@@ -103,7 +103,7 @@ class Multi_Device_Switcher {
 		return $theme['Stylesheet'];
 	}
 
-	function get_template($template = '') {
+	public function get_template($template = '') {
 		$name = $this->get_device_theme();
 
 		if ( empty($name) )
@@ -126,7 +126,7 @@ class Multi_Device_Switcher {
 		return $theme['Template'];
 	}
 
-	function get_device_theme() {
+	public function get_device_theme() {
 		$options = get_option('multi_device_switcher_options');
 
 		if ($this->device == 'smart') {
@@ -147,7 +147,7 @@ class Multi_Device_Switcher {
 }
 
 if ( ! is_admin() )
-	$multi_device_switcher = new Multi_Device_Switcher;
+	$multi_device_switcher = new Multi_Device_Switcher();
 
 /**
  * Properly enqueue scripts for our multi_device_switcher options page.
