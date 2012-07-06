@@ -86,12 +86,18 @@ class Multi_Device_Switcher {
 		if ( empty($name) ) 
 			return $stylesheet;
 
-		$theme = get_theme($name);
+		$themes = wp_get_themes();
+		foreach ( $themes as $t ) {
+			if ($name == $t->get('Name')) {
+				$theme = $t;
+				break;
+			}
+		}
 
 		if ( empty($theme) ) 
 			return $stylesheet;
 
-		if ( isset($theme['Status']) && $theme['Status'] != 'publish' )
+		if ( $theme->get('Status') != 'publish' )
 			return $stylesheet;
 
 		return $theme['Stylesheet'];
@@ -103,12 +109,18 @@ class Multi_Device_Switcher {
 		if ( empty($name) )
 			return $template;
 
-		$theme = get_theme($name);
-		
+		$themes = wp_get_themes();
+		foreach ( $themes as $t ) {
+			if ($name == $t->get('Name')) {
+				$theme = $t;
+				break;
+			}
+		}
+
 		if ( empty( $theme ) )
 			return $template;
 
-		if ( isset($theme['Status']) && $theme['Status'] != 'publish' )
+		if ( $theme->get('Status') != 'publish' )
 			return $template;
 
 		return $theme['Template'];
@@ -296,13 +308,24 @@ function multi_device_switcher_render_page() {
 	?>
 	<div class="wrap" style="width: 60%; float: left;">
 		<div id="icon-themes" class="icon32"><br></div>
-		<h2><?php printf( __( 'Multi Device Switcher', 'multi-device-switcher' ), get_current_theme() ); ?></h2>
+		<h2><?php printf( __( 'Multi Device Switcher', 'multi-device-switcher' ), wp_get_theme()->get('Name') ); ?></h2>
 		<?php settings_errors(); ?>
 
 		<form method="post" action="options.php">
 			<?php
 				settings_fields( 'multi_device_switcher' );
 				$options = multi_device_switcher_get_options();
+
+				$default_theme = wp_get_theme()->get('Name');
+				$themes = wp_get_themes();
+				$theme_names = array();
+
+				if (count($themes)) {
+					foreach ( $themes as $t ) {
+						$theme_names[] = $t->get('Name');
+					}
+					natcasesort($theme_names);
+				}
 			?>
 
 			<div id="admin-tabs">
@@ -313,12 +336,7 @@ function multi_device_switcher_render_page() {
 					<td>
 
 			<?php
-				$themes = get_themes();
-				$default_theme = get_current_theme();
-
-				if (count($themes) > 1) {
-					$theme_names = array_keys($themes);
-					natcasesort($theme_names);
+				if (count($theme_names)) {
 					$html = '<select name="multi_device_switcher_options[theme_smartphone]">';
 
 					if (($options['theme_smartphone'] == 'None') || ($options['theme_smartphone'] == '')) {
@@ -329,6 +347,8 @@ function multi_device_switcher_render_page() {
 					}
 
 					foreach ($theme_names as $theme_name) {
+						if ($default_theme == $theme_name) 
+							continue;
 						if ($options['theme_smartphone'] == $theme_name) {
 							$html .= '<option value="' . $theme_name . '" selected="selected">' . htmlspecialchars($theme_name) . '</option>';
 						}
@@ -346,12 +366,7 @@ function multi_device_switcher_render_page() {
 					<td>
 
 			<?php
-				$themes = get_themes();
-				$default_theme = get_current_theme();
-
-				if (count($themes) > 1) {
-					$theme_names = array_keys($themes);
-					natcasesort($theme_names);
+				if (count($theme_names)) {
 					$html = '<select name="multi_device_switcher_options[theme_tablet]">';
 
 					if (($options['theme_tablet'] == 'None') || ($options['theme_tablet'] == '')) {
@@ -362,6 +377,8 @@ function multi_device_switcher_render_page() {
 					}
 
 					foreach ($theme_names as $theme_name) {
+						if ($default_theme == $theme_name) 
+							continue;
 						if ($options['theme_tablet'] == $theme_name) {
 							$html .= '<option value="' . $theme_name . '" selected="selected">' . htmlspecialchars($theme_name) . '</option>';
 						}
@@ -379,12 +396,7 @@ function multi_device_switcher_render_page() {
 					<td>
 
 			<?php
-				$themes = get_themes();
-				$default_theme = get_current_theme();
-
-				if (count($themes) > 1) {
-					$theme_names = array_keys($themes);
-					natcasesort($theme_names);
+				if (count($theme_names)) {
 					$html = '<select name="multi_device_switcher_options[theme_mobile]">';
 
 					if (($options['theme_mobile'] == 'None') || ($options['theme_mobile'] == '')) {
@@ -395,6 +407,8 @@ function multi_device_switcher_render_page() {
 					}
 
 					foreach ($theme_names as $theme_name) {
+						if ($default_theme == $theme_name) 
+							continue;
 						if ($options['theme_mobile'] == $theme_name) {
 							$html .= '<option value="' . $theme_name . '" selected="selected">' . htmlspecialchars($theme_name) . '</option>';
 						}
@@ -412,12 +426,7 @@ function multi_device_switcher_render_page() {
 					<td>
 
 			<?php
-				$themes = get_themes();
-				$default_theme = get_current_theme();
-
-				if (count($themes) > 1) {
-					$theme_names = array_keys($themes);
-					natcasesort($theme_names);
+				if (count($theme_names)) {
 					$html = '<select name="multi_device_switcher_options[theme_game]">';
 
 					if (($options['theme_game'] == 'None') || ($options['theme_game'] == '')) {
@@ -428,6 +437,8 @@ function multi_device_switcher_render_page() {
 					}
 
 					foreach ($theme_names as $theme_name) {
+						if ($default_theme == $theme_name) 
+							continue;
 						if ($options['theme_game'] == $theme_name) {
 							$html .= '<option value="' . $theme_name . '" selected="selected">' . htmlspecialchars($theme_name) . '</option>';
 						}
