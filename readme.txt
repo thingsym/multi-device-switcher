@@ -5,8 +5,10 @@ Donate link: http://blog.thingslabo.com/archives/000251.html
 Link: https://github.com/thingsym/multi-device-switcher
 Tags: switcher, theme, ipad, iphone, android, tablet, mobile, game
 Requires at least: 3.2.1
-Tested up to: 3.3.1
-Stable tag: 1.0.3
+Tested up to: 3.4.1
+Stable tag: 1.0.4
+License: GPL2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 This WordPress plugin allows you to set a separate theme for device (Smart Phone, Tablet PC, Mobile Phone, Game).
 
@@ -32,6 +34,9 @@ This plugin detects if your site is being viewed by UserAgent and switches to se
 
 == Changelog ==
 
+= 1.0.4 =
+* fixed: fix the object model PHP5, __construct() to replace Multi_Device_Switcher
+* fixed: wp_get_themes(), and wp_get_theme() to replace get_themes(), get_theme()
 = 1.0.3 =
 * updated: update screenshots
 * fixed: fix reset button

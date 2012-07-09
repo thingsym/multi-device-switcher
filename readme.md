@@ -15,6 +15,9 @@ This plugin detects if your site is being viewed by UserAgent and switches to se
 
 ## Changelog
 
+* Version 1.0.4
+	* fixed: fix the object model PHP5, __construct() to replace Multi_Device_Switcher
+	* fixed: wp_get_themes(), and wp_get_theme() to replace get_themes(), get_theme()
 * Version 1.0.3
 	* updated: update screenshots
 	* fixed: fix reset button
