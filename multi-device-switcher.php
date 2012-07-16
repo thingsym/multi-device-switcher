@@ -32,6 +32,7 @@ class Multi_Device_Switcher {
 	public function __construct() {
 
 		$userAgent = $this->get_options_userAgent();
+		$this->device = '';
 
 		if ( $userAgent['smart'] && preg_match( '/' . implode( '|', $userAgent['smart'] ) . '/i', $_SERVER['HTTP_USER_AGENT']) ) {
 			$this->device = 'smart';
@@ -46,7 +47,14 @@ class Multi_Device_Switcher {
 			$this->device = 'game';
 		}
 		else {
-			$this->device = '';
+			foreach ( $userAgent as $key => $val ) {
+				if ( ! preg_match( "/^custom_switcher_/", $key ) ) 
+					continue;
+				if ($userAgent[$key] && preg_match( '/' . implode( '|', $userAgent[$key] ) . '/i', $_SERVER['HTTP_USER_AGENT']) ) {
+					$this->device = $key;
+					break;
+				}
+			}
 		}
 
 		if ($this->device) {
@@ -76,6 +84,16 @@ class Multi_Device_Switcher {
 			$userAgent['mobile'] = preg_split( "/,\s*/", $options['userAgent_mobile'] );
 		if ( $options['userAgent_game'] )
 			$userAgent['game'] = preg_split( "/,\s*/", $options['userAgent_game'] );
+
+		foreach ( $options as $key => $val ) {
+			if ( ! preg_match( "/^custom_switcher_userAgent_/", $key ) ) 
+				continue;
+
+			$custom_switcher_name = preg_replace("/^custom_switcher_userAgent_/", '', $key);
+
+			if ($val) 
+				$userAgent['custom_switcher_' . $custom_switcher_name] = preg_split( "/,\s*/", $val );
+		}
 
 		return $userAgent;
 	}
@@ -140,6 +158,18 @@ class Multi_Device_Switcher {
 		}
 		elseif ($this->device == 'game') {
 			return $options['theme_game'];
+		}
+		else {
+			foreach ( $options as $key => $val ) {
+				if ( ! preg_match( "/^custom_switcher_theme_/", $key ) ) 
+					continue;
+
+				$custom_switcher_name = preg_replace("/^custom_switcher_theme_/", '', $key);
+
+				if ($this->device == 'custom_switcher_' . $custom_switcher_name) {
+					return $options[$key];
+				}
+			}
 		}
 
 		return;
@@ -453,10 +483,72 @@ function multi_device_switcher_render_page() {
 					</td>
 				</tr>
 			</table>
+
+			<h3><?php _e( 'Custom Switcher Theme', 'multi-device-switcher' ); ?></h3>
+			<table class="form-table">
+
+			<?php
+				foreach ( $options as $key => $val ) {
+					if ( ! preg_match( "/^custom_switcher_theme_/", $key ) ) 
+						continue;
+
+					$custom_switcher_name = preg_replace("/^custom_switcher_theme_/", '', $key);
+					$custom_switcher_option = $key;
+					$custom_switcher_theme = $val;
+			?>
+
+				<tr><th scope="row"><?php _e( $custom_switcher_name, 'multi-device-switcher' ); ?></th>
+					<td>
+
+			<?php
+				if (count($theme_names)) {
+					$html = '<select name="multi_device_switcher_options[' . $custom_switcher_option . ']">';
+
+					if (($custom_switcher_theme == 'None') || ($custom_switcher_theme == '')) {
+						$html .= '<option value="None" selected="selected">None</option>';
+					}
+					else {
+						$html .= '<option value="None">None</option>';
+					}
+
+					foreach ($theme_names as $theme_name) {
+						if ($default_theme == $theme_name) 
+							continue;
+						if ($custom_switcher_theme == $theme_name) {
+							$html .= '<option value="' . $theme_name . '" selected="selected">' . htmlspecialchars($theme_name) . '</option>';
+						}
+						else {
+							$html .= '<option value="' . $theme_name . '">' . htmlspecialchars($theme_name) . '</option>';
+						}
+					}
+					$html .= '</select>';
+					$html .= '<span class="submit"><input type="submit" name="multi_device_switcher_options[delete_custom_switcher_' . $custom_switcher_name . ']" value="' . __( 'Delete', 'multi-device-switcher' ) . '" onclick="return confirm(\'' . sprintf( __( 'Are you sure you want to delete %1$s ?', 'multi-device-switcher' ), $custom_switcher_name ) . '\');""></span>';
+				}
+				echo $html;
+			?>
+					</td>
+				</tr>
+
+			<?php
+				}
+			?>
+
+				<tr><th scope="row"><?php _e( 'Add Custom Switcher', 'multi-device-switcher' ); ?></th>
+					<td>
+						<fieldset><legend class="screen-reader-text"><span><?php _e( 'Add Custom Switcher', 'thingscms' ); ?></span></legend>
+							<input type="text" name="multi_device_switcher_options[custom_switcher]" id="custom-switcher" value="" size="24" />
+							<span class="submit"><input type="submit" name="multi_device_switcher_options[add_custom_switcher]" value="<?php _e( 'Add', 'multi-device-switcher' ); ?>"></span><br>
+							<?php _e( '20 characters max (alphanumeric)', 'multi-device-switcher' ); ?>
+					</td>
+				</tr>
+			</table>
+
 			</fieldset>
 
 			<fieldset id="UserAgent" class="options">
 			<h3 class="label"><?php _e( 'UserAgent', 'multi-device-switcher' ); ?></h3>
+			<p><?php _e( 'Enter Comma-separated values (csv) format.', 'multi-device-switcher' ); ?></p>
+
 			<table class="form-table">
 				<tr><th scope="row"><?php _e( 'Smart Phone', 'multi-device-switcher' ); ?></th>
 					<td><textarea name="multi_device_switcher_options[userAgent_smart]" rows="4" cols="42"><?php echo $options['userAgent_smart']; ?></textarea></td>
@@ -471,8 +563,26 @@ function multi_device_switcher_render_page() {
 					<td><textarea name="multi_device_switcher_options[userAgent_game]" rows="4" cols="42"><?php echo $options['userAgent_game']; ?></textarea></td>
 				</tr>
 				<tr><th></th>
-					<td><p class="submit"><input type="submit" name="multi_device_switcher_options[restore_UserAgent]" value="<?php _e( 'Reset Settings to Default UserAgent', 'multi-device-switcher' ); ?>"></p></td>
+					<td><span class="submit"><input type="submit" name="multi_device_switcher_options[restore_UserAgent]" value="<?php _e( 'Reset Settings to Default UserAgent', 'multi-device-switcher' ); ?>"></span></td>
 				</tr>
+
+			<?php
+				foreach ( $options as $key => $val ) {
+					if ( ! preg_match( "/^custom_switcher_userAgent_/", $key ) ) 
+						continue;
+
+					$custom_switcher_name = preg_replace("/^custom_switcher_userAgent_/", '', $key);
+					$custom_switcher_option = $key;
+					$custom_switcher_userAgent = $val;
+			?>
+
+				<tr><th scope="row"><?php _e( $custom_switcher_name, 'multi-device-switcher' ); ?></th>
+					<td><textarea name="multi_device_switcher_options[<?php echo $custom_switcher_option; ?>]" rows="4" cols="42"><?php echo $custom_switcher_userAgent; ?></textarea></td>
+				</tr>
+			<?php
+				}
+			?>
+
 			</table>
 			</fieldset>
 			</div>
@@ -543,6 +653,35 @@ function multi_device_switcher_validate( $input ) {
 			$output['userAgent_mobile'] = $input['userAgent_mobile'];
 		if ( isset( $input['userAgent_game'] ) )
 			$output['userAgent_game'] = $input['userAgent_game'];
+	}
+
+	foreach ( $input as $key => $val ) {
+		if ( ! preg_match( "/^custom_switcher_theme_/", $key ) ) 
+			continue;
+
+		$custom_switcher_name = preg_replace("/^custom_switcher_theme_/", '', $key);
+
+		if ( isset( $input['custom_switcher_theme_' . $custom_switcher_name] ) )
+			$output['custom_switcher_theme_' . $custom_switcher_name] = $input['custom_switcher_theme_' . $custom_switcher_name];
+		if ( isset( $input['custom_switcher_userAgent_' . $custom_switcher_name] ) )
+			$output['custom_switcher_userAgent_' . $custom_switcher_name] = $input['custom_switcher_userAgent_' . $custom_switcher_name];
+	}
+
+	foreach ( $input as $key => $val ) {
+		if ( ! preg_match( "/^delete_custom_switcher_/", $key ) ) 
+			continue;
+
+		$custom_switcher_name = preg_replace("/^delete_custom_switcher_/", '', $key);
+
+		unset($output['custom_switcher_theme_' . $custom_switcher_name]);
+		unset($output['custom_switcher_userAgent_' . $custom_switcher_name]);
+	}
+
+	if ( isset( $input['add_custom_switcher'] ) && ! empty( $input['custom_switcher'] ) && ! $output['custom_switcher_theme_' . $input['custom_switcher']] ) {
+		if ( preg_match( "/^[A-Za-z0-9]{1,20}$/", $input['custom_switcher'] ) ) {
+			$output['custom_switcher_theme_' . $input['custom_switcher']] = 'None';
+			$output['custom_switcher_userAgent_' . $input['custom_switcher']] = '';
+		}
 	}
 
 	return apply_filters( 'multi_device_switcher_validate', $output, $input, $default_options );

@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Multi Device Switcher\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-01-17 22:01+0900\n"
-"PO-Revision-Date: 2012-03-04 15:57+0900\n"
+"PO-Revision-Date: 2012-07-12 18:18+0900\n"
 "Last-Translator: thingsym <thingsym@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -31,6 +31,15 @@ msgstr "携帯モバイル端末用テーマ"
 msgid "Game Platforms Theme"
 msgstr "ゲームプラットフォーム用テーマ"
 
+msgid "Custom Switcher Theme"
+msgstr "Custom Switcher用テーマ"
+
+msgid "20 characters max (alphanumeric)"
+msgstr "半角英数字 20 文字以内"
+
+msgid "Enter Comma-separated values (csv) format."
+msgstr "csv 形式で入力してください。"
+
 msgid "Smart Phone"
 msgstr "スマートフォン"
 
@@ -45,6 +54,18 @@ msgstr "ゲームプラットフォーム"
 
 msgid "Reset Settings to Default UserAgent"
 msgstr "ユーザーエージェントをデフォルトにもどす"
+
+msgid "Add Custom Switcher"
+msgstr "Custom Switcher を追加"
+
+msgid "Add"
+msgstr "追加"
+
+msgid "Delete"
+msgstr "削除"
+
+msgid "Are you sure you want to delete %1$s ?"
+msgstr "%1$s を削除してよろしいですか?"
 
 msgid "Donationware"
 msgstr "ドネーションウェア (寄付)"
