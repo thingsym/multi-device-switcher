@@ -2,7 +2,7 @@
 /*
 Plugin Name: Multi Device Switcher
 Plugin URI: https://github.com/thingsym/multi-device-switcher
-Description: This WordPress plugin allows you to set a separate theme for device (Smart Phone, Tablet PC, Mobile Phone, Game).
+Description: This WordPress plugin allows you to set a separate theme for device (Smart Phone, Tablet PC, Mobile Phone, Game and custom).
 Version: 1.0.4
 Author: thingsym
 Author URI: http://www.thingslabo.com/
@@ -538,7 +538,7 @@ function multi_device_switcher_render_page() {
 						<fieldset><legend class="screen-reader-text"><span><?php _e( 'Add Custom Switcher', 'thingscms' ); ?></span></legend>
 							<input type="text" name="multi_device_switcher_options[custom_switcher]" id="custom-switcher" value="" size="24" />
 							<span class="submit"><input type="submit" name="multi_device_switcher_options[add_custom_switcher]" value="<?php _e( 'Add', 'multi-device-switcher' ); ?>"></span><br>
-							<?php _e( '20 characters max (alphanumeric)', 'multi-device-switcher' ); ?>
+							<?php _e( '20 characters max, alphanumeric', 'multi-device-switcher' ); ?>
 					</td>
 				</tr>
 			</table>

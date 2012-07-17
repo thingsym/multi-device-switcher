@@ -34,7 +34,7 @@ msgstr ""
 msgid "Custom Switcher Theme"
 msgstr ""
 
-msgid "20 characters max (alphanumeric)"
+msgid "20 characters max, alphanumeric"
 msgstr ""
 
 msgid "Enter Comma-separated values (csv) format."
