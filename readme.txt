@@ -35,7 +35,7 @@ This plugin detects if your site is being viewed by UserAgent and switches to se
 = How to add Custom Switcher =
 
 1. Go to the "Multi Device Switcher" options page through the 'Appearance' menu in WordPress.
-2. Enter the name of the custom switcher (20 characters max, alphanumeric) to the 'Add Custom Switcher'. Push the button 'Add'.
+2. Enter the name of the Custom Switcher (20 characters max, alphanumeric) to the 'Add Custom Switcher'. Push the button 'Add'.
 3. Configure settings. Select Theme by Theme option. Add UserAgent by UserAgent option.
 4. Have fun!
 
