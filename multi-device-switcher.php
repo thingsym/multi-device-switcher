@@ -304,10 +304,10 @@ function multi_device_switcher_get_default_options() {
 		'theme_tablet' => 'None',
 		'theme_mobile' => 'None',
 		'theme_game' => 'None',
-		'userAgent_smart' => 'iPhone, iPod, Android, dream, CUPCAKE, Windows Phone, webOS, BlackBerry8707, BlackBerry9000, BlackBerry9300, BlackBerry9500, BlackBerry9530, BlackBerry9520, BlackBerry9550, BlackBerry9700, BlackBerry9800',
-		'userAgent_tablet' => 'iPad',
+		'userAgent_smart' => 'iPhone, iPod, Android, dream, CUPCAKE, Windows Phone, webOS, BB10, BlackBerry8707, BlackBerry9000, BlackBerry9300, BlackBerry9500, BlackBerry9530, BlackBerry9520, BlackBerry9550, BlackBerry9700, BlackBerry 93, BlackBerry 97, BlackBerry 99, BlackBerry 98',
+		'userAgent_tablet' => 'iPad, Kindle, Sony Tablet, Nexus 7',
 		'userAgent_mobile' => 'DoCoMo, SoftBank, J-PHONE, Vodafone, KDDI, UP.Browser, WILLCOM, emobile, DDIPOCKET, Windows CE, BlackBerry, Symbian, PalmOS, Huawei, IAC, Nokia',
-		'userAgent_game' => 'PlayStation Portable, PlayStation Vita, PSP, PS2, PLAYSTATION 3, Nitro, Nintendo 3DS, Nintendo Wii',
+		'userAgent_game' => 'PlayStation Portable, PlayStation Vita, PSP, PS2, PLAYSTATION 3, Nitro, Nintendo 3DS, Nintendo Wii, Xbox',
 	);
 
 	return $default_theme_options;
