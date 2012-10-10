@@ -180,6 +180,20 @@ if ( ! is_admin() )
 	$multi_device_switcher = new Multi_Device_Switcher();
 
 /**
+ * Add HTTP/1.1 Vary header.
+ *
+ * @since 1.1.1
+ *
+ */
+function multi_device_switcher_add_header_vary( $headers ) {
+	if ( ! is_admin() ) {
+		$headers['Vary'] = 'User-Agent';
+		return $headers;
+	}
+}
+add_filter( 'wp_headers', 'multi_device_switcher_add_header_vary' );
+
+/**
  * Properly enqueue scripts for our multi_device_switcher options page.
  *
  * This function is attached to the admin_enqueue_scripts action hook.
