@@ -34,26 +34,27 @@ class Multi_Device_Switcher {
 		$userAgent = $this->get_options_userAgent();
 		$this->device = '';
 
-		if ( $userAgent['smart'] && preg_match( '/' . implode( '|', $userAgent['smart'] ) . '/i', $_SERVER['HTTP_USER_AGENT']) ) {
-			$this->device = 'smart';
+		foreach ( array_reverse($userAgent) as $key => $val ) {
+			if ( ! preg_match( "/^custom_switcher_/", $key ) ) 
+				continue;
+			if ($userAgent[$key] && preg_match( '/' . implode( '|', $userAgent[$key] ) . '/i', $_SERVER['HTTP_USER_AGENT']) ) {
+				$this->device = $key;
+				break;
+			}
 		}
-		elseif ( $userAgent['tablet'] && preg_match( '/' . implode( '|', $userAgent['tablet'] ) . '/i', $_SERVER['HTTP_USER_AGENT']) ) {
-			$this->device = 'tablet';
-		}
-		elseif ( $userAgent['mobile'] && preg_match( '/' . implode( '|', $userAgent['mobile'] ) . '/i', $_SERVER['HTTP_USER_AGENT']) ) {
-			$this->device = 'mobile';
-		}
-		elseif ( $userAgent['game'] && preg_match( '/' . implode( '|', $userAgent['game'] ) . '/i', $_SERVER['HTTP_USER_AGENT']) ) {
-			$this->device = 'game';
-		}
-		else {
-			foreach ( $userAgent as $key => $val ) {
-				if ( ! preg_match( "/^custom_switcher_/", $key ) ) 
-					continue;
-				if ($userAgent[$key] && preg_match( '/' . implode( '|', $userAgent[$key] ) . '/i', $_SERVER['HTTP_USER_AGENT']) ) {
-					$this->device = $key;
-					break;
-				}
+
+		if (! $this->device) {
+			if ( $userAgent['game'] && preg_match( '/' . implode( '|', $userAgent['game'] ) . '/i', $_SERVER['HTTP_USER_AGENT']) ) {
+				$this->device = 'game';
+			}
+			elseif ( $userAgent['tablet'] && preg_match( '/' . implode( '|', $userAgent['tablet'] ) . '/i', $_SERVER['HTTP_USER_AGENT']) ) {
+				$this->device = 'tablet';
+			}
+			elseif ( $userAgent['smart'] && preg_match( '/' . implode( '|', $userAgent['smart'] ) . '/i', $_SERVER['HTTP_USER_AGENT']) ) {
+				$this->device = 'smart';
+			}
+			elseif ( $userAgent['mobile'] && preg_match( '/' . implode( '|', $userAgent['mobile'] ) . '/i', $_SERVER['HTTP_USER_AGENT']) ) {
+				$this->device = 'mobile';
 			}
 		}
 
