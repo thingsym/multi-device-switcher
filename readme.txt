@@ -5,8 +5,8 @@ Donate link: http://blog.thingslabo.com/archives/000251.html
 Link: https://github.com/thingsym/multi-device-switcher
 Tags: switcher, theme, ipad, iphone, android, tablet, mobile, game
 Requires at least: 3.2.1
-Tested up to: 3.4.1
-Stable tag: 1.1.0
+Tested up to: 3.4.2
+Stable tag: 1.1.1
 License: GPL2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -42,6 +42,10 @@ The Custom Switcher can add every device.
 
 == Changelog ==
 
+= 1.1.1 =
+* fixed: change the order of the UserAgent detection
+* updated: update default UserAgent
+* added: add HTTP/1.1 Vary header
 = 1.1.0 =
 * new features: Custom Switcher
 = 1.0.4 =
