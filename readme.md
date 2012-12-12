@@ -23,6 +23,8 @@ The Custom Switcher can add every device.
 
 ## Changelog
 
+* Version 1.1.2
+	* fixed: fix tabs and buttons
 * Version 1.1.1
 	* fixed: change the order of the UserAgent detection
 	* updated: update default UserAgent
