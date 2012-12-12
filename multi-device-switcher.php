@@ -537,7 +537,7 @@ function multi_device_switcher_render_page() {
 						}
 					}
 					$html .= '</select>';
-					$html .= '<span class="submit"><input type="submit" name="multi_device_switcher_options[delete_custom_switcher_' . $custom_switcher_name . ']" value="' . __( 'Delete', 'multi-device-switcher' ) . '" onclick="return confirm(\'' . sprintf( __( 'Are you sure you want to delete %1$s ?', 'multi-device-switcher' ), $custom_switcher_name ) . '\');""></span>';
+					$html .= '<span class="submit"><input type="submit" name="multi_device_switcher_options[delete_custom_switcher_' . $custom_switcher_name . ']" value="' . __( 'Delete', 'multi-device-switcher' ) . '" onclick="return confirm(\'' . sprintf( __( 'Are you sure you want to delete %1$s ?', 'multi-device-switcher' ), $custom_switcher_name ) . '\');"" class="button"></span>';
 				}
 				echo $html;
 			?>
@@ -552,7 +552,7 @@ function multi_device_switcher_render_page() {
 					<td>
 						<fieldset><legend class="screen-reader-text"><span><?php _e( 'Add Custom Switcher', 'thingscms' ); ?></span></legend>
 							<input type="text" name="multi_device_switcher_options[custom_switcher]" id="custom-switcher" value="" size="24" />
-							<span class="submit"><input type="submit" name="multi_device_switcher_options[add_custom_switcher]" value="<?php _e( 'Add', 'multi-device-switcher' ); ?>"></span><br>
+							<span class="submit"><input type="submit" name="multi_device_switcher_options[add_custom_switcher]" value="<?php _e( 'Add', 'multi-device-switcher' ); ?>" class="button"></span><br>
 							<?php _e( '20 characters max, alphanumeric', 'multi-device-switcher' ); ?>
 					</td>
 				</tr>
@@ -578,7 +578,7 @@ function multi_device_switcher_render_page() {
 					<td><textarea name="multi_device_switcher_options[userAgent_game]" rows="4" cols="42"><?php echo $options['userAgent_game']; ?></textarea></td>
 				</tr>
 				<tr><th></th>
-					<td><span class="submit"><input type="submit" name="multi_device_switcher_options[restore_UserAgent]" value="<?php _e( 'Reset Settings to Default UserAgent', 'multi-device-switcher' ); ?>"></span></td>
+					<td><span class="submit"><input type="submit" name="multi_device_switcher_options[restore_UserAgent]" value="<?php _e( 'Reset Settings to Default UserAgent', 'multi-device-switcher' ); ?>" class="button"></span></td>
 				</tr>
 
 			<?php
