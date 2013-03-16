@@ -273,6 +273,8 @@ add_filter( 'option_page_capability_multi_device_switcher', 'multi_device_switch
 function multi_device_switcher_add_page() {
 	load_plugin_textdomain('multi-device-switcher', false, 'multi-device-switcher/languages');
 
+	add_filter( 'plugin_action_links', 'multi_device_switcher_plugin_action_links',10,2);
+
 	$theme_page = add_theme_page(
 		__( 'Multi Device Switcher', 'multi-device-switcher' ),   // Name of page
 		__( 'Multi Device Switcher', 'multi-device-switcher' ),   // Label in menu
@@ -293,6 +295,22 @@ function multi_device_switcher_add_page() {
 	add_action( "admin_print_styles-$theme_page", 'multi_device_switcher_admin_enqueue_styles' );
 }
 add_action( 'admin_menu', 'multi_device_switcher_add_page' );
+
+/**
+ * Add the settings link to the plugin page.
+ *
+ * @since 1.1.3
+ */
+function multi_device_switcher_plugin_action_links( $links, $file ) {
+	if ( $file != plugin_basename( __FILE__ ))
+		return $links;
+
+	$settings_link = '<a href="themes.php?page=multi-device-switcher">' . __( 'Settings', 'multi-device-switcher' ) . '</a>';
+
+	array_unshift( $links, $settings_link );
+
+	return $links;
+}
 
 /**
  * Returns the default options.

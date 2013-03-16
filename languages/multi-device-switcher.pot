@@ -13,6 +13,9 @@ msgstr ""
 msgid "Multi Device Switcher"
 msgstr ""
 
+msgid "Settings"
+msgstr ""
+
 msgid "Theme"
 msgstr ""
 
