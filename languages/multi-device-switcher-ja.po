@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Multi Device Switcher\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-01-17 22:01+0900\n"
-"PO-Revision-Date: 2013-03-16 18:43+0900\n"
+"PO-Revision-Date: 2013-03-20 20:37+0900\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -66,6 +66,24 @@ msgstr "追加"
 
 msgid "Delete"
 msgstr "削除"
+
+msgid "Add PC Switcher"
+msgstr "PC Switcher を追加"
+
+msgid "Add a PC Switcher to the footer."
+msgstr "PC Switcher をフッターに追加する"
+
+msgid "Add default CSS"
+msgstr "デフォルトCSSを追加"
+
+msgid "Add a default CSS."
+msgstr "デフォルトCSSを追加する"
+
+msgid "Mobile"
+msgstr "モバイル"
+
+msgid "PC"
+msgstr "PC"
 
 msgid "Are you sure you want to delete %1$s ?"
 msgstr "%1$s を削除してよろしいですか?"

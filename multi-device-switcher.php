@@ -30,6 +30,7 @@ License: GPL2
 class Multi_Device_Switcher {
 
 	public function __construct() {
+		add_action('init', array(&$this, 'session'));
 
 		$userAgent = $this->get_options_userAgent();
 		$this->device = '';
@@ -59,8 +60,15 @@ class Multi_Device_Switcher {
 		}
 
 		if ($this->device) {
+			load_plugin_textdomain('multi-device-switcher', false, 'multi-device-switcher/languages');
 			add_filter('stylesheet', array(&$this, 'get_stylesheet'));
 			add_filter('template', array(&$this, 'get_template'));
+			add_action('wp_footer', array(&$this, 'add_pc_switcher'));
+		}
+
+		if (isset($_COOKIE['pc-switcher'])) {
+			remove_filter('stylesheet', array(&$this, 'get_stylesheet'));
+			remove_filter('template', array(&$this, 'get_template'));
 		}
 	}
 
@@ -175,6 +183,45 @@ class Multi_Device_Switcher {
 
 		return;
 	}
+
+	public function session() {
+		if ( isset($_GET['pc-switcher']) ) {
+			setcookie( 'pc-switcher', $_GET['pc-switcher'] ? 1 : '', null, '/' );
+
+			$uri = preg_replace( '/^(.+?)(\?.*)$/', '$1', $_SERVER['REQUEST_URI'] );
+
+			unset($_GET['pc-switcher']);
+			if ( ! empty($_GET) ) 
+				$uri = $uri . '?' . http_build_query($_GET);
+
+			wp_redirect( esc_attr($uri) );
+			exit;
+		}
+	}
+
+	public function add_pc_switcher($pc_switcher = 0) {
+		$options = get_option('multi_device_switcher_options');
+		$name = $this->get_device_theme();
+
+		if ($options['pc_switcher']) 
+			$pc_switcher = 1;
+
+		if ( $pc_switcher && $name && $name != 'None' ) {
+			if ($options['default_css']) 
+				wp_enqueue_style( 'pc-switcher-options', WP_PLUGIN_URL . '/multi-device-switcher/pc-switcher.css', false, '2013-03-20' );
+
+			if (isset($_COOKIE['pc-switcher'])) {
+		?>
+<div class="pc-switcher"><a href="?pc-switcher=0" class="active"><?php _e( 'Mobile', 'multi-device-switcher' ); ?></a><span class="active"><?php _e( 'PC', 'multi-device-switcher' ); ?></span></div>
+		<?php
+			}
+			else {
+		?>
+<div class="pc-switcher"><span class="active"><?php _e( 'Mobile', 'multi-device-switcher' ); ?></span><a href="?pc-switcher=1" class="active"><?php _e( 'PC', 'multi-device-switcher' ); ?></a></div>
+		<?php
+			}
+		}
+	}
 }
 
 if ( ! is_admin() )
@@ -193,6 +240,17 @@ function multi_device_switcher_add_header_vary( $headers ) {
 	}
 }
 add_filter( 'wp_headers', 'multi_device_switcher_add_header_vary' );
+
+/**
+ * Add PC Switcher.
+ *
+ * @since 1.2
+ *
+ */
+function multi_device_switcher_add_pc_switcher() {
+	global $multi_device_switcher;
+	$multi_device_switcher->add_pc_switcher(1);
+}
 
 /**
  * Properly enqueue scripts for our multi_device_switcher options page.
@@ -319,6 +377,8 @@ function multi_device_switcher_plugin_action_links( $links, $file ) {
  */
 function multi_device_switcher_get_default_options() {
 	$default_theme_options = array(
+		'pc_switcher' => 1,
+		'default_css' => 1,
 		'theme_smartphone' => 'None',
 		'theme_tablet' => 'None',
 		'theme_mobile' => 'None',
@@ -340,6 +400,11 @@ function multi_device_switcher_get_default_options() {
 function multi_device_switcher_get_options() {
 	$options = get_option( 'multi_device_switcher_options' );
 	$default_options = multi_device_switcher_get_default_options();
+
+	if ( ! isset( $options['pc_switcher'] ) )
+		$options['pc_switcher'] = $default_options['pc_switcher'];
+	if ( ! isset( $options['default_css'] ) )
+		$options['default_css'] = $default_options['default_css'];
 
 	if ( ! isset( $options['theme_smartphone'] ) )
 		$options['theme_smartphone'] = $default_options['theme_smartphone'];
@@ -618,6 +683,26 @@ function multi_device_switcher_render_page() {
 
 			</table>
 			</fieldset>
+
+			<fieldset id="PC-Switcher" class="options">
+			<h3 class="label"><?php _e( 'PC Switcher', 'multi-device-switcher' ); ?></h3>
+
+			<table class="form-table">
+				<tr><th scope="row"><?php _e( 'Add PC Switcher', 'multi-device-switcher' ); ?></th>
+					<td>
+						<fieldset><legend class="screen-reader-text"><span><?php _e( 'Add PC Switcher', 'multi-device-switcher' ); ?></span></legend>
+							<label><input type="checkbox" name="multi_device_switcher_options[pc_switcher]" id="pc-switcher" value="1"<?php checked(1, $options['pc_switcher']); ?>> <?php _e( 'Add a PC Switcher to the footer.', 'multi-device-switcher' ); ?></label>
+					</td>
+				</tr>
+				<tr><th scope="row"><?php _e( 'Add default CSS', 'multi-device-switcher' ); ?></th>
+					<td>
+						<fieldset><legend class="screen-reader-text"><span><?php _e( 'Add default CSS', 'multi-device-switcher' ); ?></span></legend>
+							<label><input type="checkbox" name="multi_device_switcher_options[default_css]" id="add-default-css" value="1"<?php checked(1, $options['default_css']); ?>> <?php _e( 'Add a default CSS.', 'multi-device-switcher' ); ?></label>
+					</td>
+				</tr>
+			</table>
+			</fieldset>
+
 			</div>
 			<?php submit_button(); ?>
 		</form>
@@ -716,6 +801,9 @@ function multi_device_switcher_validate( $input ) {
 			$output['custom_switcher_userAgent_' . $input['custom_switcher']] = '';
 		}
 	}
+
+	$output['pc_switcher'] = isset($input['pc_switcher']) ? $input['pc_switcher'] : 0;
+	$output['default_css'] = isset($input['default_css']) ? $input['default_css'] : 0;
 
 	return apply_filters( 'multi_device_switcher_validate', $output, $input, $default_options );
 }

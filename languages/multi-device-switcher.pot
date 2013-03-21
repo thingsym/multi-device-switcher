@@ -67,6 +67,24 @@ msgstr ""
 msgid "Delete"
 msgstr ""
 
+msgid "Add PC Switcher"
+msgstr ""
+
+msgid "Add a PC Switcher to the footer."
+msgstr ""
+
+msgid "Add default CSS"
+msgstr ""
+
+msgid "Add a default CSS."
+msgstr ""
+
+msgid "Mobile"
+msgstr ""
+
+msgid "PC"
+msgstr ""
+
 msgid "Are you sure you want to delete %1$s ?"
 msgstr ""
 

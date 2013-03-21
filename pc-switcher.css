@@ -1,0 +1,49 @@
+.pc-switcher {
+	clear: both;
+	text-align: center;
+	margin: 1.4em auto;
+}
+.pc-switcher a,
+.pc-switcher span {
+	padding: 0.4em 8%;
+	text-align: center;
+	border: 1px solid #0059A8;
+	border-left: none;
+	color: #fff;
+	font-weight: bold;
+	text-decoration: none;
+}
+.pc-switcher a {
+	background-color: #0074DA;
+	background-image: -moz-linear-gradient(#0074DA, #004A8D);
+	background-image: -o-linear-gradient(#0074DA, #004A8D);
+	background-image: -ms-linear-gradient(#0074DA, #004A8D);
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#0074DA), to(#004A8D));
+	background-image: -webkit-linear-gradient(#0074DA, #004A8D);
+	background-image: linear-gradient(#0074DA, #004A8D);
+}
+.pc-switcher a:hover {
+	background-color: #0059A8;
+	background-image: -moz-linear-gradient(#0059A8, #004A8D);
+	background-image: -o-linear-gradient(#0059A8, #004A8D);
+	background-image: -ms-linear-gradient(#0059A8, #004A8D);
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#0059A8), to(#004A8D));
+	background-image: -webkit-linear-gradient(#0059A8, #004A8D);
+	background-image: linear-gradient(#0059A8, #004A8D);
+}
+.pc-switcher span.active {
+	background-color: #00305C;
+}
+.pc-switcher a:first-child,
+.pc-switcher span:first-child {
+	border-left: 1px solid #0074DA;
+	-webkit-border-radius: 2.4em 0 0 2.4em;
+	-moz-border-radius: 2.4em 0 0 2.4em;
+	border-radius: 2.4em 0 0 2.4em;
+}
+.pc-switcher a:last-child,
+.pc-switcher span:last-child {
+	-webkit-border-radius: 0 2.4em 2.4em 0;
+	-moz-border-radius: 0 2.4em 2.4em 0;
+	border-radius: 0 2.4em 2.4em 0;
+}
