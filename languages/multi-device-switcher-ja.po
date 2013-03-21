@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Multi Device Switcher\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-01-17 22:01+0900\n"
-"PO-Revision-Date: 2013-03-20 20:37+0900\n"
+"PO-Revision-Date: 2013-03-21 19:37+0900\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -93,4 +93,8 @@ msgstr "ドネーションウェア (寄付)"
 
 msgid "If you like this plugin, please donate to support development and maintenance."
 msgstr "よろしければ、開発とメンテナンスのために寄付していただければうれしいです。"
+
+# pc-switcher-widget.php
+msgid "Add the PC Switcher to a widget."
+msgstr "PC Switcher をウィジェットに追加"
 

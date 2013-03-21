@@ -808,4 +808,11 @@ function multi_device_switcher_validate( $input ) {
 	return apply_filters( 'multi_device_switcher_validate', $output, $input, $default_options );
 }
 
+/**
+ * include PC Switcher Widget.
+ *
+ * @since 1.2
+ */
+require_once( dirname(__FILE__) . '/pc-switcher-widget.php' );
+
 ?>

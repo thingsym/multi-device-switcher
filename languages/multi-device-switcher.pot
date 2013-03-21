@@ -93,3 +93,7 @@ msgstr ""
 
 msgid "If you like this plugin, please donate to support development and maintenance."
 msgstr ""
+
+# pc-switcher-widget.php
+msgid "Add the PC Switcher to a widget."
+msgstr ""
