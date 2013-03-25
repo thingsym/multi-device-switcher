@@ -9,7 +9,7 @@
 	text-align: center;
 	border: 1px solid #0059A8;
 	border-left: none;
-	color: #fff;
+	color: #fff !important;
 	font-weight: bold;
 	text-decoration: none;
 }

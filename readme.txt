@@ -102,7 +102,7 @@ There are three ways how to Using the PC Switcher.
 == Changelog ==
 
 = 1.1.2 =
-* Required: at least version 3.4
+* required: at least version 3.4
 * fixed: fix tabs and buttons
 = 1.1.1 =
 * fixed: change the order of the UserAgent detection
