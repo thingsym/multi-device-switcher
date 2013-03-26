@@ -79,6 +79,10 @@ You can send your own language pack to me.
 
 ## Changelog
 
+* Version 1.2.0
+	* added: add PC Switcher Widget
+	* new features: PC Switcher
+	* added: add the settings link to the plugin page
 * Version 1.1.2
 	* required: at least version 3.4
 	* fixed: fix tabs and buttons
