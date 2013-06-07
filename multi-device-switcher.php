@@ -212,12 +212,12 @@ class Multi_Device_Switcher {
 
 			if ( isset($_COOKIE['pc-switcher']) ) {
 		?>
-<div class="pc-switcher"><a href="?pc-switcher=0" class="active"><?php _e( 'Mobile', 'multi-device-switcher' ); ?></a><span class="active"><?php _e( 'PC', 'multi-device-switcher' ); ?></span></div>
+<div class="pc-switcher"><a href="?pc-switcher=0"><?php _e( 'Mobile', 'multi-device-switcher' ); ?></a><span class="active"><?php _e( 'PC', 'multi-device-switcher' ); ?></span></div>
 		<?php
 			}
 			else {
 		?>
-<div class="pc-switcher"><span class="active"><?php _e( 'Mobile', 'multi-device-switcher' ); ?></span><a href="?pc-switcher=1" class="active"><?php _e( 'PC', 'multi-device-switcher' ); ?></a></div>
+<div class="pc-switcher"><span class="active"><?php _e( 'Mobile', 'multi-device-switcher' ); ?></span><a href="?pc-switcher=1"><?php _e( 'PC', 'multi-device-switcher' ); ?></a></div>
 		<?php
 			}
 		}
