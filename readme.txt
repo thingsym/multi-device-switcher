@@ -87,9 +87,10 @@ There are three ways how to Using the PC Switcher.
 3. Drag and drop the title bars 'PC Switcher' into the desired area.
 4. Have fun!
 
-= 3. For the theme authors and developers, add a PC Switcher to your theme.
+= 3. For the theme authors and developers, add a PC Switcher to your theme. =
 
 1. Add the following code into the PHP files, when you develop your theme.
+ 
  `<?php if ( function_exists('multi_device_switcher_add_pc_switcher') ) { multi_device_switcher_add_pc_switcher(); } ?>`
 2. Have fun!
 
@@ -101,6 +102,10 @@ There are three ways how to Using the PC Switcher.
 
 == Changelog ==
 
+= 1.2.0 =
+ * added: add PC Switcher Widget
+ * new features: PC Switcher
+ * added: add the settings link to the plugin page
 = 1.1.2 =
 * required: at least version 3.4
 * fixed: fix tabs and buttons
