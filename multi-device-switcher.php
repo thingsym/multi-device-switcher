@@ -344,11 +344,6 @@ function multi_device_switcher_add_page() {
 	if ( ! $theme_page )
 		return;
 
-	$help = '';
-
-	if ($help) 
-		add_contextual_help( $theme_page, $help );
-
 	add_action( "admin_print_scripts-$theme_page", 'multi_device_switcher_admin_enqueue_scripts' );
 	add_action( "admin_print_styles-$theme_page", 'multi_device_switcher_admin_enqueue_styles' );
 }
