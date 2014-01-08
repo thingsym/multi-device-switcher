@@ -58,6 +58,9 @@ msgstr ""
 msgid "Reset Settings to Default UserAgent"
 msgstr ""
 
+msgid "Custom Switcher UserAgent"
+msgstr ""
+
 msgid "Add Custom Switcher"
 msgstr ""
 

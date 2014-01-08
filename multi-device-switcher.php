@@ -615,7 +615,7 @@ function multi_device_switcher_render_page() {
 						}
 					}
 					$html .= '</select>';
-					$html .= '<span class="submit"><input type="submit" name="multi_device_switcher_options[delete_custom_switcher_' . $custom_switcher_name . ']" value="' . __( 'Delete', 'multi-device-switcher' ) . '" onclick="return confirm(\'' . sprintf( __( 'Are you sure you want to delete %1$s ?', 'multi-device-switcher' ), $custom_switcher_name ) . '\');"" class="button"></span>';
+					$html .= ' <span class="submit"><input type="submit" name="multi_device_switcher_options[delete_custom_switcher_' . $custom_switcher_name . ']" value="' . __( 'Delete', 'multi-device-switcher' ) . '" onclick="return confirm(\'' . sprintf( __( 'Are you sure you want to delete %1$s ?', 'multi-device-switcher' ), $custom_switcher_name ) . '\');" class="button"></span>';
 				}
 				echo $html;
 			?>
@@ -659,6 +659,10 @@ function multi_device_switcher_render_page() {
 					<td><span class="submit"><input type="submit" name="multi_device_switcher_options[restore_UserAgent]" value="<?php _e( 'Reset Settings to Default UserAgent', 'multi-device-switcher' ); ?>" class="button"></span></td>
 				</tr>
 
+			</table>
+
+			<h3><?php _e( 'Custom Switcher UserAgent', 'multi-device-switcher' ); ?></h3>
+			<table class="form-table">
 			<?php
 				foreach ( $options as $key => $val ) {
 					if ( ! preg_match( "/^custom_switcher_userAgent_/", $key ) ) 
