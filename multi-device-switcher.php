@@ -429,7 +429,7 @@ function multi_device_switcher_get_options() {
  */
 function multi_device_switcher_render_page() {
 	?>
-	<div class="wrap" style="width: 60%; float: left;">
+	<div class="wrap">
 		<div id="icon-themes" class="icon32"><br></div>
 		<h2><?php printf( __( 'Multi Device Switcher', 'multi-device-switcher' ), wp_get_theme()->get('Name') ); ?></h2>
 		<?php settings_errors(); ?>
@@ -707,7 +707,7 @@ function multi_device_switcher_render_page() {
 		</form>
 	</div>
 
-	<div id="donate" style="width: 36%; float: left; margin: 2em 0;padding: 0.4em;border: 1px solid #ddd;">
+	<div id="donate">
 	<h2><?php _e( 'Donationware', 'multi-device-switcher' ); ?></h2>
 	<p><?php _e( 'If you like this plugin, please donate to support development and maintenance.', 'multi-device-switcher' ); ?></p>
 <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
