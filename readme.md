@@ -79,6 +79,9 @@ You can send your own language pack to me.
 
 ## Changelog
 
+* Version 1.2.2
+	* improved: improve responsiveness UI
+	* fixed: fix html
 * Version 1.2.1
 	* fixed: delete add_contextual_help
 	* fixed: fix readme and html
