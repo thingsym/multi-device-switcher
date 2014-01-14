@@ -3,7 +3,7 @@
 Widget Name: PC Switcher Widget
 Plugin URI: https://github.com/thingsym/multi-device-switcher
 Description: PC Switcher Widget add-on for the Multi Device Switcher. Use this widget to add the PC Switcher to a widget.
-Version: 1.2.1
+Version: 1.2.2
 Author: thingsym
 Author URI: http://www.thingslabo.com/
 License: GPL2

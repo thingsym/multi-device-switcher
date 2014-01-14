@@ -6,7 +6,7 @@ Link: https://github.com/thingsym/multi-device-switcher
 Tags: switcher, theme, ipad, iphone, android, tablet, mobile, game
 Requires at least: 3.4
 Tested up to: 3.5
-Stable tag: 1.2.1
+Stable tag: 1.2.2
 License: GPL2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -102,6 +102,9 @@ There are three ways how to Using the PC Switcher.
 
 == Changelog ==
 
+= 1.2.2 =
+* improved: improve responsiveness UI
+* fixed: fix html
 = 1.2.1 =
 * fixed: delete add_contextual_help
 * fixed: fix readme and html

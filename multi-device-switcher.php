@@ -3,7 +3,7 @@
 Plugin Name: Multi Device Switcher
 Plugin URI: https://github.com/thingsym/multi-device-switcher
 Description: This WordPress plugin allows you to set a separate theme for device (Smart Phone, Tablet PC, Mobile Phone, Game and custom).
-Version: 1.2.1
+Version: 1.2.2
 Author: thingsym
 Author URI: http://www.thingslabo.com/
 License: GPL2
@@ -429,7 +429,7 @@ function multi_device_switcher_get_options() {
  */
 function multi_device_switcher_render_page() {
 	?>
-	<div class="wrap" style="width: 60%; float: left;">
+	<div class="wrap">
 		<div id="icon-themes" class="icon32"><br></div>
 		<h2><?php printf( __( 'Multi Device Switcher', 'multi-device-switcher' ), wp_get_theme()->get('Name') ); ?></h2>
 		<?php settings_errors(); ?>
@@ -615,7 +615,7 @@ function multi_device_switcher_render_page() {
 						}
 					}
 					$html .= '</select>';
-					$html .= '<span class="submit"><input type="submit" name="multi_device_switcher_options[delete_custom_switcher_' . $custom_switcher_name . ']" value="' . __( 'Delete', 'multi-device-switcher' ) . '" onclick="return confirm(\'' . sprintf( __( 'Are you sure you want to delete %1$s ?', 'multi-device-switcher' ), $custom_switcher_name ) . '\');"" class="button"></span>';
+					$html .= ' <span class="submit"><input type="submit" name="multi_device_switcher_options[delete_custom_switcher_' . $custom_switcher_name . ']" value="' . __( 'Delete', 'multi-device-switcher' ) . '" onclick="return confirm(\'' . sprintf( __( 'Are you sure you want to delete %1$s ?', 'multi-device-switcher' ), $custom_switcher_name ) . '\');" class="button"></span>';
 				}
 				echo $html;
 			?>
@@ -659,6 +659,10 @@ function multi_device_switcher_render_page() {
 					<td><span class="submit"><input type="submit" name="multi_device_switcher_options[restore_UserAgent]" value="<?php _e( 'Reset Settings to Default UserAgent', 'multi-device-switcher' ); ?>" class="button"></span></td>
 				</tr>
 
+			</table>
+
+			<h3><?php _e( 'Custom Switcher UserAgent', 'multi-device-switcher' ); ?></h3>
+			<table class="form-table">
 			<?php
 				foreach ( $options as $key => $val ) {
 					if ( ! preg_match( "/^custom_switcher_userAgent_/", $key ) ) 
@@ -703,7 +707,7 @@ function multi_device_switcher_render_page() {
 		</form>
 	</div>
 
-	<div id="donate" style="width: 36%; float: left; margin: 2em 0;padding: 0.4em;border: 1px solid #ddd;">
+	<div id="donate">
 	<h2><?php _e( 'Donationware', 'multi-device-switcher' ); ?></h2>
 	<p><?php _e( 'If you like this plugin, please donate to support development and maintenance.', 'multi-device-switcher' ); ?></p>
 <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
