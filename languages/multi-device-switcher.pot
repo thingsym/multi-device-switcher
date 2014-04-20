@@ -64,6 +64,9 @@ msgstr ""
 msgid "Add Custom Switcher"
 msgstr ""
 
+msgid "None"
+msgstr ""
+
 msgid "Add"
 msgstr ""
 
