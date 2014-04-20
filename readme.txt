@@ -100,6 +100,10 @@ There are three ways how to Using the PC Switcher.
 * Configure settings. Check the checkbox 'Add a default CSS.' by PC Switcher option. If you want to customize CSS, uncheck the checkbox.
 * Have fun!
 
+= UserAgent option Samples =
+
+* [Default UserAgent](https://github.com/thingsym/multi-device-switcher/wiki/Default-UserAgent)
+
 == Changelog ==
 
 = 1.2.2 =
