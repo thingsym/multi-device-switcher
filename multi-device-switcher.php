@@ -211,13 +211,15 @@ class Multi_Device_Switcher {
 				wp_enqueue_style( 'pc-switcher-options', WP_PLUGIN_URL . '/multi-device-switcher/pc-switcher.css', false, '2013-03-20' );
 
 			if ( isset($_COOKIE['pc-switcher']) ) {
+				$uri = add_query_arg( 'pc-switcher', 0 );
 		?>
-<div class="pc-switcher"><a href="?pc-switcher=0"><?php _e( 'Mobile', 'multi-device-switcher' ); ?></a><span class="active"><?php _e( 'PC', 'multi-device-switcher' ); ?></span></div>
+<div class="pc-switcher"><a href="<?php echo $uri; ?>"><?php _e( 'Mobile', 'multi-device-switcher' ); ?></a><span class="active"><?php _e( 'PC', 'multi-device-switcher' ); ?></span></div>
 		<?php
 			}
 			else {
+				$uri = add_query_arg( 'pc-switcher', 1 );
 		?>
-<div class="pc-switcher"><span class="active"><?php _e( 'Mobile', 'multi-device-switcher' ); ?></span><a href="?pc-switcher=1"><?php _e( 'PC', 'multi-device-switcher' ); ?></a></div>
+<div class="pc-switcher"><span class="active"><?php _e( 'Mobile', 'multi-device-switcher' ); ?></span><a href="<?php echo $uri; ?>"><?php _e( 'PC', 'multi-device-switcher' ); ?></a></div>
 		<?php
 			}
 		}
