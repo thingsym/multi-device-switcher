@@ -83,6 +83,10 @@ You can send your own language pack to me.
 
 ## Changelog
 
+* Version 1.2.3
+	* fixed: fix redirect uri with query string, using add_query_arg
+	* fixed: fix translation
+	* fixed: fix readme
 * Version 1.2.2
 	* improved: improve responsiveness UI
 	* fixed: fix html
