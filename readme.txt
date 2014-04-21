@@ -5,8 +5,8 @@ Donate link: http://blog.thingslabo.com/archives/000251.html
 Link: https://github.com/thingsym/multi-device-switcher
 Tags: switcher, theme, ipad, iphone, android, tablet, mobile, game
 Requires at least: 3.4
-Tested up to: 3.5
-Stable tag: 1.2.2
+Tested up to: 3.9
+Stable tag: 1.2.3
 License: GPL2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -100,8 +100,16 @@ There are three ways how to Using the PC Switcher.
 * Configure settings. Check the checkbox 'Add a default CSS.' by PC Switcher option. If you want to customize CSS, uncheck the checkbox.
 * Have fun!
 
+= UserAgent option Samples =
+
+* [Default UserAgent](https://github.com/thingsym/multi-device-switcher/wiki/Default-UserAgent)
+
 == Changelog ==
 
+= Version 1.2.3 =
+* fixed: fix redirect uri with query string, using add_query_arg
+* fixed: fix translation
+* fixed: fix readme
 = 1.2.2 =
 * improved: improve responsiveness UI
 * fixed: fix html

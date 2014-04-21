@@ -3,7 +3,7 @@
 Plugin Name: Multi Device Switcher
 Plugin URI: https://github.com/thingsym/multi-device-switcher
 Description: This WordPress plugin allows you to set a separate theme for device (Smart Phone, Tablet PC, Mobile Phone, Game and custom).
-Version: 1.2.2
+Version: 1.2.3
 Author: thingsym
 Author URI: http://www.thingslabo.com/
 License: GPL2
@@ -211,13 +211,15 @@ class Multi_Device_Switcher {
 				wp_enqueue_style( 'pc-switcher-options', WP_PLUGIN_URL . '/multi-device-switcher/pc-switcher.css', false, '2013-03-20' );
 
 			if ( isset($_COOKIE['pc-switcher']) ) {
+				$uri = add_query_arg( 'pc-switcher', 0 );
 		?>
-<div class="pc-switcher"><a href="?pc-switcher=0"><?php _e( 'Mobile', 'multi-device-switcher' ); ?></a><span class="active"><?php _e( 'PC', 'multi-device-switcher' ); ?></span></div>
+<div class="pc-switcher"><a href="<?php echo $uri; ?>"><?php _e( 'Mobile', 'multi-device-switcher' ); ?></a><span class="active"><?php _e( 'PC', 'multi-device-switcher' ); ?></span></div>
 		<?php
 			}
 			else {
+				$uri = add_query_arg( 'pc-switcher', 1 );
 		?>
-<div class="pc-switcher"><span class="active"><?php _e( 'Mobile', 'multi-device-switcher' ); ?></span><a href="?pc-switcher=1"><?php _e( 'PC', 'multi-device-switcher' ); ?></a></div>
+<div class="pc-switcher"><span class="active"><?php _e( 'Mobile', 'multi-device-switcher' ); ?></span><a href="<?php echo $uri; ?>"><?php _e( 'PC', 'multi-device-switcher' ); ?></a></div>
 		<?php
 			}
 		}
@@ -463,10 +465,10 @@ function multi_device_switcher_render_page() {
 					$html = '<select name="multi_device_switcher_options[theme_smartphone]">';
 
 					if ( ($options['theme_smartphone'] == 'None') || ($options['theme_smartphone'] == '') ) {
-						$html .= '<option value="None" selected="selected">None</option>';
+						$html .= '<option value="None" selected="selected">' . __( 'None', 'multi-device-switcher' ) . '</option>';
 					}
 					else {
-						$html .= '<option value="None">None</option>';
+						$html .= '<option value="None">' . __( 'None', 'multi-device-switcher' ) . '</option>';
 					}
 
 					foreach ( $theme_names as $theme_name ) {
@@ -493,10 +495,10 @@ function multi_device_switcher_render_page() {
 					$html = '<select name="multi_device_switcher_options[theme_tablet]">';
 
 					if ( ($options['theme_tablet'] == 'None') || ($options['theme_tablet'] == '') ) {
-						$html .= '<option value="None" selected="selected">None</option>';
+						$html .= '<option value="None" selected="selected">' . __( 'None', 'multi-device-switcher' ) . '</option>';
 					}
 					else {
-						$html .= '<option value="None">None</option>';
+						$html .= '<option value="None">' . __( 'None', 'multi-device-switcher' ) . '</option>';
 					}
 
 					foreach ( $theme_names as $theme_name ) {
@@ -523,10 +525,10 @@ function multi_device_switcher_render_page() {
 					$html = '<select name="multi_device_switcher_options[theme_mobile]">';
 
 					if ( ($options['theme_mobile'] == 'None') || ($options['theme_mobile'] == '') ) {
-						$html .= '<option value="None" selected="selected">None</option>';
+						$html .= '<option value="None" selected="selected">' . __( 'None', 'multi-device-switcher' ) . '</option>';
 					}
 					else {
-						$html .= '<option value="None">None</option>';
+						$html .= '<option value="None">' . __( 'None', 'multi-device-switcher' ) . '</option>';
 					}
 
 					foreach ( $theme_names as $theme_name ) {
@@ -553,10 +555,10 @@ function multi_device_switcher_render_page() {
 					$html = '<select name="multi_device_switcher_options[theme_game]">';
 
 					if ( ($options['theme_game'] == 'None') || ($options['theme_game'] == '') ) {
-						$html .= '<option value="None" selected="selected">None</option>';
+						$html .= '<option value="None" selected="selected">' . __( 'None', 'multi-device-switcher' ) . '</option>';
 					}
 					else {
-						$html .= '<option value="None">None</option>';
+						$html .= '<option value="None">' . __( 'None', 'multi-device-switcher' ) . '</option>';
 					}
 
 					foreach ( $theme_names as $theme_name ) {
@@ -598,10 +600,10 @@ function multi_device_switcher_render_page() {
 					$html = '<select name="multi_device_switcher_options[' . $custom_switcher_option . ']">';
 
 					if ( ($custom_switcher_theme == 'None') || ($custom_switcher_theme == '') ) {
-						$html .= '<option value="None" selected="selected">None</option>';
+						$html .= '<option value="None" selected="selected">' . __( 'None', 'multi-device-switcher' ) . '</option>';
 					}
 					else {
-						$html .= '<option value="None">None</option>';
+						$html .= '<option value="None">' . __( 'None', 'multi-device-switcher' ) . '</option>';
 					}
 
 					foreach ( $theme_names as $theme_name ) {
