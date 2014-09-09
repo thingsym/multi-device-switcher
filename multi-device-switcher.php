@@ -34,27 +34,28 @@ class Multi_Device_Switcher {
 
 		$userAgent = $this->get_options_userAgent();
 		$this->device = '';
+		$server_ua = (isset($_SERVER['HTTP_USER_AGENT'])) ? $_SERVER['HTTP_USER_AGENT'] : '';
 
 		foreach ( array_reverse($userAgent) as $key => $val ) {
 			if ( ! preg_match( "/^custom_switcher_/", $key ) ) 
 				continue;
-			if ( $userAgent[$key] && preg_match( '/' . implode( '|', $userAgent[$key] ) . '/i', $_SERVER['HTTP_USER_AGENT']) ) {
+			if ( $userAgent[$key] && preg_match( '/' . implode( '|', $userAgent[$key] ) . '/i', $server_ua) ) {
 				$this->device = $key;
 				break;
 			}
 		}
 
 		if ( ! $this->device ) {
-			if ( $userAgent['game'] && preg_match( '/' . implode( '|', $userAgent['game'] ) . '/i', $_SERVER['HTTP_USER_AGENT']) ) {
+			if ( $userAgent['game'] && preg_match( '/' . implode( '|', $userAgent['game'] ) . '/i', $server_ua) ) {
 				$this->device = 'game';
 			}
-			elseif ( $userAgent['tablet'] && preg_match( '/' . implode( '|', $userAgent['tablet'] ) . '/i', $_SERVER['HTTP_USER_AGENT']) ) {
+			elseif ( $userAgent['tablet'] && preg_match( '/' . implode( '|', $userAgent['tablet'] ) . '/i', $server_ua) ) {
 				$this->device = 'tablet';
 			}
-			elseif ( $userAgent['smart'] && preg_match( '/' . implode( '|', $userAgent['smart'] ) . '/i', $_SERVER['HTTP_USER_AGENT']) ) {
+			elseif ( $userAgent['smart'] && preg_match( '/' . implode( '|', $userAgent['smart'] ) . '/i', $server_ua) ) {
 				$this->device = 'smart';
 			}
-			elseif ( $userAgent['mobile'] && preg_match( '/' . implode( '|', $userAgent['mobile'] ) . '/i', $_SERVER['HTTP_USER_AGENT']) ) {
+			elseif ( $userAgent['mobile'] && preg_match( '/' . implode( '|', $userAgent['mobile'] ) . '/i', $server_ua) ) {
 				$this->device = 'mobile';
 			}
 		}
