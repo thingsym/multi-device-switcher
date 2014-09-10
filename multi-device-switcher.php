@@ -336,7 +336,7 @@ function multi_device_switcher_add_page() {
 
 	add_filter( 'plugin_action_links', 'multi_device_switcher_plugin_action_links', 10, 2 );
 
-	$theme_page = add_theme_page(
+	$page_hook = add_theme_page(
 		__( 'Multi Device Switcher', 'multi-device-switcher' ),   // Name of page
 		__( 'Multi Device Switcher', 'multi-device-switcher' ),   // Label in menu
 		'manage_options',                    // Capability required
@@ -344,13 +344,24 @@ function multi_device_switcher_add_page() {
 		'multi_device_switcher_render_page' // Function that renders the options page
 	);
 
-	if ( ! $theme_page )
+	if ( ! $page_hook )
 		return;
 
-	add_action( "admin_print_scripts-$theme_page", 'multi_device_switcher_admin_enqueue_scripts' );
-	add_action( "admin_print_styles-$theme_page", 'multi_device_switcher_admin_enqueue_styles' );
+	add_action( 'load-' . $page_hook , 'multi_device_switcher_page_hook_suffix' );
 }
 add_action( 'admin_menu', 'multi_device_switcher_add_page' );
+
+/**
+ * Page Hook Suffix
+ *
+ * This function is attached to the load-** action hook.
+ *
+ * @since 1.2.4
+ */
+function multi_device_switcher_page_hook_suffix() {
+	add_action( 'admin_enqueue_scripts', 'multi_device_switcher_admin_enqueue_scripts' );
+	add_action( 'admin_enqueue_scripts', 'multi_device_switcher_admin_enqueue_styles' );
+}
 
 /**
  * Add the settings link to the plugin page.
