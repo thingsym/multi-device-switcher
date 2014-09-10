@@ -209,7 +209,7 @@ class Multi_Device_Switcher {
 
 		if ( $pc_switcher && $name && $name != 'None' ) {
 			if ($options['default_css'])
-				wp_enqueue_style( 'pc-switcher-options', WP_PLUGIN_URL . '/multi-device-switcher/pc-switcher.css', false, '2013-03-20' );
+				wp_enqueue_style( 'pc-switcher-options', plugins_url() . '/multi-device-switcher/pc-switcher.css', false, '2013-03-20' );
 
 			if ( isset($_COOKIE['pc-switcher']) ) {
 				$uri = add_query_arg( 'pc-switcher', 0 );
@@ -265,7 +265,7 @@ function multi_device_switcher_add_pc_switcher() {
  */
 function multi_device_switcher_admin_enqueue_scripts( $hook_suffix ) {
 	wp_enqueue_script( 'jquery-ui-tabs' );
-	wp_enqueue_script( 'multi-device-switcher-options', WP_PLUGIN_URL . '/multi-device-switcher/multi-device-switcher.js', array( 'jquery' ), '2011-08-22' );
+	wp_enqueue_script( 'multi-device-switcher-options', plugins_url() . '/multi-device-switcher/multi-device-switcher.js', array( 'jquery' ), '2011-08-22' );
 }
 
 /**
@@ -277,7 +277,7 @@ function multi_device_switcher_admin_enqueue_scripts( $hook_suffix ) {
  *
  */
 function multi_device_switcher_admin_enqueue_styles( $hook_suffix ) {
-	wp_enqueue_style( 'multi-device-switcher-options', WP_PLUGIN_URL . '/multi-device-switcher/multi-device-switcher.css', false, '2011-08-22' );
+	wp_enqueue_style( 'multi-device-switcher-options', plugins_url() . '/multi-device-switcher/multi-device-switcher.css', false, '2011-08-22' );
 	wp_enqueue_style( 'thickbox', includes_url() . '/js/thickbox/thickbox.css', false, '20090514' );
 }
 
