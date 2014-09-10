@@ -395,7 +395,7 @@ function multi_device_switcher_get_default_options() {
 		'userAgent_smart' => 'iPhone, iPod, Android, dream, CUPCAKE, Windows Phone, webOS, BB10, BlackBerry8707, BlackBerry9000, BlackBerry9300, BlackBerry9500, BlackBerry9530, BlackBerry9520, BlackBerry9550, BlackBerry9700, BlackBerry 93, BlackBerry 97, BlackBerry 99, BlackBerry 98',
 		'userAgent_tablet' => 'iPad, Kindle, Sony Tablet, Nexus 7',
 		'userAgent_mobile' => 'DoCoMo, SoftBank, J-PHONE, Vodafone, KDDI, UP.Browser, WILLCOM, emobile, DDIPOCKET, Windows CE, BlackBerry, Symbian, PalmOS, Huawei, IAC, Nokia',
-		'userAgent_game' => 'PlayStation Portable, PlayStation Vita, PSP, PS2, PLAYSTATION 3, Nitro, Nintendo 3DS, Nintendo Wii, Xbox',
+		'userAgent_game' => 'PlayStation Portable, PlayStation Vita, PSP, PS2, PLAYSTATION 3, PlayStation 4, Nitro, Nintendo 3DS, Nintendo Wii, Nintendo WiiU, Xbox',
 	);
 
 	return $default_theme_options;
