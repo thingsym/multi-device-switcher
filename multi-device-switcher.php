@@ -7,6 +7,8 @@ Version: 1.2.3
 Author: thingsym
 Author URI: http://www.thingslabo.com/
 License: GPL2
+Text Domain: multi-device-switcher
+Domain Path: /languages/
 */
 
 /*
