@@ -227,6 +227,15 @@ class Multi_Device_Switcher {
 			}
 		}
 	}
+
+	public function is_multi_device( $device = '' ) {
+		if ( $this->device == $device )
+			return (boolean) 1;
+		if ( $this->device == 'custom_switcher_' . $device )
+			return (boolean) 1;
+
+		return (boolean) 0;
+	}
 }
 
 if ( !is_admin() )
@@ -256,6 +265,20 @@ function multi_device_switcher_add_pc_switcher() {
 	global $multi_device_switcher;
 	$multi_device_switcher->add_pc_switcher(1);
 }
+
+/**
+ * Return boolean whether a particular device.
+ *
+ * @since 1.2.4
+ *
+ */
+if ( !function_exists( 'is_multi_device' ) ) :
+
+function is_multi_device( $device = '' ) {
+	global $multi_device_switcher;
+	return $multi_device_switcher->is_multi_device($device);
+}
+endif;
 
 /**
  * Properly enqueue scripts for our multi_device_switcher options page.
