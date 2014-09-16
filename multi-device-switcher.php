@@ -289,8 +289,7 @@ endif;
  *
  */
 function multi_device_switcher_admin_enqueue_scripts( $hook_suffix ) {
-	wp_enqueue_script( 'jquery-ui-tabs' );
-	wp_enqueue_script( 'multi-device-switcher-options', plugins_url() . '/multi-device-switcher/multi-device-switcher.js', array( 'jquery' ), '2011-08-22' );
+	wp_enqueue_script( 'multi-device-switcher-options', plugins_url() . '/multi-device-switcher/multi-device-switcher.js', array( 'jquery', 'jquery-ui-tabs' ), '2011-08-22' );
 }
 
 /**
@@ -303,7 +302,6 @@ function multi_device_switcher_admin_enqueue_scripts( $hook_suffix ) {
  */
 function multi_device_switcher_admin_enqueue_styles( $hook_suffix ) {
 	wp_enqueue_style( 'multi-device-switcher-options', plugins_url() . '/multi-device-switcher/multi-device-switcher.css', false, '2011-08-22' );
-	wp_enqueue_style( 'thickbox', includes_url() . '/js/thickbox/thickbox.css', false, '20090514' );
 }
 
 /**
