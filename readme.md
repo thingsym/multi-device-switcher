@@ -146,6 +146,14 @@ You can send your own language pack to author.
 
 ## Changelog
 
+* Version 1.3.0
+	* fixed: fix script, style, html and readme
+	* new features: is_multi_device() function
+	* fixed: fix translation
+	* updated: update default UserAgent
+	* fixed: replace WP_PLUGIN_URL with plugins_url()
+	* fixed: using Page Hook Suffix
+	* merged: pull request [#3](https://github.com/thingsym/multi-device-switcher/pull/3)
 * Version 1.2.3
 	* fixed: fix redirect uri with query string, using add_query_arg
 	* fixed: fix translation

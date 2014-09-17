@@ -5,8 +5,8 @@ Donate link: http://blog.thingslabo.com/archives/000251.html
 Link: https://github.com/thingsym/multi-device-switcher
 Tags: switcher, theme, ipad, iphone, android, tablet, mobile, game
 Requires at least: 3.4
-Tested up to: 3.9
-Stable tag: 1.2.3
+Tested up to: 4.0
+Stable tag: 1.3.0
 License: GPL2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -160,6 +160,14 @@ if ( function_exists( 'is_multi_device' ) ) {
 
 == Changelog ==
 
+= 1.3.0 =
+* fixed: fix script, style, html and readme
+* new features: is_multi_device() function
+* fixed: fix translation
+* updated: update default UserAgent
+* fixed: replace WP_PLUGIN_URL with plugins_url()
+* fixed: using Page Hook Suffix
+* merged: pull request [#3](https://github.com/thingsym/multi-device-switcher/pull/3)
 = 1.2.3 =
 * fixed: fix redirect uri with query string, using add_query_arg
 * fixed: fix translation
