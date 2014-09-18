@@ -9,6 +9,7 @@ The Custom Switcher can add every device.
 - Set a separate theme for device (Smart Phone, Tablet PC, Mobile Phone, Game), switches to selected theme.
 - Add every device by the Custom Switcher.
 - Add links 'Mobile' or 'PC' in the theme by the PC Switcher, switch to the default theme.
+- Can be using is_multi_device() function that detect of the device.
 
 ## How do I use it ?
 
@@ -20,6 +21,12 @@ The Custom Switcher can add every device.
 6. Configure settings to your needs. Select Theme by Theme option. Add and fix UserAgent by UserAgent option if necessary.
 7. Have fun!
 
+## Screenshot
+
+<img src="screenshot-1.png">
+<img src="screenshot-2.png">
+<img src="screenshot-3.png">
+
 ## How to add the Custom Switcher
 
 1. Go to the "Multi Device Switcher" options page through the 'Appearance' menu in WordPress.
@@ -30,6 +37,8 @@ The Custom Switcher can add every device.
 ## Setting and Using the PC Switcher
 
 There are three ways how to Using the PC Switcher.
+
+<img src="screenshot-4.png">
 
 ### 1. Add a PC Switcher to the footer
 
@@ -47,7 +56,9 @@ There are three ways how to Using the PC Switcher.
 ### 3. For the theme authors and developers, add a PC Switcher to your theme.
 
 1. Add the following code into the PHP files, when you develop your theme.
- `<?php if ( function_exists('multi_device_switcher_add_pc_switcher') ) { multi_device_switcher_add_pc_switcher(); } ?>`
+```
+<?php if ( function_exists('multi_device_switcher_add_pc_switcher') ) { multi_device_switcher_add_pc_switcher(); } ?>
+```
 2. Have fun!
 
 ### Using default CSS and customized CSS
@@ -60,22 +71,74 @@ There are three ways how to Using the PC Switcher.
 
 * [Default UserAgent](https://github.com/thingsym/multi-device-switcher/wiki/Default-UserAgent)
 
-## Translations
+## is_multi_device() function
 
-- Japanese (ja) - <a href="http://global.thingslabo.com/blog/">Thingsym</a>
+is_multi_device() function is a boolean function, meaning it returns either TRUE or FALSE. Works through the detection of the device by the Multi_Device_Switcher class.
+
+### Usage
+
+```
+<?php is_multi_device('smart'); ?>
+```
+
+### Examples
+
+```
+<?php
+if ( function_exists( 'is_multi_device' ) ) {
+	if ( is_multi_device('smart') ) {
+		/* Display and echo smartphone specific stuff here */
+	} elseif ( is_multi_device('tablet') ) {
+		/* Display and echo tablet specific stuff here */
+	}
+}
+?>
+```
+
+### Parameters
+
+**device name** (required)
+
+(string) The name of the device
+
+* smart
+* tablet
+* mobile
+* game
+* the name of the Custom Switcher
+
+### Return Values
+
+(boolean) Return boolean whether a particular device.
+
+## Contributing
+
+### Patches and Bug Fixes 
+
+Small patches and bug reports can be submitted a issue tracker in Github. Forking on Github is another good way. You can send a pull request.
+
+#### Contributors
+
+* hykw [Github](https://github.com/hykw/multi-device-switcher)
+
+### Translations
 
 Translating a plugin takes a lot of time, effort, and patience. I really appreciate the hard work from these contributors.
 
-If you have created or updated your own language pack, you can send [gettext PO and MO files](http://codex.wordpress.org/Translating_WordPress) to me. I can bundle it into Multi Device Switcher.
+If you have created or updated your own language pack, you can send [gettext PO and MO files](http://codex.wordpress.org/Translating_WordPress) to author. I can bundle it into Multi Device Switcher.
 
-#### The latest PO and MO files
+#### Translator
+
+- Japanese (ja) - <a href="http://global.thingslabo.com/blog/">Thingsym</a>
+
+##### The latest PO and MO files
 
 - [POT file](http://plugins.svn.wordpress.org/multi-device-switcher/trunk/languages/multi-device-switcher.pot)
 - [PO files](http://plugins.svn.wordpress.org/multi-device-switcher/trunk/languages/)
 
-#### Contact to me
+##### Send your own language pack
 
-You can send your own language pack to me.
+You can send your own language pack to author.
 
 - [multi-device-switcher - GitHub](https://github.com/thingsym/multi-device-switcher)
 - [http://global.thingslabo.com/blog/ (en)](http://global.thingslabo.com/blog/)
@@ -83,6 +146,14 @@ You can send your own language pack to me.
 
 ## Changelog
 
+* Version 1.3.0
+	* fixed: fix script, style, html and readme
+	* new features: is_multi_device() function
+	* fixed: fix translation
+	* updated: update default UserAgent
+	* fixed: replace WP_PLUGIN_URL with plugins_url()
+	* fixed: using Page Hook Suffix
+	* merged: pull request [#3](https://github.com/thingsym/multi-device-switcher/pull/3)
 * Version 1.2.3
 	* fixed: fix redirect uri with query string, using add_query_arg
 	* fixed: fix translation

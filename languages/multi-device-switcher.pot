@@ -6,11 +6,15 @@ msgstr ""
 "PO-Revision-Date: 2012-07-11 0:23+0900\n"
 "Last-Translator: \n"
 "Language-Team: \n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 msgid "Multi Device Switcher"
+msgstr ""
+
+msgid "This WordPress plugin allows you to set a separate theme for device (Smart Phone, Tablet PC, Mobile Phone, Game and custom)."
 msgstr ""
 
 msgid "Settings"
@@ -101,5 +105,8 @@ msgid "If you like this plugin, please donate to support development and mainten
 msgstr ""
 
 # pc-switcher-widget.php
+msgid "PC Switcher Widget add-on for the Multi Device Switcher. Use this widget to add the PC Switcher to a widget."
+msgstr ""
+
 msgid "Add the PC Switcher to a widget."
 msgstr ""

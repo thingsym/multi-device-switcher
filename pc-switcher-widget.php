@@ -3,10 +3,12 @@
 Widget Name: PC Switcher Widget
 Plugin URI: https://github.com/thingsym/multi-device-switcher
 Description: PC Switcher Widget add-on for the Multi Device Switcher. Use this widget to add the PC Switcher to a widget.
-Version: 1.2.3
+Version: 1.3.0
 Author: thingsym
 Author URI: http://www.thingslabo.com/
 License: GPL2
+Text Domain: multi-device-switcher
+Domain Path: /languages/
 */
 
 /*
@@ -32,7 +34,7 @@ License: GPL2
  *
  * @since 1.2
  */
-if ( class_exists('Multi_Device_Switcher') ) 
+if ( class_exists('Multi_Device_Switcher') )
 	add_action('widgets_init', 'PC_Switcher_load_widgets');
 
 function PC_Switcher_load_widgets() {
@@ -53,7 +55,7 @@ class PC_Switcher extends WP_Widget {
 	}
 
 	function widget($args, $instance) {
-		if ( ! function_exists( 'multi_device_switcher_add_pc_switcher' ) ) 
+		if ( !function_exists( 'multi_device_switcher_add_pc_switcher' ) )
 			return;
 
 		global $multi_device_switcher;
@@ -66,8 +68,8 @@ class PC_Switcher extends WP_Widget {
 			if ( !is_array($cache) )
 				$cache = array();
 
-			if ( isset($cache[$args['widget_id']]) ) {
-				echo $cache[$args['widget_id']];
+			if ( isset($cache[ $args['widget_id'] ]) ) {
+				echo $cache[ $args['widget_id'] ];
 				return;
 			}
 
@@ -78,7 +80,7 @@ class PC_Switcher extends WP_Widget {
 			multi_device_switcher_add_pc_switcher();
 			echo $after_widget;
 
-			$cache[$args['widget_id']] = ob_get_flush();
+			$cache[ $args['widget_id'] ] = ob_get_flush();
 			wp_cache_set('widget_pc_switcher', $cache, 'widget');
 		}
 	}
