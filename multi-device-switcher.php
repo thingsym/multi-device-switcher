@@ -897,6 +897,93 @@ function multi_device_switcher_validate( $input ) {
 }
 
 /**
+ * plugin customization options
+ *
+ * @param $wp_customize Theme Customizer object
+ * @return void
+ *
+ * @since 1.3.1
+ */
+function multi_device_switcher_customize_register( $wp_customize ) {
+	load_plugin_textdomain( 'multi-device-switcher', false, 'multi-device-switcher/languages' );
+
+	$default_theme_options = multi_device_switcher_get_default_options();
+	$default_theme = wp_get_theme()->get( 'Name' );
+	$themes = wp_get_themes();
+
+	$theme_names = array();
+	$choices = array();
+
+	if ( count( $themes ) ) {
+		foreach ( $themes as $t ) {
+			$theme_names[] = $t->get( 'Name' );
+		}
+		natcasesort( $theme_names );
+
+		$choices['None'] = __( 'None', 'multi-device-switcher' );
+		foreach ( $theme_names as $theme_name ) {
+			if ( $default_theme == $theme_name ) {
+				continue;
+			}
+			$choices[ $theme_name ] = $theme_name;
+		}
+	}
+
+	$switcher = array(
+		'theme_smartphone'  => __( 'Smart Phone Theme', 'multi-device-switcher' ),
+		'theme_tablet'      => __( 'Tablet PC Theme', 'multi-device-switcher' ),
+		'theme_mobile'      => __( 'Mobile Phone Theme', 'multi-device-switcher' ),
+		'theme_game'        => __( 'Game Platforms Theme', 'multi-device-switcher' ),
+	);
+
+	$wp_customize->add_section( 'multi_device_switcher', array(
+		'title'      => __( 'Multi Device Switcher', 'multi-device-switcher' ),
+		'priority'   => 80,
+	) );
+
+	foreach ( $switcher as $options => $label ) {
+		$wp_customize->add_setting( 'multi_device_switcher_options[' . $options . ']', array(
+			'default'        => $default_theme_options[ $options ],
+			'type'           => 'option',
+			'capability'     => 'edit_theme_options',
+		) );
+
+		$wp_customize->add_control( 'multi_device_switcher_options[' . $options . ']', array(
+			'label'      => $label,
+			'section'    => 'multi_device_switcher',
+			'type'       => 'select',
+			'choices'    => $choices,
+		) );
+	}
+
+	$options = multi_device_switcher_get_options();
+
+	foreach ( $options as $custom_switcher_option => $custom_switcher_theme ) {
+		if ( ! preg_match( '/^custom_switcher_theme_/', $custom_switcher_option ) ) {
+			continue;
+		}
+
+		$label = preg_replace( '/^custom_switcher_theme_/', '', $custom_switcher_option );
+
+		$wp_customize->add_setting( 'multi_device_switcher_options[' . $custom_switcher_option . ']', array(
+			'default'       => __( 'None', 'multi-device-switcher' ),
+			'type'          => 'option',
+			'capability'    => 'edit_theme_options',
+		) );
+
+		$wp_customize->add_control( 'multi_device_switcher_options[' . $custom_switcher_option . ']', array(
+			'label'      => $label,
+			'section'    => 'multi_device_switcher',
+			'type'       => 'select',
+			'choices'    => $choices,
+		) );
+
+	}
+}
+
+add_action( 'customize_register', 'multi_device_switcher_customize_register' );
+
+/**
  * include PC Switcher Widget.
  *
  * @since 1.2
