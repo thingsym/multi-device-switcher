@@ -10,6 +10,7 @@ The Custom Switcher can add every device.
 - Add every device by the Custom Switcher.
 - Add links 'Mobile' or 'PC' in the theme by the PC Switcher, switch to the default theme.
 - Can be using is_multi_device() function that detect of the device.
+- Multi Device Switcher Command command-line tool (required WP-CLI)
 
 ## How do I use it ?
 
@@ -110,6 +111,87 @@ if ( function_exists( 'is_multi_device' ) ) {
 ### Return Values
 
 (boolean) Return boolean whether a particular device.
+
+## Multi Device Switcher Command
+
+The Multi Device Switcher Command is command-line tool.
+
+Add-on The Multi Device Switcher Command, when you activate the plugin "Multi Device Switcher". To use the Multi Device Switcher Command is WP-CLI required.
+
+### NAME
+
+	wp multi-device
+
+### DESCRIPTION
+
+	Multi Device Switcher Command
+
+### SYNOPSIS
+
+	wp multi-device <command>
+
+### SUBCOMMANDS
+
+	add              add Custom Switcher
+	css              turn on/off default CSS
+	delete           delete Custom Switcher
+	pc-switcher      turn on/off PC Switcher
+	reset            reset Settings to Default UserAgent
+	status           get status of settings
+	theme            get or switch a theme
+	useragent        get or set UserAgent
+
+
+For more information about the Multi Device Switcher Command, see `wp help multi-device <SUBCOMMANDS>`.
+
+
+### Command examples
+
+get status of settings
+
+	wp multi-device status
+	
+	Active Theme: Twenty Fifteen | twentyfifteen
+	+--------------------------+-----------------+----------------+-------------------------------------------------------------------------+
+	| Device                   | Theme           | Slug           | UserAgent                                                               |
+	+--------------------------+-----------------+----------------+-------------------------------------------------------------------------+
+	| smartphone (Smart Phone) | Twenty Fourteen | twentyfourteen | iPhone, iPod, Android, dream, CUPCAKE, Windows Phone, webOS, BB10, Blac |
+	|                          |                 |                | kBerry8707, BlackBerry9000, BlackBerry9300, BlackBerry9500, BlackBerry9 |
+	|                          |                 |                | 530, BlackBerry9520, BlackBerry9550, BlackBerry9700, BlackBerry 93, Bla |
+	|                          |                 |                | ckBerry 97, BlackBerry 99, BlackBerry 98                                |
+	| tablet (Tablet PC)       | Twenty Thirteen | twentythirteen | iPad, Kindle, Sony Tablet, Nexus 7                                      |
+	| mobile (Mobile Phone)    | Twenty Twelve   | twentytwelve   | DoCoMo, SoftBank, J-PHONE, Vodafone, KDDI, UP.Browser, WILLCOM, emobile |
+	|                          |                 |                | , DDIPOCKET, Windows CE, BlackBerry, Symbian, PalmOS, Huawei, IAC, Noki |
+	|                          |                 |                | a                                                                       |
+	| game (Game Platforms)    | Twenty Eleven   | twentyeleven   | PlayStation Portable, PlayStation Vita, PSP, PS2, PLAYSTATION 3, PlaySt |
+	|                          |                 |                | ation 4, Nitro, Nintendo 3DS, Nintendo Wii, Nintendo WiiU, Xbox         |
+	+--------------------------+-----------------+----------------+-------------------------------------------------------------------------+
+	PC Switcher: on
+	default CSS: on
+
+switch twentyfifteen in theme of smartphone using theme slug
+
+    wp multi-device theme smartphone twentyfifteen
+
+set UserAgent in theme of tablet
+
+    wp multi-device useragent tablet 'iPad, Kindle, Sony Tablet, Nexus 7'
+
+add example Custom Switcher
+
+    wp multi-device add example
+
+add example Custom Switcher. set twentyfifteen theme and UserAgent using theme slug
+
+    wp multi-device add example twentyfifteen 'iPad, Kindle, Sony Tablet, Nexus 7'
+
+delete example Custom Switcher
+
+    wp multi-device delete example
+
+turn on default CSS
+
+    wp multi-device css on
 
 ## Contributing
 

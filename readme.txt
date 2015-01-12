@@ -25,6 +25,7 @@ The Custom Switcher can add every device.
 * Add every device by the Custom Switcher.
 * Add links 'Mobile' or 'PC' in the theme by the PC Switcher, switch to the default theme.
 * Can be using is_multi_device() function that detect of the device.
+* Multi Device Switcher Command command-line tool (required WP-CLI)
 
 = Contributing =
 
@@ -157,6 +158,44 @@ if ( function_exists( 'is_multi_device' ) ) {
 
 (boolean) Return boolean whether a particular device.
 
+= Multi Device Switcher Command =
+
+The Multi Device Switcher Command is command-line tool.
+
+Add-on The Multi Device Switcher Command, when you activate the plugin "Multi Device Switcher". To use the Multi Device Switcher Command is WP-CLI required.
+
+= NAME =
+
+`
+wp multi-device
+`
+
+= DESCRIPTION =
+
+`
+Multi Device Switcher Command
+`
+
+= SYNOPSIS =
+
+`
+wp multi-device <command>
+`
+
+= SUBCOMMANDS =
+
+`
+add              add Custom Switcher
+css              turn on/off default CSS
+delete           delete Custom Switcher
+pc-switcher      turn on/off PC Switcher
+reset            reset Settings to Default UserAgent
+status           get status of settings
+theme            get or switch a theme
+useragent        get or set UserAgent
+`
+
+For more information about the Multi Device Switcher Command, see `wp help multi-device <SUBCOMMANDS>`.
 
 == Changelog ==
 

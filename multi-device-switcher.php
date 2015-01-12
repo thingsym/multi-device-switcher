@@ -990,4 +990,13 @@ add_action( 'customize_register', 'multi_device_switcher_customize_register' );
  */
 require_once( dirname( __FILE__ ) . '/pc-switcher-widget.php' );
 
+/**
+ * include Multi Device Switcher Command
+ *
+ * @since 1.4
+ */
+if ( defined('WP_CLI') && WP_CLI ) {
+	require_once( dirname( __FILE__ ) . '/wp-cli.php' );
+}
+
 ?>
