@@ -93,18 +93,10 @@ class Multi_Device_Switcher {
 			$options['userAgent_game'] = $default_options['userAgent_game'];
 		}
 
-		if ( $options['userAgent_smart'] ) {
-			$userAgent['smart'] = preg_split( '/,\s*/', $options['userAgent_smart'] );
-		}
-		if ( $options['userAgent_tablet'] ) {
-			$userAgent['tablet'] = preg_split( '/,\s*/', $options['userAgent_tablet'] );
-		}
-		if ( $options['userAgent_mobile'] ) {
-			$userAgent['mobile'] = preg_split( '/,\s*/', $options['userAgent_mobile'] );
-		}
-		if ( $options['userAgent_game'] ) {
-			$userAgent['game'] = preg_split( '/,\s*/', $options['userAgent_game'] );
-		}
+		$userAgent['smart'] = empty( $options['userAgent_smart'] ) ? '' : preg_split( '/,\s*/', $options['userAgent_smart'] );
+		$userAgent['tablet'] = empty( $options['userAgent_tablet'] ) ? '' : preg_split( '/,\s*/', $options['userAgent_tablet'] );
+		$userAgent['mobile'] = empty( $options['userAgent_mobile'] ) ? '' : preg_split( '/,\s*/', $options['userAgent_mobile'] );
+		$userAgent['game'] = empty( $options['userAgent_game'] ) ? '' : preg_split( '/,\s*/', $options['userAgent_game'] );
 
 		foreach ( $options as $key => $val ) {
 			if ( ! preg_match( '/^custom_switcher_userAgent_/', $key ) ) {
@@ -112,10 +104,7 @@ class Multi_Device_Switcher {
 			}
 
 			$custom_switcher_name = preg_replace( '/^custom_switcher_userAgent_/', '', $key );
-
-			if ( $val ) {
-				$userAgent[ 'custom_switcher_' . $custom_switcher_name ] = preg_split( '/,\s*/', $val );
-			}
+			$userAgent[ 'custom_switcher_' . $custom_switcher_name ] = empty( $val ) ? '' : preg_split( '/,\s*/', $val );
 		}
 
 		return $userAgent;
