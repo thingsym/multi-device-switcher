@@ -205,7 +205,7 @@ class Multi_Device_Switcher {
 				$uri = $uri . '?' . http_build_query( $_GET );
 			}
 
-			wp_redirect( esc_attr( $uri ) );
+			wp_redirect( esc_url( $uri ) );
 			exit;
 		}
 	}
@@ -224,13 +224,13 @@ class Multi_Device_Switcher {
 			}
 
 			if ( isset( $_COOKIE['pc-switcher'] ) ) {
-				$uri = add_query_arg( 'pc-switcher', 0 );
+				$uri = get_home_url() . add_query_arg( 'pc-switcher', 0 );
 		?>
 <div class="pc-switcher"><a href="<?php echo esc_url( $uri ); ?>"><?php _e( 'Mobile', 'multi-device-switcher' ); ?></a><span class="active"><?php _e( 'PC', 'multi-device-switcher' ); ?></span></div>
 		<?php
 			}
 			else {
-				$uri = add_query_arg( 'pc-switcher', 1 );
+				$uri = get_home_url() . add_query_arg( 'pc-switcher', 1 );
 		?>
 <div class="pc-switcher"><span class="active"><?php _e( 'Mobile', 'multi-device-switcher' ); ?></span><a href="<?php echo esc_url( $uri ); ?>"><?php _e( 'PC', 'multi-device-switcher' ); ?></a></div>
 		<?php
