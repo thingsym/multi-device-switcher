@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Multi Device Switcher\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-01-17 22:01+0900\n"
-"PO-Revision-Date: 2014-09-11 20:02+0900\n"
+"PO-Revision-Date: 2015-01-15 17:26+0900\n"
 "Last-Translator: \n"
 "Language-Team: Thingsym\n"
 "Language: ja_JP\n"
@@ -97,6 +97,18 @@ msgstr "PC"
 
 msgid "Are you sure you want to delete %1$s ?"
 msgstr "%1$s を削除してよろしいですか?"
+
+msgid "Disable Switcher"
+msgstr "切り替え無効"
+
+msgid "Path"
+msgstr "パス"
+
+msgid "Regex mode"
+msgstr "正規表現モード"
+
+msgid "Enable Regex"
+msgstr "正規表現を有効化"
 
 msgid "Donationware"
 msgstr "ドネーションウェア (寄付)"

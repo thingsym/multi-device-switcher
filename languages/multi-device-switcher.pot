@@ -98,6 +98,18 @@ msgstr ""
 msgid "Are you sure you want to delete %1$s ?"
 msgstr ""
 
+msgid "Disable Switcher"
+msgstr ""
+
+msgid "Path"
+msgstr ""
+
+msgid "Regex mode"
+msgstr ""
+
+msgid "Enable Regex"
+msgstr ""
+
 msgid "Donationware"
 msgstr ""
 

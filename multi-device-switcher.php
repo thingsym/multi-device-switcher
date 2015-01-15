@@ -32,6 +32,10 @@ Domain Path: /languages/
 class Multi_Device_Switcher {
 
 	public function __construct() {
+		if ( $this->get_disable() ) {
+			return;
+		}
+
 		add_action( 'init', array( &$this, 'session' ) );
 
 		$userAgent = $this->get_options_userAgent();
@@ -248,6 +252,28 @@ class Multi_Device_Switcher {
 
 		return (boolean) 0;
 	}
+
+	public function get_disable( $disable = 0 ) {
+		$options = multi_device_switcher_get_options();
+		$disable_path = preg_split( '/\R/', $options['disable_path'], -1, PREG_SPLIT_NO_EMPTY );
+
+		foreach ( $disable_path as $path ) {
+			if ( $options['enable_regex'] ) {
+				if ( preg_match( '/' . $path . '/i', $_SERVER['REQUEST_URI'] ) ) {
+					$disable = 1;
+					break;
+				}
+			}
+			else {
+				if ( preg_match( '/^' . preg_quote( $path , '/' ) . '$/i', $_SERVER['REQUEST_URI'] ) ) {
+					$disable = 1;
+					break;
+				}
+			}
+		}
+
+		return (boolean) $disable;
+	}
 }
 
 if ( ! is_admin() ) {
@@ -435,6 +461,8 @@ function multi_device_switcher_get_default_options() {
 		'userAgent_tablet' => 'iPad, Kindle, Sony Tablet, Nexus 7',
 		'userAgent_mobile' => 'DoCoMo, SoftBank, J-PHONE, Vodafone, KDDI, UP.Browser, WILLCOM, emobile, DDIPOCKET, Windows CE, BlackBerry, Symbian, PalmOS, Huawei, IAC, Nokia',
 		'userAgent_game' => 'PlayStation Portable, PlayStation Vita, PSP, PS2, PLAYSTATION 3, PlayStation 4, Nitro, Nintendo 3DS, Nintendo Wii, Nintendo WiiU, Xbox',
+		'disable_path' => '',
+		'enable_regex' => 0,
 	);
 
 	return $default_theme_options;
@@ -480,6 +508,13 @@ function multi_device_switcher_get_options() {
 	}
 	if ( ! isset( $options['userAgent_game'] ) ) {
 		$options['userAgent_game'] = $default_options['userAgent_game'];
+	}
+
+	if ( ! isset( $options['disable_path'] ) ) {
+		$options['disable_path'] = $default_options['disable_path'];
+	}
+	if ( ! isset( $options['enable_regex'] ) ) {
+		$options['enable_regex'] = $default_options['enable_regex'];
 	}
 
 	return $options;
@@ -768,6 +803,26 @@ function multi_device_switcher_render_page() {
 			</table>
 			</fieldset>
 
+			<fieldset id="Disable-Switcher" class="options">
+			<h3 class="label"><?php _e( 'Disable Switcher', 'multi-device-switcher' ); ?></h3>
+
+			<table class="form-table">
+				<tr><th scope="row"><?php _e( 'Path', 'multi-device-switcher' ); ?></th>
+					<td>
+						<legend class="screen-reader-text"><span><?php _e( 'Path', 'multi-device-switcher' ); ?></span></legend>
+							<?php echo home_url(); ?>
+							<textarea name="multi_device_switcher_options[disable_path]" rows="16" cols="42" wrap="off"><?php echo esc_textarea( $options['disable_path'] ); ?></textarea>
+					</td>
+				</tr>
+				<tr><th scope="row"><?php _e( 'Regex mode', 'multi-device-switcher' ); ?></th>
+					<td>
+						<legend class="screen-reader-text"><span><?php _e( 'Regex mode', 'multi-device-switcher' ); ?></span></legend>
+							<label><input type="checkbox" name="multi_device_switcher_options[enable_regex]" id="enable-regex" value="1"<?php checked( 1, $options['enable_regex'] ); ?>> <?php _e( 'Enable Regex', 'multi-device-switcher' ); ?></label>
+					</td>
+				</tr>
+			</table>
+			</fieldset>
+
 			</div>
 			<?php submit_button(); ?>
 		</form>
@@ -882,6 +937,9 @@ function multi_device_switcher_validate( $input ) {
 
 	$output['pc_switcher'] = isset( $input['pc_switcher'] ) ? $input['pc_switcher'] : 0;
 	$output['default_css'] = isset( $input['default_css'] ) ? $input['default_css'] : 0;
+
+	$output['disable_path'] = isset( $input['disable_path'] ) ? $input['disable_path'] : '';
+	$output['enable_regex'] = isset( $input['enable_regex'] ) ? $input['enable_regex'] : 0;
 
 	return apply_filters( 'multi_device_switcher_validate', $output, $input, $default_options );
 }
