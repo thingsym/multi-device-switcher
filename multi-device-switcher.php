@@ -81,21 +81,7 @@ class Multi_Device_Switcher {
 	}
 
 	public function get_options_userAgent() {
-		$options = get_option( 'multi_device_switcher_options' );
-		$default_options = multi_device_switcher_get_default_options();
-
-		if ( ! isset( $options['userAgent_smart'] ) ) {
-			$options['userAgent_smart'] = $default_options['userAgent_smart'];
-		}
-		if ( ! isset( $options['userAgent_tablet'] ) ) {
-			$options['userAgent_tablet'] = $default_options['userAgent_tablet'];
-		}
-		if ( ! isset( $options['userAgent_mobile'] ) ) {
-			$options['userAgent_mobile'] = $default_options['userAgent_mobile'];
-		}
-		if ( ! isset( $options['userAgent_game'] ) ) {
-			$options['userAgent_game'] = $default_options['userAgent_game'];
-		}
+		$options = multi_device_switcher_get_options();
 
 		$userAgent['smart'] = empty( $options['userAgent_smart'] ) ? '' : preg_split( '/,\s*/', $options['userAgent_smart'] );
 		$userAgent['tablet'] = empty( $options['userAgent_tablet'] ) ? '' : preg_split( '/,\s*/', $options['userAgent_tablet'] );
@@ -167,7 +153,7 @@ class Multi_Device_Switcher {
 	}
 
 	public function get_device_theme() {
-		$options = get_option( 'multi_device_switcher_options' );
+		$options = multi_device_switcher_get_options();
 
 		if ( 'smart' == $this->device ) {
 			return $options['theme_smartphone'];
@@ -215,7 +201,7 @@ class Multi_Device_Switcher {
 	}
 
 	public function add_pc_switcher( $pc_switcher = 0 ) {
-		$options = get_option( 'multi_device_switcher_options' );
+		$options = multi_device_switcher_get_options();
 		$name = $this->get_device_theme();
 
 		if ( $options['pc_switcher'] ) {
@@ -954,7 +940,7 @@ function multi_device_switcher_validate( $input ) {
  */
 function multi_device_switcher_customize_register( $wp_customize ) {
 	load_plugin_textdomain( 'multi-device-switcher', false, 'multi-device-switcher/languages' );
-
+	$options = multi_device_switcher_get_options();
 	$default_theme_options = multi_device_switcher_get_default_options();
 	$default_theme = wp_get_theme()->get( 'Name' );
 	$themes = wp_get_themes();
@@ -989,22 +975,20 @@ function multi_device_switcher_customize_register( $wp_customize ) {
 		'priority'   => 80,
 	) );
 
-	foreach ( $switcher as $options => $label ) {
-		$wp_customize->add_setting( 'multi_device_switcher_options[' . $options . ']', array(
-			'default'        => $default_theme_options[ $options ],
+	foreach ( $switcher as $name => $label ) {
+		$wp_customize->add_setting( 'multi_device_switcher_options[' . $name . ']', array(
+			'default'        => $default_theme_options[ $name ],
 			'type'           => 'option',
 			'capability'     => 'edit_theme_options',
 		) );
 
-		$wp_customize->add_control( 'multi_device_switcher_options[' . $options . ']', array(
+		$wp_customize->add_control( 'multi_device_switcher_options[' . $name . ']', array(
 			'label'      => $label,
 			'section'    => 'multi_device_switcher',
 			'type'       => 'select',
 			'choices'    => $choices,
 		) );
 	}
-
-	$options = multi_device_switcher_get_options();
 
 	foreach ( $options as $custom_switcher_option => $custom_switcher_theme ) {
 		if ( ! preg_match( '/^custom_switcher_theme_/', $custom_switcher_option ) ) {
