@@ -704,7 +704,7 @@ function multi_device_switcher_render_page() {
 						}
 					}
 					$html .= '</select>';
-					$html .= ' <span class="submit"><input type="submit" name="multi_device_switcher_options[delete_custom_switcher_' . $custom_switcher_name . ']" value="' . __( 'Delete', 'multi-device-switcher' ) . '" onclick="return confirm(\'' . sprintf( esc_html__( 'Are you sure you want to delete %1$s ?', 'multi-device-switcher' ), $custom_switcher_name ) . '\');" class="button"></span>';
+					$html .= ' <span class="submit"><input type="submit" name="multi_device_switcher_options[delete_custom_switcher_' . $custom_switcher_name . ']" value="' . __( 'Delete', 'multi-device-switcher' ) . '" onclick="return confirm(\'' . esc_html( sprintf( __( 'Are you sure you want to delete %1$s ?', 'multi-device-switcher' ), $custom_switcher_name ) ) . '\');" class="button"></span>';
 				}
 				echo $html;
 			?>
@@ -797,7 +797,7 @@ function multi_device_switcher_render_page() {
 				<tr><th scope="row"><?php _e( 'Path', 'multi-device-switcher' ); ?></th>
 					<td>
 						<legend class="screen-reader-text"><span><?php _e( 'Path', 'multi-device-switcher' ); ?></span></legend>
-							<?php echo home_url(); ?>
+							<?php echo esc_html( home_url() ); ?>
 							<textarea name="multi_device_switcher_options[disable_path]" rows="16" cols="42" wrap="off"><?php echo esc_textarea( $options['disable_path'] ); ?></textarea>
 					</td>
 				</tr>
@@ -1028,7 +1028,7 @@ require_once( dirname( __FILE__ ) . '/pc-switcher-widget.php' );
  *
  * @since 1.4
  */
-if ( defined('WP_CLI') && WP_CLI ) {
+if ( defined( 'WP_CLI' ) && WP_CLI ) {
 	require_once( dirname( __FILE__ ) . '/wp-cli.php' );
 }
 
