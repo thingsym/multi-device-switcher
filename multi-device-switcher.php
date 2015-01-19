@@ -32,6 +32,8 @@ Domain Path: /languages/
 class Multi_Device_Switcher {
 
 	public function __construct() {
+		$this->device = '';
+
 		if ( $this->get_disable() ) {
 			return;
 		}
@@ -39,7 +41,6 @@ class Multi_Device_Switcher {
 		add_action( 'init', array( &$this, 'session' ) );
 
 		$userAgent = $this->get_options_userAgent();
-		$this->device = '';
 		$server_ua = isset( $_SERVER['HTTP_USER_AGENT'] ) ? $_SERVER['HTTP_USER_AGENT'] : '';
 
 		foreach ( array_reverse( $userAgent ) as $key => $val ) {
