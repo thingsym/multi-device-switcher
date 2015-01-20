@@ -132,7 +132,7 @@ You can design the PC Switcher in the Style Sheet.
 `
 
 
-**How to use the Disable Switcher**
+= How to use the Disable Switcher =
 
 The **Disable Switcher** disable the switching of the theme by a particular URL. If you match the access the url and a string or a regular expression (Regex mode), disable the switching of the theme. Regex mode is for advanced users.
 
@@ -140,7 +140,7 @@ The **Disable Switcher** disable the switching of the theme by a particular URL.
 2. Enter the path to the line by line where you want to disable by Disable Switcher option. Check the checkbox 'Enable Regex', if you want to use a regular expression.
 3. Have fun!
 
-**Examples**
+= Examples =
 
 `
 /sample-page
@@ -157,6 +157,35 @@ The **Disable Switcher** disable the switching of the theme by a particular URL.
 = UserAgent option Samples =
 
 * [Default UserAgent](https://github.com/thingsym/multi-device-switcher/wiki/Default-UserAgent)
+
+= Detect the device by JavaScript =
+
+Multi Device Switcher set the Cookie that holds the state of the switch. You can get the Cookie and detect the device by JavaScript.
+
+= Cookie =
+
+* `multi-device-switcher` The name of the device is switched (value: null | device name)
+* `disable-switcher` State of disabled (value: null | 1)
+* `pc-switcher` State of the PC Switcher when switched (value: null | 1)
+
+= Examples =
+
+`
+ <script src="http://DOMEIN/PATH/TO/jquery.cookie.js"></script>
+ <script>
+ (function($) {
+ 	$(function() {
+ 		if ( $.cookie( 'multi-device-switcher' ) == 'smart' ) {
+ 			/* smartphone specific stuff here */
+ 		} else if ( $.cookie( 'multi-device-switcher' ) == 'tablet' ) {
+ 			/* tablet specific stuff here */
+ 		} else {
+ 			/* pc or other stuff here */
+ 		}
+ 	});
+ })(jQuery);
+ </script>
+`
 
 = is_multi_device() function =
 

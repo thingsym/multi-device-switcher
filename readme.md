@@ -110,6 +110,36 @@ The **Disable Switcher** disable the switching of the theme by a particular URL.
 
 * [Default UserAgent](https://github.com/thingsym/multi-device-switcher/wiki/Default-UserAgent)
 
+
+## Detect the device by JavaScript
+
+Multi Device Switcher set the Cookie that holds the state of the switch. You can get the Cookie and detect the device by JavaScript.
+
+### Cookie
+
+* `multi-device-switcher` The name of the device is switched (value: null | device name)
+* `disable-switcher` State of disabled (value: null | 1)
+* `pc-switcher` State of the PC Switcher when switched (value: null | 1)
+
+### Examples
+
+```
+ <script src="http://DOMEIN/PATH/TO/jquery.cookie.js"></script>
+ <script>
+ (function($) {
+ 	$(function() {
+ 		if ( $.cookie( 'multi-device-switcher' ) == 'smart' ) {
+ 			/* smartphone specific stuff here */
+ 		} else if ( $.cookie( 'multi-device-switcher' ) == 'tablet' ) {
+ 			/* tablet specific stuff here */
+ 		} else {
+ 			/* pc or other stuff here */
+ 		}
+ 	});
+ })(jQuery);
+ </script>
+```
+
 ## is_multi_device() function
 
 **is_multi_device()** function is a boolean function, meaning it returns either TRUE or FALSE. Works through the detection of the device by the Multi_Device_Switcher class.
