@@ -5,8 +5,8 @@ Donate link: http://blog.thingslabo.com/archives/000251.html
 Link: https://github.com/thingsym/multi-device-switcher
 Tags: switcher, theme, ipad, iphone, android, tablet, mobile, game
 Requires at least: 3.4
-Tested up to: 4.0
-Stable tag: 1.3.0
+Tested up to: 4.1
+Stable tag: 1.4.0
 License: GPL2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -22,9 +22,11 @@ The Custom Switcher can add every device.
 = Features =
 
 * Set a separate theme for device (Smart Phone, Tablet PC, Mobile Phone, Game), switches to selected theme.
-* Add every device by the Custom Switcher.
-* Add links 'Mobile' or 'PC' in the theme by the PC Switcher, switch to the default theme.
-* Can be using is_multi_device() function that detect of the device.
+* Add every device by the **Custom Switcher**.
+* Add links 'Mobile' or 'PC' in the theme by the **PC Switcher**, switch to the default theme.
+* Disable the switching of the theme for each url by the **Disable Switcher**.
+* Can be using **is_multi_device()** function that detect of the device.
+* **Multi Device Switcher Command** command-line tool (required WP-CLI)
 
 = Contributing =
 
@@ -65,6 +67,7 @@ You can send your own language pack to author.
 2. UserAgent option
 3. PC Switcher option
 4. PC Switcher button
+5. Disable Switcher
 
 == Installation ==
 
@@ -113,13 +116,80 @@ There are three ways how to Using the PC Switcher.
 * Configure settings. Check the checkbox 'Add a default CSS.' by PC Switcher option. If you want to customize CSS, uncheck the checkbox.
 * Have fun!
 
+
+You can design the PC Switcher in the Style Sheet.
+
+**HTML output of the PC Switcher**
+
+`
+ <div class="pc-switcher"><span class="active">Mobile</span><a href="http://DOMEIN/PATH/TO/?pc-switcher=1">PC</a></div>
+`
+
+**HTML output of the PC Switcher when switched**
+
+`
+ <div class="pc-switcher"><a href="http://DOMEIN/PATH/TO/?pc-switcher=0">Mobile</a><span class="active">PC</span></div>
+`
+
+
+= How to use the Disable Switcher =
+
+The **Disable Switcher** disable the switching of the theme by a particular URL. If you match the access the url and a string or a regular expression (Regex mode), disable the switching of the theme. Regex mode is for advanced users.
+
+1. Go to the "Multi Device Switcher" options page through the 'Appearance' menu in WordPress.
+2. Enter the path to the line by line where you want to disable by Disable Switcher option. Check the checkbox 'Enable Regex', if you want to use a regular expression.
+3. Have fun!
+
+= Examples =
+
+`
+/sample-page
+/2015/01/hello-world
+`
+
+##### Regex mode (in the case of regular expression)
+
+`
+\/sample\-
+\/2015\/01
+`
+
 = UserAgent option Samples =
 
 * [Default UserAgent](https://github.com/thingsym/multi-device-switcher/wiki/Default-UserAgent)
 
+= Detect the device by JavaScript =
+
+Multi Device Switcher set the Cookie that holds the state of the switch. You can get the Cookie and detect the device by JavaScript.
+
+= Cookie =
+
+* `multi-device-switcher` The name of the device is switched (value: null | device name)
+* `disable-switcher` State of disabled (value: null | 1)
+* `pc-switcher` State of the PC Switcher when switched (value: null | 1)
+
+= Examples =
+
+`
+ <script src="http://DOMEIN/PATH/TO/jquery.cookie.js"></script>
+ <script>
+ (function($) {
+ 	$(function() {
+ 		if ( $.cookie( 'multi-device-switcher' ) == 'smart' ) {
+ 			/* smartphone specific stuff here */
+ 		} else if ( $.cookie( 'multi-device-switcher' ) == 'tablet' ) {
+ 			/* tablet specific stuff here */
+ 		} else {
+ 			/* pc or other stuff here */
+ 		}
+ 	});
+ })(jQuery);
+ </script>
+`
+
 = is_multi_device() function =
 
-is_multi_device() function is a boolean function, meaning it returns either TRUE or FALSE. Works through the detection of the device by the Multi_Device_Switcher class.
+**is_multi_device()** function is a boolean function, meaning it returns either TRUE or FALSE. Works through the detection of the device by the Multi_Device_Switcher class.
 
 = Usage =
 
@@ -136,6 +206,8 @@ if ( function_exists( 'is_multi_device' ) ) {
 		/* Display and echo smartphone specific stuff here */
 	} elseif ( is_multi_device('tablet') ) {
 		/* Display and echo tablet specific stuff here */
+	} else {
+		/* Display and echo pc or other stuff here */
 	}
 }
 ?>
@@ -157,9 +229,56 @@ if ( function_exists( 'is_multi_device' ) ) {
 
 (boolean) Return boolean whether a particular device.
 
+= Multi Device Switcher Command =
+
+The **Multi Device Switcher Command** is command-line tool.
+
+Add-on the Multi Device Switcher Command, when you activate the plugin "Multi Device Switcher". To use the Multi Device Switcher Command is WP-CLI required.
+
+= NAME =
+
+`
+wp multi-device
+`
+
+= DESCRIPTION =
+
+`
+Multi Device Switcher Command
+`
+
+= SYNOPSIS =
+
+`
+wp multi-device <command>
+`
+
+= SUBCOMMANDS =
+
+`
+add              add Custom Switcher
+css              turn on/off default CSS
+delete           delete Custom Switcher
+pc-switcher      turn on/off PC Switcher
+reset            reset Settings to Default UserAgent
+status           get status of settings
+theme            get or switch a theme
+useragent        get or set UserAgent
+`
+
+For more information about the Multi Device Switcher Command, see `wp help multi-device <SUBCOMMANDS>`.
 
 == Changelog ==
 
+= 1.4.0 =
+* edited: edit readme
+* added: add cookies 'multi-device-switcher', 'disable-switcher'
+* new features: Disable Switcher
+* fixed: fix get_options_userAgent(), multi_device_switcher_get_options()
+* fixed: add reserved words validate
+* new features: Multi Device Switcher Command
+* added: add option settings into Theme Customizer
+* fixed: refactoring by the PHP_CodeSniffer
 = 1.3.0 =
 * fixed: fix script, style, html and readme
 * new features: is_multi_device() function
