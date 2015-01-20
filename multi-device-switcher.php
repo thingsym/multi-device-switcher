@@ -34,7 +34,12 @@ class Multi_Device_Switcher {
 	public function __construct() {
 		$this->device = '';
 
+		if ( isset( $_COOKIE['disable-switcher'] ) ) {
+			setcookie( 'disable-switcher', null, time() - 3600, '/' );
+		}
+
 		if ( $this->get_disable() ) {
+			setcookie( 'disable-switcher', 1, null, '/' );
 			return;
 		}
 
@@ -73,6 +78,11 @@ class Multi_Device_Switcher {
 			add_filter( 'stylesheet', array( &$this, 'get_stylesheet' ) );
 			add_filter( 'template', array( &$this, 'get_template' ) );
 			add_action( 'wp_footer', array( &$this, 'add_pc_switcher' ) );
+
+			setcookie( 'multi-device-switcher', preg_replace( '/^custom_switcher_/', '', $this->device ), null, '/' );
+		}
+		else {
+			setcookie( 'multi-device-switcher', null, time() - 3600, '/' );
 		}
 
 		if ( isset( $_COOKIE['pc-switcher'] ) ) {
