@@ -78,6 +78,7 @@ class Multi_Device_Switcher {
 			add_filter( 'stylesheet', array( &$this, 'get_stylesheet' ) );
 			add_filter( 'template', array( &$this, 'get_template' ) );
 			add_action( 'wp_footer', array( &$this, 'add_pc_switcher' ) );
+			add_action( 'pre_get_posts', array( &$this, 'change_posts_per_page_count' ) );
 
 			setcookie( 'multi-device-switcher', preg_replace( '/^custom_switcher_/', '', $this->device ), null, '/' );
 		}
@@ -193,6 +194,45 @@ class Multi_Device_Switcher {
 		}
 
 		return;
+	}
+
+	public function get_device_posts_per_page_count() {
+		$options = multi_device_switcher_get_options();
+
+		if ( 'smart' == $this->device ) {
+			return $options['posts_per_page_count_smartphone'];
+		}
+		elseif ( 'tablet' == $this->device ) {
+			return $options['posts_per_page_count_tablet'];
+		}
+		elseif ( 'mobile' == $this->device ) {
+			return $options['posts_per_page_count_mobile'];
+		}
+		elseif ( 'game' == $this->device ) {
+			return $options['posts_per_page_count_game'];
+		}
+		else {
+			foreach ( $options as $key => $val ) {
+				if ( ! preg_match( '/^posts_per_page_count_custom_switcher_/', $key ) ) {
+					continue;
+				}
+
+				$custom_switcher_name = preg_replace( '/^posts_per_page_count_custom_switcher_/', '', $key );
+
+				if ( 'custom_switcher_' . $custom_switcher_name == $this->device ) {
+					return $options[ $key ];
+				}
+			}
+		}
+
+		return;
+	}
+
+	public function change_posts_per_page_count($query) {
+		$posts_per_page_count =  $this->get_device_posts_per_page_count();
+		if ( $query->is_main_query() && isset( $posts_per_page_count ) ) {
+			set_query_var('posts_per_page', $posts_per_page_count);
+		}
 	}
 
 	public function session() {
@@ -460,6 +500,7 @@ function multi_device_switcher_get_default_options() {
 		'userAgent_game' => 'PlayStation Portable, PlayStation Vita, PSP, PS2, PLAYSTATION 3, PlayStation 4, Nitro, Nintendo 3DS, Nintendo Wii, Nintendo WiiU, Xbox',
 		'disable_path' => '',
 		'enable_regex' => 0,
+		'posts_per_page_count' => get_option('posts_per_page'),
 	);
 
 	return $default_theme_options;
@@ -484,14 +525,26 @@ function multi_device_switcher_get_options() {
 	if ( ! isset( $options['theme_smartphone'] ) ) {
 		$options['theme_smartphone'] = $default_options['theme_smartphone'];
 	}
+	if ( ! isset( $options['posts_per_page_count_smartphone'] ) ) {
+		$options['posts_per_page_count_smartphone'] = $default_options['posts_per_page_count'];
+	}
 	if ( ! isset( $options['theme_tablet'] ) ) {
 		$options['theme_tablet'] = $default_options['theme_tablet'];
+	}
+	if ( ! isset( $options['posts_per_page_count_tablet'] ) ) {
+		$options['posts_per_page_count_tablet'] = $default_options['posts_per_page_count'];
 	}
 	if ( ! isset( $options['theme_mobile'] ) ) {
 		$options['theme_mobile'] = $default_options['theme_mobile'];
 	}
+	if ( ! isset( $options['posts_per_page_count_mobile'] ) ) {
+		$options['posts_per_page_count_mobile'] = $default_options['posts_per_page_count'];
+	}
 	if ( ! isset( $options['theme_game'] ) ) {
 		$options['theme_game'] = $default_options['theme_game'];
+	}
+	if ( ! isset( $options['posts_per_page_count_game'] ) ) {
+		$options['posts_per_page_count_game'] = $default_options['posts_per_page_count'];
 	}
 
 	if ( ! isset( $options['userAgent_smart'] ) ) {
@@ -580,6 +633,9 @@ function multi_device_switcher_render_page() {
 				echo $html;
 			?>
 					</td>
+					<td>
+						<input type="number" name="multi_device_switcher_options[posts_per_page_count_smartphone]" value="<?php echo $options['posts_per_page_count_smartphone']; ?>">
+					</td>
 				</tr>
 				<tr><th scope="row"><?php _e( 'Tablet PC Theme', 'multi-device-switcher' ); ?></th>
 					<td>
@@ -610,6 +666,9 @@ function multi_device_switcher_render_page() {
 				}
 				echo $html;
 			?>
+					</td>
+					<td>
+						<input type="number" name="multi_device_switcher_options[posts_per_page_count_tablet]" value="<?php echo $options['posts_per_page_count_tablet']; ?>">
 					</td>
 				</tr>
 				<tr><th scope="row"><?php _e( 'Mobile Phone Theme', 'multi-device-switcher' ); ?></th>
@@ -642,6 +701,9 @@ function multi_device_switcher_render_page() {
 				echo $html;
 			?>
 					</td>
+					<td>
+						<input type="number" name="multi_device_switcher_options[posts_per_page_count_mobile]" value="<?php echo $options['posts_per_page_count_mobile']; ?>">
+					</td>
 				</tr>
 				<tr><th scope="row"><?php _e( 'Game Platforms Theme', 'multi-device-switcher' ); ?></th>
 					<td>
@@ -672,6 +734,9 @@ function multi_device_switcher_render_page() {
 				}
 				echo $html;
 			?>
+					</td>
+					<td>
+						<input type="number" name="multi_device_switcher_options[posts_per_page_count_game]" value="<?php echo $options['posts_per_page_count_game']; ?>">
 					</td>
 				</tr>
 			</table>
@@ -714,10 +779,17 @@ function multi_device_switcher_render_page() {
 						}
 					}
 					$html .= '</select>';
-					$html .= ' <span class="submit"><input type="submit" name="multi_device_switcher_options[delete_custom_switcher_' . $custom_switcher_name . ']" value="' . __( 'Delete', 'multi-device-switcher' ) . '" onclick="return confirm(\'' . esc_html( sprintf( __( 'Are you sure you want to delete %1$s ?', 'multi-device-switcher' ), $custom_switcher_name ) ) . '\');" class="button"></span>';
 				}
 				echo $html;
 			?>
+					</td>
+					<td>
+						<input type="number" name="multi_device_switcher_options[posts_per_page_count_custom_switcher_<?php echo $custom_switcher_name; ?>]" value="<?php echo $options['posts_per_page_count_custom_switcher_' . $custom_switcher_name]; ?>">
+					</td>
+					<td>
+						<span class="submit">
+							<input type="submit" name="multi_device_switcher_options[delete_custom_switcher_<?php echo $custom_switcher_name; ?>]" value="<?php echo  __( 'Delete', 'multi-device-switcher' ); ?>" onclick="return confirm('<?php echo esc_html( sprintf( __( 'Are you sure you want to delete %1$s ?', 'multi-device-switcher' ), $custom_switcher_name ) ); ?>');" class="button">
+						</span>
 					</td>
 				</tr>
 
@@ -867,14 +939,26 @@ function multi_device_switcher_validate( $input ) {
 	if ( isset( $input['theme_smartphone'] ) ) {
 		$output['theme_smartphone'] = $input['theme_smartphone'];
 	}
+	if ( isset( $input['posts_per_page_count_smartphone'] ) ) {
+		$output['posts_per_page_count_smartphone'] = $input['posts_per_page_count_smartphone'];
+	}
 	if ( isset( $input['theme_tablet'] ) ) {
 		$output['theme_tablet'] = $input['theme_tablet'];
+	}
+	if ( isset( $input['posts_per_page_count_tablet'] ) ) {
+		$output['posts_per_page_count_tablet'] = $input['posts_per_page_count_tablet'];
 	}
 	if ( isset( $input['theme_mobile'] ) ) {
 		$output['theme_mobile'] = $input['theme_mobile'];
 	}
+	if ( isset( $input['posts_per_page_count_mobile'] ) ) {
+		$output['posts_per_page_count_mobile'] = $input['posts_per_page_count_mobile'];
+	}
 	if ( isset( $input['theme_game'] ) ) {
 		$output['theme_game'] = $input['theme_game'];
+	}
+	if ( isset( $input['posts_per_page_count_game'] ) ) {
+		$output['posts_per_page_count_game'] = $input['posts_per_page_count_game'];
 	}
 
 	if ( isset( $input['restore_UserAgent'] ) ) {
