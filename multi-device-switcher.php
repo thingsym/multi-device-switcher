@@ -38,7 +38,7 @@ class Multi_Device_Switcher {
 			setcookie( 'disable-switcher', null, time() - 3600, '/' );
 		}
 
-		if ( $this->get_disable() ) {
+		if ( $this->is_disable() ) {
 			setcookie( 'disable-switcher', 1, null, '/' );
 			return;
 		}
@@ -256,7 +256,7 @@ class Multi_Device_Switcher {
 		return isset( $_COOKIE['pc-switcher'] );
 	}
 
-	public function get_disable( $disable = 0 ) {
+	public function is_disable( $disable = 0 ) {
 		$options = multi_device_switcher_get_options();
 		$disable_path = preg_split( '/\R/', $options['disable_path'], -1, PREG_SPLIT_NO_EMPTY );
 
