@@ -214,6 +214,39 @@ None
 
 (boolean) Return the state of PC Switcher.
 
+
+## is_disable() function
+
+**is_disable()** function is a boolean function, meaning it returns either TRUE or FALSE. Return the state of disabled by the Multi_Device_Switcher class.
+
+### Usage
+
+```
+<?php is_disable(); ?>
+```
+
+### Examples
+
+```
+<?php
+if ( function_exists( 'is_disable' ) ) {
+	if ( is_disable() ) {
+		/* Disabled. Display and echo specific stuff here */
+	} else {
+		/* Display and echo specific stuff here */
+	}
+}
+?>
+```
+
+### Parameters
+
+None
+
+### Return Values
+
+(boolean) Return the state of disabled.
+
 ## Multi Device Switcher Command
 
 The **Multi Device Switcher Command** is command-line tool.
