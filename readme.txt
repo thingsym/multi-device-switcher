@@ -147,7 +147,7 @@ The **Disable Switcher** disable the switching of the theme by a particular URL.
 /2015/01/hello-world
 `
 
-##### Regex mode (in the case of regular expression)
+= Regex mode (in the case of regular expression) =
 
 `
 \/sample\-
@@ -228,6 +228,38 @@ if ( function_exists( 'is_multi_device' ) ) {
 = Return Values =
 
 (boolean) Return boolean whether a particular device.
+
+= is_pc_switcher() function =
+
+**is_pc_switcher()** function is a boolean function, meaning it returns either TRUE or FALSE. Return the the state of PC Switcher by the Multi_Device_Switcher class. Return true if the theme has switched by the PC Switcher.
+
+=  Usage =
+
+`
+<?php is_pc_switcher(); ?>
+`
+
+= Examples =
+
+`
+<?php
+if ( function_exists( 'is_pc_switcher' ) ) {
+	if ( is_pc_switcher() ) {
+		/* Theme switched by the PC Switcher. Display and echo specific stuff here */
+	} else {
+		/* Display and echo stuff here */
+	}
+}
+?>
+`
+
+= Parameters =
+
+None
+
+= Return Values =
+
+(boolean) Return the state of PC Switcher.
 
 = Multi Device Switcher Command =
 
