@@ -252,6 +252,10 @@ class Multi_Device_Switcher {
 		return (boolean) 0;
 	}
 
+	public function is_pc_switcher() {
+		return isset( $_COOKIE['pc-switcher'] );
+	}
+
 	public function get_disable( $disable = 0 ) {
 		$options = multi_device_switcher_get_options();
 		$disable_path = preg_split( '/\R/', $options['disable_path'], -1, PREG_SPLIT_NO_EMPTY );
@@ -318,6 +322,22 @@ function is_multi_device( $device = '' ) {
 	global $multi_device_switcher;
 	if ( is_object( $multi_device_switcher ) ) {
 		return $multi_device_switcher->is_multi_device( $device );
+	}
+}
+endif;
+
+/**
+ * Return the state of pc_switcher.
+ *
+ * @since 1.4.1
+ *
+ */
+if ( ! function_exists( 'is_pc_switcher' ) ) :
+
+function is_pc_switcher() {
+	global $multi_device_switcher;
+	if ( is_object( $multi_device_switcher ) ) {
+		return $multi_device_switcher->is_pc_switcher();
 	}
 }
 endif;
