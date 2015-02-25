@@ -343,6 +343,22 @@ function is_pc_switcher() {
 endif;
 
 /**
+ * Return the state of disabled.
+ *
+ * @since 1.4.1
+ *
+ */
+if ( ! function_exists( 'is_disable' ) ) :
+
+function is_disable() {
+	global $multi_device_switcher;
+	if ( is_object( $multi_device_switcher ) ) {
+		return $multi_device_switcher->is_disable();
+	}
+}
+endif;
+
+/**
  * Properly enqueue scripts for our multi_device_switcher options page.
  *
  * This function is attached to the admin_enqueue_scripts action hook.
