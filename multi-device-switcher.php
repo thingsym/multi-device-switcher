@@ -301,7 +301,9 @@ add_filter( 'wp_headers', 'multi_device_switcher_add_header_vary' );
  */
 function multi_device_switcher_add_pc_switcher() {
 	global $multi_device_switcher;
-	$multi_device_switcher->add_pc_switcher( 1 );
+	if ( is_object( $multi_device_switcher ) ) {
+		$multi_device_switcher->add_pc_switcher( 1 );
+	}
 }
 
 /**
@@ -314,7 +316,9 @@ if ( ! function_exists( 'is_multi_device' ) ) :
 
 function is_multi_device( $device = '' ) {
 	global $multi_device_switcher;
-	return $multi_device_switcher->is_multi_device( $device );
+	if ( is_object( $multi_device_switcher ) ) {
+		return $multi_device_switcher->is_multi_device( $device );
+	}
 }
 endif;
 
