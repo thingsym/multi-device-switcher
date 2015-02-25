@@ -327,7 +327,7 @@ function is_multi_device( $device = '' ) {
 endif;
 
 /**
- * Return the state of pc_switcher.
+ * Return the state of PC Switcher.
  *
  * @since 1.4.1
  *
