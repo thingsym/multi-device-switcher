@@ -203,7 +203,7 @@ class Multi_Device_Switcher {
 
 			unset( $_GET['pc-switcher'] );
 			if ( ! empty( $_GET ) ) {
-				$uri = $uri . '?' . http_build_query( $_GET );
+				$uri .= '?' . http_build_query( $_GET );
 			}
 
 			wp_redirect( esc_url( $uri ) );
