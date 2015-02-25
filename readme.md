@@ -92,7 +92,7 @@ The **Disable Switcher** disable the switching of the theme by a particular URL.
 2. Enter the path to the line by line where you want to disable by Disable Switcher option. Check the checkbox 'Enable Regex', if you want to use a regular expression.
 3. Have fun!
 
-### Examples
+### Example
 
 ```
 /sample-page
@@ -121,7 +121,7 @@ Multi Device Switcher set the Cookie that holds the state of the switch. You can
 * `disable-switcher` State of disabled (value: null | 1)
 * `pc-switcher` State of the PC Switcher when switched (value: null | 1)
 
-### Examples
+### Example
 
 ```
  <script src="http://DOMEIN/PATH/TO/jquery.cookie.js"></script>
@@ -133,7 +133,7 @@ Multi Device Switcher set the Cookie that holds the state of the switch. You can
  		} else if ( $.cookie( 'multi-device-switcher' ) == 'tablet' ) {
  			/* tablet specific stuff here */
  		} else {
- 			/* pc or other stuff here */
+ 			/* pc or other specific stuff here */
  		}
  	});
  })(jQuery);
@@ -150,7 +150,7 @@ Multi Device Switcher set the Cookie that holds the state of the switch. You can
 <?php is_multi_device('smart'); ?>
 ```
 
-### Examples
+### Example
 
 ```
 <?php
@@ -160,7 +160,7 @@ if ( function_exists( 'is_multi_device' ) ) {
 	} elseif ( is_multi_device('tablet') ) {
 		/* Display and echo tablet specific stuff here */
 	} else {
-		/* Display and echo pc or other stuff here */
+		/* Display and echo pc or other specific stuff here */
 	}
 }
 ?>
@@ -192,7 +192,7 @@ if ( function_exists( 'is_multi_device' ) ) {
 <?php is_pc_switcher(); ?>
 ```
 
-### Examples
+### Example
 
 ```
 <?php
@@ -200,7 +200,7 @@ if ( function_exists( 'is_pc_switcher' ) ) {
 	if ( is_pc_switcher() ) {
 		/* Theme switched by the PC Switcher. Display and echo specific stuff here */
 	} else {
-		/* Display and echo stuff here */
+		/* Display and echo specific stuff here */
 	}
 }
 ?>
@@ -225,7 +225,7 @@ None
 <?php is_disable(); ?>
 ```
 
-### Examples
+### Example
 
 ```
 <?php
