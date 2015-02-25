@@ -224,14 +224,16 @@ class Multi_Device_Switcher {
 				wp_enqueue_style( 'pc-switcher-options', plugins_url() . '/multi-device-switcher/pc-switcher.css', false, '2013-03-20' );
 			}
 
+			$uri = is_ssl() ? "https://" : "http://" . $_SERVER["HTTP_HOST"];
+
 			if ( isset( $_COOKIE['pc-switcher'] ) ) {
-				$uri = get_home_url() . add_query_arg( 'pc-switcher', 0 );
+				$uri .= add_query_arg( 'pc-switcher', 0 );
 		?>
 <div class="pc-switcher"><a href="<?php echo esc_url( $uri ); ?>"><?php _e( 'Mobile', 'multi-device-switcher' ); ?></a><span class="active"><?php _e( 'PC', 'multi-device-switcher' ); ?></span></div>
 		<?php
 			}
 			else {
-				$uri = get_home_url() . add_query_arg( 'pc-switcher', 1 );
+				$uri .= add_query_arg( 'pc-switcher', 1 );
 		?>
 <div class="pc-switcher"><span class="active"><?php _e( 'Mobile', 'multi-device-switcher' ); ?></span><a href="<?php echo esc_url( $uri ); ?>"><?php _e( 'PC', 'multi-device-switcher' ); ?></a></div>
 		<?php
