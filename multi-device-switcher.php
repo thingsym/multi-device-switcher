@@ -39,6 +39,7 @@ class Multi_Device_Switcher {
 		}
 
 		if ( $this->is_disable() ) {
+			setcookie( 'multi-device-switcher', null, time() - 3600, '/' );
 			setcookie( 'disable-switcher', 1, null, '/' );
 			return;
 		}
