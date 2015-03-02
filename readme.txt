@@ -6,7 +6,7 @@ Link: https://github.com/thingsym/multi-device-switcher
 Tags: switcher, theme, ipad, iphone, android, tablet, mobile, game
 Requires at least: 3.4
 Tested up to: 4.1
-Stable tag: 1.4.0
+Stable tag: 1.4.1
 License: GPL2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -162,7 +162,7 @@ The **Disable Switcher** disable the switching of the theme by a particular URL.
 
 Multi Device Switcher set the Cookie that holds the state of the switch. You can get the Cookie and detect the device by JavaScript.
 
-= Cookie =
+= Cookies =
 
 * `multi-device-switcher` The name of the device is switched (value: null | device name)
 * `disable-switcher` State of disabled (value: null | 1)
@@ -334,6 +334,11 @@ For more information about the Multi Device Switcher Command, see `wp help multi
 
 == Changelog ==
 
+= 1.4.1 =
+* edited: edit readme
+* new features: is_disable_switcher() function
+* new features: is_pc_switcher() function
+* fixed: fix redirect url and pc-switcher url
 = 1.4.0 =
 * edited: edit readme
 * added: add cookies 'multi-device-switcher', 'disable-switcher'

@@ -115,7 +115,7 @@ The **Disable Switcher** disable the switching of the theme by a particular URL.
 
 Multi Device Switcher set the Cookie that holds the state of the switch. You can get the Cookie and detect the device by JavaScript.
 
-### Cookie
+### Cookies
 
 * `multi-device-switcher` The name of the device is switched (value: null | device name)
 * `disable-switcher` State of disabled (value: null | 1)
@@ -363,6 +363,11 @@ You can send your own language pack to author.
 
 ## Changelog
 
+* Version 1.4.1
+	* edited: edit readme
+	* new features: is_disable_switcher() function
+	* new features: is_pc_switcher() function
+	* fixed: fix redirect url and pc-switcher url
 * Version 1.4.0
 	* edited: edit readme
 	* added: add cookies 'multi-device-switcher', 'disable-switcher'
