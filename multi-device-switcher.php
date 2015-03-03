@@ -3,7 +3,7 @@
 Plugin Name: Multi Device Switcher
 Plugin URI: https://github.com/thingsym/multi-device-switcher
 Description: This WordPress plugin allows you to set a separate theme for device (Smart Phone, Tablet PC, Mobile Phone, Game and custom).
-Version: 1.4.0
+Version: 1.4.1
 Author: thingsym
 Author URI: http://www.thingslabo.com/
 License: GPL2
@@ -38,7 +38,8 @@ class Multi_Device_Switcher {
 			setcookie( 'disable-switcher', null, time() - 3600, '/' );
 		}
 
-		if ( $this->get_disable() ) {
+		if ( $this->is_disable_switcher() ) {
+			setcookie( 'multi-device-switcher', null, time() - 3600, '/' );
 			setcookie( 'disable-switcher', 1, null, '/' );
 			return;
 		}
@@ -203,7 +204,7 @@ class Multi_Device_Switcher {
 
 			unset( $_GET['pc-switcher'] );
 			if ( ! empty( $_GET ) ) {
-				$uri = $uri . '?' . http_build_query( $_GET );
+				$uri .= '?' . http_build_query( $_GET );
 			}
 
 			wp_redirect( esc_url( $uri ) );
@@ -224,14 +225,16 @@ class Multi_Device_Switcher {
 				wp_enqueue_style( 'pc-switcher-options', plugins_url() . '/multi-device-switcher/pc-switcher.css', false, '2013-03-20' );
 			}
 
+			$uri = is_ssl() ? "https://" : "http://" . $_SERVER["HTTP_HOST"];
+
 			if ( isset( $_COOKIE['pc-switcher'] ) ) {
-				$uri = get_home_url() . add_query_arg( 'pc-switcher', 0 );
+				$uri .= add_query_arg( 'pc-switcher', 0 );
 		?>
 <div class="pc-switcher"><a href="<?php echo esc_url( $uri ); ?>"><?php _e( 'Mobile', 'multi-device-switcher' ); ?></a><span class="active"><?php _e( 'PC', 'multi-device-switcher' ); ?></span></div>
 		<?php
 			}
 			else {
-				$uri = get_home_url() . add_query_arg( 'pc-switcher', 1 );
+				$uri .= add_query_arg( 'pc-switcher', 1 );
 		?>
 <div class="pc-switcher"><span class="active"><?php _e( 'Mobile', 'multi-device-switcher' ); ?></span><a href="<?php echo esc_url( $uri ); ?>"><?php _e( 'PC', 'multi-device-switcher' ); ?></a></div>
 		<?php
@@ -250,7 +253,11 @@ class Multi_Device_Switcher {
 		return (boolean) 0;
 	}
 
-	public function get_disable( $disable = 0 ) {
+	public function is_pc_switcher() {
+		return isset( $_COOKIE['pc-switcher'] );
+	}
+
+	public function is_disable_switcher( $disable = 0 ) {
 		$options = multi_device_switcher_get_options();
 		$disable_path = preg_split( '/\R/', $options['disable_path'], -1, PREG_SPLIT_NO_EMPTY );
 
@@ -299,7 +306,9 @@ add_filter( 'wp_headers', 'multi_device_switcher_add_header_vary' );
  */
 function multi_device_switcher_add_pc_switcher() {
 	global $multi_device_switcher;
-	$multi_device_switcher->add_pc_switcher( 1 );
+	if ( is_object( $multi_device_switcher ) ) {
+		$multi_device_switcher->add_pc_switcher( 1 );
+	}
 }
 
 /**
@@ -312,7 +321,41 @@ if ( ! function_exists( 'is_multi_device' ) ) :
 
 function is_multi_device( $device = '' ) {
 	global $multi_device_switcher;
-	return $multi_device_switcher->is_multi_device( $device );
+	if ( is_object( $multi_device_switcher ) ) {
+		return $multi_device_switcher->is_multi_device( $device );
+	}
+}
+endif;
+
+/**
+ * Return the state of PC Switcher.
+ *
+ * @since 1.4.1
+ *
+ */
+if ( ! function_exists( 'is_pc_switcher' ) ) :
+
+function is_pc_switcher() {
+	global $multi_device_switcher;
+	if ( is_object( $multi_device_switcher ) ) {
+		return $multi_device_switcher->is_pc_switcher();
+	}
+}
+endif;
+
+/**
+ * Return the state of disabled.
+ *
+ * @since 1.4.1
+ *
+ */
+if ( ! function_exists( 'is_disable_switcher' ) ) :
+
+function is_disable_switcher() {
+	global $multi_device_switcher;
+	if ( is_object( $multi_device_switcher ) ) {
+		return $multi_device_switcher->is_disable_switcher();
+	}
 }
 endif;
 

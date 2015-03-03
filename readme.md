@@ -92,7 +92,7 @@ The **Disable Switcher** disable the switching of the theme by a particular URL.
 2. Enter the path to the line by line where you want to disable by Disable Switcher option. Check the checkbox 'Enable Regex', if you want to use a regular expression.
 3. Have fun!
 
-### Examples
+### Example
 
 ```
 /sample-page
@@ -115,13 +115,13 @@ The **Disable Switcher** disable the switching of the theme by a particular URL.
 
 Multi Device Switcher set the Cookie that holds the state of the switch. You can get the Cookie and detect the device by JavaScript.
 
-### Cookie
+### Cookies
 
 * `multi-device-switcher` The name of the device is switched (value: null | device name)
 * `disable-switcher` State of disabled (value: null | 1)
 * `pc-switcher` State of the PC Switcher when switched (value: null | 1)
 
-### Examples
+### Example
 
 ```
  <script src="http://DOMEIN/PATH/TO/jquery.cookie.js"></script>
@@ -133,7 +133,7 @@ Multi Device Switcher set the Cookie that holds the state of the switch. You can
  		} else if ( $.cookie( 'multi-device-switcher' ) == 'tablet' ) {
  			/* tablet specific stuff here */
  		} else {
- 			/* pc or other stuff here */
+ 			/* pc or other specific stuff here */
  		}
  	});
  })(jQuery);
@@ -150,7 +150,7 @@ Multi Device Switcher set the Cookie that holds the state of the switch. You can
 <?php is_multi_device('smart'); ?>
 ```
 
-### Examples
+### Example
 
 ```
 <?php
@@ -160,7 +160,7 @@ if ( function_exists( 'is_multi_device' ) ) {
 	} elseif ( is_multi_device('tablet') ) {
 		/* Display and echo tablet specific stuff here */
 	} else {
-		/* Display and echo pc or other stuff here */
+		/* Display and echo pc or other specific stuff here */
 	}
 }
 ?>
@@ -181,6 +181,71 @@ if ( function_exists( 'is_multi_device' ) ) {
 ### Return Values
 
 (boolean) Return boolean whether a particular device.
+
+## is_pc_switcher() function
+
+**is_pc_switcher()** function is a boolean function, meaning it returns either TRUE or FALSE. Return the the state of PC Switcher by the Multi_Device_Switcher class. Return true if the theme has switched by the PC Switcher.
+
+### Usage
+
+```
+<?php is_pc_switcher(); ?>
+```
+
+### Example
+
+```
+<?php
+if ( function_exists( 'is_pc_switcher' ) ) {
+	if ( is_pc_switcher() ) {
+		/* Theme switched by the PC Switcher. Display and echo specific stuff here */
+	} else {
+		/* Display and echo specific stuff here */
+	}
+}
+?>
+```
+
+### Parameters
+
+None
+
+### Return Values
+
+(boolean) Return the state of PC Switcher.
+
+
+## is_disable_switcher() function
+
+**is_disable_switcher()** function is a boolean function, meaning it returns either TRUE or FALSE. Return the state of disabled by the Multi_Device_Switcher class.
+
+### Usage
+
+```
+<?php is_disable_switcher(); ?>
+```
+
+### Example
+
+```
+<?php
+if ( function_exists( 'is_disable_switcher' ) ) {
+	if ( is_disable_switcher() ) {
+		/* Disabled. Display and echo specific stuff here */
+	} else {
+		/* Display and echo specific stuff here */
+	}
+}
+?>
+```
+
+### Parameters
+
+None
+
+### Return Values
+
+(boolean) Return the state of disabled.
 
 ## Multi Device Switcher Command
 
@@ -298,6 +363,11 @@ You can send your own language pack to author.
 
 ## Changelog
 
+* Version 1.4.1
+	* edited: edit readme
+	* new features: is_disable_switcher() function
+	* new features: is_pc_switcher() function
+	* fixed: fix redirect url and pc-switcher url
 * Version 1.4.0
 	* edited: edit readme
 	* added: add cookies 'multi-device-switcher', 'disable-switcher'
