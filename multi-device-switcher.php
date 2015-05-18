@@ -225,7 +225,8 @@ class Multi_Device_Switcher {
 				wp_enqueue_style( 'pc-switcher-options', plugins_url() . '/multi-device-switcher/pc-switcher.css', false, '2013-03-20' );
 			}
 
-			$uri = is_ssl() ? "https://" : "http://" . $_SERVER["HTTP_HOST"];
+			$uri = is_ssl() ? 'https://' : 'http://';
+			$uri .= $_SERVER['HTTP_HOST'];
 
 			if ( isset( $_COOKIE['pc-switcher'] ) ) {
 				$uri .= add_query_arg( 'pc-switcher', 0 );
