@@ -32,6 +32,9 @@ Domain Path: /languages/
 class Multi_Device_Switcher {
 
 	public function __construct() {
+		add_shortcode( 'multi', array( &$this, 'shortcode_display_switcher' ) );
+
+
 		$this->device = '';
 
 		if ( isset( $_COOKIE['disable-switcher'] ) ) {
@@ -279,6 +282,22 @@ class Multi_Device_Switcher {
 
 		return (boolean) $disable;
 	}
+
+	public function shortcode_display_switcher( $atts, $content = '' ) {
+		$atts = shortcode_atts( array(
+			'device' => '',
+		), $atts );
+
+		if ( empty( $atts['device'] ) && ( $this->is_multi_device( $atts['device'] ) || $this->is_pc_switcher() ) ) {
+			return $content;
+		}
+		elseif ( ! empty( $atts['device'] ) && $this->is_multi_device( $atts['device'] ) && ! $this->is_pc_switcher() ) {
+			return $content;
+		}
+
+		return '';
+	}
+
 }
 
 if ( ! is_admin() ) {
