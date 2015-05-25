@@ -401,6 +401,11 @@ You can send your own language pack to author.
 
 ## Changelog
 
+* Version 1.4.2
+	* edited: edit readme
+	* new features: Display Switcher Shortcode
+	* updated: update default UserAgent
+	* fixed: fix pc-switcher ssl url
 * Version 1.4.1
 	* edited: edit readme
 	* new features: is_disable_switcher() function
