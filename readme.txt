@@ -5,8 +5,8 @@ Donate link: http://blog.thingslabo.com/archives/000251.html
 Link: https://github.com/thingsym/multi-device-switcher
 Tags: switcher, theme, ipad, iphone, android, tablet, mobile, game
 Requires at least: 3.4
-Tested up to: 4.1
-Stable tag: 1.4.1
+Tested up to: 4.2
+Stable tag: 1.4.2
 License: GPL2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -24,6 +24,7 @@ The Custom Switcher can add every device.
 * Set a separate theme for device (Smart Phone, Tablet PC, Mobile Phone, Game), switches to selected theme.
 * Add every device by the **Custom Switcher**.
 * Add links 'Mobile' or 'PC' in the theme by the **PC Switcher**, switch to the default theme.
+* Switch the content of the post or page for each device by the **Display Switcher** Shortcode.
 * Disable the switching of the theme for each url by the **Disable Switcher**.
 * Can be using **is_multi_device()** function that detect of the device.
 * **Multi Device Switcher Command** command-line tool (required WP-CLI)
@@ -131,6 +132,42 @@ You can design the PC Switcher in the Style Sheet.
  <div class="pc-switcher"><a href="http://DOMEIN/PATH/TO/?pc-switcher=0">Mobile</a><span class="active">PC</span></div>
 `
 
+= How to use the Display Switcher Shortcode =
+
+The **Display Switcher** Shortcode switch the content of the post or page through the detection of the device.
+
+Add the shortcode `[multi]` in a post or page and use the `device` attribute to device name. if the device attribute is empty, detect the desktop PC.
+
+= Attributes =
+
+**device**
+
+(string | empty) The name of the device
+
+* smart
+* tablet
+* mobile
+* game
+* the name of the Custom Switcher
+
+if empty, detect the desktop PC
+
+= Example Shortcode =
+
+`
+[multi]pc or other specific stuff here[/multi]
+[multi device="smart"]smartphone specific stuff here[/multi]
+[multi device="tablet"]tablet specific stuff here[/multi]
+[multi device="test"]test Custom Switcher specific stuff here[/multi]
+`
+
+For theme or plugin developers. Filters The Display Switcher Shortcode through hooks. In that case, edit theme or plugin files.
+
+`
+<?php
+echo do_shortcode('[multi device="smart"]smartphone specific stuff here[/multi]');
+?>
+`
 
 = How to use the Disable Switcher =
 
@@ -334,6 +371,11 @@ For more information about the Multi Device Switcher Command, see `wp help multi
 
 == Changelog ==
 
+= 1.4.2 =
+* edited: edit readme
+* new features: Display Switcher Shortcode
+* updated: update default UserAgent
+* fixed: fix pc-switcher ssl url
 = 1.4.1 =
 * edited: edit readme
 * new features: is_disable_switcher() function

@@ -8,6 +8,7 @@ This plugin detects if your site is being viewed by UserAgent, and switches to s
 - Set a separate theme for device (Smart Phone, Tablet PC, Mobile Phone, Game), switches to selected theme.
 - Add every device by the **Custom Switcher**.
 - Add links 'Mobile' or 'PC' in the theme by the **PC Switcher**, switch to the default theme.
+- Switch the content of the post or page for each device by the **Display Switcher** Shortcode.
 - Disable the switching of the theme by a particular URL by the **Disable Switcher**.
 - Can be using is_multi_device() function that detect of the device.
 - **Multi Device Switcher Command** command-line tool (required WP-CLI)
@@ -82,6 +83,43 @@ You can design the PC Switcher in the Style Sheet.
 
 ```
  <div class="pc-switcher"><a href="http://DOMEIN/PATH/TO/?pc-switcher=0">Mobile</a><span class="active">PC</span></div>
+```
+
+## How to use the Display Switcher Shortcode
+
+The **Display Switcher** Shortcode switch the content of the post or page through the detection of the device.
+
+Add the shortcode `[multi]` in a post or page and use the `device` attribute to device name. if the device attribute is empty, detect the desktop PC.
+
+### Attributes
+
+**device**
+
+(string | empty) The name of the device
+
+* smart
+* tablet
+* mobile
+* game
+* the name of the Custom Switcher
+
+if empty, detect the desktop PC
+
+### Example Shortcode
+
+```
+[multi]pc or other specific stuff here[/multi]
+[multi device="smart"]smartphone specific stuff here[/multi]
+[multi device="tablet"]tablet specific stuff here[/multi]
+[multi device="test"]test Custom Switcher specific stuff here[/multi]
+```
+
+For theme or plugin developers. Filters The Display Switcher Shortcode through hooks. In that case, edit theme or plugin files.
+
+```
+<?php
+echo do_shortcode('[multi device="smart"]smartphone specific stuff here[/multi]');
+?>
 ```
 
 ## How to use the Disable Switcher
@@ -285,7 +323,7 @@ For more information about the Multi Device Switcher Command, see `wp help multi
 get status of settings
 
 	wp multi-device status
-	
+
 	Active Theme: Twenty Fifteen | twentyfifteen
 	+--------------------------+-----------------+----------------+-------------------------------------------------------------------------+
 	| Device                   | Theme           | Slug           | UserAgent                                                               |
@@ -330,7 +368,7 @@ turn on default CSS
 
 ## Contributing
 
-### Patches and Bug Fixes 
+### Patches and Bug Fixes
 
 Small patches and bug reports can be submitted a issue tracker in Github. Forking on Github is another good way. You can send a pull request.
 
@@ -363,6 +401,11 @@ You can send your own language pack to author.
 
 ## Changelog
 
+* Version 1.4.2
+	* edited: edit readme
+	* new features: Display Switcher Shortcode
+	* updated: update default UserAgent
+	* fixed: fix pc-switcher ssl url
 * Version 1.4.1
 	* edited: edit readme
 	* new features: is_disable_switcher() function
@@ -427,4 +470,3 @@ You can send your own language pack to author.
 
 * 1.1.2
 	* Requires at least version 3.4 of the Wordpress
-

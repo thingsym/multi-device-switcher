@@ -3,7 +3,7 @@
 Plugin Name: Multi Device Switcher
 Plugin URI: https://github.com/thingsym/multi-device-switcher
 Description: This WordPress plugin allows you to set a separate theme for device (Smart Phone, Tablet PC, Mobile Phone, Game and custom).
-Version: 1.4.1
+Version: 1.4.2
 Author: thingsym
 Author URI: http://www.thingslabo.com/
 License: GPL2
@@ -32,6 +32,9 @@ Domain Path: /languages/
 class Multi_Device_Switcher {
 
 	public function __construct() {
+		add_shortcode( 'multi', array( &$this, 'shortcode_display_switcher' ) );
+
+
 		$this->device = '';
 
 		if ( isset( $_COOKIE['disable-switcher'] ) ) {
@@ -225,7 +228,8 @@ class Multi_Device_Switcher {
 				wp_enqueue_style( 'pc-switcher-options', plugins_url() . '/multi-device-switcher/pc-switcher.css', false, '2013-03-20' );
 			}
 
-			$uri = is_ssl() ? "https://" : "http://" . $_SERVER["HTTP_HOST"];
+			$uri = is_ssl() ? 'https://' : 'http://';
+			$uri .= $_SERVER['HTTP_HOST'];
 
 			if ( isset( $_COOKIE['pc-switcher'] ) ) {
 				$uri .= add_query_arg( 'pc-switcher', 0 );
@@ -278,6 +282,22 @@ class Multi_Device_Switcher {
 
 		return (boolean) $disable;
 	}
+
+	public function shortcode_display_switcher( $atts, $content = '' ) {
+		$atts = shortcode_atts( array(
+			'device' => '',
+		), $atts );
+
+		if ( empty( $atts['device'] ) && ( $this->is_multi_device( $atts['device'] ) || $this->is_pc_switcher() ) ) {
+			return $content;
+		}
+		elseif ( ! empty( $atts['device'] ) && $this->is_multi_device( $atts['device'] ) && ! $this->is_pc_switcher() ) {
+			return $content;
+		}
+
+		return '';
+	}
+
 }
 
 if ( ! is_admin() ) {
@@ -497,8 +517,8 @@ function multi_device_switcher_get_default_options() {
 		'theme_tablet' => 'None',
 		'theme_mobile' => 'None',
 		'theme_game' => 'None',
-		'userAgent_smart' => 'iPhone, iPod, Android, dream, CUPCAKE, Windows Phone, webOS, BB10, BlackBerry8707, BlackBerry9000, BlackBerry9300, BlackBerry9500, BlackBerry9530, BlackBerry9520, BlackBerry9550, BlackBerry9700, BlackBerry 93, BlackBerry 97, BlackBerry 99, BlackBerry 98',
-		'userAgent_tablet' => 'iPad, Kindle, Sony Tablet, Nexus 7',
+		'userAgent_smart' => 'iPhone, iPod, Android.*Mobile, dream, CUPCAKE, Windows Phone, IEMobile.*Touch, webOS, BB10.*Mobile, BlackBerry.*Mobile, Mobile.*Gecko',
+		'userAgent_tablet' => 'iPad, Kindle, Silk, Android(?!.*Mobile), Windows.*Touch, PlayBook, Tablet.*Gecko',
 		'userAgent_mobile' => 'DoCoMo, SoftBank, J-PHONE, Vodafone, KDDI, UP.Browser, WILLCOM, emobile, DDIPOCKET, Windows CE, BlackBerry, Symbian, PalmOS, Huawei, IAC, Nokia',
 		'userAgent_game' => 'PlayStation Portable, PlayStation Vita, PSP, PS2, PLAYSTATION 3, PlayStation 4, Nitro, Nintendo 3DS, Nintendo Wii, Nintendo WiiU, Xbox',
 		'disable_path' => '',
