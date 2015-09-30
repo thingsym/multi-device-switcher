@@ -5,8 +5,8 @@ Donate link: http://blog.thingslabo.com/archives/000251.html
 Link: https://github.com/thingsym/multi-device-switcher
 Tags: switcher, theme, ipad, iphone, android, tablet, mobile, game
 Requires at least: 3.4
-Tested up to: 4.2
-Stable tag: 1.4.2
+Tested up to: 4.3
+Stable tag: 1.5.0
 License: GPL2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -371,6 +371,9 @@ For more information about the Multi Device Switcher Command, see `wp help multi
 
 == Changelog ==
 
+= 1.5.0 =
+* fixed: refactoring by the PHP_CodeSniffer
+* fixed: change admin functions to class/object methods
 = 1.4.2 =
 * edited: edit readme
 * new features: Display Switcher Shortcode
