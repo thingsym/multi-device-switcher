@@ -5,8 +5,8 @@ Donate link: http://blog.thingslabo.com/archives/000251.html
 Link: https://github.com/thingsym/multi-device-switcher
 Tags: switcher, theme, ipad, iphone, android, tablet, mobile, game
 Requires at least: 3.4
-Tested up to: 4.3
-Stable tag: 1.5.0
+Tested up to: 4.5
+Stable tag: 1.5.1
 License: GPL2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -107,7 +107,7 @@ There are three ways how to Using the PC Switcher.
 = 3. For the theme authors and developers, add a PC Switcher to your theme. =
 
 1. Add the following code into the PHP files, when you develop your theme.
- 
+
  `<?php if ( function_exists('multi_device_switcher_add_pc_switcher') ) { multi_device_switcher_add_pc_switcher(); } ?>`
 2. Have fun!
 
@@ -371,6 +371,8 @@ For more information about the Multi Device Switcher Command, see `wp help multi
 
 == Changelog ==
 
+= 1.5.1 =
+* fixed: fix preg_split()
 = 1.5.0 =
 * fixed: refactoring by the PHP_CodeSniffer
 * fixed: change admin functions to class/object methods
