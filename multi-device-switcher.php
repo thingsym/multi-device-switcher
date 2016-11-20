@@ -66,12 +66,12 @@ class Multi_Device_Switcher {
 	public function switch_theme() {
 
 		if ( isset( $_COOKIE[ $this->cookie_name_disable_switcher ] ) ) {
-			setcookie( $this->cookie_name_disable_switcher, null, time() - 3600, '/' );
+			setcookie( $this->cookie_name_disable_switcher, null, time() - 3600, '/', '',  is_ssl(), false );
 		}
 
 		if ( $this->is_disable_switcher() ) {
-			setcookie( $this->cookie_name_multi_device_switcher, null, time() - 3600, '/' );
-			setcookie( $this->cookie_name_disable_switcher, 1, null, '/' );
+			setcookie( $this->cookie_name_multi_device_switcher, null, time() - 3600, '/', '',  is_ssl(), false );
+			setcookie( $this->cookie_name_disable_switcher, 1, null, '/', '',  is_ssl(), false );
 			return;
 		}
 
@@ -112,10 +112,10 @@ class Multi_Device_Switcher {
 			add_filter( 'template', array( $this, 'get_template' ) );
 			add_action( 'wp_footer', array( $this, 'add_pc_switcher' ) );
 
-			setcookie( $this->cookie_name_multi_device_switcher, preg_replace( '/^custom_switcher_/', '', $this->device ), null, '/' );
+			setcookie( $this->cookie_name_multi_device_switcher, preg_replace( '/^custom_switcher_/', '', $this->device ), null, '/', '',  is_ssl(), false );
 		}
 		else {
-			setcookie( $this->cookie_name_multi_device_switcher, null, time() - 3600, '/' );
+			setcookie( $this->cookie_name_multi_device_switcher, null, time() - 3600, '/', '',  is_ssl(), false );
 		}
 
 		if ( isset( $_COOKIE[ $this->cookie_name_pc_switcher ] ) ) {
@@ -230,7 +230,7 @@ class Multi_Device_Switcher {
 
 	public function session() {
 		if ( isset( $_GET['pc-switcher'] ) ) {
-			setcookie( $this->cookie_name_pc_switcher, $_GET['pc-switcher'] ? 1 : '', null, '/' );
+			setcookie( $this->cookie_name_pc_switcher, $_GET['pc-switcher'] ? 1 : '', null, '/', '',  is_ssl(), false );
 
 			$uri = preg_replace( '/^(.+?)(\?.*)$/', '$1', $_SERVER['REQUEST_URI'] );
 
