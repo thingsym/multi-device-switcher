@@ -460,37 +460,13 @@ class Multi_Device_Switcher {
 	}
 
 	/**
-	 * Returns the default options.
-	 *
-	 * @since 1.0
-	 */
-	public function get_default_options() {
-		$default_theme_options = array(
-			'pc_switcher' => 1,
-			'default_css' => 1,
-			'theme_smartphone' => 'None',
-			'theme_tablet' => 'None',
-			'theme_mobile' => 'None',
-			'theme_game' => 'None',
-			'userAgent_smart' => 'iPhone, iPod, Android.*Mobile, dream, CUPCAKE, Windows Phone, IEMobile.*Touch, webOS, BB10.*Mobile, BlackBerry.*Mobile, Mobile.*Gecko',
-			'userAgent_tablet' => 'iPad, Kindle, Silk, Android(?!.*Mobile), Windows.*Touch, PlayBook, Tablet.*Gecko',
-			'userAgent_mobile' => 'DoCoMo, SoftBank, J-PHONE, Vodafone, KDDI, UP.Browser, WILLCOM, emobile, DDIPOCKET, Windows CE, BlackBerry, Symbian, PalmOS, Huawei, IAC, Nokia',
-			'userAgent_game' => 'PlayStation Portable, PlayStation Vita, PSP, PS2, PLAYSTATION 3, PlayStation 4, Nitro, Nintendo 3DS, Nintendo Wii, Nintendo WiiU, Xbox',
-			'disable_path' => '',
-			'enable_regex' => 0,
-		);
-
-		return $default_theme_options;
-	}
-
-	/**
 	 * Returns the options array.
 	 *
 	 * @since 1.0
 	 */
 	public function get_options() {
 		$options = get_option( $this->option_name );
-		$default_options = $this->get_default_options();
+		$default_options = multi_device_switcher_get_default_options();
 
 		if ( ! isset( $options['pc_switcher'] ) ) {
 			$options['pc_switcher'] = $default_options['pc_switcher'];
@@ -879,7 +855,7 @@ class Multi_Device_Switcher {
 	 * @since 1.0
 	 */
 	public function validate( $input ) {
-		$output = $default_options = $this->get_default_options();
+		$output = $default_options = multi_device_switcher_get_default_options();
 
 		if ( isset( $input['theme_smartphone'] ) ) {
 			$output['theme_smartphone'] = $input['theme_smartphone'];
@@ -969,7 +945,7 @@ class Multi_Device_Switcher {
 	public function customize_register( $wp_customize ) {
 		load_plugin_textdomain( $this->textdomain, false, $this->languages_path );
 		$options = $this->get_options();
-		$default_theme_options = $this->get_default_options();
+		$default_theme_options = multi_device_switcher_get_default_options();
 		$default_theme = wp_get_theme()->get( 'Name' );
 		$themes = wp_get_themes();
 
@@ -1063,6 +1039,30 @@ class Multi_Device_Switcher {
 }
 
 $multi_device_switcher = new Multi_Device_Switcher();
+
+/**
+ * Returns the default options.
+ *
+ * @since 1.0
+ */
+function multi_device_switcher_get_default_options() {
+  $default_theme_options = array(
+          'pc_switcher' => 1,
+          'default_css' => 1,
+          'theme_smartphone' => 'None',
+          'theme_tablet' => 'None',
+          'theme_mobile' => 'None',
+          'theme_game' => 'None',
+          'userAgent_smart' => 'iPhone, iPod, Android.*Mobile, dream, CUPCAKE, Windows Phone, IEMobile.*Touch, webOS, BB10.*Mobile, BlackBerry.*Mobile, Mobile.*Gecko',
+          'userAgent_tablet' => 'iPad, Kindle, Silk, Android(?!.*Mobile), Windows.*Touch, PlayBook, Tablet.*Gecko',
+          'userAgent_mobile' => 'DoCoMo, SoftBank, J-PHONE, Vodafone, KDDI, UP.Browser, WILLCOM, emobile, DDIPOCKET, Windows CE, BlackBerry, Symbian, PalmOS, Huawei, IAC, Nokia',
+          'userAgent_game' => 'PlayStation Portable, PlayStation Vita, PSP, PS2, PLAYSTATION 3, PlayStation 4, Nitro, Nintendo 3DS, Nintendo Wii, Nintendo WiiU, Xbox',
+          'disable_path' => '',
+          'enable_regex' => 0,
+  );
+
+  return $default_theme_options;
+}
 
 /**
  * Add PC Switcher.
