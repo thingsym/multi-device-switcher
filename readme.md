@@ -401,6 +401,8 @@ You can send your own language pack to author.
 
 ## Changelog
 
+* Version 1.5.2
+	* fixed: fix setcookie()
 * Version 1.5.1
 	* fixed: fix preg_split()
 * Version 1.5.0
