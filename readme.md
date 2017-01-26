@@ -401,6 +401,8 @@ You can send your own language pack to author.
 
 ## Changelog
 
+* Version 1.5.3
+	* fixed: add function multi_device_switcher_get_default_options for wp multi-device
 * Version 1.5.2
 	* fixed: fix setcookie()
 * Version 1.5.1
