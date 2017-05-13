@@ -52,7 +52,6 @@ class Multi_Device_Switcher {
 			add_action( 'admin_init', array( $this, 'admin_init' ) );
 			add_filter( 'option_page_capability_' . $this->option_group, array( $this, 'option_page_capability' ) );
 			add_action( 'admin_menu', array( $this, 'add_option_page' ) );
-			add_action( 'customize_register', array( $this, 'customize_register' ) );
 		}
 		else {
 			add_filter( 'wp_headers', array( $this, 'add_header_vary' ) );
@@ -60,6 +59,7 @@ class Multi_Device_Switcher {
 			add_action( 'plugins_loaded', array( $this, 'switch_theme' ) );
 		}
 
+		add_action( 'customize_register', array( $this, 'customize_register' ) );
 		add_action( 'plugins_loaded', array( $this, 'load_file' ) );
 	}
 
