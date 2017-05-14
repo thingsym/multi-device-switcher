@@ -45,7 +45,7 @@ class Multi_Device_Switcher {
 	protected $cookie_name_disable_switcher = 'disable-switcher';
 	protected $cookie_name_pc_switcher = 'pc-switcher';
 
-	protected $device = '';
+	public $device = '';
 
 	public function __construct() {
 		if ( is_admin() ) {
