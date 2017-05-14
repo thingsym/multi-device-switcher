@@ -35,32 +35,20 @@ The Custom Switcher can add every device.
 
 Small patches and bug reports can be submitted a issue tracker in Github. Forking on Github is another good way. You can send a pull request.
 
-= Contributors =
-
-* hykw
-
 = Translations =
+
+[Translate Multi Device Switcher into your language.](https://translate.wordpress.org/projects/wp-plugins/multi-device-switcher)
 
 Translating a plugin takes a lot of time, effort, and patience. I really appreciate the hard work from these contributors.
 
-If you have created or updated your own language pack, you can send [gettext PO and MO files](http://codex.wordpress.org/Translating_WordPress) to author. I can bundle it into Multi Device Switcher.
-
-= Translator =
-
-* Japanese (ja) - <a href="http://global.thingslabo.com/blog/">Thingsym</a>
-
-= The latest PO and MO files =
-
-* [POT file](http://plugins.svn.wordpress.org/multi-device-switcher/trunk/languages/multi-device-switcher.pot)
-* [PO files](http://plugins.svn.wordpress.org/multi-device-switcher/trunk/languages/)
+If you have created or updated your own language pack, you can send gettext PO and MO files to author. I can bundle it into Multi Device Switcher.
 
 = Send your own language pack =
 
 You can send your own language pack to author.
 
 * [multi-device-switcher - GitHub](https://github.com/thingsym/multi-device-switcher)
-* [http://global.thingslabo.com/blog/ (en)](http://global.thingslabo.com/blog/)
-* [http://blog.thingslabo.com (ja)](http://blog.thingslabo.com)
+- [http://blog.thingslabo.com (ja)](https://blog.thingslabo.com/archives/category/multi_device_switcher)
 
 == Screenshots ==
 
@@ -372,9 +360,9 @@ For more information about the Multi Device Switcher Command, see `wp help multi
 == Changelog ==
 
 = 1.5.3 =
-* fixed: add function multi_device_switcher_get_default_options for wp multi-device
+* fixed: add function multi_device_switcher_get_default_options for wp multi-device [#9](https://github.com/thingsym/multi-device-switcher/pull/9)
 = 1.5.2 =
-* fixed: fix setcookie()
+* fixed: fix setcookie() [#8](https://github.com/thingsym/multi-device-switcher/pull/8)
 = 1.5.1 =
 * fixed: fix preg_split()
 = 1.5.0 =
@@ -449,4 +437,3 @@ For more information about the Multi Device Switcher Command, see `wp help multi
 
 = 1.1.2 =
 * Requires at least version 3.4 of the Wordpress
-
