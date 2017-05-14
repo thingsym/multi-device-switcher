@@ -389,6 +389,10 @@ You can send your own language pack to author.
 
 ## Changelog
 
+* Version 1.5.4
+  * fixed: fix property keyword for testability
+  * fixed: fix add_action 'customize_register' with __construct()
+  * fixed: fix capability
 * Version 1.5.3
 	* fixed: add function multi_device_switcher_get_default_options for wp multi-device [#9](https://github.com/thingsym/multi-device-switcher/pull/9)
 * Version 1.5.2
