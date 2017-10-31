@@ -277,33 +277,33 @@ class Multi_Device_Switcher {
 
 	public function is_multi_device( $device = '' ) {
 		if ( $device === $this->device ) {
-			return 1;
+			return true;
 		}
 		if ( 'custom_switcher_' . $device === $this->device ) {
-			return 1;
+			return true;
 		}
 
-		return 0;
+		return false;
 	}
 
 	public function is_pc_switcher() {
 		return isset( $_COOKIE[ $this->cookie_name_pc_switcher ] );
 	}
 
-	public function is_disable_switcher( $disable = 0 ) {
+	public function is_disable_switcher( $disable = false ) {
 		$options = $this->get_options();
 		$disable_path = preg_split( '/\R/', $options['disable_path'], -1, PREG_SPLIT_NO_EMPTY );
 
 		foreach ( $disable_path as $path ) {
 			if ( $options['enable_regex'] ) {
 				if ( preg_match( '/' . $path . '/i', $_SERVER['REQUEST_URI'] ) ) {
-					$disable = 1;
+					$disable = true;
 					break;
 				}
 			}
 			else {
 				if ( preg_match( '/^' . preg_quote( $path , '/' ) . '$/i', $_SERVER['REQUEST_URI'] ) ) {
-					$disable = 1;
+					$disable = true;
 					break;
 				}
 			}
