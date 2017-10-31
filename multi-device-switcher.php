@@ -941,7 +941,7 @@ class Multi_Device_Switcher {
 			unset( $output[ 'custom_switcher_userAgent_' . $custom_switcher_name ] );
 		}
 
-		if ( isset( $input['add_custom_switcher'] ) && ! empty( $input['custom_switcher'] ) && ! $output[ 'custom_switcher_theme_' . $input['custom_switcher'] ] ) {
+		if ( isset( $input['add_custom_switcher'] ) && ! empty( $input['custom_switcher'] ) && ! isset( $output[ 'custom_switcher_theme_' . $input['custom_switcher'] ] ) ) {
 			if ( ! in_array( $input['custom_switcher'], array( 'smartphone', 'smart', 'tablet', 'mobile', 'game' ) )
 					&& preg_match( '/^[A-Za-z0-9]{1,20}$/', $input['custom_switcher'] ) ) {
 				$output[ 'custom_switcher_theme_' . $input['custom_switcher'] ] = 'None';
