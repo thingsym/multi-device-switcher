@@ -55,12 +55,12 @@ class Multi_Device_Switcher {
 		}
 		else {
 			add_filter( 'wp_headers', array( $this, 'add_header_vary' ) );
-			add_shortcode( 'multi', array( $this, 'shortcode_display_switcher' ) );
 			add_action( 'plugins_loaded', array( $this, 'switch_theme' ) );
 		}
 
 		add_action( 'customize_register', array( $this, 'customize_register' ) );
 		add_action( 'plugins_loaded', array( $this, 'load_file' ) );
+		add_shortcode( 'multi', array( $this, 'shortcode_display_switcher' ) );
 	}
 
 	public function switch_theme() {
