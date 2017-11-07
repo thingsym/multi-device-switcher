@@ -60,6 +60,10 @@ before_script:
         composer global require "phpunit/phpunit=5.7.*"
       fi
     fi
+  - |
+    if [[ ! -d "/tmp/wordpress/wp-content/themes/twentysixteen" ]] ; then
+      git clone https://github.com/WordPress/twentysixteen.git /tmp/wordpress/wp-content/themes/twentysixteen
+    fi
 
 script:
   - phpunit
