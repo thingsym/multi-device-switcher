@@ -55,7 +55,7 @@ matrix:
     - php: 7
       env: WP_VERSION=3.8 WP_MULTISITE=0
     - php: 7
-      env: WP_VERSION=3.7 WP_MULTISITE=
+      env: WP_VERSION=3.7 WP_MULTISITE=0
     # WordPress 4.6 earlier not compatible with PHP 7.1.
     # Warning: Parameter 1 to wp_default_styles() expected to be a reference
     # https://core.trac.wordpress.org/ticket/37772
