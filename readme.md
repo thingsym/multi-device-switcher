@@ -469,5 +469,7 @@ If you have created or updated your own language pack, you can send gettext PO a
 
 ## Upgrade Notice
 
+* Version 1.6.0
+	* Requires at least version 3.7 of the WordPress
 * Version 1.1.2
 	* Requires at least version 3.4 of the WordPress

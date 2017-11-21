@@ -4,9 +4,9 @@ Contributors: thingsym
 Donate link: http://blog.thingslabo.com/archives/000251.html
 Link: https://github.com/thingsym/multi-device-switcher
 Tags: switcher, theme, ipad, iphone, android, tablet, mobile, game
-Requires at least: 3.4
 Tested up to: 4.7.4
 Stable tag: 1.5.4
+Requires at least: 3.7
 License: GPL2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -454,6 +454,9 @@ For more information about the Multi Device Switcher Command, see `wp help multi
 * Initial release.
 
 == Upgrade Notice ==
+
+= 1.6.0 =
+* Requires at least version 3.7 of the WordPress
 
 = 1.1.2 =
 * Requires at least version 3.4 of the WordPress
