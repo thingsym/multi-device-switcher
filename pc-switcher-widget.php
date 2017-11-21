@@ -45,8 +45,12 @@ function pc_switcher_load_widgets() {
 class PC_Switcher extends WP_Widget {
 
 	function __construct() {
-		$widget_ops = array( 'classname' => 'widget_pc_switcher', 'description' => __( 'Add the PC Switcher to a widget.', 'multi-device-switcher' ) );
 		load_plugin_textdomain( 'multi-device-switcher', false, dirname( plugin_basename( __MULTI_DEVICE_SWITCHER_FILE__ ) ) . '/languages/' );
+
+		$widget_ops = array(
+			'classname'   => 'widget_pc_switcher',
+			'description' => __( 'Add the PC Switcher to a widget.', 'multi-device-switcher' )
+		);
 		parent::__construct( 'pc-switcher', __( 'PC Switcher', 'multi-device-switcher' ), $widget_ops );
 		$this->alt_option_name = 'widget_pc_switcher';
 
