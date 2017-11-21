@@ -7,6 +7,7 @@ Tags: switcher, theme, ipad, iphone, android, tablet, mobile, game
 Tested up to: 4.7.4
 Stable tag: 1.5.4
 Requires at least: 3.7
+Requires PHP: 5.4
 License: GPL2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
