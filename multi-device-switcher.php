@@ -1066,7 +1066,10 @@ class Multi_Device_Switcher {
 	}
 }
 
-$multi_device_switcher = new Multi_Device_Switcher();
+
+if ( class_exists( 'Multi_Device_Switcher' ) ) {
+	$multi_device_switcher = new Multi_Device_Switcher();
+};
 
 /**
  * Add PC Switcher.
