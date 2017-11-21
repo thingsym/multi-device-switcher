@@ -43,7 +43,6 @@ class Multi_Device_Switcher {
 	protected $capability = 'switch_themes';
 
 	protected $textdomain = 'multi-device-switcher';
-	protected $languages_path = 'multi-device-switcher/languages';
 
 	protected $cookie_name_multi_device_switcher = 'multi-device-switcher';
 	protected $cookie_name_disable_switcher = 'disable-switcher';
@@ -52,6 +51,8 @@ class Multi_Device_Switcher {
 	public $device = '';
 
 	public function __construct() {
+		add_action( 'init', array( $this, 'load_textdomain' ) );
+
 		if ( is_admin() ) {
 			add_action( 'admin_init', array( $this, 'admin_init' ) );
 			add_filter( 'option_page_capability_' . $this->option_group, array( $this, 'option_page_capability' ) );
@@ -110,8 +111,6 @@ class Multi_Device_Switcher {
 		}
 
 		if ( $this->device ) {
-			load_plugin_textdomain( $this->textdomain, false, $this->languages_path );
-
 			add_filter( 'stylesheet', array( $this, 'get_stylesheet' ) );
 			add_filter( 'template', array( $this, 'get_template' ) );
 			add_action( 'wp_footer', array( $this, 'add_pc_switcher' ) );
@@ -415,8 +414,6 @@ class Multi_Device_Switcher {
 	 * @since 1.0
 	 */
 	public function add_option_page() {
-		load_plugin_textdomain( $this->textdomain, false, $this->languages_path );
-
 		add_filter( 'plugin_action_links', array( $this, 'plugin_action_links' ), 10, 2 );
 
 		$page_hook = add_theme_page(
@@ -537,6 +534,19 @@ class Multi_Device_Switcher {
 		}
 
 		return $options;
+	}
+
+	/**
+	 * Load textdomain
+	 *
+	 * @access public
+	 *
+	 * @return void
+	 *
+	 * @since 1.6.0
+	 */
+	public function load_textdomain() {
+		load_plugin_textdomain( 'multi-device-switcher', false, dirname( plugin_basename( __MULTI_DEVICE_SWITCHER_FILE__ ) ) . '/languages/' );
 	}
 
 	/**
@@ -971,7 +981,6 @@ class Multi_Device_Switcher {
 	 * @since 1.3.1
 	 */
 	public function customize_register( $wp_customize ) {
-		load_plugin_textdomain( $this->textdomain, false, $this->languages_path );
 		$options = $this->get_options();
 		$default_theme_options = $this->get_default_options();
 		$default_theme = wp_get_theme()->get( 'Name' );
