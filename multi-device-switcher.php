@@ -1052,7 +1052,7 @@ class Multi_Device_Switcher {
 		 * @since 1.2
 		 *
 		 */
-		require_once( dirname( __FILE__ ) . '/pc-switcher-widget.php' );
+		require_once( dirname( __MULTI_DEVICE_SWITCHER_FILE__ ) . '/pc-switcher-widget.php' );
 
 		/**
 		 * include Multi Device Switcher Command
@@ -1061,11 +1061,12 @@ class Multi_Device_Switcher {
 		 *
 		 */
 		if ( defined( 'WP_CLI' ) && WP_CLI ) {
-			require_once( dirname( __FILE__ ) . '/wp-cli.php' );
+			require_once( dirname( __MULTI_DEVICE_SWITCHER_FILE__ ) . '/wp-cli.php' );
 		}
 	}
 }
 
+define( '__MULTI_DEVICE_SWITCHER_FILE__', __FILE__ );
 
 if ( class_exists( 'Multi_Device_Switcher' ) ) {
 	$multi_device_switcher = new Multi_Device_Switcher();
