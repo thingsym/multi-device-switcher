@@ -29,26 +29,22 @@ The Custom Switcher can add every device.
 * Can be using **is_multi_device()** function that detect of the device.
 * **Multi Device Switcher Command** command-line tool (required WP-CLI)
 
-= Contributing =
+= Test Matrix =
 
-= Patches and Bug Fixes =
+For operation compatibility between PHP version and WordPress version, see below [Travis CI](https://travis-ci.org/thingsym/multi-device-switcher).
+
+= Contribution =
 
 Small patches and bug reports can be submitted a issue tracker in Github. Forking on Github is another good way. You can send a pull request.
-
-= Translations =
-
-[Translate Multi Device Switcher into your language.](https://translate.wordpress.org/projects/wp-plugins/multi-device-switcher)
 
 Translating a plugin takes a lot of time, effort, and patience. I really appreciate the hard work from these contributors.
 
 If you have created or updated your own language pack, you can send gettext PO and MO files to author. I can bundle it into Multi Device Switcher.
 
-= Send your own language pack =
-
-You can send your own language pack to author.
-
 * [multi-device-switcher - GitHub](https://github.com/thingsym/multi-device-switcher)
-- [http://blog.thingslabo.com (ja)](https://blog.thingslabo.com/archives/category/multi_device_switcher)
+* [Multi Device Switcher - WordPress Plugin](https://wordpress.org/plugins/multi-device-switcher/)
+* [Translate Multi Device Switcher into your language.](https://translate.wordpress.org/projects/wp-plugins/multi-device-switcher)
+* [Developer Blog (Japanese) - http://blog.thingslabo.com/ ](https://blog.thingslabo.com/archives/category/multi_device_switcher)
 
 == Screenshots ==
 
@@ -361,27 +357,34 @@ For more information about the Multi Device Switcher Command, see `wp help multi
 
 = 1.5.4 =
 * fixed: fix property keyword for testability
-* fixed: fix add_action 'customize_register' with __construct()
+* fixed: fix add_action 'customize_register' with \_\_construct()
 * fixed: fix capability
+
 = 1.5.3 =
 * fixed: add function multi_device_switcher_get_default_options for wp multi-device [#9](https://github.com/thingsym/multi-device-switcher/pull/9)
+
 = 1.5.2 =
 * fixed: fix setcookie() [#8](https://github.com/thingsym/multi-device-switcher/pull/8)
+
 = 1.5.1 =
 * fixed: fix preg_split()
+
 = 1.5.0 =
 * fixed: refactoring by the PHP_CodeSniffer
 * fixed: change admin functions to class/object methods
+
 = 1.4.2 =
 * edited: edit readme
 * new features: Display Switcher Shortcode
 * updated: update default UserAgent
 * fixed: fix pc-switcher ssl url
+
 = 1.4.1 =
 * edited: edit readme
 * new features: is_disable_switcher() function
 * new features: is_pc_switcher() function
 * fixed: fix redirect url and pc-switcher url
+
 = 1.4.0 =
 * edited: edit readme
 * added: add cookies 'multi-device-switcher', 'disable-switcher'
@@ -391,6 +394,7 @@ For more information about the Multi Device Switcher Command, see `wp help multi
 * new features: Multi Device Switcher Command
 * added: add option settings into Theme Customizer
 * fixed: refactoring by the PHP_CodeSniffer
+
 = 1.3.0 =
 * fixed: fix script, style, html and readme
 * new features: is_multi_device() function
@@ -399,45 +403,57 @@ For more information about the Multi Device Switcher Command, see `wp help multi
 * fixed: replace WP_PLUGIN_URL with plugins_url()
 * fixed: using Page Hook Suffix
 * merged: pull request [#3](https://github.com/thingsym/multi-device-switcher/pull/3)
+
 = 1.2.3 =
 * fixed: fix redirect uri with query string, using add_query_arg
 * fixed: fix translation
 * fixed: fix readme
+
 = 1.2.2 =
 * improved: improve responsiveness UI
 * fixed: fix html
+
 = 1.2.1 =
 * fixed: delete add_contextual_help
 * fixed: fix readme and html
+
 = 1.2.0 =
  * added: add PC Switcher Widget
  * new features: PC Switcher
  * added: add the settings link to the plugin page
+
 = 1.1.2 =
 * required: at least version 3.4
 * fixed: fix tabs and buttons
+
 = 1.1.1 =
 * fixed: change the order of the UserAgent detection
 * updated: update default UserAgent
 * added: add HTTP/1.1 Vary header
+
 = 1.1.0 =
 * new features: Custom Switcher
+
 = 1.0.4 =
 * fixed: fix the object model PHP5, __construct() to replace Multi_Device_Switcher
 * fixed: wp_get_themes(), and wp_get_theme() to replace get_themes(), get_theme()
+
 = 1.0.3 =
 * updated: update screenshots
 * fixed: fix reset button
+
 = 1.0.2 =
 * added: add file uninstall.php
 * fixed: split admin_enqueue_scripts() into two functions
 * fixed: detects is_admin()
+
 = 1.0.1 =
 * fixed: split multi_device_switcher_init() into two functions
+
 = 1.0.0 =
 * Initial release.
 
 == Upgrade Notice ==
 
 = 1.1.2 =
-* Requires at least version 3.4 of the Wordpress
+* Requires at least version 3.4 of the WordPress

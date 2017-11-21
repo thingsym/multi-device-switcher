@@ -1,5 +1,9 @@
 # Introducing Multi Device Switcher
 
+[![Build Status](https://travis-ci.org/thingsym/multi-device-switcher.svg?branch=master)](https://travis-ci.org/thingsym/multi-device-switcher)
+
+[![WordPress](https://img.shields.io/wordpress/v/multi-device-switcher.svg)](https://wordpress.org/plugins/multi-device-switcher/)
+
 This WordPress plugin allows you to set a separate theme for device (Smart Phone, Tablet PC, Mobile Phone, Game and custom).
 This plugin detects if your site is being viewed by UserAgent, and switches to selected theme. The Custom Switcher can add every device.
 
@@ -366,32 +370,28 @@ turn on default CSS
 
     wp multi-device css on
 
-## Contributing
+## Test Matrix
 
-### Patches and Bug Fixes
+For operation compatibility between PHP version and WordPress version, see below [Travis CI](https://travis-ci.org/thingsym/multi-device-switcher).
+
+## Contribution
 
 Small patches and bug reports can be submitted a issue tracker in Github. Forking on Github is another good way. You can send a pull request.
-
-### Translations
-
-[Translate Multi Device Switcher into your language.](https://translate.wordpress.org/projects/wp-plugins/multi-device-switcher)
 
 Translating a plugin takes a lot of time, effort, and patience. I really appreciate the hard work from these contributors.
 
 If you have created or updated your own language pack, you can send gettext PO and MO files to author. I can bundle it into Multi Device Switcher.
 
-##### Send your own language pack
-
-You can send your own language pack to author.
-
-- [multi-device-switcher - GitHub](https://github.com/thingsym/multi-device-switcher)
-- [http://blog.thingslabo.com (ja)](https://blog.thingslabo.com/archives/category/multi_device_switcher)
+* [multi-device-switcher - GitHub](https://github.com/thingsym/multi-device-switcher)
+* [Multi Device Switcher - WordPress Plugin](https://wordpress.org/plugins/multi-device-switcher/)
+* [Translate Multi Device Switcher into your language.](https://translate.wordpress.org/projects/wp-plugins/multi-device-switcher)
+* [Developer Blog (Japanese) - http://blog.thingslabo.com/ ](https://blog.thingslabo.com/archives/category/multi_device_switcher)
 
 ## Changelog
 
 * Version 1.5.4
   * fixed: fix property keyword for testability
-  * fixed: fix add_action 'customize_register' with __construct()
+  * fixed: fix add_action 'customize_register' with \_\_construct()
   * fixed: fix capability
 * Version 1.5.3
 	* fixed: add function multi_device_switcher_get_default_options for wp multi-device [#9](https://github.com/thingsym/multi-device-switcher/pull/9)
@@ -453,7 +453,7 @@ You can send your own language pack to author.
 * Version 1.1.0
 	* new features: Custom Switcher
 * Version 1.0.4
-	* fixed: fix the object model PHP5, __construct() to replace Multi_Device_Switcher
+	* fixed: fix the object model PHP5, \_\_construct() to replace Multi_Device_Switcher
 	* fixed: wp_get_themes(), and wp_get_theme() to replace get_themes(), get_theme()
 * Version 1.0.3
 	* updated: update screenshots
@@ -469,5 +469,5 @@ You can send your own language pack to author.
 
 ## Upgrade Notice
 
-* 1.1.2
-	* Requires at least version 3.4 of the Wordpress
+* Version 1.1.2
+	* Requires at least version 3.4 of the WordPress
