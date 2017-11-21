@@ -414,7 +414,6 @@ class Multi_Device_Switcher {
 	 * @since 1.0
 	 */
 	public function add_option_page() {
-		add_filter( 'plugin_action_links', array( $this, 'plugin_action_links' ), 10, 2 );
 
 		$page_hook = add_theme_page(
 			__( $this->page_title, $this->textdomain ),
@@ -444,15 +443,21 @@ class Multi_Device_Switcher {
 	}
 
 	/**
-	 * Add the settings link to the plugin page.
+	 * Set link to customizer section on the plugins page.
 	 *
-	 * @since 1.2
+	 * Hooks to plugin_action_links_{$plugin_file}
+	 *
+	 * @see https://developer.wordpress.org/reference/hooks/plugin_action_links_plugin_file/
+	 *
+	 * @access public
+	 *
+	 * @param array $links An array of plugin action links.
+	 *
+	 * @return array $links
+	 *
+	 * @since 1.6.0
 	 */
-	public function plugin_action_links( $links, $file ) {
-		if ( plugin_basename( __FILE__ ) !== $file ) {
-			return $links;
-		}
-
+	public function plugin_action_links( $links = array() ) {
 		$settings_link = '<a href="themes.php?page=multi-device-switcher">' . __( 'Settings', $this->textdomain ) . '</a>';
 
 		array_unshift( $links, $settings_link );
