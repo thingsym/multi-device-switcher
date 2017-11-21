@@ -29,6 +29,10 @@
  *     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110, USA
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 class Multi_Device_Switcher {
 	protected $option_group = 'multi_device_switcher';
 	protected $option_name = 'multi_device_switcher_options';
