@@ -52,10 +52,10 @@ class Multi_Device_Switcher {
 
 	public function __construct() {
 		add_action( 'init', array( $this, 'load_textdomain' ) );
+		add_action( 'init', array( $this, 'init' ) );
 
 		if ( is_admin() ) {
 			add_action( 'admin_init', array( $this, 'admin_init' ) );
-			add_filter( 'option_page_capability_' . $this->option_group, array( $this, 'option_page_capability' ) );
 			add_action( 'admin_menu', array( $this, 'add_option_page' ) );
 		}
 		else {
@@ -65,6 +65,21 @@ class Multi_Device_Switcher {
 
 		add_action( 'customize_register', array( $this, 'customize_register' ) );
 		add_action( 'plugins_loaded', array( $this, 'load_file' ) );
+	}
+
+	/**
+	 * Initialize.
+	 *
+	 * Hooks to init
+	 *
+	 * @access public
+	 *
+	 * @since 1.6.0
+	 */
+	public function init() {
+		add_filter( 'option_page_capability_' . $this->option_group, array( $this, 'option_page_capability' ) );
+		add_filter( 'plugin_action_links_' . plugin_basename( __MULTI_DEVICE_SWITCHER_FILE__ ), array( $this, 'plugin_action_links' ) );
+
 		add_shortcode( 'multi', array( $this, 'shortcode_display_switcher' ) );
 	}
 
