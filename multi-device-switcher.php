@@ -1176,5 +1176,3 @@ function multi_device_switcher_get_default_options() {
 	}
 }
 endif;
-
-?>

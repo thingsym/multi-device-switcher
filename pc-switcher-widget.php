@@ -79,4 +79,3 @@ class PC_Switcher extends WP_Widget {
 	function form( $instance ) {
 	}
 }
-?>
