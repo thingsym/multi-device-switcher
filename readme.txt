@@ -4,10 +4,10 @@ Contributors: thingsym
 Donate link: http://blog.thingslabo.com/archives/000251.html
 Link: https://github.com/thingsym/multi-device-switcher
 Tags: switcher, theme, ipad, iphone, android, tablet, mobile, game
-Tested up to: 4.7.4
-Stable tag: 1.5.4
 Requires at least: 3.7
 Requires PHP: 5.4
+Tested up to: 4.9
+Stable tag: 1.6.0
 License: GPL2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -355,6 +355,19 @@ useragent        get or set UserAgent
 For more information about the Multi Device Switcher Command, see `wp help multi-device <SUBCOMMANDS>`.
 
 == Changelog ==
+
+= 1.6.0 =
+* change Requires at least version 3.7
+* remove cache with PC Switcher widget
+* add init function
+* change hook destination from plugin_action_links to plugin_action_links_{$plugin_file}
+* add load_textdomain function
+* add define variable __MULTI_DEVICE_SWITCHER_FILE__
+* check class Multi_Device_Switcher
+* check ABSPATH
+* add isset to conditional statement
+* fix boolean
+* add tests
 
 = 1.5.4 =
 * fixed: fix property keyword for testability

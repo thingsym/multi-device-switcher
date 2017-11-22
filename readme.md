@@ -389,6 +389,18 @@ If you have created or updated your own language pack, you can send gettext PO a
 
 ## Changelog
 
+* Version 1.6.0
+	* change Requires at least version 3.7
+	* remove cache with PC Switcher widget
+	* add init function
+	* change hook destination from plugin_action_links to plugin_action_links_{$plugin_file}
+	* add load_textdomain function
+	* add define variable __MULTI_DEVICE_SWITCHER_FILE__
+	* check class Multi_Device_Switcher
+	* check ABSPATH
+	* add isset to conditional statement
+	* fix boolean
+	* add tests
 * Version 1.5.4
   * fixed: fix property keyword for testability
   * fixed: fix add_action 'customize_register' with \_\_construct()
