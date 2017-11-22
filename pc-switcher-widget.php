@@ -3,7 +3,7 @@
  * Widget Name: PC Switcher Widget
  * Plugin URI: https://github.com/thingsym/multi-device-switcher
  * Description: PC Switcher Widget add-on for the Multi Device Switcher. Use this widget to add the PC Switcher to a widget.
- * Version: 1.5.4
+ * Version: 1.6.0
  * Author: thingsym
  * Author URI: http://www.thingslabo.com/
  * License: GPL2
@@ -45,14 +45,14 @@ function pc_switcher_load_widgets() {
 class PC_Switcher extends WP_Widget {
 
 	function __construct() {
-		load_plugin_textdomain( 'multi-device-switcher', false, 'multi-device-switcher/languages' );
-		$widget_ops = array( 'classname' => 'widget_pc_switcher', 'description' => __( 'Add the PC Switcher to a widget.', 'multi-device-switcher' ) );
+		load_plugin_textdomain( 'multi-device-switcher', false, dirname( plugin_basename( __MULTI_DEVICE_SWITCHER_FILE__ ) ) . '/languages/' );
+
+		$widget_ops = array(
+			'classname'   => 'widget_pc_switcher',
+			'description' => __( 'Add the PC Switcher to a widget.', 'multi-device-switcher' )
+		);
 		parent::__construct( 'pc-switcher', __( 'PC Switcher', 'multi-device-switcher' ), $widget_ops );
 		$this->alt_option_name = 'widget_pc_switcher';
-
-		add_action( 'save_post', array( &$this, 'flush_widget_cache' ) );
-		add_action( 'deleted_post', array( &$this, 'flush_widget_cache' ) );
-		add_action( 'switch_theme', array( &$this, 'flush_widget_cache' ) );
 	}
 
 	function widget( $args, $instance ) {
@@ -64,47 +64,18 @@ class PC_Switcher extends WP_Widget {
 		$name = $multi_device_switcher->get_device_theme();
 
 		if ( $name && 'None' !== $name ) {
-
-			$cache = wp_cache_get( 'widget_pc_switcher', 'widget' );
-
-			if ( ! is_array( $cache ) ) {
-				$cache = array();
-			}
-
-			if ( isset( $cache[ $args['widget_id'] ] ) ) {
-				echo $cache[ $args['widget_id'] ];
-				return;
-			}
-
-			ob_start();
-
 			echo $args['before_widget'];
 			multi_device_switcher_add_pc_switcher();
 			echo $args['after_widget'];
-
-			$cache[ $args['widget_id'] ] = ob_get_flush();
-			wp_cache_set( 'widget_pc_switcher', $cache, 'widget' );
 		}
 	}
 
 	function update( $new_instance, $old_instance ) {
 		$instance = $old_instance;
 
-		$this->flush_widget_cache();
-
-		$alloptions = wp_cache_get( 'alloptions', 'options' );
-		if ( isset( $alloptions['widget_pc_switcher'] ) ) {
-			delete_option( 'widget_pc_switcher' );
-		}
-
 		return $instance;
-	}
-
-	function flush_widget_cache() {
-		wp_cache_delete( 'widget_pc_switcher', 'widget' );
 	}
 
 	function form( $instance ) {
 	}
 }
-?>
