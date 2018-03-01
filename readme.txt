@@ -362,7 +362,7 @@ For more information about the Multi Device Switcher Command, see `wp help multi
 * add init function
 * change hook destination from plugin_action_links to plugin_action_links_{$plugin_file}
 * add load_textdomain function
-* add define variable __MULTI_DEVICE_SWITCHER_FILE__
+* add define variable \_\_MULTI_DEVICE_SWITCHER_FILE\_\_
 * check class Multi_Device_Switcher
 * check ABSPATH
 * add isset to conditional statement

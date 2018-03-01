@@ -370,22 +370,31 @@ turn on default CSS
 
     wp multi-device css on
 
+## Resources
+
+* [Developer Blog (Japanese) - http://blog.thingslabo.com/ ](https://blog.thingslabo.com/archives/category/multi_device_switcher)
+
+## WordPress Plugin Directory
+
+Multi Device Switcher is hosted on the WordPress Plugin Directory.
+
+[https://wordpress.org/plugins/multi-device-switcher/](https://wordpress.org/plugins/multi-device-switcher/)
+
 ## Test Matrix
 
 For operation compatibility between PHP version and WordPress version, see below [Travis CI](https://travis-ci.org/thingsym/multi-device-switcher).
 
 ## Contribution
 
+### Patches and Bug Fixes
+
 Small patches and bug reports can be submitted a issue tracker in Github. Forking on Github is another good way. You can send a pull request.
 
-Translating a plugin takes a lot of time, effort, and patience. I really appreciate the hard work from these contributors.
-
-If you have created or updated your own language pack, you can send gettext PO and MO files to author. I can bundle it into Multi Device Switcher.
-
-* [multi-device-switcher - GitHub](https://github.com/thingsym/multi-device-switcher)
-* [Multi Device Switcher - WordPress Plugin](https://wordpress.org/plugins/multi-device-switcher/)
-* [Translate Multi Device Switcher into your language.](https://translate.wordpress.org/projects/wp-plugins/multi-device-switcher)
-* [Developer Blog (Japanese) - http://blog.thingslabo.com/ ](https://blog.thingslabo.com/archives/category/multi_device_switcher)
+1. Fork [Nav Menu Trim](https://github.com/thingsym/multi-device-switcher) from GitHub repository
+2. Create a feature branch: git checkout -b my-new-feature
+3. Commit your changes: git commit -am 'Add some feature'
+4. Push to the branch: git push origin my-new-feature
+5. Create new Pull Request
 
 ## Changelog
 
@@ -395,7 +404,7 @@ If you have created or updated your own language pack, you can send gettext PO a
 	* add init function
 	* change hook destination from plugin_action_links to plugin_action_links_{$plugin_file}
 	* add load_textdomain function
-	* add define variable __MULTI_DEVICE_SWITCHER_FILE__
+	* add define variable \_\_MULTI_DEVICE_SWITCHER_FILE\_\_
 	* check class Multi_Device_Switcher
 	* check ABSPATH
 	* add isset to conditional statement
@@ -485,3 +494,7 @@ If you have created or updated your own language pack, you can send gettext PO a
 	* Requires at least version 3.7 of the WordPress
 * Version 1.1.2
 	* Requires at least version 3.4 of the WordPress
+
+## License
+
+Licensed under [GPLv2](https://www.gnu.org/licenses/gpl-2.0.html).
