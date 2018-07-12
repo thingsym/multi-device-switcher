@@ -342,4 +342,21 @@ class Test_Multi_Device_Switcher_Validate extends WP_UnitTestCase {
 		$this->assertEquals( 'test1,test2', $actual['custom_switcher_userAgent_test'] );
 	}
 
+	/**
+	 * @test
+	 * @group validate
+	 */
+	function validate_case_via_filter() {
+		$input = array();
+		$expected = 'test';
+
+		add_filter( 'multi_device_switcher_validate', function( $output, $input, $default_options ) {
+			return 'test';
+		}, 10, 3 );
+
+		$actual = $this->multi_device_switcher->validate( $input );
+
+		$this->assertEquals( $expected, $actual );
+	}
+
 }

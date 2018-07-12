@@ -11,7 +11,7 @@ class Test_pc_switcher_Pc_Switcher_Widget extends WP_UnitTestCase {
 	 * @test
 	 * @group widget
 	 */
-	function inclide() {
+	function is_class() {
 		$this->assertTrue( class_exists( 'PC_Switcher' ) );
 	}
 
@@ -22,6 +22,7 @@ class Test_pc_switcher_Pc_Switcher_Widget extends WP_UnitTestCase {
 	function constructor() {
 		$this->assertEquals( 'pc-switcher', $this->pc_switcher->id_base );
 		$this->assertEquals( 'PC Switcher', $this->pc_switcher->name );
+
 		$this->assertEquals( 'widget_pc-switcher', $this->pc_switcher->option_name );
 		$this->assertEquals( 'widget_pc_switcher', $this->pc_switcher->alt_option_name );
 
