@@ -82,7 +82,6 @@ class Multi_Device_Switcher {
 	}
 
 	public function switch_theme() {
-
 		if ( isset( $_COOKIE[ $this->cookie_name_disable_switcher ] ) ) {
 			add_action( 'wp_headers', function () {
 				setcookie( $this->cookie_name_disable_switcher, null, time() - 3600, '/', '', is_ssl(), false );
