@@ -54,15 +54,13 @@ class Multi_Device_Switcher {
 		add_action( 'init', array( $this, 'load_textdomain' ) );
 		add_action( 'init', array( $this, 'init' ) );
 
-		if ( is_admin() ) {
-			add_action( 'admin_init', array( $this, 'admin_init' ) );
-			add_action( 'admin_menu', array( $this, 'add_option_page' ) );
-		}
-		else {
+		if ( ! is_admin() ) {
 			add_filter( 'wp_headers', array( $this, 'add_header_vary' ) );
 			add_action( 'plugins_loaded', array( $this, 'switch_theme' ) );
 		}
 
+		add_action( 'admin_init', array( $this, 'admin_init' ) );
+		add_action( 'admin_menu', array( $this, 'add_option_page' ) );
 		add_action( 'customize_register', array( $this, 'customize_register' ) );
 		add_action( 'plugins_loaded', array( $this, 'load_file' ) );
 	}
