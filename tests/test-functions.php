@@ -5,14 +5,9 @@ class Test_Multi_Device_Switcher_Functions extends WP_UnitTestCase {
 	public function setUp() {
 		parent::setUp();
 
-		// global $wp_theme_directories;
-		// $wp_theme_directories = array( WP_CONTENT_DIR . '/themes' );
-		// wp_clean_themes_cache();
-		// unset( $GLOBALS['wp_themes'] );
-
 		$this->multi_device_switcher = new Multi_Device_Switcher();
 
-		$this->options = array(
+		$options = array(
 			'pc_switcher' => 1,
 			'default_css' => 1,
 			'theme_smartphone' => 'Twenty Sixteen',
@@ -29,24 +24,12 @@ class Test_Multi_Device_Switcher_Functions extends WP_UnitTestCase {
 			'custom_switcher_userAgent_test' => 'test1,test2',
 		);
 
-		update_option( 'multi_device_switcher_options', $this->options );
+		update_option( 'multi_device_switcher_options', $options );
 	}
 
 
 	function tearDown() {
-		// global $wp_theme_directories;
-		// $wp_theme_directories = $this->wp_theme_directories;
-		// wp_clean_themes_cache();
-		// unset( $GLOBALS['wp_themes'] );
-
 		parent::tearDown();
-	}
-
-	/**
-	 * @test
-	 * @group functions
-	 */
-	function switch_theme() {
 	}
 
 	/**
@@ -125,6 +108,7 @@ class Test_Multi_Device_Switcher_Functions extends WP_UnitTestCase {
 	function add_pc_switcher() {
 		// $this->multi_device_switcher->device = 'smart';
 		// $this->assertEquals( '', $this->multi_device_switcher->add_pc_switcher() );
+		// $this->assertTrue( wp_style_is( 'pc-switcher-options' ) );
 	}
 
 	/**
@@ -148,6 +132,10 @@ class Test_Multi_Device_Switcher_Functions extends WP_UnitTestCase {
 	 */
 	function is_pc_switcher() {
 		$this->assertFalse( $this->multi_device_switcher->is_pc_switcher() );
+
+		$GLOBALS['_COOKIE']['pc-switcher'] = 1;
+		$this->assertTrue( $this->multi_device_switcher->is_pc_switcher() );
+		unset($GLOBALS['_COOKIE']['pc-switcher']);
 	}
 
 	/**
@@ -156,6 +144,58 @@ class Test_Multi_Device_Switcher_Functions extends WP_UnitTestCase {
 	 */
 	function is_disable_switcher() {
 		$this->assertFalse( $this->multi_device_switcher->is_disable_switcher() );
+
+		$options = array(
+			'pc_switcher' => 1,
+			'default_css' => 1,
+			'theme_smartphone' => 'Twenty Sixteen',
+			'theme_tablet' => 'Twenty Sixteen',
+			'theme_mobile' => 'None',
+			'theme_game' => 'None',
+			'userAgent_smart' => 'iPhone, iPod, Android.*Mobile, dream, CUPCAKE, Windows Phone, IEMobile.*Touch, webOS, BB10.*Mobile, BlackBerry.*Mobile, Mobile.*Gecko',
+			'userAgent_tablet' => 'iPad, Kindle, Silk, Android(?!.*Mobile), Windows.*Touch, PlayBook, Tablet.*Gecko',
+			'userAgent_mobile' => 'DoCoMo, SoftBank, J-PHONE, Vodafone, KDDI, UP.Browser, WILLCOM, emobile, DDIPOCKET, Windows CE, BlackBerry, Symbian, PalmOS, Huawei, IAC, Nokia',
+			'userAgent_game' => 'PlayStation Portable, PlayStation Vita, PSP, PS2, PLAYSTATION 3, PlayStation 4, Nitro, Nintendo 3DS, Nintendo Wii, Nintendo WiiU, Xbox',
+			'disable_path' => "/test\n/abc\n",
+			'enable_regex' => 0,
+			'custom_switcher_theme_test' => 'Twenty Sixteen',
+			'custom_switcher_userAgent_test' => 'test1,test2',
+		);
+
+		update_option( 'multi_device_switcher_options', $options );
+
+		$GLOBALS['_SERVER']['REQUEST_URI'] = '/test';
+		$this->assertTrue( $this->multi_device_switcher->is_disable_switcher() );
+
+		$GLOBALS['_SERVER']['REQUEST_URI'] = '/abc';
+		$this->assertTrue( $this->multi_device_switcher->is_disable_switcher() );
+
+		$options = array(
+			'pc_switcher' => 1,
+			'default_css' => 1,
+			'theme_smartphone' => 'Twenty Sixteen',
+			'theme_tablet' => 'Twenty Sixteen',
+			'theme_mobile' => 'None',
+			'theme_game' => 'None',
+			'userAgent_smart' => 'iPhone, iPod, Android.*Mobile, dream, CUPCAKE, Windows Phone, IEMobile.*Touch, webOS, BB10.*Mobile, BlackBerry.*Mobile, Mobile.*Gecko',
+			'userAgent_tablet' => 'iPad, Kindle, Silk, Android(?!.*Mobile), Windows.*Touch, PlayBook, Tablet.*Gecko',
+			'userAgent_mobile' => 'DoCoMo, SoftBank, J-PHONE, Vodafone, KDDI, UP.Browser, WILLCOM, emobile, DDIPOCKET, Windows CE, BlackBerry, Symbian, PalmOS, Huawei, IAC, Nokia',
+			'userAgent_game' => 'PlayStation Portable, PlayStation Vita, PSP, PS2, PLAYSTATION 3, PlayStation 4, Nitro, Nintendo 3DS, Nintendo Wii, Nintendo WiiU, Xbox',
+			'disable_path' => "^\/te\nbc$\n",
+			'enable_regex' => 1,
+			'custom_switcher_theme_test' => 'Twenty Sixteen',
+			'custom_switcher_userAgent_test' => 'test1,test2',
+		);
+
+		update_option( 'multi_device_switcher_options', $options );
+
+		$GLOBALS['_SERVER']['REQUEST_URI'] = '/test';
+		$this->assertTrue( $this->multi_device_switcher->is_disable_switcher() );
+
+		$GLOBALS['_SERVER']['REQUEST_URI'] = '/abc';
+		$this->assertTrue( $this->multi_device_switcher->is_disable_switcher() );
+
+		unset($GLOBALS['_SERVER']['REQUEST_URI']);
 	}
 
 	/**
@@ -174,6 +214,15 @@ class Test_Multi_Device_Switcher_Functions extends WP_UnitTestCase {
 		);
 		$content = "test";
 		$this->assertEquals( $content, $this->multi_device_switcher->shortcode_display_switcher( $atts, $content ) );
+
+		$GLOBALS['_COOKIE']['pc-switcher'] = 1;
+		$this->multi_device_switcher->device = 'smart';
+		$atts = array(
+			'device' => 'smart',
+		);
+		$content = "test";
+		$this->assertEquals( '', $this->multi_device_switcher->shortcode_display_switcher( $atts, $content ) );
+		unset($GLOBALS['_COOKIE']['pc-switcher']);
 	}
 
 	/**
@@ -182,7 +231,7 @@ class Test_Multi_Device_Switcher_Functions extends WP_UnitTestCase {
 	 */
 	function add_header_vary() {
 		$headers = $this->multi_device_switcher->add_header_vary( array() );
-		$this->assertEquals( 'User-Agent',  $headers['Vary']);
+		$this->assertEquals( 'User-Agent', $headers['Vary'] );
 
 		add_filter( 'add_header_vary', function( $value ) {
 			return 'Accept-Encoding';
@@ -252,6 +301,8 @@ class Test_Multi_Device_Switcher_Functions extends WP_UnitTestCase {
 	 * @group functions
 	 */
 	function plugin_action_links() {
+		$links = $this->multi_device_switcher->plugin_action_links( array() );
+		$this->assertContains( 'themes.php?page=multi-device-switcher', $links[0] );
 	}
 
 	/**
@@ -273,44 +324,8 @@ class Test_Multi_Device_Switcher_Functions extends WP_UnitTestCase {
 	 * @group functions
 	 */
 	function load_file() {
-	}
-
-	/**
-	 * @test
-	 * @group functions
-	 */
-	function f_multi_device_switcher_add_pc_switcher() {
-	}
-
-	/**
-	 * @test
-	 * @group functions
-	 */
-	function f_is_multi_device() {
-		// $this->assertTrue( is_multi_device() );
-		// $this->assertFalse( is_multi_device( 'smart' ) );
-		//
-		// $this->multi_device_switcher->device = 'smart';
-		// $this->assertTrue( is_multi_device( 'smart' ) );
-		//
-		// $this->multi_device_switcher->device = 'custom_switcher_test';
-		// $this->assertTrue( is_multi_device( 'test' ) );
-	}
-
-	/**
-	 * @test
-	 * @group functions
-	 */
-	function f_is_pc_switcher() {
-		// $this->assertEquals( '', is_pc_switcher() );
-	}
-
-	/**
-	 * @test
-	 * @group functions
-	 */
-	function f_is_disable_switcher() {
-		// $this->assertFalse( is_disable_switcher() );
+		// $this->multi_device_switcher->load_file();
+		// var_dump(get_included_files());
 	}
 
 }

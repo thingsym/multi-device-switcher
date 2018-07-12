@@ -41,4 +41,13 @@ class Test_Multi_Device_Switcher_Constructor extends WP_UnitTestCase {
 
 		$this->assertTrue( shortcode_exists( 'multi' ) );
 	}
+
+	/**
+	 * @test
+	 * @group constructor
+	 */
+	function pc_switcher() {
+		$this->assertTrue( class_exists( 'PC_Switcher' ) );
+		$this->assertEquals( 10, has_action( 'widgets_init', 'pc_switcher_load_widgets' ) );
+	}
 }
