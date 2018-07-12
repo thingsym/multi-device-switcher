@@ -82,7 +82,6 @@ class Multi_Device_Switcher {
 	}
 
 	public function switch_theme() {
-
 		if ( isset( $_COOKIE[ $this->cookie_name_disable_switcher ] ) ) {
 			add_action( 'wp_headers', function () {
 				setcookie( $this->cookie_name_disable_switcher, null, time() - 3600, '/', '', is_ssl(), false );
@@ -278,7 +277,12 @@ class Multi_Device_Switcher {
 
 		if ( $pc_switcher && $name && 'None' !== $name ) {
 			if ( $options['default_css'] ) {
-				wp_enqueue_style( 'pc-switcher-options', plugins_url() . '/multi-device-switcher/pc-switcher.css', false, '2013-03-20' );
+				wp_enqueue_style(
+					'pc-switcher-options',
+					plugins_url() . '/multi-device-switcher/pc-switcher.css',
+					false,
+					'2013-03-20'
+				);
 			}
 
 			$uri = is_ssl() ? 'https://' : 'http://';
@@ -371,7 +375,12 @@ class Multi_Device_Switcher {
 	 *
 	 */
 	public function admin_enqueue_scripts( $hook_suffix ) {
-		wp_enqueue_script( 'multi-device-switcher-options', plugins_url() . '/multi-device-switcher/multi-device-switcher.js', array( 'jquery', 'jquery-ui-tabs' ), '2011-08-22' );
+		wp_enqueue_script(
+			'multi-device-switcher-options',
+			plugins_url() . '/multi-device-switcher/multi-device-switcher.js',
+			array( 'jquery', 'jquery-ui-tabs' ),
+			'2011-08-22'
+		);
 	}
 
 	/**
@@ -383,7 +392,12 @@ class Multi_Device_Switcher {
 	 *
 	 */
 	public function admin_enqueue_styles( $hook_suffix ) {
-		wp_enqueue_style( 'multi-device-switcher-options', plugins_url() . '/multi-device-switcher/multi-device-switcher.css', false, '2011-08-22' );
+		wp_enqueue_style(
+			'multi-device-switcher-options',
+			plugins_url() . '/multi-device-switcher/multi-device-switcher.css',
+			false,
+			'2011-08-22'
+		);
 	}
 
 	/**
@@ -572,7 +586,11 @@ class Multi_Device_Switcher {
 	 * @since 1.6.0
 	 */
 	public function load_textdomain() {
-		load_plugin_textdomain( 'multi-device-switcher', false, dirname( plugin_basename( __MULTI_DEVICE_SWITCHER_FILE__ ) ) . '/languages/' );
+		load_plugin_textdomain(
+			'multi-device-switcher',
+			false,
+			dirname( plugin_basename( __MULTI_DEVICE_SWITCHER_FILE__ ) ) . '/languages/'
+		);
 	}
 
 	/**
