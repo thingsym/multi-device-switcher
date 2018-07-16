@@ -2,8 +2,6 @@
 
 [![Build Status](https://travis-ci.org/thingsym/multi-device-switcher.svg?branch=master)](https://travis-ci.org/thingsym/multi-device-switcher)
 
-[![WordPress](https://img.shields.io/wordpress/v/multi-device-switcher.svg)](https://wordpress.org/plugins/multi-device-switcher/)
-
 This WordPress plugin allows you to set a separate theme for device (Smart Phone, Tablet PC, Mobile Phone, Game and custom).
 This plugin detects if your site is being viewed by UserAgent, and switches to selected theme. The Custom Switcher can add every device.
 
@@ -390,7 +388,7 @@ For operation compatibility between PHP version and WordPress version, see below
 
 Small patches and bug reports can be submitted a issue tracker in Github. Forking on Github is another good way. You can send a pull request.
 
-1. Fork [Nav Menu Trim](https://github.com/thingsym/multi-device-switcher) from GitHub repository
+1. Fork [Multi Device Switcher](https://github.com/thingsym/multi-device-switcher) from GitHub repository
 2. Create a feature branch: git checkout -b my-new-feature
 3. Commit your changes: git commit -am 'Add some feature'
 4. Push to the branch: git push origin my-new-feature
@@ -398,6 +396,12 @@ Small patches and bug reports can be submitted a issue tracker in Github. Forkin
 
 ## Changelog
 
+* Version 1.6.1
+	* add test cases
+	* add add_header_vary filter
+	* improve cookie settings via wp_headers hook
+	* change readme.md file name to upper case
+	* add LICENSE file
 * Version 1.6.0
 	* change Requires at least version 3.7
 	* remove cache with PC Switcher widget
