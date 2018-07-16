@@ -396,6 +396,12 @@ Small patches and bug reports can be submitted a issue tracker in Github. Forkin
 
 ## Changelog
 
+* Version 1.6.1
+	* add test cases
+	* add add_header_vary filter
+	* improve cookie settings via wp_headers hook
+	* change readme.md file name to upper case
+	* add LICENSE file
 * Version 1.6.0
 	* change Requires at least version 3.7
 	* remove cache with PC Switcher widget

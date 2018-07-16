@@ -7,7 +7,7 @@ Tags: switcher, theme, ipad, iphone, android, tablet, mobile, game
 Requires at least: 3.7
 Requires PHP: 5.4
 Tested up to: 4.9
-Stable tag: 1.6.0
+Stable tag: 1.6.1
 License: GPL2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -355,6 +355,13 @@ useragent        get or set UserAgent
 For more information about the Multi Device Switcher Command, see `wp help multi-device <SUBCOMMANDS>`.
 
 == Changelog ==
+
+= 1.6.1 =
+* add test cases
+* add add_header_vary filter
+* improve cookie settings via wp_headers hook
+* change readme.md file name to upper case
+* add LICENSE file
 
 = 1.6.0 =
 * change Requires at least version 3.7
