@@ -388,7 +388,7 @@ For operation compatibility between PHP version and WordPress version, see below
 
 Small patches and bug reports can be submitted a issue tracker in Github. Forking on Github is another good way. You can send a pull request.
 
-1. Fork [Nav Menu Trim](https://github.com/thingsym/multi-device-switcher) from GitHub repository
+1. Fork [Multi Device Switcher](https://github.com/thingsym/multi-device-switcher) from GitHub repository
 2. Create a feature branch: git checkout -b my-new-feature
 3. Commit your changes: git commit -am 'Add some feature'
 4. Push to the branch: git push origin my-new-feature
