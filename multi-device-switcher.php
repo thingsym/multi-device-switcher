@@ -3,7 +3,7 @@
  * Plugin Name: Multi Device Switcher
  * Plugin URI: https://github.com/thingsym/multi-device-switcher
  * Description: This WordPress plugin allows you to set a separate theme for device (Smart Phone, Tablet PC, Mobile Phone, Game and custom).
- * Version: 1.6.0
+ * Version: 1.6.1
  * Author: thingsym
  * Author URI: http://www.thingslabo.com/
  * License: GPL2
@@ -54,15 +54,13 @@ class Multi_Device_Switcher {
 		add_action( 'init', array( $this, 'load_textdomain' ) );
 		add_action( 'init', array( $this, 'init' ) );
 
-		if ( is_admin() ) {
-			add_action( 'admin_init', array( $this, 'admin_init' ) );
-			add_action( 'admin_menu', array( $this, 'add_option_page' ) );
-		}
-		else {
+		if ( ! is_admin() ) {
 			add_filter( 'wp_headers', array( $this, 'add_header_vary' ) );
 			add_action( 'plugins_loaded', array( $this, 'switch_theme' ) );
 		}
 
+		add_action( 'admin_init', array( $this, 'admin_init' ) );
+		add_action( 'admin_menu', array( $this, 'add_option_page' ) );
 		add_action( 'customize_register', array( $this, 'customize_register' ) );
 		add_action( 'plugins_loaded', array( $this, 'load_file' ) );
 	}
@@ -84,14 +82,17 @@ class Multi_Device_Switcher {
 	}
 
 	public function switch_theme() {
-
 		if ( isset( $_COOKIE[ $this->cookie_name_disable_switcher ] ) ) {
-			setcookie( $this->cookie_name_disable_switcher, null, time() - 3600, '/', '', is_ssl(), false );
+			add_action( 'wp_headers', function () {
+				setcookie( $this->cookie_name_disable_switcher, null, time() - 3600, '/', '', is_ssl(), false );
+			} );
 		}
 
 		if ( $this->is_disable_switcher() ) {
-			setcookie( $this->cookie_name_multi_device_switcher, null, time() - 3600, '/', '', is_ssl(), false );
-			setcookie( $this->cookie_name_disable_switcher, 1, null, '/', '', is_ssl(), false );
+			add_action( 'wp_headers', function () {
+				setcookie( $this->cookie_name_multi_device_switcher, null, time() - 3600, '/', '', is_ssl(), false );
+				setcookie( $this->cookie_name_disable_switcher, 1, null, '/', '', is_ssl(), false );
+			} );
 			return;
 		}
 
@@ -130,10 +131,14 @@ class Multi_Device_Switcher {
 			add_filter( 'template', array( $this, 'get_template' ) );
 			add_action( 'wp_footer', array( $this, 'add_pc_switcher' ) );
 
-			setcookie( $this->cookie_name_multi_device_switcher, preg_replace( '/^custom_switcher_/', '', $this->device ), null, '/', '', is_ssl(), false );
+			add_action( 'wp_headers', function () {
+				setcookie( $this->cookie_name_multi_device_switcher, preg_replace( '/^custom_switcher_/', '', $this->device ), null, '/', '', is_ssl(), false );
+			} );
 		}
 		else {
-			setcookie( $this->cookie_name_multi_device_switcher, null, time() - 3600, '/', '', is_ssl(), false );
+			add_action( 'wp_headers', function () {
+				setcookie( $this->cookie_name_multi_device_switcher, null, time() - 3600, '/', '', is_ssl(), false );
+			} );
 		}
 
 		if ( isset( $_COOKIE[ $this->cookie_name_pc_switcher ] ) ) {
@@ -272,7 +277,12 @@ class Multi_Device_Switcher {
 
 		if ( $pc_switcher && $name && 'None' !== $name ) {
 			if ( $options['default_css'] ) {
-				wp_enqueue_style( 'pc-switcher-options', plugins_url() . '/multi-device-switcher/pc-switcher.css', false, '2013-03-20' );
+				wp_enqueue_style(
+					'pc-switcher-options',
+					plugins_url() . '/multi-device-switcher/pc-switcher.css',
+					false,
+					'2013-03-20'
+				);
 			}
 
 			$uri = is_ssl() ? 'https://' : 'http://';
@@ -352,7 +362,7 @@ class Multi_Device_Switcher {
 	 *
 	 */
 	public function add_header_vary( $headers ) {
-		$headers['Vary'] = 'User-Agent';
+		$headers['Vary'] = apply_filters( 'add_header_vary', 'User-Agent' );
 		return $headers;
 	}
 
@@ -365,7 +375,12 @@ class Multi_Device_Switcher {
 	 *
 	 */
 	public function admin_enqueue_scripts( $hook_suffix ) {
-		wp_enqueue_script( 'multi-device-switcher-options', plugins_url() . '/multi-device-switcher/multi-device-switcher.js', array( 'jquery', 'jquery-ui-tabs' ), '2011-08-22' );
+		wp_enqueue_script(
+			'multi-device-switcher-options',
+			plugins_url() . '/multi-device-switcher/multi-device-switcher.js',
+			array( 'jquery', 'jquery-ui-tabs' ),
+			'2011-08-22'
+		);
 	}
 
 	/**
@@ -377,7 +392,12 @@ class Multi_Device_Switcher {
 	 *
 	 */
 	public function admin_enqueue_styles( $hook_suffix ) {
-		wp_enqueue_style( 'multi-device-switcher-options', plugins_url() . '/multi-device-switcher/multi-device-switcher.css', false, '2011-08-22' );
+		wp_enqueue_style(
+			'multi-device-switcher-options',
+			plugins_url() . '/multi-device-switcher/multi-device-switcher.css',
+			false,
+			'2011-08-22'
+		);
 	}
 
 	/**
@@ -566,7 +586,11 @@ class Multi_Device_Switcher {
 	 * @since 1.6.0
 	 */
 	public function load_textdomain() {
-		load_plugin_textdomain( 'multi-device-switcher', false, dirname( plugin_basename( __MULTI_DEVICE_SWITCHER_FILE__ ) ) . '/languages/' );
+		load_plugin_textdomain(
+			'multi-device-switcher',
+			false,
+			dirname( plugin_basename( __MULTI_DEVICE_SWITCHER_FILE__ ) ) . '/languages/'
+		);
 	}
 
 	/**

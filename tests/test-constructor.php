@@ -19,11 +19,11 @@ class Test_Multi_Device_Switcher_Constructor extends WP_UnitTestCase {
 		$this->assertEquals( 10, has_filter( 'init', array( $this->multi_device_switcher, 'load_textdomain' ) ) );
 		$this->assertEquals( 10, has_filter( 'init', array( $this->multi_device_switcher, 'init' ) ) );
 
+		$this->assertEquals( 10, has_action( 'admin_init', array( $this->multi_device_switcher, 'admin_init' ) ) );
+		$this->assertEquals( 10, has_action( 'admin_menu', array( $this->multi_device_switcher, 'add_option_page' ) ) );
+
 		$this->assertEquals( 10, has_filter( 'wp_headers', array( $this->multi_device_switcher, 'add_header_vary' ) ) );
 		$this->assertEquals( 10, has_action( 'plugins_loaded', array( $this->multi_device_switcher, 'switch_theme' ) ) );
-
-		$this->assertFalse( has_action( 'admin_init', array( $this->multi_device_switcher, 'admin_init' ) ) );
-		$this->assertFalse( has_action( 'admin_menu', array( $this->multi_device_switcher, 'add_option_page' ) ) );
 
 		$this->assertEquals( 10, has_action( 'customize_register', array( $this->multi_device_switcher, 'customize_register' ) ) );
 		$this->assertEquals( 10, has_action( 'plugins_loaded', array( $this->multi_device_switcher, 'load_file' ) ) );
@@ -40,5 +40,14 @@ class Test_Multi_Device_Switcher_Constructor extends WP_UnitTestCase {
 		$this->assertEquals( 10, has_filter( 'plugin_action_links_' . plugin_basename( __MULTI_DEVICE_SWITCHER_FILE__ ), array( $this->multi_device_switcher, 'plugin_action_links' ) ) );
 
 		$this->assertTrue( shortcode_exists( 'multi' ) );
+	}
+
+	/**
+	 * @test
+	 * @group constructor
+	 */
+	function pc_switcher() {
+		$this->assertTrue( class_exists( 'PC_Switcher' ) );
+		$this->assertEquals( 10, has_action( 'widgets_init', 'pc_switcher_load_widgets' ) );
 	}
 }
