@@ -2,8 +2,6 @@
 
 [![Build Status](https://travis-ci.org/thingsym/multi-device-switcher.svg?branch=master)](https://travis-ci.org/thingsym/multi-device-switcher)
 
-[![WordPress](https://img.shields.io/wordpress/v/multi-device-switcher.svg)](https://wordpress.org/plugins/multi-device-switcher/)
-
 This WordPress plugin allows you to set a separate theme for device (Smart Phone, Tablet PC, Mobile Phone, Game and custom).
 This plugin detects if your site is being viewed by UserAgent, and switches to selected theme. The Custom Switcher can add every device.
 
