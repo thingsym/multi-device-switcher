@@ -1,6 +1,6 @@
 <?php
 
-class Test_Multi_Device_Switcher_wp_cli extends WP_UnitTestCase {
+class Test_Multi_Device_Switcher_WP_Cli extends WP_UnitTestCase {
 
 	public function setUp() {
 		parent::setUp();
