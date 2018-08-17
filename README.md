@@ -396,6 +396,9 @@ Small patches and bug reports can be submitted a issue tracker in Github. Forkin
 
 ## Changelog
 
+* Version 1.6.2
+	* add prefix into hook tag, change tag name from add_header_vary to multi_device_switcher_add_header_vary
+	* for php5.3, change called function via hook from anonymous function to public function
 * Version 1.6.1
 	* add test cases
 	* add add_header_vary filter
