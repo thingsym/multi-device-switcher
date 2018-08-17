@@ -369,7 +369,7 @@ class Multi_Device_Switcher {
 	 *
 	 */
 	public function add_header_vary( $headers ) {
-		$headers['Vary'] = apply_filters( 'add_header_vary', 'User-Agent' );
+		$headers['Vary'] = apply_filters( 'multi_device_switcher_add_header_vary', 'User-Agent' );
 		return $headers;
 	}
 
