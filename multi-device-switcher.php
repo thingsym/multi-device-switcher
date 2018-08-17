@@ -83,16 +83,11 @@ class Multi_Device_Switcher {
 
 	public function switch_theme() {
 		if ( isset( $_COOKIE[ $this->cookie_name_disable_switcher ] ) ) {
-			add_action( 'wp_headers', function () {
-				setcookie( $this->cookie_name_disable_switcher, null, time() - 3600, '/', '', is_ssl(), false );
-			} );
+			add_action( 'wp_headers', array( $this, 'set_cookie_rest_disable_switcher' ));
 		}
 
 		if ( $this->is_disable_switcher() ) {
-			add_action( 'wp_headers', function () {
-				setcookie( $this->cookie_name_multi_device_switcher, null, time() - 3600, '/', '', is_ssl(), false );
-				setcookie( $this->cookie_name_disable_switcher, 1, null, '/', '', is_ssl(), false );
-			} );
+			add_action( 'wp_headers', array( $this, 'set_cookie_enable_disable_switcher' ));
 			return;
 		}
 
@@ -130,15 +125,10 @@ class Multi_Device_Switcher {
 			add_filter( 'stylesheet', array( $this, 'get_stylesheet' ) );
 			add_filter( 'template', array( $this, 'get_template' ) );
 			add_action( 'wp_footer', array( $this, 'add_pc_switcher' ) );
-
-			add_action( 'wp_headers', function () {
-				setcookie( $this->cookie_name_multi_device_switcher, preg_replace( '/^custom_switcher_/', '', $this->device ), null, '/', '', is_ssl(), false );
-			} );
+			add_action( 'wp_headers', array( $this, 'set_cookie_switch_theme' ));
 		}
 		else {
-			add_action( 'wp_headers', function () {
-				setcookie( $this->cookie_name_multi_device_switcher, null, time() - 3600, '/', '', is_ssl(), false );
-			} );
+			add_action( 'wp_headers', array( $this, 'set_cookie_normal_theme' ));
 		}
 
 		if ( isset( $_COOKIE[ $this->cookie_name_pc_switcher ] ) ) {
@@ -249,6 +239,23 @@ class Multi_Device_Switcher {
 		}
 
 		return;
+	}
+
+	public function set_cookie_rest_disable_switcher() {
+		setcookie( $this->cookie_name_disable_switcher, null, time() - 3600, '/', '', is_ssl(), false );
+	}
+
+	public function set_cookie_enable_disable_switcher() {
+		setcookie( $this->cookie_name_multi_device_switcher, null, time() - 3600, '/', '', is_ssl(), false );
+		setcookie( $this->cookie_name_disable_switcher, 1, null, '/', '', is_ssl(), false );
+}
+
+	public function set_cookie_switch_theme() {
+		setcookie( $this->cookie_name_multi_device_switcher, preg_replace( '/^custom_switcher_/', '', $this->device ), null, '/', '', is_ssl(), false );
+	}
+
+	public function set_cookie_normal_theme() {
+		setcookie( $this->cookie_name_multi_device_switcher, null, time() - 3600, '/', '', is_ssl(), false );
 	}
 
 	public function session() {
