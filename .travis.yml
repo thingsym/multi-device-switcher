@@ -1,5 +1,5 @@
 sudo: false
-dist: trusty
+dist: precise
 language: php
 
 notifications:
@@ -45,9 +45,6 @@ env:
 
 matrix:
   fast_finish: true
-  include:
-    - php: 5.3
-      dist: precise
   allow_failures:
     # Call to undefined function mysql_connect()
     - php: 7.2
