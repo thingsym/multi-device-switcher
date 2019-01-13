@@ -12,6 +12,8 @@ class Test_Multi_Device_Switcher_WP_Cli extends WP_UnitTestCase {
 	 * @group wp_cli
 	 */
 	function wp_cli() {
+		$this->markTestIncomplete( 'This test has not been implemented yet.' );
+
 		// $this->assertTrue( class_exists( 'Multi_Device_Switcher_Command' ) );
 	}
 }

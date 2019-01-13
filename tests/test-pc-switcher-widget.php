@@ -40,6 +40,7 @@ class Test_pc_switcher_Pc_Switcher_Widget extends WP_UnitTestCase {
 	 * @group widget
 	 */
 	function widget() {
+		$this->markTestIncomplete( 'This test has not been implemented yet.' );
 	}
 
 	/**
@@ -47,6 +48,7 @@ class Test_pc_switcher_Pc_Switcher_Widget extends WP_UnitTestCase {
 	 * @group widget
 	 */
 	function update_case() {
+		$this->markTestIncomplete( 'This test has not been implemented yet.' );
 	}
 
 	/**
@@ -54,6 +56,7 @@ class Test_pc_switcher_Pc_Switcher_Widget extends WP_UnitTestCase {
 	 * @group widget
 	 */
 	function form() {
+		$this->markTestIncomplete( 'This test has not been implemented yet.' );
 	}
 
 }

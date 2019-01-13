@@ -98,6 +98,8 @@ class Test_Multi_Device_Switcher_Functions extends WP_UnitTestCase {
 	 * @group functions
 	 */
 	function session() {
+		$this->markTestIncomplete( 'This test has not been implemented yet.' );
+
 		// $this->assertEquals( '', $this->multi_device_switcher->session() );
 	}
 
@@ -106,6 +108,8 @@ class Test_Multi_Device_Switcher_Functions extends WP_UnitTestCase {
 	 * @group functions
 	 */
 	function add_pc_switcher() {
+		$this->markTestIncomplete( 'This test has not been implemented yet.' );
+
 		// $this->multi_device_switcher->device = 'smart';
 		// $this->assertEquals( '', $this->multi_device_switcher->add_pc_switcher() );
 		// $this->assertTrue( wp_style_is( 'pc-switcher-options' ) );
@@ -272,6 +276,7 @@ class Test_Multi_Device_Switcher_Functions extends WP_UnitTestCase {
 	 * @group functions
 	 */
 	function admin_init() {
+		$this->markTestIncomplete( 'This test has not been implemented yet.' );
 	}
 
 	/**
@@ -287,6 +292,8 @@ class Test_Multi_Device_Switcher_Functions extends WP_UnitTestCase {
 	 * @group functions
 	 */
 	function add_option_page() {
+		$this->markTestIncomplete( 'This test has not been implemented yet.' );
+
 		$this->multi_device_switcher->add_option_page();
 
 		// $this->assertEquals( 10, has_action( 'load-appearance_page_multi-device-switcher', array( $this->multi_device_switcher, 'page_hook_suffix' ) ) );
@@ -317,6 +324,7 @@ class Test_Multi_Device_Switcher_Functions extends WP_UnitTestCase {
 	 * @group functions
 	 */
 	function render_option_page() {
+		$this->markTestIncomplete( 'This test has not been implemented yet.' );
 	}
 
 	/**
@@ -324,6 +332,7 @@ class Test_Multi_Device_Switcher_Functions extends WP_UnitTestCase {
 	 * @group functions
 	 */
 	function customize_register() {
+		$this->markTestIncomplete( 'This test has not been implemented yet.' );
 	}
 
 	/**
@@ -331,6 +340,8 @@ class Test_Multi_Device_Switcher_Functions extends WP_UnitTestCase {
 	 * @group functions
 	 */
 	function load_file() {
+		$this->markTestIncomplete( 'This test has not been implemented yet.' );
+
 		// $this->multi_device_switcher->load_file();
 		// var_dump(get_included_files());
 	}
