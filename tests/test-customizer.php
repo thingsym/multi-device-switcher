@@ -12,6 +12,7 @@ class Test_Multi_Device_Switcher_Customizer extends WP_UnitTestCase {
 	 * @group customizer
 	 */
 	function customizer() {
+		$this->markTestIncomplete( 'This test has not been implemented yet.' );
 	}
 
 }
