@@ -10,4 +10,4 @@ function multi_device_switcher_delete_plugin() {
 
 multi_device_switcher_delete_plugin();
 
-?>
+

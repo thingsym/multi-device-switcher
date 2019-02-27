@@ -49,7 +49,7 @@ class PC_Switcher extends WP_Widget {
 
 		$widget_ops = array(
 			'classname'   => 'widget_pc_switcher',
-			'description' => __( 'Add the PC Switcher to a widget.', 'multi-device-switcher' )
+			'description' => __( 'Add the PC Switcher to a widget.', 'multi-device-switcher' ),
 		);
 		parent::__construct( 'pc-switcher', __( 'PC Switcher', 'multi-device-switcher' ), $widget_ops );
 		$this->alt_option_name = 'widget_pc_switcher';
