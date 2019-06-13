@@ -1,6 +1,14 @@
 <?php
 /**
  * Multi Device Switcher Command
+ *
+ * @package     Multi_Device_Switcher
+ */
+
+/**
+ * Core class Multi_Device_Switcher_Command
+ *
+ * @since 1.0.0
  */
 class Multi_Device_Switcher_Command extends WP_CLI_Command {
 

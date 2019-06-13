@@ -27,6 +27,11 @@ function pc_switcher_load_widgets() {
 	register_widget( 'PC_Switcher' );
 }
 
+/**
+ * Core class PC_Switcher
+ *
+ * @since 1.0.0
+ */
 class PC_Switcher extends WP_Widget {
 
 	function __construct() {

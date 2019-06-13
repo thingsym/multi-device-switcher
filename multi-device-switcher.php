@@ -18,6 +18,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Core class Multi_Device_Switcher
+ *
+ * @since 1.0.0
+ */
 class Multi_Device_Switcher {
 	protected $option_group = 'multi_device_switcher';
 	protected $option_name  = 'multi_device_switcher_options';
