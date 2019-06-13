@@ -476,7 +476,7 @@ For more information about the Multi Device Switcher Command, see `wp help multi
 * fixed: split multi_device_switcher_init() into two functions
 
 = 1.0.0 =
-* Initial release.
+* Initial release
 
 == Upgrade Notice ==
 
