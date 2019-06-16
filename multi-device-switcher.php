@@ -24,9 +24,32 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since 1.0.0
  */
 class Multi_Device_Switcher {
+
+	/**
+	 * Protected value.
+	 *
+	 * @access protected
+	 *
+	 * @var string $option_group   The group name of option
+	 */
 	protected $option_group = 'multi_device_switcher';
+
+	/**
+	 * Protected value.
+	 *
+	 * @access protected
+	 *
+	 * @var string $option_name   The option name
+	 */
 	protected $option_name  = 'multi_device_switcher_options';
 
+	/**
+	 * Protected value.
+	 *
+	 * @access protected
+	 *
+	 * @var string $capability   The types of capability
+	 */
 	protected $capability = 'switch_themes';
 
 	protected $cookie_name_multi_device_switcher = 'multi-device-switcher';
