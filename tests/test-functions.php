@@ -36,8 +36,8 @@ class Test_Multi_Device_Switcher_Functions extends WP_UnitTestCase {
 	 * @test
 	 * @group functions
 	 */
-	function get_options_userAgent() {
-		$userAgent = $this->multi_device_switcher->get_options_userAgent();
+	function get_options_user_agent() {
+		$userAgent = $this->multi_device_switcher->get_options_user_agent();
 
 		$expected = array(
 			'smart' => array('iPhone', 'iPod', 'Android.*Mobile', 'dream', 'CUPCAKE', 'Windows Phone', 'IEMobile.*Touch', 'webOS', 'BB10.*Mobile', 'BlackBerry.*Mobile', 'Mobile.*Gecko'),

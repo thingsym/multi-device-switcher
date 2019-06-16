@@ -78,30 +78,30 @@ class Multi_Device_Switcher {
 
 		add_action( 'init', array( $this, 'session' ) );
 
-		$userAgent = $this->get_options_userAgent();
 		$server_ua = isset( $_SERVER['HTTP_USER_AGENT'] ) ? $_SERVER['HTTP_USER_AGENT'] : '';
+		$user_agent = $this->get_options_user_agent();
 
-		foreach ( array_reverse( $userAgent ) as $key => $val ) {
+		foreach ( array_reverse( $user_agent ) as $key => $val ) {
 			if ( ! preg_match( '/^custom_switcher_/', $key ) ) {
 				continue;
 			}
-			if ( $userAgent[ $key ] && preg_match( '/' . implode( '|', $userAgent[ $key ] ) . '/i', $server_ua ) ) {
+			if ( $user_agent[ $key ] && preg_match( '/' . implode( '|', $user_agent[ $key ] ) . '/i', $server_ua ) ) {
 				$this->device = $key;
 				break;
 			}
 		}
 
 		if ( ! $this->device ) {
-			if ( $userAgent['game'] && preg_match( '/' . implode( '|', $userAgent['game'] ) . '/i', $server_ua ) ) {
+			if ( $user_agent['game'] && preg_match( '/' . implode( '|', $user_agent['game'] ) . '/i', $server_ua ) ) {
 				$this->device = 'game';
 			}
-			elseif ( $userAgent['tablet'] && preg_match( '/' . implode( '|', $userAgent['tablet'] ) . '/i', $server_ua ) ) {
+			elseif ( $user_agent['tablet'] && preg_match( '/' . implode( '|', $user_agent['tablet'] ) . '/i', $server_ua ) ) {
 				$this->device = 'tablet';
 			}
-			elseif ( $userAgent['smart'] && preg_match( '/' . implode( '|', $userAgent['smart'] ) . '/i', $server_ua ) ) {
+			elseif ( $user_agent['smart'] && preg_match( '/' . implode( '|', $user_agent['smart'] ) . '/i', $server_ua ) ) {
 				$this->device = 'smart';
 			}
-			elseif ( $userAgent['mobile'] && preg_match( '/' . implode( '|', $userAgent['mobile'] ) . '/i', $server_ua ) ) {
+			elseif ( $user_agent['mobile'] && preg_match( '/' . implode( '|', $user_agent['mobile'] ) . '/i', $server_ua ) ) {
 				$this->device = 'mobile';
 			}
 		}
@@ -122,13 +122,13 @@ class Multi_Device_Switcher {
 		}
 	}
 
-	public function get_options_userAgent() {
+	public function get_options_user_agent() {
 		$options = $this->get_options();
 
-		$userAgent['smart']  = empty( $options['userAgent_smart'] ) ? '' : preg_split( '/,\s*/', $options['userAgent_smart'], -1, PREG_SPLIT_NO_EMPTY );
-		$userAgent['tablet'] = empty( $options['userAgent_tablet'] ) ? '' : preg_split( '/,\s*/', $options['userAgent_tablet'], -1, PREG_SPLIT_NO_EMPTY );
-		$userAgent['mobile'] = empty( $options['userAgent_mobile'] ) ? '' : preg_split( '/,\s*/', $options['userAgent_mobile'], -1, PREG_SPLIT_NO_EMPTY );
-		$userAgent['game']   = empty( $options['userAgent_game'] ) ? '' : preg_split( '/,\s*/', $options['userAgent_game'], -1, PREG_SPLIT_NO_EMPTY );
+		$user_agent['smart']  = empty( $options['userAgent_smart'] ) ? '' : preg_split( '/,\s*/', $options['userAgent_smart'], -1, PREG_SPLIT_NO_EMPTY );
+		$user_agent['tablet'] = empty( $options['userAgent_tablet'] ) ? '' : preg_split( '/,\s*/', $options['userAgent_tablet'], -1, PREG_SPLIT_NO_EMPTY );
+		$user_agent['mobile'] = empty( $options['userAgent_mobile'] ) ? '' : preg_split( '/,\s*/', $options['userAgent_mobile'], -1, PREG_SPLIT_NO_EMPTY );
+		$user_agent['game']   = empty( $options['userAgent_game'] ) ? '' : preg_split( '/,\s*/', $options['userAgent_game'], -1, PREG_SPLIT_NO_EMPTY );
 
 		foreach ( $options as $key => $val ) {
 			if ( ! preg_match( '/^custom_switcher_userAgent_/', $key ) ) {
@@ -136,10 +136,10 @@ class Multi_Device_Switcher {
 			}
 
 			$custom_switcher_name                                    = preg_replace( '/^custom_switcher_userAgent_/', '', $key );
-			$userAgent[ 'custom_switcher_' . $custom_switcher_name ] = empty( $val ) ? '' : preg_split( '/,\s*/', $val, -1, PREG_SPLIT_NO_EMPTY );
+			$user_agent[ 'custom_switcher_' . $custom_switcher_name ] = empty( $val ) ? '' : preg_split( '/,\s*/', $val, -1, PREG_SPLIT_NO_EMPTY );
 		}
 
-		return $userAgent;
+		return $user_agent;
 	}
 
 	public function get_stylesheet( $stylesheet = '' ) {
@@ -831,7 +831,7 @@ class Multi_Device_Switcher {
 			<h3><?php esc_html_e( 'Custom Switcher UserAgent', 'multi-device-switcher' ); ?></h3>
 			<table class="form-table">
 			<?php
-			foreach ( $options as $custom_switcher_option => $custom_switcher_userAgent ) {
+			foreach ( $options as $custom_switcher_option => $custom_switcher_user_agent ) {
 				if ( ! preg_match( '/^custom_switcher_userAgent_/', $custom_switcher_option ) ) {
 					continue;
 				}
@@ -840,7 +840,7 @@ class Multi_Device_Switcher {
 			?>
 
 			<tr><th scope="row"><?php echo esc_html( $custom_switcher_name ); ?></th>
-			<td><textarea name="multi_device_switcher_options[<?php echo esc_attr( $custom_switcher_option ); ?>]" rows="4" cols="42"><?php echo esc_textarea( $custom_switcher_userAgent ); ?></textarea></td>
+			<td><textarea name="multi_device_switcher_options[<?php echo esc_attr( $custom_switcher_option ); ?>]" rows="4" cols="42"><?php echo esc_textarea( $custom_switcher_user_agent ); ?></textarea></td>
 			</tr>
 			<?php
 			}
