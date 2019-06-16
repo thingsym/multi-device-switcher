@@ -27,9 +27,6 @@ class Multi_Device_Switcher {
 	protected $option_group = 'multi_device_switcher';
 	protected $option_name  = 'multi_device_switcher_options';
 
-	protected $page_title = 'Multi Device Switcher';
-	protected $menu_title = 'Multi Device Switcher';
-	protected $menu_slug  = 'multi-device-switcher';
 	protected $capability = 'switch_themes';
 
 	protected $cookie_name_multi_device_switcher = 'multi-device-switcher';
@@ -446,10 +443,10 @@ class Multi_Device_Switcher {
 	public function add_option_page() {
 
 		$page_hook = add_theme_page(
-			__( $this->page_title, 'multi-device-switcher' ),
-			__( $this->menu_title, 'multi-device-switcher' ),
+			__( 'Multi Device Switcher', 'multi-device-switcher' ),
+			__( 'Multi Device Switcher', 'multi-device-switcher' ),
 			$this->option_page_capability(),
-			$this->menu_slug,
+			'multi-device-switcher',
 			array( $this, 'render_option_page' )
 		);
 
