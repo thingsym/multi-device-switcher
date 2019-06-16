@@ -34,7 +34,7 @@ function pc_switcher_load_widgets() {
  */
 class PC_Switcher extends WP_Widget {
 
-	function __construct() {
+	public function __construct() {
 		load_plugin_textdomain( 'multi-device-switcher', false, dirname( plugin_basename( __MULTI_DEVICE_SWITCHER_FILE__ ) ) . '/languages/' );
 
 		$widget_ops = array(
@@ -45,7 +45,7 @@ class PC_Switcher extends WP_Widget {
 		$this->alt_option_name = 'widget_pc_switcher';
 	}
 
-	function widget( $args, $instance ) {
+	public function widget( $args, $instance ) {
 		if ( ! function_exists( 'multi_device_switcher_add_pc_switcher' ) ) {
 			return;
 		}
@@ -60,12 +60,12 @@ class PC_Switcher extends WP_Widget {
 		}
 	}
 
-	function update( $new_instance, $old_instance ) {
+	public function update( $new_instance, $old_instance ) {
 		$instance = $old_instance;
 
 		return $instance;
 	}
 
-	function form( $instance ) {
+	public function form( $instance ) {
 	}
 }
