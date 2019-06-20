@@ -41,7 +41,7 @@ class Multi_Device_Switcher {
 	 *
 	 * @var string $option_name   The option name
 	 */
-	protected $option_name  = 'multi_device_switcher_options';
+	protected $option_name = 'multi_device_switcher_options';
 
 	/**
 	 * Protected value.
@@ -68,7 +68,7 @@ class Multi_Device_Switcher {
 	 *
 	 * @var string $cookie_name_disable_switcher
 	 */
-	protected $cookie_name_disable_switcher      = 'disable-switcher';
+	protected $cookie_name_disable_switcher = 'disable-switcher';
 
 	/**
 	 * Protected value.
@@ -77,7 +77,7 @@ class Multi_Device_Switcher {
 	 *
 	 * @var string $cookie_name_pc_switcher
 	 */
-	protected $cookie_name_pc_switcher           = 'pc-switcher';
+	protected $cookie_name_pc_switcher = 'pc-switcher';
 
 	/**
 	 * Protected value.
@@ -186,7 +186,7 @@ class Multi_Device_Switcher {
 
 		add_action( 'init', array( $this, 'session' ) );
 
-		$server_ua = isset( $_SERVER['HTTP_USER_AGENT'] ) ? $_SERVER['HTTP_USER_AGENT'] : '';
+		$server_ua  = isset( $_SERVER['HTTP_USER_AGENT'] ) ? $_SERVER['HTTP_USER_AGENT'] : '';
 		$user_agent = $this->get_options_user_agent();
 
 		foreach ( array_reverse( $user_agent ) as $key => $val ) {
@@ -252,7 +252,8 @@ class Multi_Device_Switcher {
 				continue;
 			}
 
-			$custom_switcher_name                                    = preg_replace( '/^custom_switcher_userAgent_/', '', $key );
+			$custom_switcher_name = preg_replace( '/^custom_switcher_userAgent_/', '', $key );
+
 			$user_agent[ 'custom_switcher_' . $custom_switcher_name ] = empty( $val ) ? '' : preg_split( '/,\s*/', $val, -1, PREG_SPLIT_NO_EMPTY );
 		}
 
@@ -486,15 +487,15 @@ class Multi_Device_Switcher {
 
 			if ( isset( $_COOKIE[ $this->cookie_name_pc_switcher ] ) ) {
 				$uri .= add_query_arg( 'pc-switcher', 0 );
-		?>
+				?>
 <div class="pc-switcher"><a href="<?php echo esc_url( $uri ); ?>"><?php esc_html_e( 'Mobile', 'multi-device-switcher' ); ?></a><span class="active"><?php esc_html_e( 'PC', 'multi-device-switcher' ); ?></span></div>
-		<?php
+				<?php
 			}
 			else {
 				$uri .= add_query_arg( 'pc-switcher', 1 );
-		?>
+				?>
 <div class="pc-switcher"><span class="active"><?php esc_html_e( 'Mobile', 'multi-device-switcher' ); ?></span><a href="<?php echo esc_url( $uri ); ?>"><?php esc_html_e( 'PC', 'multi-device-switcher' ); ?></a></div>
-		<?php
+				<?php
 			}
 		}
 	}
@@ -572,7 +573,7 @@ class Multi_Device_Switcher {
 	 *
 	 * @access public
 	 *
-	 * @param array $atts
+	 * @param array  $atts
 	 * @param string $content
 	 *
 	 * @return string
@@ -695,7 +696,6 @@ class Multi_Device_Switcher {
 	 * @since 1.0.0
 	 */
 	public function add_option_page() {
-
 		$page_hook = add_theme_page(
 			__( 'Multi Device Switcher', 'multi-device-switcher' ),
 			__( 'Multi Device Switcher', 'multi-device-switcher' ),
@@ -820,172 +820,176 @@ class Multi_Device_Switcher {
 	 */
 	public function render_option_page() {
 		?>
-	<div class="wrap">
-		<div id="icon-themes" class="icon32"><br></div>
-		<h2><?php esc_html_e( 'Multi Device Switcher', 'multi-device-switcher' ); ?></h2>
+<div class="wrap">
+<div id="icon-themes" class="icon32"><br></div>
+<h2><?php esc_html_e( 'Multi Device Switcher', 'multi-device-switcher' ); ?></h2>
 		<?php settings_errors(); ?>
 
-		<form method="post" action="options.php">
-			<?php
-				settings_fields( 'multi_device_switcher' );
-				$options = $this->get_options();
+<form method="post" action="options.php">
+		<?php
+		settings_fields( 'multi_device_switcher' );
+		$options = $this->get_options();
 
-				$default_theme = wp_get_theme()->get( 'Name' );
-				$themes        = wp_get_themes();
-				$theme_names   = array();
+		$default_theme = wp_get_theme()->get( 'Name' );
+		$themes        = wp_get_themes();
+		$theme_names   = array();
 
-			if ( count( $themes ) ) {
-				foreach ( $themes as $t ) {
-					$theme_names[] = $t->get( 'Name' );
-				}
-				natcasesort( $theme_names );
+		if ( count( $themes ) ) {
+			foreach ( $themes as $t ) {
+				$theme_names[] = $t->get( 'Name' );
 			}
-			?>
+			natcasesort( $theme_names );
+		}
+		?>
 
-			<div id="admin-tabs">
-			<fieldset id="Theme" class="options">
-			<h3 class="label"><?php esc_html_e( 'Theme', 'multi-device-switcher' ); ?></h3>
-			<table class="form-table">
-				<tr><th scope="row"><?php esc_html_e( 'Smart Phone Theme', 'multi-device-switcher' ); ?></th>
-					<td>
+<div id="admin-tabs">
+<fieldset id="Theme" class="options">
+<h3 class="label"><?php esc_html_e( 'Theme', 'multi-device-switcher' ); ?></h3>
+<table class="form-table">
+	<tr><th scope="row"><?php esc_html_e( 'Smart Phone Theme', 'multi-device-switcher' ); ?></th>
+		<td>
 
-			<?php
-			if ( count( $theme_names ) ) {
-				$html = '<select name="multi_device_switcher_options[theme_smartphone]">';
+		<?php
+		if ( count( $theme_names ) ) {
+			$html = '<select name="multi_device_switcher_options[theme_smartphone]">';
 
-				if ( ( 'None' === $options['theme_smartphone'] ) || ( '' === $options['theme_smartphone'] ) ) {
-					$html .= '<option value="None" selected="selected">' . __( 'None', 'multi-device-switcher' ) . '</option>';
-				}
-				else {
-					$html .= '<option value="None">' . __( 'None', 'multi-device-switcher' ) . '</option>';
-				}
-
-				foreach ( $theme_names as $theme_name ) {
-					if ( $default_theme === $theme_name ) {
-						continue;
-					}
-					if ( $options['theme_smartphone'] === $theme_name ) {
-						$html .= '<option value="' . esc_attr( $theme_name ) . '" selected="selected">' . esc_html( $theme_name ) . '</option>';
-					}
-					else {
-						$html .= '<option value="' . esc_attr( $theme_name ) . '">' . esc_html( $theme_name ) . '</option>';
-					}
-				}
-				$html .= '</select>';
+			if ( ( 'None' === $options['theme_smartphone'] ) || ( '' === $options['theme_smartphone'] ) ) {
+				$html .= '<option value="None" selected="selected">' . __( 'None', 'multi-device-switcher' ) . '</option>';
 			}
-				echo $html;
-			?>
-					</td>
-				</tr>
-				<tr><th scope="row"><?php esc_html_e( 'Tablet PC Theme', 'multi-device-switcher' ); ?></th>
-					<td>
-
-			<?php
-			if ( count( $theme_names ) ) {
-				$html = '<select name="multi_device_switcher_options[theme_tablet]">';
-
-				if ( ( 'None' === $options['theme_tablet'] ) || ( '' === $options['theme_tablet'] ) ) {
-					$html .= '<option value="None" selected="selected">' . __( 'None', 'multi-device-switcher' ) . '</option>';
-				}
-				else {
-					$html .= '<option value="None">' . __( 'None', 'multi-device-switcher' ) . '</option>';
-				}
-
-				foreach ( $theme_names as $theme_name ) {
-					if ( $default_theme === $theme_name ) {
-						continue;
-					}
-					if ( $options['theme_tablet'] === $theme_name ) {
-						$html .= '<option value="' . esc_attr( $theme_name ) . '" selected="selected">' . esc_html( $theme_name ) . '</option>';
-					}
-					else {
-						$html .= '<option value="' . esc_attr( $theme_name ) . '">' . esc_html( $theme_name ) . '</option>';
-					}
-				}
-				$html .= '</select>';
+			else {
+				$html .= '<option value="None">' . __( 'None', 'multi-device-switcher' ) . '</option>';
 			}
-				echo $html;
-			?>
-					</td>
-				</tr>
-				<tr><th scope="row"><?php esc_html_e( 'Mobile Phone Theme', 'multi-device-switcher' ); ?></th>
-					<td>
 
-			<?php
-			if ( count( $theme_names ) ) {
-				$html = '<select name="multi_device_switcher_options[theme_mobile]">';
-
-				if ( ( 'None' === $options['theme_mobile'] ) || ( '' === $options['theme_mobile'] ) ) {
-					$html .= '<option value="None" selected="selected">' . __( 'None', 'multi-device-switcher' ) . '</option>';
-				}
-				else {
-					$html .= '<option value="None">' . __( 'None', 'multi-device-switcher' ) . '</option>';
-				}
-
-				foreach ( $theme_names as $theme_name ) {
-					if ( $default_theme === $theme_name ) {
-						continue;
-					}
-					if ( $options['theme_mobile'] === $theme_name ) {
-						$html .= '<option value="' . esc_attr( $theme_name ) . '" selected="selected">' . esc_html( $theme_name ) . '</option>';
-					}
-					else {
-						$html .= '<option value="' . esc_attr( $theme_name ) . '">' . esc_html( $theme_name ) . '</option>';
-					}
-				}
-				$html .= '</select>';
-			}
-				echo $html;
-			?>
-					</td>
-				</tr>
-				<tr><th scope="row"><?php esc_html_e( 'Game Platforms Theme', 'multi-device-switcher' ); ?></th>
-					<td>
-
-			<?php
-			if ( count( $theme_names ) ) {
-				$html = '<select name="multi_device_switcher_options[theme_game]">';
-
-				if ( ( 'None' === $options['theme_game'] ) || ( '' === $options['theme_game'] ) ) {
-					$html .= '<option value="None" selected="selected">' . __( 'None', 'multi-device-switcher' ) . '</option>';
-				}
-				else {
-					$html .= '<option value="None">' . __( 'None', 'multi-device-switcher' ) . '</option>';
-				}
-
-				foreach ( $theme_names as $theme_name ) {
-					if ( $default_theme === $theme_name ) {
-						continue;
-					}
-					if ( $options['theme_game'] === $theme_name ) {
-						$html .= '<option value="' . esc_attr( $theme_name ) . '" selected="selected">' . esc_html( $theme_name ) . '</option>';
-					}
-					else {
-						$html .= '<option value="' . esc_attr( $theme_name ) . '">' . esc_html( $theme_name ) . '</option>';
-					}
-				}
-				$html .= '</select>';
-			}
-				echo $html;
-			?>
-					</td>
-				</tr>
-			</table>
-
-			<h3><?php esc_html_e( 'Custom Switcher Theme', 'multi-device-switcher' ); ?></h3>
-			<table class="form-table">
-
-			<?php
-			foreach ( $options as $custom_switcher_option => $custom_switcher_theme ) {
-				if ( ! preg_match( '/^custom_switcher_theme_/', $custom_switcher_option ) ) {
+			foreach ( $theme_names as $theme_name ) {
+				if ( $default_theme === $theme_name ) {
 					continue;
 				}
+				if ( $options['theme_smartphone'] === $theme_name ) {
+					$html .= '<option value="' . esc_attr( $theme_name ) . '" selected="selected">' . esc_html( $theme_name ) . '</option>';
+				}
+				else {
+					$html .= '<option value="' . esc_attr( $theme_name ) . '">' . esc_html( $theme_name ) . '</option>';
+				}
+			}
+			$html .= '</select>';
+		}
+		echo $html;
+		?>
 
-				$custom_switcher_name = preg_replace( '/^custom_switcher_theme_/', '', $custom_switcher_option );
+		</td>
+	</tr>
+	<tr><th scope="row"><?php esc_html_e( 'Tablet PC Theme', 'multi-device-switcher' ); ?></th>
+		<td>
+
+		<?php
+		if ( count( $theme_names ) ) {
+			$html = '<select name="multi_device_switcher_options[theme_tablet]">';
+
+			if ( ( 'None' === $options['theme_tablet'] ) || ( '' === $options['theme_tablet'] ) ) {
+				$html .= '<option value="None" selected="selected">' . __( 'None', 'multi-device-switcher' ) . '</option>';
+			}
+			else {
+				$html .= '<option value="None">' . __( 'None', 'multi-device-switcher' ) . '</option>';
+			}
+
+			foreach ( $theme_names as $theme_name ) {
+				if ( $default_theme === $theme_name ) {
+					continue;
+				}
+				if ( $options['theme_tablet'] === $theme_name ) {
+					$html .= '<option value="' . esc_attr( $theme_name ) . '" selected="selected">' . esc_html( $theme_name ) . '</option>';
+				}
+				else {
+					$html .= '<option value="' . esc_attr( $theme_name ) . '">' . esc_html( $theme_name ) . '</option>';
+				}
+			}
+			$html .= '</select>';
+		}
+		echo $html;
+		?>
+
+		</td>
+	</tr>
+	<tr><th scope="row"><?php esc_html_e( 'Mobile Phone Theme', 'multi-device-switcher' ); ?></th>
+		<td>
+
+		<?php
+		if ( count( $theme_names ) ) {
+			$html = '<select name="multi_device_switcher_options[theme_mobile]">';
+
+			if ( ( 'None' === $options['theme_mobile'] ) || ( '' === $options['theme_mobile'] ) ) {
+				$html .= '<option value="None" selected="selected">' . __( 'None', 'multi-device-switcher' ) . '</option>';
+			}
+			else {
+				$html .= '<option value="None">' . __( 'None', 'multi-device-switcher' ) . '</option>';
+			}
+
+			foreach ( $theme_names as $theme_name ) {
+				if ( $default_theme === $theme_name ) {
+					continue;
+				}
+				if ( $options['theme_mobile'] === $theme_name ) {
+					$html .= '<option value="' . esc_attr( $theme_name ) . '" selected="selected">' . esc_html( $theme_name ) . '</option>';
+				}
+				else {
+					$html .= '<option value="' . esc_attr( $theme_name ) . '">' . esc_html( $theme_name ) . '</option>';
+				}
+			}
+			$html .= '</select>';
+		}
+		echo $html;
+		?>
+
+		</td>
+	</tr>
+	<tr><th scope="row"><?php esc_html_e( 'Game Platforms Theme', 'multi-device-switcher' ); ?></th>
+		<td>
+
+		<?php
+		if ( count( $theme_names ) ) {
+			$html = '<select name="multi_device_switcher_options[theme_game]">';
+
+			if ( ( 'None' === $options['theme_game'] ) || ( '' === $options['theme_game'] ) ) {
+				$html .= '<option value="None" selected="selected">' . __( 'None', 'multi-device-switcher' ) . '</option>';
+			}
+			else {
+				$html .= '<option value="None">' . __( 'None', 'multi-device-switcher' ) . '</option>';
+			}
+
+			foreach ( $theme_names as $theme_name ) {
+				if ( $default_theme === $theme_name ) {
+					continue;
+				}
+				if ( $options['theme_game'] === $theme_name ) {
+					$html .= '<option value="' . esc_attr( $theme_name ) . '" selected="selected">' . esc_html( $theme_name ) . '</option>';
+				}
+				else {
+					$html .= '<option value="' . esc_attr( $theme_name ) . '">' . esc_html( $theme_name ) . '</option>';
+				}
+			}
+			$html .= '</select>';
+		}
+		echo $html;
+		?>
+
+		</td>
+	</tr>
+</table>
+
+<h3><?php esc_html_e( 'Custom Switcher Theme', 'multi-device-switcher' ); ?></h3>
+<table class="form-table">
+
+		<?php
+		foreach ( $options as $custom_switcher_option => $custom_switcher_theme ) {
+			if ( ! preg_match( '/^custom_switcher_theme_/', $custom_switcher_option ) ) {
+				continue;
+			}
+
+			$custom_switcher_name = preg_replace( '/^custom_switcher_theme_/', '', $custom_switcher_option );
 			?>
 
-			<tr><th scope="row"><?php echo esc_html( $custom_switcher_name ); ?></th>
-			<td>
+	<tr><th scope="row"><?php echo esc_html( $custom_switcher_name ); ?></th>
+		<td>
 
 			<?php
 			if ( count( $theme_names ) ) {
@@ -1014,116 +1018,116 @@ class Multi_Device_Switcher {
 			}
 			echo $html;
 			?>
-			</td>
-			</tr>
+		</td>
+	</tr>
 
 			<?php
+		}
+		?>
+
+	<tr><th scope="row"><?php esc_html_e( 'Add Custom Switcher', 'multi-device-switcher' ); ?></th>
+		<td>
+			<legend class="screen-reader-text"><span><?php esc_html_e( 'Add Custom Switcher', 'multi-device-switcher' ); ?></span></legend>
+				<input type="text" name="multi_device_switcher_options[custom_switcher]" id="custom-switcher" value="" size="24">
+				<span class="submit"><input type="submit" name="multi_device_switcher_options[add_custom_switcher]" value="<?php esc_html_e( 'Add', 'multi-device-switcher' ); ?>" class="button"></span><br>
+				<?php esc_html_e( '20 characters max, alphanumeric', 'multi-device-switcher' ); ?>
+		</td>
+	</tr>
+</table>
+
+</fieldset>
+
+<fieldset id="UserAgent" class="options">
+<h3 class="label"><?php esc_html_e( 'UserAgent', 'multi-device-switcher' ); ?></h3>
+<p><?php esc_html_e( 'Enter Comma-separated values (csv) format.', 'multi-device-switcher' ); ?></p>
+
+<table class="form-table">
+	<tr><th scope="row"><?php esc_html_e( 'Smart Phone', 'multi-device-switcher' ); ?></th>
+		<td><textarea name="multi_device_switcher_options[userAgent_smart]" rows="4" cols="42"><?php echo esc_textarea( $options['userAgent_smart'] ); ?></textarea></td>
+	</tr>
+	<tr><th scope="row"><?php esc_html_e( 'Tablet PC', 'multi-device-switcher' ); ?></th>
+		<td><textarea name="multi_device_switcher_options[userAgent_tablet]" rows="4" cols="42"><?php echo esc_textarea( $options['userAgent_tablet'] ); ?></textarea></td>
+	</tr>
+	<tr><th scope="row"><?php esc_html_e( 'Mobile Phone', 'multi-device-switcher' ); ?></th>
+		<td><textarea name="multi_device_switcher_options[userAgent_mobile]" rows="4" cols="42"><?php echo esc_textarea( $options['userAgent_mobile'] ); ?></textarea></td>
+	</tr>
+	<tr><th scope="row"><?php esc_html_e( 'Game Platforms', 'multi-device-switcher' ); ?></th>
+		<td><textarea name="multi_device_switcher_options[userAgent_game]" rows="4" cols="42"><?php echo esc_textarea( $options['userAgent_game'] ); ?></textarea></td>
+	</tr>
+	<tr><th></th>
+		<td><span class="submit"><input type="submit" name="multi_device_switcher_options[restore_UserAgent]" value="<?php esc_html_e( 'Reset Settings to Default UserAgent', 'multi-device-switcher' ); ?>" class="button"></span></td>
+	</tr>
+
+</table>
+
+<h3><?php esc_html_e( 'Custom Switcher UserAgent', 'multi-device-switcher' ); ?></h3>
+<table class="form-table">
+		<?php
+		foreach ( $options as $custom_switcher_option => $custom_switcher_user_agent ) {
+			if ( ! preg_match( '/^custom_switcher_userAgent_/', $custom_switcher_option ) ) {
+				continue;
 			}
+
+			$custom_switcher_name = preg_replace( '/^custom_switcher_userAgent_/', '', $custom_switcher_option );
 			?>
 
-				<tr><th scope="row"><?php esc_html_e( 'Add Custom Switcher', 'multi-device-switcher' ); ?></th>
-					<td>
-						<legend class="screen-reader-text"><span><?php esc_html_e( 'Add Custom Switcher', 'multi-device-switcher' ); ?></span></legend>
-							<input type="text" name="multi_device_switcher_options[custom_switcher]" id="custom-switcher" value="" size="24">
-							<span class="submit"><input type="submit" name="multi_device_switcher_options[add_custom_switcher]" value="<?php esc_html_e( 'Add', 'multi-device-switcher' ); ?>" class="button"></span><br>
-							<?php esc_html_e( '20 characters max, alphanumeric', 'multi-device-switcher' ); ?>
-					</td>
-				</tr>
-			</table>
-
-			</fieldset>
-
-			<fieldset id="UserAgent" class="options">
-			<h3 class="label"><?php esc_html_e( 'UserAgent', 'multi-device-switcher' ); ?></h3>
-			<p><?php esc_html_e( 'Enter Comma-separated values (csv) format.', 'multi-device-switcher' ); ?></p>
-
-			<table class="form-table">
-				<tr><th scope="row"><?php esc_html_e( 'Smart Phone', 'multi-device-switcher' ); ?></th>
-					<td><textarea name="multi_device_switcher_options[userAgent_smart]" rows="4" cols="42"><?php echo esc_textarea( $options['userAgent_smart'] ); ?></textarea></td>
-				</tr>
-				<tr><th scope="row"><?php esc_html_e( 'Tablet PC', 'multi-device-switcher' ); ?></th>
-					<td><textarea name="multi_device_switcher_options[userAgent_tablet]" rows="4" cols="42"><?php echo esc_textarea( $options['userAgent_tablet'] ); ?></textarea></td>
-				</tr>
-				<tr><th scope="row"><?php esc_html_e( 'Mobile Phone', 'multi-device-switcher' ); ?></th>
-					<td><textarea name="multi_device_switcher_options[userAgent_mobile]" rows="4" cols="42"><?php echo esc_textarea( $options['userAgent_mobile'] ); ?></textarea></td>
-				</tr>
-				<tr><th scope="row"><?php esc_html_e( 'Game Platforms', 'multi-device-switcher' ); ?></th>
-					<td><textarea name="multi_device_switcher_options[userAgent_game]" rows="4" cols="42"><?php echo esc_textarea( $options['userAgent_game'] ); ?></textarea></td>
-				</tr>
-				<tr><th></th>
-					<td><span class="submit"><input type="submit" name="multi_device_switcher_options[restore_UserAgent]" value="<?php esc_html_e( 'Reset Settings to Default UserAgent', 'multi-device-switcher' ); ?>" class="button"></span></td>
-				</tr>
-
-			</table>
-
-			<h3><?php esc_html_e( 'Custom Switcher UserAgent', 'multi-device-switcher' ); ?></h3>
-			<table class="form-table">
+	<tr><th scope="row"><?php echo esc_html( $custom_switcher_name ); ?></th>
+		<td><textarea name="multi_device_switcher_options[<?php echo esc_attr( $custom_switcher_option ); ?>]" rows="4" cols="42"><?php echo esc_textarea( $custom_switcher_user_agent ); ?></textarea></td>
+	</tr>
 			<?php
-			foreach ( $options as $custom_switcher_option => $custom_switcher_user_agent ) {
-				if ( ! preg_match( '/^custom_switcher_userAgent_/', $custom_switcher_option ) ) {
-					continue;
-				}
+		}
+		?>
 
-				$custom_switcher_name = preg_replace( '/^custom_switcher_userAgent_/', '', $custom_switcher_option );
-			?>
+</table>
+</fieldset>
 
-			<tr><th scope="row"><?php echo esc_html( $custom_switcher_name ); ?></th>
-			<td><textarea name="multi_device_switcher_options[<?php echo esc_attr( $custom_switcher_option ); ?>]" rows="4" cols="42"><?php echo esc_textarea( $custom_switcher_user_agent ); ?></textarea></td>
-			</tr>
-			<?php
-			}
-			?>
+<fieldset id="PC-Switcher" class="options">
+<h3 class="label"><?php esc_html_e( 'PC Switcher', 'multi-device-switcher' ); ?></h3>
 
-			</table>
-			</fieldset>
+<table class="form-table">
+	<tr><th scope="row"><?php esc_html_e( 'Add PC Switcher', 'multi-device-switcher' ); ?></th>
+		<td>
+			<legend class="screen-reader-text"><span><?php esc_html_e( 'Add PC Switcher', 'multi-device-switcher' ); ?></span></legend>
+				<label><input type="checkbox" name="multi_device_switcher_options[pc_switcher]" id="pc-switcher" value="1"<?php checked( 1, $options['pc_switcher'] ); ?>> <?php esc_html_e( 'Add a PC Switcher to the footer.', 'multi-device-switcher' ); ?></label>
+		</td>
+	</tr>
+	<tr><th scope="row"><?php esc_html_e( 'Add default CSS', 'multi-device-switcher' ); ?></th>
+		<td>
+			<legend class="screen-reader-text"><span><?php esc_html_e( 'Add default CSS', 'multi-device-switcher' ); ?></span></legend>
+				<label><input type="checkbox" name="multi_device_switcher_options[default_css]" id="add-default-css" value="1"<?php checked( 1, $options['default_css'] ); ?>> <?php esc_html_e( 'Add a default CSS.', 'multi-device-switcher' ); ?></label>
+		</td>
+	</tr>
+</table>
+</fieldset>
 
-			<fieldset id="PC-Switcher" class="options">
-			<h3 class="label"><?php esc_html_e( 'PC Switcher', 'multi-device-switcher' ); ?></h3>
+<fieldset id="Disable-Switcher" class="options">
+<h3 class="label"><?php esc_html_e( 'Disable Switcher', 'multi-device-switcher' ); ?></h3>
 
-			<table class="form-table">
-				<tr><th scope="row"><?php esc_html_e( 'Add PC Switcher', 'multi-device-switcher' ); ?></th>
-					<td>
-						<legend class="screen-reader-text"><span><?php esc_html_e( 'Add PC Switcher', 'multi-device-switcher' ); ?></span></legend>
-							<label><input type="checkbox" name="multi_device_switcher_options[pc_switcher]" id="pc-switcher" value="1"<?php checked( 1, $options['pc_switcher'] ); ?>> <?php esc_html_e( 'Add a PC Switcher to the footer.', 'multi-device-switcher' ); ?></label>
-					</td>
-				</tr>
-				<tr><th scope="row"><?php esc_html_e( 'Add default CSS', 'multi-device-switcher' ); ?></th>
-					<td>
-						<legend class="screen-reader-text"><span><?php esc_html_e( 'Add default CSS', 'multi-device-switcher' ); ?></span></legend>
-							<label><input type="checkbox" name="multi_device_switcher_options[default_css]" id="add-default-css" value="1"<?php checked( 1, $options['default_css'] ); ?>> <?php esc_html_e( 'Add a default CSS.', 'multi-device-switcher' ); ?></label>
-					</td>
-				</tr>
-			</table>
-			</fieldset>
+<table class="form-table">
+	<tr><th scope="row"><?php esc_html_e( 'Path', 'multi-device-switcher' ); ?></th>
+		<td>
+			<legend class="screen-reader-text"><span><?php esc_html_e( 'Path', 'multi-device-switcher' ); ?></span></legend>
+				<?php echo esc_html( home_url() ); ?><br>
+				<textarea name="multi_device_switcher_options[disable_path]" rows="16" cols="42" wrap="off"><?php echo esc_textarea( $options['disable_path'] ); ?></textarea>
+		</td>
+	</tr>
+	<tr><th scope="row"><?php esc_html_e( 'Regex mode', 'multi-device-switcher' ); ?></th>
+		<td>
+			<legend class="screen-reader-text"><span><?php esc_html_e( 'Regex mode', 'multi-device-switcher' ); ?></span></legend>
+				<label><input type="checkbox" name="multi_device_switcher_options[enable_regex]" id="enable-regex" value="1"<?php checked( 1, $options['enable_regex'] ); ?>> <?php esc_html_e( 'Enable Regex', 'multi-device-switcher' ); ?></label>
+		</td>
+	</tr>
+</table>
+</fieldset>
 
-			<fieldset id="Disable-Switcher" class="options">
-			<h3 class="label"><?php esc_html_e( 'Disable Switcher', 'multi-device-switcher' ); ?></h3>
+</div>
+		<?php submit_button(); ?>
+</form>
+</div>
 
-			<table class="form-table">
-				<tr><th scope="row"><?php esc_html_e( 'Path', 'multi-device-switcher' ); ?></th>
-					<td>
-						<legend class="screen-reader-text"><span><?php esc_html_e( 'Path', 'multi-device-switcher' ); ?></span></legend>
-							<?php echo esc_html( home_url() ); ?><br>
-							<textarea name="multi_device_switcher_options[disable_path]" rows="16" cols="42" wrap="off"><?php echo esc_textarea( $options['disable_path'] ); ?></textarea>
-					</td>
-				</tr>
-				<tr><th scope="row"><?php esc_html_e( 'Regex mode', 'multi-device-switcher' ); ?></th>
-					<td>
-						<legend class="screen-reader-text"><span><?php esc_html_e( 'Regex mode', 'multi-device-switcher' ); ?></span></legend>
-							<label><input type="checkbox" name="multi_device_switcher_options[enable_regex]" id="enable-regex" value="1"<?php checked( 1, $options['enable_regex'] ); ?>> <?php esc_html_e( 'Enable Regex', 'multi-device-switcher' ); ?></label>
-					</td>
-				</tr>
-			</table>
-			</fieldset>
-
-			</div>
-			<?php submit_button(); ?>
-		</form>
-	</div>
-
-	<div id="donate">
-	<h2><?php esc_html_e( 'Donationware', 'multi-device-switcher' ); ?></h2>
-	<p><?php esc_html_e( 'If you like this plugin, please donate to support development and maintenance.', 'multi-device-switcher' ); ?></p>
+<div id="donate">
+<h2><?php esc_html_e( 'Donationware', 'multi-device-switcher' ); ?></h2>
+<p><?php esc_html_e( 'If you like this plugin, please donate to support development and maintenance.', 'multi-device-switcher' ); ?></p>
 <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
 <input type="hidden" name="cmd" value="_s-xclick">
 <input type="hidden" name="hosted_button_id" value="9L53NELFMHTWW">
@@ -1145,8 +1149,8 @@ class Multi_Device_Switcher {
 <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
 <img alt="" border="0" src="https://www.paypalobjects.com/ja_JP/i/scr/pixel.gif" width="1" height="1">
 </form>
-	</div>
-	<?php
+</div>
+		<?php
 	}
 
 	/**
@@ -1243,7 +1247,7 @@ class Multi_Device_Switcher {
 	 *
 	 * @access public
 	 *
-	 * @param $wp_customize Theme Customizer object
+	 * @param object $wp_customize
 	 *
 	 * @return void
 	 *
@@ -1347,14 +1351,14 @@ class Multi_Device_Switcher {
 	 */
 	public function load_file() {
 		/**
-		 * include PC Switcher Widget.
+		 * Include PC Switcher Widget.
 		 *
 		 * @since 1.2
 		 */
 		require_once dirname( __MULTI_DEVICE_SWITCHER_FILE__ ) . '/pc-switcher-widget.php';
 
 		/**
-		 * include Multi Device Switcher Command
+		 * Include Multi Device Switcher Command
 		 *
 		 * @since 1.4
 		 */
