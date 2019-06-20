@@ -555,56 +555,35 @@ class Multi_Device_Switcher {
 		return $links;
 	}
 
-	/**
-	 * Returns the options array.
-	 *
-	 * @since 1.0
-	 */
-	public function get_options() {
-
-		if ( ! isset( $options['pc_switcher'] ) ) {
-			$options['pc_switcher'] = $default_options['pc_switcher'];
-		}
-		if ( ! isset( $options['default_css'] ) ) {
-			$options['default_css'] = $default_options['default_css'];
-		}
-
-		if ( ! isset( $options['theme_smartphone'] ) ) {
-			$options['theme_smartphone'] = $default_options['theme_smartphone'];
-		}
-		if ( ! isset( $options['theme_tablet'] ) ) {
-			$options['theme_tablet'] = $default_options['theme_tablet'];
-		}
-		if ( ! isset( $options['theme_mobile'] ) ) {
-			$options['theme_mobile'] = $default_options['theme_mobile'];
-		}
-		if ( ! isset( $options['theme_game'] ) ) {
-			$options['theme_game'] = $default_options['theme_game'];
-		}
-
-		if ( ! isset( $options['userAgent_smart'] ) ) {
-			$options['userAgent_smart'] = $default_options['userAgent_smart'];
-		}
-		if ( ! isset( $options['userAgent_tablet'] ) ) {
-			$options['userAgent_tablet'] = $default_options['userAgent_tablet'];
-		}
-		if ( ! isset( $options['userAgent_mobile'] ) ) {
-			$options['userAgent_mobile'] = $default_options['userAgent_mobile'];
-		}
-		if ( ! isset( $options['userAgent_game'] ) ) {
-			$options['userAgent_game'] = $default_options['userAgent_game'];
+	public function get_options( $option_name = null ) {
 		$options = get_option( $this->option_name, $this->default_options );
 		$options = array_merge( $this->default_options, $options );
+
+		if ( is_null( $option_name ) ) {
+			/**
+			 * Filters the options.
+			 *
+			 * @param array    $options     The options.
+			 *
+			 * @since 1.7.0
+			 */
+			return apply_filters( 'multi_device_switcher/get_options', $options );
 		}
 
-		if ( ! isset( $options['disable_path'] ) ) {
-			$options['disable_path'] = $default_options['disable_path'];
+		if ( array_key_exists( $option_name, $options ) ) {
+			/**
+			 * Filters the option.
+			 *
+			 * @param mixed    $option           The value of option.
+			 * @param string   $option_name      The option name via argument.
+			 *
+			 * @since 1.7.0
+			 */
+			return apply_filters( 'multi_device_switcher/get_option', $options[ $option_name ], $option_name );
 		}
-		if ( ! isset( $options['enable_regex'] ) ) {
-			$options['enable_regex'] = $default_options['enable_regex'];
+		else {
+			return null;
 		}
-
-		return $options;
 	}
 
 	/**
