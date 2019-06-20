@@ -20,7 +20,7 @@ class Test_Multi_Device_Switcher_Constructor_Admin extends WP_UnitTestCase {
 		$this->assertEquals( 10, has_filter( 'init', array( $this->multi_device_switcher, 'load_textdomain' ) ) );
 		$this->assertEquals( 10, has_filter( 'init', array( $this->multi_device_switcher, 'init' ) ) );
 
-		$this->assertEquals( 10, has_action( 'admin_init', array( $this->multi_device_switcher, 'admin_init' ) ) );
+		$this->assertEquals( 10, has_action( 'admin_init', array( $this->multi_device_switcher, 'register_settings' ) ) );
 		$this->assertEquals( 10, has_action( 'admin_menu', array( $this->multi_device_switcher, 'add_option_page' ) ) );
 
 		$this->assertFalse( has_filter( 'wp_headers', array( $this->multi_device_switcher, 'add_header_vary' ) ) );

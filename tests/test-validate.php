@@ -28,7 +28,7 @@ class Test_Multi_Device_Switcher_Validate extends WP_UnitTestCase {
 			'enable_regex' => 0,
 		);
 
-		$actual = $this->multi_device_switcher->validate( $input );
+		$actual = $this->multi_device_switcher->validate_options( $input );
 
 		$this->assertTrue( is_array( $actual ) );
 		$this->assertEquals( $expected, $actual );
@@ -68,7 +68,7 @@ class Test_Multi_Device_Switcher_Validate extends WP_UnitTestCase {
 			'enable_regex' => 0,
 		);
 
-		$actual = $this->multi_device_switcher->validate( $input );
+		$actual = $this->multi_device_switcher->validate_options( $input );
 
 		$this->assertTrue( is_array( $actual ) );
 		$this->assertEquals( $expected, $actual );
@@ -109,7 +109,7 @@ class Test_Multi_Device_Switcher_Validate extends WP_UnitTestCase {
 			'enable_regex' => 0,
 		);
 
-		$actual = $this->multi_device_switcher->validate( $input );
+		$actual = $this->multi_device_switcher->validate_options( $input );
 
 		$this->assertTrue( is_array( $actual ) );
 		$this->assertEquals( $expected, $actual );
@@ -153,7 +153,7 @@ class Test_Multi_Device_Switcher_Validate extends WP_UnitTestCase {
 			'custom_switcher_userAgent_test' => '',
 		);
 
-		$actual = $this->multi_device_switcher->validate( $input );
+		$actual = $this->multi_device_switcher->validate_options( $input );
 
 		$this->assertTrue( is_array( $actual ) );
 		$this->assertEquals( $expected, $actual );
@@ -199,7 +199,7 @@ class Test_Multi_Device_Switcher_Validate extends WP_UnitTestCase {
 			'enable_regex' => 0,
 		);
 
-		$actual = $this->multi_device_switcher->validate( $input );
+		$actual = $this->multi_device_switcher->validate_options( $input );
 
 		$this->assertTrue( is_array( $actual ) );
 		$this->assertEquals( $expected, $actual );
@@ -243,7 +243,7 @@ class Test_Multi_Device_Switcher_Validate extends WP_UnitTestCase {
 			'enable_regex' => 0,
 		);
 
-		$actual = $this->multi_device_switcher->validate( $input );
+		$actual = $this->multi_device_switcher->validate_options( $input );
 
 		$this->assertTrue( is_array( $actual ) );
 		$this->assertEquals( $expected, $actual );
@@ -288,7 +288,7 @@ class Test_Multi_Device_Switcher_Validate extends WP_UnitTestCase {
 			'enable_regex' => 0,
 		);
 
-		$actual = $this->multi_device_switcher->validate( $input );
+		$actual = $this->multi_device_switcher->validate_options( $input );
 
 		$this->assertTrue( is_array( $actual ) );
 		$this->assertEquals( $expected, $actual );
@@ -334,7 +334,7 @@ class Test_Multi_Device_Switcher_Validate extends WP_UnitTestCase {
 			'custom_switcher_userAgent_test' => 'test1,test2',
 		);
 
-		$actual = $this->multi_device_switcher->validate( $input );
+		$actual = $this->multi_device_switcher->validate_options( $input );
 
 		$this->assertTrue( is_array( $actual ) );
 		$this->assertEquals( $expected, $actual );
@@ -350,11 +350,11 @@ class Test_Multi_Device_Switcher_Validate extends WP_UnitTestCase {
 		$input = array();
 		$expected = 'test';
 
-		add_filter( 'multi_device_switcher_validate', function( $output, $input, $default_options ) {
+		add_filter( 'multi_device_switcher/validate_options', function( $output, $input, $default_options ) {
 			return 'test';
 		}, 10, 3 );
 
-		$actual = $this->multi_device_switcher->validate( $input );
+		$actual = $this->multi_device_switcher->validate_options( $input );
 
 		$this->assertEquals( $expected, $actual );
 	}

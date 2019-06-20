@@ -107,7 +107,7 @@ class Multi_Device_Switcher {
 			add_action( 'plugins_loaded', array( $this, 'switch_theme' ) );
 		}
 
-		add_action( 'admin_init', array( $this, 'admin_init' ) );
+		add_action( 'admin_init', array( $this, 'register_settings' ) );
 		add_action( 'admin_menu', array( $this, 'add_option_page' ) );
 		add_action( 'customize_register', array( $this, 'customize_register' ) );
 		add_action( 'plugins_loaded', array( $this, 'load_file' ) );
@@ -466,8 +466,7 @@ class Multi_Device_Switcher {
 	 *
 	 * @since 1.0
 	 */
-	public function admin_init() {
-		// If we have no options in the database, let's add them now.
+	public function register_settings() {
 		if ( false === $this->get_options() ) {
 			add_option( $this->option_name );
 		}
@@ -475,7 +474,7 @@ class Multi_Device_Switcher {
 		register_setting(
 			$this->option_group,
 			$this->option_name,
-			array( $this, 'validate' )
+			array( $this, 'validate_options' )
 		);
 	}
 
@@ -946,7 +945,7 @@ class Multi_Device_Switcher {
 	 *
 	 * @since 1.0
 	 */
-	public function validate( $input ) {
+	public function validate_options( $input ) {
 		$output = $this->default_options;
 
 		if ( isset( $input['theme_smartphone'] ) ) {
