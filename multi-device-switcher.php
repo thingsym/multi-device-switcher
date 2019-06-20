@@ -52,8 +52,31 @@ class Multi_Device_Switcher {
 	 */
 	protected $capability = 'switch_themes';
 
+	/**
+	 * Protected value.
+	 *
+	 * @access protected
+	 *
+	 * @var string $cookie_name_multi_device_switcher
+	 */
 	protected $cookie_name_multi_device_switcher = 'multi-device-switcher';
+
+	/**
+	 * Protected value.
+	 *
+	 * @access protected
+	 *
+	 * @var string $cookie_name_disable_switcher
+	 */
 	protected $cookie_name_disable_switcher      = 'disable-switcher';
+
+	/**
+	 * Protected value.
+	 *
+	 * @access protected
+	 *
+	 * @var string $cookie_name_pc_switcher
+	 */
 	protected $cookie_name_pc_switcher           = 'pc-switcher';
 
 	/**
@@ -79,7 +102,6 @@ class Multi_Device_Switcher {
 	 * }
 	 *
 	 * @since 1.7.0
-	 *
 	 */
 	protected $default_options = array(
 		'pc_switcher'      => 1,
@@ -96,8 +118,22 @@ class Multi_Device_Switcher {
 		'enable_regex'     => 0,
 	);
 
+	/**
+	 * Public value.
+	 *
+	 * @access public
+	 *
+	 * @var string $device
+	 */
 	public $device = '';
 
+	/**
+	 * Constructor
+	 *
+	 * @access public
+	 *
+	 * @since 1.0.0
+	 */
 	public function __construct() {
 		add_action( 'init', array( $this, 'load_textdomain' ) );
 		add_action( 'init', array( $this, 'init' ) );
@@ -129,6 +165,15 @@ class Multi_Device_Switcher {
 		add_shortcode( 'multi', array( $this, 'shortcode_display_switcher' ) );
 	}
 
+	/**
+	 * Switch theme.
+	 *
+	 * @access public
+	 *
+	 * @return void
+	 *
+	 * @since 1.0.0
+	 */
 	public function switch_theme() {
 		if ( isset( $_COOKIE[ $this->cookie_name_disable_switcher ] ) ) {
 			add_action( 'wp_headers', array( $this, 'set_cookie_rest_disable_switcher' ) );
@@ -185,6 +230,15 @@ class Multi_Device_Switcher {
 		}
 	}
 
+	/**
+	 * Gets UserAgents.
+	 *
+	 * @access public
+	 *
+	 * @return array
+	 *
+	 * @since 1.0.0
+	 */
 	public function get_options_user_agent() {
 		$options = $this->get_options();
 
@@ -205,6 +259,17 @@ class Multi_Device_Switcher {
 		return $user_agent;
 	}
 
+	/**
+	 * Gets stylesheet.
+	 *
+	 * @access public
+	 *
+	 * @param string $stylesheet
+	 *
+	 * @return string
+	 *
+	 * @since 1.0.0
+	 */
 	public function get_stylesheet( $stylesheet = '' ) {
 		$name = $this->get_device_theme();
 
@@ -231,6 +296,17 @@ class Multi_Device_Switcher {
 		return $theme['Stylesheet'];
 	}
 
+	/**
+	 * Gets template.
+	 *
+	 * @access public
+	 *
+	 * @param string $template
+	 *
+	 * @return string
+	 *
+	 * @since 1.0.0
+	 */
 	public function get_template( $template = '' ) {
 		$name = $this->get_device_theme();
 
@@ -257,6 +333,15 @@ class Multi_Device_Switcher {
 		return $theme['Template'];
 	}
 
+	/**
+	 * Gets template by device.
+	 *
+	 * @access public
+	 *
+	 * @return string
+	 *
+	 * @since 1.0.0
+	 */
 	public function get_device_theme() {
 		$options = $this->get_options();
 
@@ -289,23 +374,68 @@ class Multi_Device_Switcher {
 		return;
 	}
 
+	/**
+	 * Reset cookie for disable_switcher.
+	 *
+	 * @access public
+	 *
+	 * @return void
+	 *
+	 * @since 1.0.0
+	 */
 	public function set_cookie_rest_disable_switcher() {
 		setcookie( $this->cookie_name_disable_switcher, null, time() - 3600, '/', '', is_ssl(), false );
 	}
 
+	/**
+	 * Set enable to cookie for disable_switcher.
+	 *
+	 * @access public
+	 *
+	 * @return void
+	 *
+	 * @since 1.0.0
+	 */
 	public function set_cookie_enable_disable_switcher() {
 		setcookie( $this->cookie_name_multi_device_switcher, null, time() - 3600, '/', '', is_ssl(), false );
 		setcookie( $this->cookie_name_disable_switcher, 1, null, '/', '', is_ssl(), false );
 	}
 
+	/**
+	 * Set switched theme to cookie.
+	 *
+	 * @access public
+	 *
+	 * @return void
+	 *
+	 * @since 1.0.0
+	 */
 	public function set_cookie_switch_theme() {
 		setcookie( $this->cookie_name_multi_device_switcher, preg_replace( '/^custom_switcher_/', '', $this->device ), null, '/', '', is_ssl(), false );
 	}
 
+	/**
+	 * Reset cookie for normal theme.
+	 *
+	 * @access public
+	 *
+	 * @return void
+	 *
+	 * @since 1.0.0
+	 */
 	public function set_cookie_normal_theme() {
 		setcookie( $this->cookie_name_multi_device_switcher, null, time() - 3600, '/', '', is_ssl(), false );
 	}
 
+	/**
+	 * Set session to cookie for pc switcher.
+	 *
+	 * @access public
+	 *
+	 * @return void
+	 *
+	 * @since 1.0.0
+	 */
 	public function session() {
 		if ( isset( $_GET['pc-switcher'] ) ) {
 			setcookie( $this->cookie_name_pc_switcher, $_GET['pc-switcher'] ? 1 : '', null, '/', '', is_ssl(), false );
@@ -322,6 +452,17 @@ class Multi_Device_Switcher {
 		}
 	}
 
+	/**
+	 * Add pc switcher button.
+	 *
+	 * @access public
+	 *
+	 * @param bool $pc_switcher
+	 *
+	 * @return void
+	 *
+	 * @since 1.0.0
+	 */
 	public function add_pc_switcher( $pc_switcher = 0 ) {
 		$options = $this->get_options();
 		$name    = $this->get_device_theme();
@@ -358,6 +499,17 @@ class Multi_Device_Switcher {
 		}
 	}
 
+	/**
+	 * Check device.
+	 *
+	 * @access public
+	 *
+	 * @param string $device
+	 *
+	 * @return bool
+	 *
+	 * @since 1.0.0
+	 */
 	public function is_multi_device( $device = '' ) {
 		if ( $device === $this->device ) {
 			return true;
@@ -369,10 +521,30 @@ class Multi_Device_Switcher {
 		return false;
 	}
 
+	/**
+	 * Whether pc switcher enabled.
+	 *
+	 * @access public
+	 *
+	 * @return bool
+	 *
+	 * @since 1.0.0
+	 */
 	public function is_pc_switcher() {
 		return isset( $_COOKIE[ $this->cookie_name_pc_switcher ] );
 	}
 
+	/**
+	 * Whether theme switch disabled.
+	 *
+	 * @access public
+	 *
+	 * @param string $disable
+	 *
+	 * @return bool
+	 *
+	 * @since 1.0.0
+	 */
 	public function is_disable_switcher( $disable = false ) {
 		$options      = $this->get_options();
 		$disable_path = preg_split( '/\R/', $options['disable_path'], -1, PREG_SPLIT_NO_EMPTY );
@@ -395,6 +567,18 @@ class Multi_Device_Switcher {
 		return $disable;
 	}
 
+	/**
+	 * Shortcode.
+	 *
+	 * @access public
+	 *
+	 * @param array $atts
+	 * @param string $content
+	 *
+	 * @return string
+	 *
+	 * @since 1.0.0
+	 */
 	public function shortcode_display_switcher( $atts, $content = '' ) {
 		$atts = shortcode_atts(
 			array(
@@ -414,7 +598,13 @@ class Multi_Device_Switcher {
 	}
 
 	/**
-	 * Add HTTP/1.1 Vary header.
+	 * Add HTTP Vary header.
+	 *
+	 * @access public
+	 *
+	 * @param string $headers
+	 *
+	 * @return string
 	 *
 	 * @since 1.1.1
 	 */
@@ -424,11 +614,13 @@ class Multi_Device_Switcher {
 	}
 
 	/**
-	 * Properly enqueue scripts for our multi_device_switcher options page.
+	 * Enqueue scripts.
 	 *
-	 * This function is attached to the admin_enqueue_scripts action hook.
+	 * Hooks to admin_enqueue_scripts.
 	 *
-	 * @since 1.0
+	 * @access public
+	 *
+	 * @since 1.0.0
 	 */
 	public function admin_enqueue_scripts( $hook_suffix ) {
 		wp_enqueue_script(
@@ -440,11 +632,13 @@ class Multi_Device_Switcher {
 	}
 
 	/**
-	 * Properly enqueue styles for our multi_device_switcher options page.
+	 * Enqueue styles.
 	 *
-	 * This function is attached to the admin_enqueue_styles action hook.
+	 * Hooks to admin_enqueue_styles.
 	 *
-	 * @since 1.0
+	 * @access public
+	 *
+	 * @since 1.0.0
 	 */
 	public function admin_enqueue_styles( $hook_suffix ) {
 		wp_enqueue_style(
@@ -456,13 +650,13 @@ class Multi_Device_Switcher {
 	}
 
 	/**
-	 * Register the form setting for our multi_device_switcher array.
+	 * Register the form setting.
 	 *
-	 * This function is attached to the admin_init action hook.
+	 * Hooks to admin_init.
 	 *
-	 * This call to register_setting() registers a validation callback, validate(),
-	 * which is used when the option is saved, to ensure that our option values are complete, properly
-	 * formatted, and safe.
+	 * @access public
+	 *
+	 * @return void
 	 *
 	 * @since 1.0
 	 */
@@ -479,28 +673,26 @@ class Multi_Device_Switcher {
 	}
 
 	/**
-	 * Change the capability required to save the 'multi_device_switcher' options group.
+	 * Returns capability.
 	 *
-	 * @see admin_init() First parameter to register_setting() is the name of the options group.
-	 * @see add_option_page() The edit_theme_options capability is used for viewing the page.
+	 * @access public
 	 *
-	 * By default, the options groups for all registered settings require the manage_options capability.
-	 * By default, only administrators have either of these capabilities, but the desire here is
-	 * to allow for finer-grained control for roles and users.
+	 * @return string
 	 *
-	 * @param string $capability The capability used for the page, which is manage_options by default.
-	 * @return string The capability to actually use.
+	 * @since 1.0.0
 	 */
 	public function option_page_capability() {
 		return $this->capability;
 	}
 
 	/**
-	 * Add our options page to the admin menu, including some help documentation.
+	 * Adds option page.
 	 *
-	 * This function is attached to the admin_menu action hook.
+	 * @access public
 	 *
-	 * @since 1.0
+	 * @return void
+	 *
+	 * @since 1.0.0
 	 */
 	public function add_option_page() {
 
@@ -520,9 +712,13 @@ class Multi_Device_Switcher {
 	}
 
 	/**
-	 * Page Hook Suffix
+	 * Page Hook Suffix.
 	 *
-	 * This function is attached to the load-** action hook.
+	 * Hooks to load-{$page_hook}.
+	 *
+	 * @access public
+	 *
+	 * @return void
 	 *
 	 * @since 1.2.4
 	 */
@@ -554,6 +750,17 @@ class Multi_Device_Switcher {
 		return $links;
 	}
 
+	/**
+	 * Returns the options array or value.
+	 *
+	 * @access public
+	 *
+	 * @param string $option_name Optional. The option name.
+	 *
+	 * @return array|null
+	 *
+	 * @since 1.0.0
+	 */
 	public function get_options( $option_name = null ) {
 		$options = get_option( $this->option_name, $this->default_options );
 		$options = array_merge( $this->default_options, $options );
@@ -603,9 +810,13 @@ class Multi_Device_Switcher {
 	}
 
 	/**
-	 * Rendering Options Setting Page.
+	 * Display option page.
 	 *
-	 * @since 1.0
+	 * @access public
+	 *
+	 * @return void
+	 *
+	 * @since 1.0.0
 	 */
 	public function render_option_page() {
 		?>
@@ -939,11 +1150,13 @@ class Multi_Device_Switcher {
 	}
 
 	/**
-	 * Sanitize and validate form input. Accepts an array, return a sanitized array.
+	 * Validate options.
 	 *
-	 * @see admin_init()
+	 * @access public
 	 *
-	 * @since 1.0
+	 * @param array $input
+	 *
+	 * @return array
 	 */
 	public function validate_options( $input ) {
 		$output = $this->default_options;
@@ -1026,9 +1239,12 @@ class Multi_Device_Switcher {
 	}
 
 	/**
-	 * plugin customization options
+	 * Register customize options to Customizer.
+	 *
+	 * @access public
 	 *
 	 * @param $wp_customize Theme Customizer object
+	 *
 	 * @return void
 	 *
 	 * @since 1.3.1
@@ -1122,6 +1338,13 @@ class Multi_Device_Switcher {
 		}
 	}
 
+	/**
+	 * Load files.
+	 *
+	 * @access public
+	 *
+	 * @since 1.0.0
+	 */
 	public function load_file() {
 		/**
 		 * include PC Switcher Widget.
