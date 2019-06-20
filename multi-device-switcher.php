@@ -419,7 +419,7 @@ class Multi_Device_Switcher {
 	 * @since 1.1.1
 	 */
 	public function add_header_vary( $headers ) {
-		$headers['Vary'] = apply_filters( 'multi_device_switcher_add_header_vary', 'User-Agent' );
+		$headers['Vary'] = apply_filters( 'multi_device_switcher/add_header_vary', 'User-Agent' );
 		return $headers;
 	}
 
@@ -1022,7 +1022,7 @@ class Multi_Device_Switcher {
 		$output['disable_path'] = isset( $input['disable_path'] ) ? $input['disable_path'] : '';
 		$output['enable_regex'] = isset( $input['enable_regex'] ) ? $input['enable_regex'] : 0;
 
-		return apply_filters( 'multi_device_switcher/validate', $output, $input, $this->default_options );
+		return apply_filters( 'multi_device_switcher/validate_options', $output, $input, $this->default_options );
 	}
 
 	/**

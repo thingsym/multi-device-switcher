@@ -244,14 +244,14 @@ class Test_Multi_Device_Switcher_Functions extends WP_UnitTestCase {
 		$headers = $this->multi_device_switcher->add_header_vary( array() );
 		$this->assertEquals( 'User-Agent', $headers['Vary'] );
 
-		add_filter( 'multi_device_switcher_add_header_vary', function( $value ) {
+		add_filter( 'multi_device_switcher/add_header_vary', function( $value ) {
 			return 'Accept-Encoding';
 		} );
 
 		$headers = $this->multi_device_switcher->add_header_vary( array() );
 		$this->assertEquals( 'Accept-Encoding', $headers['Vary'] );
 
-		add_filter( 'multi_device_switcher_add_header_vary', function( $value ) {
+		add_filter( 'multi_device_switcher/add_header_vary', function( $value ) {
 			return null;
 		} );
 
