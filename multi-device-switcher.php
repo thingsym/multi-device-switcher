@@ -56,6 +56,46 @@ class Multi_Device_Switcher {
 	protected $cookie_name_disable_switcher      = 'disable-switcher';
 	protected $cookie_name_pc_switcher           = 'pc-switcher';
 
+	/**
+	 * Protected value.
+	 *
+	 * @access protected
+	 *
+	 * @var array $default_options {
+	 *   default options
+	 *
+	 *   @type bool pc_switcher
+	 *   @type bool default_css
+	 *   @type string theme_smartphone
+	 *   @type string theme_tablet
+	 *   @type string theme_mobile
+	 *   @type string theme_game
+	 *   @type string userAgent_smart
+	 *   @type string userAgent_tablet
+	 *   @type string userAgent_mobile
+	 *   @type string userAgent_game
+	 *   @type string disable_path
+	 *   @type bool enable_regex
+	 * }
+	 *
+	 * @since 1.7.0
+	 *
+	 */
+	protected $default_options = array(
+		'pc_switcher'      => 1,
+		'default_css'      => 1,
+		'theme_smartphone' => 'None',
+		'theme_tablet'     => 'None',
+		'theme_mobile'     => 'None',
+		'theme_game'       => 'None',
+		'userAgent_smart'  => 'iPhone, iPod, Android.*Mobile, dream, CUPCAKE, Windows Phone, IEMobile.*Touch, webOS, BB10.*Mobile, BlackBerry.*Mobile, Mobile.*Gecko',
+		'userAgent_tablet' => 'iPad, Kindle, Silk, Android(?!.*Mobile), Windows.*Touch, PlayBook, Tablet.*Gecko',
+		'userAgent_mobile' => 'DoCoMo, SoftBank, J-PHONE, Vodafone, KDDI, UP.Browser, WILLCOM, emobile, DDIPOCKET, Windows CE, BlackBerry, Symbian, PalmOS, Huawei, IAC, Nokia',
+		'userAgent_game'   => 'PlayStation Portable, PlayStation Vita, PSP, PS2, PLAYSTATION 3, PlayStation 4, Nitro, Nintendo 3DS, Nintendo Wii, Nintendo WiiU, Xbox',
+		'disable_path'     => '',
+		'enable_regex'     => 0,
+	);
+
 	public $device = '';
 
 	public function __construct() {
@@ -516,37 +556,11 @@ class Multi_Device_Switcher {
 	}
 
 	/**
-	 * Returns the default options.
-	 *
-	 * @since 1.0
-	 */
-	public function get_default_options() {
-		$default_theme_options = array(
-			'pc_switcher'      => 1,
-			'default_css'      => 1,
-			'theme_smartphone' => 'None',
-			'theme_tablet'     => 'None',
-			'theme_mobile'     => 'None',
-			'theme_game'       => 'None',
-			'userAgent_smart'  => 'iPhone, iPod, Android.*Mobile, dream, CUPCAKE, Windows Phone, IEMobile.*Touch, webOS, BB10.*Mobile, BlackBerry.*Mobile, Mobile.*Gecko',
-			'userAgent_tablet' => 'iPad, Kindle, Silk, Android(?!.*Mobile), Windows.*Touch, PlayBook, Tablet.*Gecko',
-			'userAgent_mobile' => 'DoCoMo, SoftBank, J-PHONE, Vodafone, KDDI, UP.Browser, WILLCOM, emobile, DDIPOCKET, Windows CE, BlackBerry, Symbian, PalmOS, Huawei, IAC, Nokia',
-			'userAgent_game'   => 'PlayStation Portable, PlayStation Vita, PSP, PS2, PLAYSTATION 3, PlayStation 4, Nitro, Nintendo 3DS, Nintendo Wii, Nintendo WiiU, Xbox',
-			'disable_path'     => '',
-			'enable_regex'     => 0,
-		);
-
-		return $default_theme_options;
-	}
-
-	/**
 	 * Returns the options array.
 	 *
 	 * @since 1.0
 	 */
 	public function get_options() {
-		$options         = get_option( $this->option_name );
-		$default_options = $this->get_default_options();
 
 		if ( ! isset( $options['pc_switcher'] ) ) {
 			$options['pc_switcher'] = $default_options['pc_switcher'];
@@ -579,6 +593,8 @@ class Multi_Device_Switcher {
 		}
 		if ( ! isset( $options['userAgent_game'] ) ) {
 			$options['userAgent_game'] = $default_options['userAgent_game'];
+		$options = get_option( $this->option_name, $this->default_options );
+		$options = array_merge( $this->default_options, $options );
 		}
 
 		if ( ! isset( $options['disable_path'] ) ) {
@@ -952,7 +968,7 @@ class Multi_Device_Switcher {
 	 * @since 1.0
 	 */
 	public function validate( $input ) {
-		$output = $default_options = $this->get_default_options();
+		$output = $this->default_options;
 
 		if ( isset( $input['theme_smartphone'] ) ) {
 			$output['theme_smartphone'] = $input['theme_smartphone'];
@@ -968,10 +984,10 @@ class Multi_Device_Switcher {
 		}
 
 		if ( isset( $input['restore_UserAgent'] ) ) {
-			$output['userAgent_smart']  = $default_options['userAgent_smart'];
-			$output['userAgent_tablet'] = $default_options['userAgent_tablet'];
-			$output['userAgent_mobile'] = $default_options['userAgent_mobile'];
-			$output['userAgent_game']   = $default_options['userAgent_game'];
+			$output['userAgent_smart']  = $this->default_options['userAgent_smart'];
+			$output['userAgent_tablet'] = $this->default_options['userAgent_tablet'];
+			$output['userAgent_mobile'] = $this->default_options['userAgent_mobile'];
+			$output['userAgent_game']   = $this->default_options['userAgent_game'];
 		}
 		else {
 			if ( isset( $input['userAgent_smart'] ) ) {
@@ -1028,7 +1044,7 @@ class Multi_Device_Switcher {
 		$output['disable_path'] = isset( $input['disable_path'] ) ? $input['disable_path'] : '';
 		$output['enable_regex'] = isset( $input['enable_regex'] ) ? $input['enable_regex'] : 0;
 
-		return apply_filters( 'multi_device_switcher_validate', $output, $input, $default_options );
+		return apply_filters( 'multi_device_switcher/validate', $output, $input, $this->default_options );
 	}
 
 	/**
@@ -1041,7 +1057,7 @@ class Multi_Device_Switcher {
 	 */
 	public function customize_register( $wp_customize ) {
 		$options               = $this->get_options();
-		$default_theme_options = $this->get_default_options();
+		$default_theme_options = $this->default_options;
 		$default_theme         = wp_get_theme()->get( 'Name' );
 		$themes                = wp_get_themes();
 
@@ -1220,7 +1236,7 @@ if ( ! function_exists( 'multi_device_switcher_get_default_options' ) ) :
 	function multi_device_switcher_get_default_options() {
 		global $multi_device_switcher;
 		if ( is_object( $multi_device_switcher ) ) {
-			return $multi_device_switcher->get_default_options();
+			return $multi_device_switcher->default_options;
 		}
 	}
 endif;
