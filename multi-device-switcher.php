@@ -1454,7 +1454,7 @@ if ( ! function_exists( 'multi_device_switcher_get_default_options' ) ) :
 	function multi_device_switcher_get_default_options() {
 		global $multi_device_switcher;
 		if ( is_object( $multi_device_switcher ) ) {
-			return $multi_device_switcher->default_options;
+			return $multi_device_switcher->get_default_options();
 		}
 	}
 endif;
