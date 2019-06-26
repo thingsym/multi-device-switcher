@@ -11,7 +11,7 @@ class Test_Multi_Device_Switcher_Options extends WP_UnitTestCase {
 	 * @test
 	 * @group options
 	 */
-	function get_options_default() {
+	function get_default_options() {
 		$expected = array(
 			'pc_switcher' => 1,
 			'default_css' => 1,
@@ -27,6 +27,18 @@ class Test_Multi_Device_Switcher_Options extends WP_UnitTestCase {
 			'enable_regex' => 0,
 		);
 
+		$actual  = $this->multi_device_switcher->get_default_options();
+
+		$this->assertTrue( is_array( $actual ) );
+		$this->assertEquals( $expected, $actual );
+	}
+
+	/**
+	 * @test
+	 * @group options
+	 */
+	function get_options_default() {
+		$expected  = $this->multi_device_switcher->get_default_options();
 		$actual  = $this->multi_device_switcher->get_options();
 
 		$this->assertTrue( is_array( $actual ) );

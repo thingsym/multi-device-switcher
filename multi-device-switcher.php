@@ -751,6 +751,19 @@ class Multi_Device_Switcher {
 	}
 
 	/**
+	 * Returns the default options.
+	 *
+	 * @access public
+	 *
+	 * @return array|null
+	 *
+	 * @since 1.0.0
+	 */
+	public function get_default_options() {
+		return $this->default_options;
+	}
+
+	/**
 	 * Returns the options array or value.
 	 *
 	 * @access public
