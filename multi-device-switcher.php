@@ -247,7 +247,7 @@ class Multi_Device_Switcher {
 		$user_agent['mobile'] = empty( $options['userAgent_mobile'] ) ? '' : preg_split( '/,\s*/', $options['userAgent_mobile'], -1, PREG_SPLIT_NO_EMPTY );
 		$user_agent['game']   = empty( $options['userAgent_game'] ) ? '' : preg_split( '/,\s*/', $options['userAgent_game'], -1, PREG_SPLIT_NO_EMPTY );
 
-		foreach ( $options as $key => $val ) {
+		foreach ( (array) $options as $key => $val ) {
 			if ( ! preg_match( '/^custom_switcher_userAgent_/', $key ) ) {
 				continue;
 			}
@@ -359,7 +359,7 @@ class Multi_Device_Switcher {
 			return $options['theme_game'];
 		}
 		else {
-			foreach ( $options as $key => $val ) {
+			foreach ( (array) $options as $key => $val ) {
 				if ( ! preg_match( '/^custom_switcher_theme_/', $key ) ) {
 					continue;
 				}
@@ -372,7 +372,7 @@ class Multi_Device_Switcher {
 			}
 		}
 
-		return;
+		return '';
 	}
 
 	/**
@@ -385,7 +385,7 @@ class Multi_Device_Switcher {
 	 * @since 1.0.0
 	 */
 	public function set_cookie_rest_disable_switcher() {
-		setcookie( $this->cookie_name_disable_switcher, null, time() - 3600, '/', '', is_ssl(), false );
+		setcookie( $this->cookie_name_disable_switcher, '', time() - 3600, '/', '', is_ssl(), false );
 	}
 
 	/**
@@ -398,8 +398,8 @@ class Multi_Device_Switcher {
 	 * @since 1.0.0
 	 */
 	public function set_cookie_enable_disable_switcher() {
-		setcookie( $this->cookie_name_multi_device_switcher, null, time() - 3600, '/', '', is_ssl(), false );
-		setcookie( $this->cookie_name_disable_switcher, 1, null, '/', '', is_ssl(), false );
+		setcookie( $this->cookie_name_multi_device_switcher, '', time() - 3600, '/', '', is_ssl(), false );
+		setcookie( $this->cookie_name_disable_switcher, '1', 0, '/', '', is_ssl(), false );
 	}
 
 	/**
@@ -412,7 +412,8 @@ class Multi_Device_Switcher {
 	 * @since 1.0.0
 	 */
 	public function set_cookie_switch_theme() {
-		setcookie( $this->cookie_name_multi_device_switcher, preg_replace( '/^custom_switcher_/', '', $this->device ), null, '/', '', is_ssl(), false );
+		$device = preg_replace( '/^custom_switcher_/', '', $this->device );
+		setcookie( $this->cookie_name_multi_device_switcher, (string) $device, 0, '/', '', is_ssl(), false );
 	}
 
 	/**
@@ -425,7 +426,7 @@ class Multi_Device_Switcher {
 	 * @since 1.0.0
 	 */
 	public function set_cookie_normal_theme() {
-		setcookie( $this->cookie_name_multi_device_switcher, null, time() - 3600, '/', '', is_ssl(), false );
+		setcookie( $this->cookie_name_multi_device_switcher, '', time() - 3600, '/', '', is_ssl(), false );
 	}
 
 	/**
@@ -439,13 +440,13 @@ class Multi_Device_Switcher {
 	 */
 	public function session() {
 		if ( isset( $_GET['pc-switcher'] ) ) {
-			setcookie( $this->cookie_name_pc_switcher, $_GET['pc-switcher'] ? 1 : '', null, '/', '', is_ssl(), false );
+			setcookie( $this->cookie_name_pc_switcher, $_GET['pc-switcher'] ? '1' : '', 0, '/', '', is_ssl(), false );
 
 			$uri = preg_replace( '/^(.+?)(\?.*)$/', '$1', $_SERVER['REQUEST_URI'] );
 
 			unset( $_GET['pc-switcher'] );
 			if ( ! empty( $_GET ) ) {
-				$uri .= '?' . http_build_query( $_GET );
+				$uri = $uri . '?' . http_build_query( $_GET );
 			}
 
 			wp_redirect( esc_url( $uri ) );
@@ -477,7 +478,7 @@ class Multi_Device_Switcher {
 				wp_enqueue_style(
 					'pc-switcher-options',
 					plugins_url() . '/multi-device-switcher/pc-switcher.css',
-					false,
+					array(),
 					'2013-03-20'
 				);
 			}
@@ -540,7 +541,7 @@ class Multi_Device_Switcher {
 	 *
 	 * @access public
 	 *
-	 * @param string $disable
+	 * @param bool $disable
 	 *
 	 * @return bool
 	 *
@@ -550,7 +551,7 @@ class Multi_Device_Switcher {
 		$options      = $this->get_options();
 		$disable_path = preg_split( '/\R/', $options['disable_path'], -1, PREG_SPLIT_NO_EMPTY );
 
-		foreach ( $disable_path as $path ) {
+		foreach ( (array) $disable_path as $path ) {
 			if ( $options['enable_regex'] ) {
 				if ( preg_match( '/' . $path . '/i', $_SERVER['REQUEST_URI'] ) ) {
 					$disable = true;
@@ -558,7 +559,7 @@ class Multi_Device_Switcher {
 				}
 			}
 			else {
-				if ( preg_match( '/^' . preg_quote( $path, '/' ) . '$/i', $_SERVER['REQUEST_URI'] ) ) {
+				if ( preg_match( '/^' . preg_quote( (string) $path, '/' ) . '$/i', $_SERVER['REQUEST_URI'] ) ) {
 					$disable = true;
 					break;
 				}
@@ -645,7 +646,7 @@ class Multi_Device_Switcher {
 		wp_enqueue_style(
 			'multi-device-switcher-options',
 			plugins_url() . '/multi-device-switcher/multi-device-switcher.css',
-			false,
+			array(),
 			'2011-08-22'
 		);
 	}
@@ -662,7 +663,7 @@ class Multi_Device_Switcher {
 	 * @since 1.0
 	 */
 	public function register_settings() {
-		if ( false === $this->get_options() ) {
+		if ( is_null( $this->get_options() ) ) {
 			add_option( $this->option_name );
 		}
 
@@ -800,9 +801,8 @@ class Multi_Device_Switcher {
 			 */
 			return apply_filters( 'multi_device_switcher/get_option', $options[ $option_name ], $option_name );
 		}
-		else {
-			return null;
-		}
+
+		return null;
 	}
 
 	/**
@@ -863,6 +863,7 @@ class Multi_Device_Switcher {
 		<td>
 
 		<?php
+		$html = '';
 		if ( count( $theme_names ) ) {
 			$html = '<select name="multi_device_switcher_options[theme_smartphone]">';
 
@@ -993,7 +994,7 @@ class Multi_Device_Switcher {
 <table class="form-table">
 
 		<?php
-		foreach ( $options as $custom_switcher_option => $custom_switcher_theme ) {
+		foreach ( (array) $options as $custom_switcher_option => $custom_switcher_theme ) {
 			if ( ! preg_match( '/^custom_switcher_theme_/', $custom_switcher_option ) ) {
 				continue;
 			}
@@ -1076,7 +1077,7 @@ class Multi_Device_Switcher {
 <h3><?php esc_html_e( 'Custom Switcher UserAgent', 'multi-device-switcher' ); ?></h3>
 <table class="form-table">
 		<?php
-		foreach ( $options as $custom_switcher_option => $custom_switcher_user_agent ) {
+		foreach ( (array) $options as $custom_switcher_option => $custom_switcher_user_agent ) {
 			if ( ! preg_match( '/^custom_switcher_userAgent_/', $custom_switcher_option ) ) {
 				continue;
 			}
@@ -1326,7 +1327,7 @@ class Multi_Device_Switcher {
 			);
 		}
 
-		foreach ( $options as $custom_switcher_option => $custom_switcher_theme ) {
+		foreach ( (array) $options as $custom_switcher_option => $custom_switcher_theme ) {
 			if ( ! preg_match( '/^custom_switcher_theme_/', $custom_switcher_option ) ) {
 				continue;
 			}
@@ -1384,6 +1385,7 @@ class Multi_Device_Switcher {
 define( '__MULTI_DEVICE_SWITCHER_FILE__', __FILE__ );
 
 if ( class_exists( 'Multi_Device_Switcher' ) ) {
+	global $multi_device_switcher;
 	$multi_device_switcher = new Multi_Device_Switcher();
 };
 
