@@ -26,17 +26,17 @@ setup() {
   assert_status 0
   assert_equal "Success: None | "
 
-  run wp multi-device theme smartphone twentytwelve
+  run wp multi-device theme smartphone twentysixteen
 
   assert_success
   assert_status 0
-  assert_equal "Success: switch smartphone theme to Twenty Twelve"
+  assert_equal "Success: switch smartphone theme to Twenty Sixteen"
 
   run wp multi-device theme smartphone
 
   assert_success
   assert_status 0
-  assert_equal "Success: Twenty Twelve | twentytwelve"
+  assert_equal "Success: Twenty Sixteen | twentysixteen"
 }
 
 @test "switch theme" {
@@ -52,17 +52,17 @@ setup() {
   assert_status 0
   assert_equal "Success: Twenty Fifteen | twentyfifteen"
 
-  run wp multi-device theme smartphone --theme='Twenty Twelve'
+  run wp multi-device theme smartphone --theme='Twenty Sixteen'
 
   assert_success
   assert_status 0
-  assert_equal "Success: switch smartphone theme to Twenty Twelve"
+  assert_equal "Success: switch smartphone theme to Twenty Sixteen"
 
   run wp multi-device theme smartphone
 
   assert_success
   assert_status 0
-  assert_equal "Success: Twenty Twelve | twentytwelve"
+  assert_equal "Success: Twenty Sixteen | twentysixteen"
 }
 
 @test "get UserAgent" {

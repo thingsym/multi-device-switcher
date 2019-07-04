@@ -84,7 +84,7 @@ class Test_Multi_Device_Switcher_Functions extends WP_UnitTestCase {
 	 * @group functions
 	 */
 	function get_device_theme() {
-		$this->assertNull( $this->multi_device_switcher->get_device_theme() );
+		$this->assertEmpty( $this->multi_device_switcher->get_device_theme() );
 
 		$this->multi_device_switcher->device = 'smart';
 		$this->assertEquals( 'Twenty Sixteen', $this->multi_device_switcher->get_device_theme() );
