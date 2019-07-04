@@ -146,6 +146,10 @@ class Multi_Device_Switcher_Command extends WP_CLI_Command {
 			}
 		}
 
+		if ( isset( $slug ) && is_null( $theme ) ) {
+			WP_CLI::error( $slug . ' theme is not installed' );
+		}
+
 		if ( isset( $theme ) ) {
 			$default_theme = wp_get_theme()->get( 'Name' );
 			if ( $default_theme == $theme ) {
@@ -330,7 +334,7 @@ class Multi_Device_Switcher_Command extends WP_CLI_Command {
 
 		$options = get_option( $this->options );
 		if ( in_array( $name, array( 'smartphone', 'smart', 'tablet', 'mobile', 'game' ) ) ) {
-			WP_CLI::error( 'can\'t add Default Switcher' );
+			WP_CLI::error( 'Default Switcher can\'t add' );
 		}
 		elseif ( isset( $options[ 'custom_switcher_theme_' . $name ] ) ) {
 			WP_CLI::error( 'Custom Switcher already exists' );
@@ -346,7 +350,7 @@ class Multi_Device_Switcher_Command extends WP_CLI_Command {
 					$options[ 'custom_switcher_theme_' . $name ] = $theme;
 				}
 				else {
-					WP_CLI::error( $theme . ' theme are not installed' );
+					WP_CLI::error( $slug . ' theme is not installed' );
 				}
 			}
 			else {
