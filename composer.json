@@ -17,6 +17,7 @@
     "phpmd": "phpmd ./ text ./phpmd.ruleset.xml --suffixes php --exclude /tests,/vendor",
     "phpstan": "phpstan analyse",
     "phpunit": "phpunit",
+    "bats": "bats tests/cli",
     "ci": [
       "phpcs -p -s -v -n ./ --standard=./phpcs.ruleset.xml --extensions=php",
       "phpmd ./ text ./phpmd.ruleset.xml --suffixes php --exclude /tests,/vendor",
