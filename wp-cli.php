@@ -12,10 +12,17 @@
  */
 class Multi_Device_Switcher_Command extends WP_CLI_Command {
 
+	/**
+	 * Protected value.
+	 *
+	 * @access protected
+	 *
+	 * @var string $options   The option name
+	 */
 	private $options = 'multi_device_switcher_options';
 
 	/**
-	 * get status of settings
+	 * Get status of settings
 	 *
 	 * ## EXAMPLES
 	 *
@@ -89,7 +96,7 @@ class Multi_Device_Switcher_Command extends WP_CLI_Command {
 	}
 
 	/**
-	 * get or switch a theme
+	 * Get or Switch a theme
 	 *
 	 * ## OPTIONS
 	 *
@@ -185,7 +192,7 @@ class Multi_Device_Switcher_Command extends WP_CLI_Command {
 	}
 
 	/**
-	 * get or set UserAgent
+	 * Get or Set UserAgent
 	 *
 	 * ## OPTIONS
 	 *
@@ -249,7 +256,7 @@ class Multi_Device_Switcher_Command extends WP_CLI_Command {
 	}
 
 	/**
-	 * reset Settings to Default UserAgent
+	 * Reset Settings to Default UserAgent
 	 *
 	 * ## EXAMPLES
 	 *
@@ -271,7 +278,7 @@ class Multi_Device_Switcher_Command extends WP_CLI_Command {
 	}
 
 	/**
-	 * add Custom Switcher
+	 * Add Custom Switcher
 	 *
 	 * ## OPTIONS
 	 *
@@ -302,7 +309,6 @@ class Multi_Device_Switcher_Command extends WP_CLI_Command {
 	 *
 	 * @synopsis <device> [<slug>] [<UserAgent>] [--theme=<theme>]
 	 */
-
 	public function add( $args, $assoc_args ) {
 		$name      = isset( $args[0] ) ? $args[0] : null;
 		$slug      = isset( $args[1] ) ? $args[1] : null;
@@ -355,7 +361,7 @@ class Multi_Device_Switcher_Command extends WP_CLI_Command {
 	}
 
 	/**
-	 * delete Custom Switcher
+	 * Delete Custom Switcher
 	 *
 	 * ## OPTIONS
 	 *
@@ -390,7 +396,7 @@ class Multi_Device_Switcher_Command extends WP_CLI_Command {
 	}
 
 	/**
-	 * turn on/off PC Switcher
+	 * Turn on/off PC Switcher
 	 *
 	 * ## OPTIONS
 	 *
@@ -430,7 +436,7 @@ class Multi_Device_Switcher_Command extends WP_CLI_Command {
 	}
 
 	/**
-	 * turn on/off default CSS
+	 * Turn on/off default CSS
 	 *
 	 * ## OPTIONS
 	 *
