@@ -140,6 +140,7 @@ class Multi_Device_Switcher {
 
 		if ( ! is_admin() ) {
 			add_filter( 'wp_headers', array( $this, 'add_header_vary' ) );
+			add_action( 'plugins_loaded', array( $this, 'detect_device' ) );
 			add_action( 'plugins_loaded', array( $this, 'switch_theme' ) );
 		}
 
@@ -166,15 +167,15 @@ class Multi_Device_Switcher {
 	}
 
 	/**
-	 * Switch theme.
+	 * Detect device.
 	 *
 	 * @access public
 	 *
 	 * @return void
 	 *
-	 * @since 1.0.0
+	 * @since 1.7.0
 	 */
-	public function switch_theme() {
+	public function detect_device() {
 		if ( isset( $_COOKIE[ $this->cookie_name_disable_switcher ] ) ) {
 			add_action( 'wp_headers', array( $this, 'set_cookie_rest_disable_switcher' ) );
 		}
@@ -213,7 +214,18 @@ class Multi_Device_Switcher {
 				$this->device = 'mobile';
 			}
 		}
+	}
 
+	/**
+	 * Switch theme.
+	 *
+	 * @access public
+	 *
+	 * @return void
+	 *
+	 * @since 1.0.0
+	 */
+	public function switch_theme() {
 		if ( $this->device ) {
 			add_filter( 'stylesheet', array( $this, 'get_stylesheet' ) );
 			add_filter( 'template', array( $this, 'get_template' ) );
