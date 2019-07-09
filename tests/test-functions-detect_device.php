@@ -117,4 +117,19 @@ class Test_Multi_Device_Switcher_Functions_Detect_Device extends WP_UnitTestCase
 		unset($GLOBALS['_SERVER']['REQUEST_URI']);
 	}
 
+	/**
+	 * @test
+	 * @group switch_theme
+	 */
+	function switch_theme_action_hook() {
+		add_action( 'multi_device_switcher/detect_device', array( $this, '_set_device' ) );
+		$this->multi_device_switcher->detect_device();
+
+		$this->assertEquals( 'smart', $this->multi_device_switcher->device );
+	}
+
+	function _set_device() {
+		$this->multi_device_switcher->device = 'smart';
+	}
+
 }

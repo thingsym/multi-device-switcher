@@ -214,6 +214,8 @@ class Multi_Device_Switcher {
 				$this->device = 'mobile';
 			}
 		}
+
+		do_action( 'multi_device_switcher/detect_device' );
 	}
 
 	/**
