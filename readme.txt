@@ -19,7 +19,6 @@ This WordPress plugin allows you to set a separate theme for device (Smart Phone
 This plugin detects if your site is being viewed by UserAgent, and switches to selected theme.
 The Custom Switcher can add every device.
 
-
 = Features =
 
 * Set a separate theme for device (Smart Phone, Tablet PC, Mobile Phone, Game), switches to selected theme.
@@ -101,7 +100,6 @@ There are three ways how to Using the PC Switcher.
 * Go to the "Multi Device Switcher" options page through the 'Appearance' menu in WordPress.
 * Configure settings. Check the checkbox 'Add a default CSS.' by PC Switcher option. If you want to customize CSS, uncheck the checkbox.
 * Have fun!
-
 
 You can design the PC Switcher in the Style Sheet.
 
@@ -314,6 +312,17 @@ None
 = Return Values =
 
 (boolean) Return the state of disabled.
+
+= Filter hooks =
+
+* multi_device_switcher/get_options
+* multi_device_switcher/get_option
+* multi_device_switcher/add_header_vary
+* multi_device_switcher/validate_options
+
+= Action hooks =
+
+* multi_device_switcher/detect_device
 
 = Multi Device Switcher Command =
 

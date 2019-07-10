@@ -287,6 +287,19 @@ None
 
 (boolean) Return the state of disabled.
 
+## Hooks
+
+### Filter hooks
+
+* multi_device_switcher/get_options
+* multi_device_switcher/get_option
+* multi_device_switcher/add_header_vary
+* multi_device_switcher/validate_options
+
+### Action hooks
+
+* multi_device_switcher/detect_device
+
 ## Multi Device Switcher Command
 
 The **Multi Device Switcher Command** is command-line tool.
