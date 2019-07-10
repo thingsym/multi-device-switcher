@@ -215,6 +215,11 @@ class Multi_Device_Switcher {
 			}
 		}
 
+		/**
+		 * Action hook: multi_device_switcher/detect_device.
+		 *
+		 * @since 1.7.0
+		 */
 		do_action( 'multi_device_switcher/detect_device' );
 	}
 
@@ -625,6 +630,13 @@ class Multi_Device_Switcher {
 	 * @since 1.1.1
 	 */
 	public function add_header_vary( $headers ) {
+		/**
+		 * Filter hook: multi_device_switcher/add_header_vary.
+		 *
+		 * @param string    'User-Agent'     header name.
+		 *
+		 * @since 1.6.2
+		 */
 		$headers['Vary'] = apply_filters( 'multi_device_switcher/add_header_vary', 'User-Agent' );
 		return $headers;
 	}
@@ -795,7 +807,7 @@ class Multi_Device_Switcher {
 
 		if ( is_null( $option_name ) ) {
 			/**
-			 * Filters the options.
+			 * Filter hook: multi_device_switcher/get_options.
 			 *
 			 * @param array    $options     The options.
 			 *
@@ -806,7 +818,7 @@ class Multi_Device_Switcher {
 
 		if ( array_key_exists( $option_name, $options ) ) {
 			/**
-			 * Filters the option.
+			 * Filter hook: multi_device_switcher/get_option.
 			 *
 			 * @param mixed    $option           The value of option.
 			 * @param string   $option_name      The option name via argument.
@@ -1267,6 +1279,15 @@ class Multi_Device_Switcher {
 		$output['disable_path'] = isset( $input['disable_path'] ) ? $input['disable_path'] : '';
 		$output['enable_regex'] = isset( $input['enable_regex'] ) ? $input['enable_regex'] : 0;
 
+		/**
+		 * Filter hook: multi_device_switcher/validate_options.
+		 *
+		 * @param array    $options     The options.
+		 * @param array    $input       The options.
+		 * @param array    $default     The options.
+		 *
+		 * @since 1.7.0
+		 */
 		return apply_filters( 'multi_device_switcher/validate_options', $output, $input, $this->default_options );
 	}
 
