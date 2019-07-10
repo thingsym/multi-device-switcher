@@ -1,7 +1,10 @@
 sudo: false
-dist: trusty
+dist: xenial
 
 language: php
+
+services:
+  - mysql
 
 notifications:
   email:
@@ -13,6 +16,7 @@ cache:
     - $HOME/.composer/cache
 
 php:
+  - 7.3
   - 7.2
   - 5.6
 

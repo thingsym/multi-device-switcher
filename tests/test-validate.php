@@ -12,7 +12,7 @@ class Test_Multi_Device_Switcher_Validate extends WP_UnitTestCase {
 	 * @group validate
 	 */
 	function validate_case_none() {
-		$input = array();
+		$new_input = array();
 		$expected = array(
 			'pc_switcher' => 0,
 			'default_css' => 0,
@@ -28,7 +28,7 @@ class Test_Multi_Device_Switcher_Validate extends WP_UnitTestCase {
 			'enable_regex' => 0,
 		);
 
-		$actual = $this->multi_device_switcher->validate( $input );
+		$actual = $this->multi_device_switcher->validate_options( $new_input );
 
 		$this->assertTrue( is_array( $actual ) );
 		$this->assertEquals( $expected, $actual );
@@ -39,7 +39,7 @@ class Test_Multi_Device_Switcher_Validate extends WP_UnitTestCase {
 	 * @group validate
 	 */
 	function validate_case_1() {
-		$input = array(
+		$new_input = array(
 			'pc_switcher' => 1,
 			'default_css' => 1,
 			'theme_smartphone' => 'None',
@@ -68,7 +68,7 @@ class Test_Multi_Device_Switcher_Validate extends WP_UnitTestCase {
 			'enable_regex' => 0,
 		);
 
-		$actual = $this->multi_device_switcher->validate( $input );
+		$actual = $this->multi_device_switcher->validate_options( $new_input );
 
 		$this->assertTrue( is_array( $actual ) );
 		$this->assertEquals( $expected, $actual );
@@ -79,7 +79,7 @@ class Test_Multi_Device_Switcher_Validate extends WP_UnitTestCase {
 	 * @group validate
 	 */
 	function validate_restore_useragent_case_1() {
-		$input = array(
+		$new_input = array(
 			'pc_switcher' => 1,
 			'default_css' => 1,
 			'theme_smartphone' => 'None',
@@ -109,7 +109,7 @@ class Test_Multi_Device_Switcher_Validate extends WP_UnitTestCase {
 			'enable_regex' => 0,
 		);
 
-		$actual = $this->multi_device_switcher->validate( $input );
+		$actual = $this->multi_device_switcher->validate_options( $new_input );
 
 		$this->assertTrue( is_array( $actual ) );
 		$this->assertEquals( $expected, $actual );
@@ -120,7 +120,7 @@ class Test_Multi_Device_Switcher_Validate extends WP_UnitTestCase {
 	 * @group validate
 	 */
 	function validate_add_custom_switcher_theme_case_1() {
-		$input = array(
+		$new_input = array(
 			'pc_switcher' => 1,
 			'default_css' => 1,
 			'theme_smartphone' => 'None',
@@ -153,7 +153,7 @@ class Test_Multi_Device_Switcher_Validate extends WP_UnitTestCase {
 			'custom_switcher_userAgent_test' => '',
 		);
 
-		$actual = $this->multi_device_switcher->validate( $input );
+		$actual = $this->multi_device_switcher->validate_options( $new_input );
 
 		$this->assertTrue( is_array( $actual ) );
 		$this->assertEquals( $expected, $actual );
@@ -168,7 +168,7 @@ class Test_Multi_Device_Switcher_Validate extends WP_UnitTestCase {
 	 * @group validate
 	 */
 	function validate_add_custom_switcher_theme_case_2() {
-		$input = array(
+		$new_input = array(
 			'pc_switcher' => 1,
 			'default_css' => 1,
 			'theme_smartphone' => 'None',
@@ -199,7 +199,7 @@ class Test_Multi_Device_Switcher_Validate extends WP_UnitTestCase {
 			'enable_regex' => 0,
 		);
 
-		$actual = $this->multi_device_switcher->validate( $input );
+		$actual = $this->multi_device_switcher->validate_options( $new_input );
 
 		$this->assertTrue( is_array( $actual ) );
 		$this->assertEquals( $expected, $actual );
@@ -212,7 +212,7 @@ class Test_Multi_Device_Switcher_Validate extends WP_UnitTestCase {
 	 * @group validate
 	 */
 	function validate_add_custom_switcher_theme_case_3() {
-		$input = array(
+		$new_input = array(
 			'pc_switcher' => 1,
 			'default_css' => 1,
 			'theme_smartphone' => 'None',
@@ -243,7 +243,7 @@ class Test_Multi_Device_Switcher_Validate extends WP_UnitTestCase {
 			'enable_regex' => 0,
 		);
 
-		$actual = $this->multi_device_switcher->validate( $input );
+		$actual = $this->multi_device_switcher->validate_options( $new_input );
 
 		$this->assertTrue( is_array( $actual ) );
 		$this->assertEquals( $expected, $actual );
@@ -256,7 +256,7 @@ class Test_Multi_Device_Switcher_Validate extends WP_UnitTestCase {
 	 * @group validate
 	 */
 	function validate_delete_custom_switcher_theme_case_1() {
-		$input = array(
+		$new_input = array(
 			'pc_switcher' => 1,
 			'default_css' => 1,
 			'theme_smartphone' => 'None',
@@ -288,7 +288,7 @@ class Test_Multi_Device_Switcher_Validate extends WP_UnitTestCase {
 			'enable_regex' => 0,
 		);
 
-		$actual = $this->multi_device_switcher->validate( $input );
+		$actual = $this->multi_device_switcher->validate_options( $new_input );
 
 		$this->assertTrue( is_array( $actual ) );
 		$this->assertEquals( $expected, $actual );
@@ -301,7 +301,7 @@ class Test_Multi_Device_Switcher_Validate extends WP_UnitTestCase {
 	 * @group validate
 	 */
 	function validate_add_custom_switcher_useragent_case_1() {
-		$input = array(
+		$new_input = array(
 			'pc_switcher' => 1,
 			'default_css' => 1,
 			'theme_smartphone' => 'None',
@@ -334,7 +334,7 @@ class Test_Multi_Device_Switcher_Validate extends WP_UnitTestCase {
 			'custom_switcher_userAgent_test' => 'test1,test2',
 		);
 
-		$actual = $this->multi_device_switcher->validate( $input );
+		$actual = $this->multi_device_switcher->validate_options( $new_input );
 
 		$this->assertTrue( is_array( $actual ) );
 		$this->assertEquals( $expected, $actual );
@@ -347,16 +347,49 @@ class Test_Multi_Device_Switcher_Validate extends WP_UnitTestCase {
 	 * @group validate
 	 */
 	function validate_case_via_filter() {
-		$input = array();
-		$expected = 'test';
+		$new_input = array(
+			'pc_switcher' => 0,
+			'default_css' => 0,
+			'theme_smartphone' => 'None',
+			'theme_tablet' => 'None',
+			'theme_mobile' => 'None',
+			'theme_game' => 'None',
+			'userAgent_smart' => 'iPhone, iPod, Android.*Mobile, dream, CUPCAKE, Windows Phone, IEMobile.*Touch, webOS, BB10.*Mobile, BlackBerry.*Mobile, Mobile.*Gecko',
+			'userAgent_tablet' => 'iPad, Kindle, Silk, Android(?!.*Mobile), Windows.*Touch, PlayBook, Tablet.*Gecko',
+			'userAgent_mobile' => 'DoCoMo, SoftBank, J-PHONE, Vodafone, KDDI, UP.Browser, WILLCOM, emobile, DDIPOCKET, Windows CE, BlackBerry, Symbian, PalmOS, Huawei, IAC, Nokia',
+			'userAgent_game' => 'PlayStation Portable, PlayStation Vita, PSP, PS2, PLAYSTATION 3, PlayStation 4, Nitro, Nintendo 3DS, Nintendo Wii, Nintendo WiiU, Xbox',
+			'disable_path' => '',
+			'enable_regex' => 0,
+		);
+		$expected = array(
+			'pc_switcher' => 0,
+			'default_css' => 0,
+			'theme_smartphone' => 'aaa',
+			'theme_tablet' => 'None',
+			'theme_mobile' => 'None',
+			'theme_game' => 'None',
+			'userAgent_smart' => 'iPhone, iPod, Android.*Mobile, dream, CUPCAKE, Windows Phone, IEMobile.*Touch, webOS, BB10.*Mobile, BlackBerry.*Mobile, Mobile.*Gecko',
+			'userAgent_tablet' => 'iPad, Kindle, Silk, Android(?!.*Mobile), Windows.*Touch, PlayBook, Tablet.*Gecko',
+			'userAgent_mobile' => 'DoCoMo, SoftBank, J-PHONE, Vodafone, KDDI, UP.Browser, WILLCOM, emobile, DDIPOCKET, Windows CE, BlackBerry, Symbian, PalmOS, Huawei, IAC, Nokia',
+			'userAgent_game' => 'PlayStation Portable, PlayStation Vita, PSP, PS2, PLAYSTATION 3, PlayStation 4, Nitro, Nintendo 3DS, Nintendo Wii, Nintendo WiiU, Xbox',
+			'disable_path' => '',
+			'enable_regex' => 0,
+		);
 
-		add_filter( 'multi_device_switcher_validate', function( $output, $input, $default_options ) {
-			return 'test';
-		}, 10, 3 );
+		add_filter( 'multi_device_switcher/validate_options', array( $this, '_filter_options' ), 10, 3 );
 
-		$actual = $this->multi_device_switcher->validate( $input );
+		$actual = $this->multi_device_switcher->validate_options( $new_input );
 
 		$this->assertEquals( $expected, $actual );
+	}
+
+	public function _filter_options( $output, $new_input, $default_options ) {
+		$this->assertTrue( is_array( $output ) );
+		$this->assertTrue( is_array( $new_input ) );
+		$this->assertTrue( is_array( $default_options ) );
+
+		$output['theme_smartphone'] = 'aaa';
+		return $output;
 	}
 
 }

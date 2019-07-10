@@ -1,32 +1,17 @@
 <?php
 /**
  * Widget Name: PC Switcher Widget
- * Plugin URI: https://github.com/thingsym/multi-device-switcher
+ * Plugin URI:  https://github.com/thingsym/multi-device-switcher
  * Description: PC Switcher Widget add-on for the Multi Device Switcher. Use this widget to add the PC Switcher to a widget.
- * Version: 1.6.2
- * Author: thingsym
- * Author URI: http://www.thingslabo.com/
- * License: GPL2
+ * Version:     1.7.0
+ * Author:      thingsym
+ * Author URI:  http://www.thingslabo.com/
+ * License:     GPL2 or later
+ * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: multi-device-switcher
  * Domain Path: /languages/
- */
-
-/**
- *     Copyright 2013 thingsym (http://www.thingslabo.com/)
  *
- *     This program is free software; you can redistribute it and/or modify
- *     it under the terms of the GNU General Public License as published by
- *     the Free Software Foundation; either version 2 of the License, or
- *     (at your option) any later version.
- *
- *     This program is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *     GNU General Public License for more details.
- *
- *     You should have received a copy of the GNU General Public License
- *     along with this program; if not, write to the Free Software
- *     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110, USA
+ * @package     Multi_Device_Switcher
  */
 
 /**
@@ -42,20 +27,25 @@ function pc_switcher_load_widgets() {
 	register_widget( 'PC_Switcher' );
 }
 
+/**
+ * Core class PC_Switcher
+ *
+ * @since 1.0.0
+ */
 class PC_Switcher extends WP_Widget {
 
-	function __construct() {
+	public function __construct() {
 		load_plugin_textdomain( 'multi-device-switcher', false, dirname( plugin_basename( __MULTI_DEVICE_SWITCHER_FILE__ ) ) . '/languages/' );
 
 		$widget_ops = array(
 			'classname'   => 'widget_pc_switcher',
-			'description' => __( 'Add the PC Switcher to a widget.', 'multi-device-switcher' )
+			'description' => __( 'Add the PC Switcher to a widget.', 'multi-device-switcher' ),
 		);
 		parent::__construct( 'pc-switcher', __( 'PC Switcher', 'multi-device-switcher' ), $widget_ops );
 		$this->alt_option_name = 'widget_pc_switcher';
 	}
 
-	function widget( $args, $instance ) {
+	public function widget( $args, $instance ) {
 		if ( ! function_exists( 'multi_device_switcher_add_pc_switcher' ) ) {
 			return;
 		}
@@ -70,12 +60,12 @@ class PC_Switcher extends WP_Widget {
 		}
 	}
 
-	function update( $new_instance, $old_instance ) {
+	public function update( $new_instance, $old_instance ) {
 		$instance = $old_instance;
 
 		return $instance;
 	}
 
-	function form( $instance ) {
+	public function form( $instance ) {
 	}
 }

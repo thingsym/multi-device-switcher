@@ -36,8 +36,8 @@ class Test_Multi_Device_Switcher_Functions extends WP_UnitTestCase {
 	 * @test
 	 * @group functions
 	 */
-	function get_options_userAgent() {
-		$userAgent = $this->multi_device_switcher->get_options_userAgent();
+	function get_options_user_agent() {
+		$userAgent = $this->multi_device_switcher->get_options_user_agent();
 
 		$expected = array(
 			'smart' => array('iPhone', 'iPod', 'Android.*Mobile', 'dream', 'CUPCAKE', 'Windows Phone', 'IEMobile.*Touch', 'webOS', 'BB10.*Mobile', 'BlackBerry.*Mobile', 'Mobile.*Gecko'),
@@ -84,7 +84,7 @@ class Test_Multi_Device_Switcher_Functions extends WP_UnitTestCase {
 	 * @group functions
 	 */
 	function get_device_theme() {
-		$this->assertNull( $this->multi_device_switcher->get_device_theme() );
+		$this->assertEmpty( $this->multi_device_switcher->get_device_theme() );
 
 		$this->multi_device_switcher->device = 'smart';
 		$this->assertEquals( 'Twenty Sixteen', $this->multi_device_switcher->get_device_theme() );
@@ -244,14 +244,14 @@ class Test_Multi_Device_Switcher_Functions extends WP_UnitTestCase {
 		$headers = $this->multi_device_switcher->add_header_vary( array() );
 		$this->assertEquals( 'User-Agent', $headers['Vary'] );
 
-		add_filter( 'multi_device_switcher_add_header_vary', function( $value ) {
+		add_filter( 'multi_device_switcher/add_header_vary', function( $value ) {
 			return 'Accept-Encoding';
 		} );
 
 		$headers = $this->multi_device_switcher->add_header_vary( array() );
 		$this->assertEquals( 'Accept-Encoding', $headers['Vary'] );
 
-		add_filter( 'multi_device_switcher_add_header_vary', function( $value ) {
+		add_filter( 'multi_device_switcher/add_header_vary', function( $value ) {
 			return null;
 		} );
 
