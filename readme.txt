@@ -6,8 +6,8 @@ Link: https://github.com/thingsym/multi-device-switcher
 Tags: switcher, theme, ipad, iphone, android, tablet, mobile, game
 Requires at least: 3.7
 Requires PHP: 5.4
-Tested up to: 5.0.3
-Stable tag: 1.6.2
+Tested up to: 5.2.2
+Stable tag: 1.7.0
 License: GPL2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -364,6 +364,28 @@ useragent        get or set UserAgent
 For more information about the Multi Device Switcher Command, see `wp help multi-device <SUBCOMMANDS>`.
 
 == Changelog ==
+
+= 1.7.0 =
+* add test case for cdn
+* add multi_device_switcher/detect_device action hook
+* split switch_theme method into detect_device and switch_theme
+* fix wp-cli
+* add bats test case for cli
+* refactoring with phpstan
+* fix default options via method
+* change tag name
+* change method name
+* improve get_options method
+* replace from get_default_options() to class value default_options
+* fix not valid snake_case format
+* add public as access modifier keywords
+* add PHPDoc
+* add reset-wp-tests.sh, uninstall-wp-tests.sh
+* fix header
+* fix textdomain
+* fix indent and reformat with phpcs and phpcbf
+* add composer.json for test
+* add static code analysis config
 
 = 1.6.2 =
 * add prefix into hook tag, change tag name from add_header_vary to multi_device_switcher_add_header_vary
