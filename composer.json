@@ -10,7 +10,7 @@
     "phpunit/phpunit": "^6"
   },
   "scripts": {
-    "phpcs:config-set": "phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs",
+    "phpcs:config-set": "phpcs --config-set installed_paths /usr/local/share/wp-phpcs",
     "phpcs": "phpcs -p -s -v -n ./ --standard=./phpcs.ruleset.xml --extensions=php",
     "phpcs:warning": "phpcs -p -s -v ./ --standard=./phpcs.ruleset.xml --extensions=php",
     "phpcbf": "phpcbf -p -s -v ./ --standard=./phpcs.ruleset.xml --extensions=php",
@@ -19,9 +19,9 @@
     "phpunit": "phpunit",
     "bats": "bats tests/cli",
     "ci": [
-      "phpcs -p -s -v -n ./ --standard=./phpcs.ruleset.xml --extensions=php",
-      "phpmd ./ text ./phpmd.ruleset.xml --suffixes php --exclude /tests,/vendor",
-      "phpunit"
+      "@phpunit",
+      "@phpcs",
+      "@phpstan"
     ]
   }
 }
