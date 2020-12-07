@@ -62,5 +62,11 @@ jobs:
       - name: Install wp tests
         run: bash bin/install-wp-tests.sh wordpress_test root root localhost $WP_VERSION
 
+      - name: Install twentysixteen WordPress theme
+        run: |
+          if [[ ! -d "/tmp/wordpress/wp-content/themes/twentysixteen" ]] ; then
+            git clone https://github.com/WordPress/twentysixteen.git /tmp/wordpress/wp-content/themes/twentysixteen
+          fi
+
       - name: Run PHPUnit - WordPress ${{ matrix.wordpress }}
         run: phpunit
