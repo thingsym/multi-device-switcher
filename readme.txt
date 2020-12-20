@@ -5,7 +5,7 @@ Donate link: http://blog.thingslabo.com/archives/000251.html
 Link: https://github.com/thingsym/multi-device-switcher
 Tags: switcher, theme, ipad, iphone, android, tablet, mobile, game
 Stable tag: 1.7.0
-Tested up to: 5.4.2
+Tested up to: 5.6.0
 Requires at least: 3.7
 Requires PHP: 5.4
 License: GPL2 or later
