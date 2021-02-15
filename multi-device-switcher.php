@@ -5,7 +5,7 @@
  * Description: This WordPress plugin allows you to set a separate theme for device (Smart Phone, Tablet PC, Mobile Phone, Game and custom).
  * Version:     1.7.0
  * Author:      thingsym
- * Author URI:  http://www.thingslabo.com/
+ * Author URI:  https://www.thingslabo.com/
  * License:     GPL2 or later
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: multi-device-switcher
