@@ -3,24 +3,29 @@
   "license": "GPL2 or later",
   "require": {},
   "require-dev": {
-    "squizlabs/php_codesniffer": "*",
+    "squizlabs/php_codesniffer": "3.*",
     "wp-coding-standards/wpcs": "2.*",
     "phpmd/phpmd": "2.*",
     "phpstan/phpstan": "*",
-    "phpunit/phpunit": "^6"
+    "phpunit/phpunit": "7"
   },
   "scripts": {
-    "phpcs:config-set": "phpcs --config-set installed_paths /usr/local/share/wp-phpcs",
+    "makepot:php": "php /usr/local/share/wp-i18n/makepot.php wp-plugin ../multi-device-switcher ../multi-device-switcher/languages/multi-device-switcher.pot",
+    "makepot:wpcli": "wp i18n make-pot ./ ./languages/multi-device-switcher.pot --exclude=dist,bin,tests,node_modules,vendor",
+    "msgfmt:ja": "msgfmt languages/multi-device-switcher-ja.po -o languages/multi-device-switcher-ja.mo",
+    "phpcs:config-set": "phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs",
     "phpcs": "phpcs -p -s -v -n ./ --standard=./phpcs.ruleset.xml --extensions=php",
     "phpcs:warning": "phpcs -p -s -v ./ --standard=./phpcs.ruleset.xml --extensions=php",
-    "phpcbf": "phpcbf -p -s -v ./ --standard=./phpcs.ruleset.xml --extensions=php",
-    "phpmd": "phpmd ./ text ./phpmd.ruleset.xml --suffixes php --exclude /tests,/vendor",
+    "format:phpcbf": "phpcbf -p -s -v ./ --standard=./phpcs.ruleset.xml --extensions=php",
+    "phpmd": "phpmd ./ text ./phpmd.ruleset.xml --suffixes php --exclude /tests,/vendor,/node_modules",
     "phpstan": "phpstan analyse",
     "phpunit": "phpunit",
     "bats": "bats tests/cli",
+    "coverage": "phpunit --coverage-html ./tests/report",
     "ci": [
       "@phpunit",
       "@phpcs",
+      "@phpmd",
       "@phpstan"
     ]
   }
