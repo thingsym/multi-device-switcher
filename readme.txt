@@ -1,10 +1,10 @@
 === Multi Device Switcher ===
 
 Contributors: thingsym
-Donate link: http://blog.thingslabo.com/archives/000251.html
 Link: https://github.com/thingsym/multi-device-switcher
+Donate link: https://github.com/sponsors/thingsym
 Tags: switcher, theme, ipad, iphone, android, tablet, mobile, game
-Stable tag: 1.7.0
+Stable tag: 1.8.0
 Tested up to: 5.6.0
 Requires at least: 3.7
 Requires PHP: 5.4
@@ -31,7 +31,7 @@ The Custom Switcher can add every device.
 
 = Test Matrix =
 
-For operation compatibility between PHP version and WordPress version, see below [Travis CI](https://travis-ci.org/thingsym/multi-device-switcher).
+For operation compatibility between PHP version and WordPress version, see below [Github Actions](https://github.com/thingsym/multi-device-switcher/actions).
 
 = Contribution =
 
@@ -364,6 +364,16 @@ useragent        get or set UserAgent
 For more information about the Multi Device Switcher Command, see `wp help multi-device <SUBCOMMANDS>`.
 
 == Changelog ==
+
+= 1.8.0 =
+* add PHPDoc
+* update japanese translation
+* update pot
+* fix composer.json
+* add FUNDING.yml
+* change donate link
+* add sponsor link
+* add GitHub actions for CI/CD, remove .travis.yml
 
 = 1.7.0 =
 * add test case for cdn

@@ -3,9 +3,9 @@
  * Plugin Name: Multi Device Switcher
  * Plugin URI:  https://github.com/thingsym/multi-device-switcher
  * Description: This WordPress plugin allows you to set a separate theme for device (Smart Phone, Tablet PC, Mobile Phone, Game and custom).
- * Version:     1.7.0
+ * Version:     1.8.0
  * Author:      thingsym
- * Author URI:  http://www.thingslabo.com/
+ * Author URI:  https://www.thingslabo.com/
  * License:     GPL2 or later
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: multi-device-switcher
@@ -162,6 +162,7 @@ class Multi_Device_Switcher {
 	public function init() {
 		add_filter( 'option_page_capability_' . $this->option_group, array( $this, 'option_page_capability' ) );
 		add_filter( 'plugin_action_links_' . plugin_basename( __MULTI_DEVICE_SWITCHER_FILE__ ), array( $this, 'plugin_action_links' ) );
+		add_filter( 'plugin_row_meta', array( $this, 'plugin_metadata_links' ), 10, 2 );
 
 		add_shortcode( 'multi', array( $this, 'shortcode_display_switcher' ) );
 	}
@@ -776,6 +777,30 @@ class Multi_Device_Switcher {
 
 		return $links;
 	}
+	/**
+	 * Set links below a plugin on the Plugins page.
+	 *
+	 * Hooks to plugin_row_meta
+	 *
+	 * @see https://developer.wordpress.org/reference/hooks/plugin_row_meta/
+	 *
+	 * @access public
+	 *
+	 * @param array  $links  An array of the plugin's metadata.
+	 * @param string $file   Path to the plugin file relative to the plugins directory.
+	 *
+	 * @return array $links
+	 *
+	 * @since 1.8.0
+	 */
+	public function plugin_metadata_links( $links, $file ) {
+
+		if ( $file == plugin_basename( __MULTI_DEVICE_SWITCHER_FILE__ ) ) {
+			$links[] = '<a href="https://github.com/sponsors/thingsym">' . __( 'Become a sponsor (GitHub Sponsors)', 'multi-device-switcher' ) . '</a>';
+		}
+
+		return $links;
+	}
 
 	/**
 	 * Returns the default options.
@@ -1165,31 +1190,6 @@ class Multi_Device_Switcher {
 </form>
 </div>
 
-<div id="donate">
-<h2><?php esc_html_e( 'Donationware', 'multi-device-switcher' ); ?></h2>
-<p><?php esc_html_e( 'If you like this plugin, please donate to support development and maintenance.', 'multi-device-switcher' ); ?></p>
-<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
-<input type="hidden" name="cmd" value="_s-xclick">
-<input type="hidden" name="hosted_button_id" value="9L53NELFMHTWW">
-<table>
-<tr><td><input type="hidden" name="on0" value="Donationware">Donationware</td></tr><tr><td><select name="os0">
-	<option value="1. Donate">1. Donate $3.00 USD</option>
-	<option value="2. Donate">2. Donate $5.00 USD</option>
-	<option value="3. Donate">3. Donate $7.00 USD</option>
-	<option value="4. Donate" selected="selected">4. Donate $10.00 USD</option>
-	<option value="5. Donate">5. Donate $20.00 USD</option>
-	<option value="6. Donate">6. Donate $30.00 USD</option>
-	<option value="7. Donate">7. Donate $40.00 USD</option>
-	<option value="8. Donate">8. Donate $50.00 USD</option>
-	<option value="9. Donate">9. Donate $60.00 USD</option>
-	<option value="10. Donate">10. Donate $70.00 USD</option>
-</select> </td></tr>
-</table>
-<input type="hidden" name="currency_code" value="USD">
-<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-<img alt="" border="0" src="https://www.paypalobjects.com/ja_JP/i/scr/pixel.gif" width="1" height="1">
-</form>
-</div>
 		<?php
 	}
 

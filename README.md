@@ -1,7 +1,5 @@
 # Introducing Multi Device Switcher
 
-[![Build Status](https://travis-ci.org/thingsym/multi-device-switcher.svg?branch=master)](https://travis-ci.org/thingsym/multi-device-switcher)
-
 This WordPress plugin allows you to set a separate theme for device (Smart Phone, Tablet PC, Mobile Phone, Game and custom).
 This plugin detects if your site is being viewed by UserAgent, and switches to selected theme. The Custom Switcher can add every device.
 
@@ -393,7 +391,7 @@ Multi Device Switcher is hosted on the WordPress Plugin Directory.
 
 ## Test Matrix
 
-For operation compatibility between PHP version and WordPress version, see below [Travis CI](https://travis-ci.org/thingsym/multi-device-switcher).
+For operation compatibility between PHP version and WordPress version, see below [Github Actions](https://github.com/thingsym/multi-device-switcher/actions).
 
 ## Contribution
 
@@ -409,6 +407,16 @@ Small patches and bug reports can be submitted a issue tracker in Github. Forkin
 
 ## Changelog
 
+* Version 1.8.0
+	* add test case
+	* add PHPDoc
+	* update japanese translation
+	* update pot
+	* fix composer.json
+	* add FUNDING.yml
+	* change donate link
+	* add sponsor link
+	* add GitHub actions for CI/CD, remove .travis.yml
 * Version 1.7.0
 	* add test case for cdn
 	* add multi_device_switcher/detect_device action hook
