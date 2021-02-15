@@ -23,6 +23,11 @@ if ( class_exists( 'Multi_Device_Switcher' ) ) {
 	add_action( 'widgets_init', 'pc_switcher_load_widgets' );
 }
 
+/**
+ * Register PC_Switcher.
+ *
+ * @since 1.0.0
+ */
 function pc_switcher_load_widgets() {
 	register_widget( 'PC_Switcher' );
 }
@@ -34,6 +39,13 @@ function pc_switcher_load_widgets() {
  */
 class PC_Switcher extends WP_Widget {
 
+	/**
+	 * Sets up a new widget instance.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @access public
+	 */
 	public function __construct() {
 		load_plugin_textdomain( 'multi-device-switcher', false, dirname( plugin_basename( __MULTI_DEVICE_SWITCHER_FILE__ ) ) . '/languages/' );
 
@@ -46,6 +58,17 @@ class PC_Switcher extends WP_Widget {
 		$this->alt_option_name = 'widget_pc_switcher';
 	}
 
+	/**
+	 * Outputs the content for the widget instance.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @access public
+	 *
+	 * @param array $args     Display arguments including 'before_title', 'after_title',
+	 *                        'before_widget', and 'after_widget'.
+	 * @param array $instance Settings for the current widget instance.
+	 */
 	public function widget( $args, $instance ) {
 		if ( ! function_exists( 'multi_device_switcher_add_pc_switcher' ) ) {
 			return;
@@ -61,12 +84,33 @@ class PC_Switcher extends WP_Widget {
 		}
 	}
 
+	/**
+	 * Handles updating settings for the current Archives widget instance.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @access public
+	 *
+	 * @param array $new_instance New settings for this instance as input by the user via form() method.
+	 * @param array $old_instance Old settings for this instance.
+	 *
+	 * @return array Updated settings to save.
+	 */
 	public function update( $new_instance, $old_instance ) {
 		$instance = $old_instance;
 
 		return $instance;
 	}
 
+	/**
+	 * Outputs the settings form for the widget.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @access public
+	 *
+	 * @param array $instance Current settings.
+	 */
 	public function form( $instance ) {
 	}
 }
