@@ -407,6 +407,16 @@ Small patches and bug reports can be submitted a issue tracker in Github. Forkin
 
 ## Changelog
 
+* Version 1.8.0
+	* add test case
+	* add PHPDoc
+	* update japanese translation
+	* update pot
+	* fix composer.json
+	* add FUNDING.yml
+	* change donate link
+	* add sponsor link
+	* add GitHub actions for CI/CD, remove .travis.yml
 * Version 1.7.0
 	* add test case for cdn
 	* add multi_device_switcher/detect_device action hook
