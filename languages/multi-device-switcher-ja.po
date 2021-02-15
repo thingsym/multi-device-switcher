@@ -1,125 +1,198 @@
+# Copyright (C) 2021 thingsym
+# This file is distributed under the same license as the Multi Device Switcher plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Multi Device Switcher\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-17 22:01+0900\n"
-"PO-Revision-Date: 2015-01-15 17:26+0900\n"
-"Last-Translator: \n"
-"Language-Team: Thingsym\n"
-"Language: ja_JP\n"
+"Project-Id-Version: Multi Device Switcher 1.7.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/multi-device-switcher\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2021-02-15T11:37:48+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.4.0\n"
+"X-Domain: multi-device-switcher\n"
 
+#. Plugin Name of the plugin
+#: multi-device-switcher.php:729
+#: multi-device-switcher.php:730
+#: multi-device-switcher.php:890
+#: multi-device-switcher.php:1340
 msgid "Multi Device Switcher"
 msgstr "マルチデバイス"
 
+#. Plugin URI of the plugin
+msgid "https://github.com/thingsym/multi-device-switcher"
+msgstr "https://github.com/thingsym/multi-device-switcher"
+
+#. Description of the plugin
 msgid "This WordPress plugin allows you to set a separate theme for device (Smart Phone, Tablet PC, Mobile Phone, Game and custom)."
 msgstr "デバイスごとに個別のテーマを設定して自動的にテーマが切り替わります。 (スマートフォン、タブレット端末、携帯モバイル、ゲーム、カスタム設定に対応)"
 
-msgid "Settings"
-msgstr "設定"
+#. Author of the plugin
+msgid "thingsym"
+msgstr "thingsym"
 
-msgid "Theme"
-msgstr "テーマ"
+#. Author URI of the plugin
+msgid "https://www.thingslabo.com/"
+msgstr "https://www.thingslabo.com/"
 
-msgid "UserAgent"
-msgstr "ユーザーエージェント"
-
-msgid "Smart Phone Theme"
-msgstr "スマートフォン用テーマ"
-
-msgid "Tablet PC Theme"
-msgstr "タブレット端末用テーマ"
-
-msgid "Mobile Phone Theme"
-msgstr "携帯モバイル端末用テーマ"
-
-msgid "Game Platforms Theme"
-msgstr "ゲームプラットフォーム用テーマ"
-
-msgid "Custom Switcher Theme"
-msgstr "Custom Switcher用テーマ"
-
-msgid "20 characters max, alphanumeric"
-msgstr "半角英数字 20 文字以内"
-
-msgid "Enter Comma-separated values (csv) format."
-msgstr "csv 形式で入力してください。"
-
-msgid "Smart Phone"
-msgstr "スマートフォン"
-
-msgid "Tablet PC"
-msgstr "タブレット端末"
-
-msgid "Mobile Phone"
-msgstr "携帯モバイル端末"
-
-msgid "Game Platforms"
-msgstr "ゲームプラットフォーム"
-
-msgid "Reset Settings to Default UserAgent"
-msgstr "ユーザーエージェントをデフォルトにもどす"
-
-msgid "Custom Switcher UserAgent"
-msgstr "Custom Switcher用ユーザーエージェント"
-
-msgid "Add Custom Switcher"
-msgstr "Custom Switcher を追加"
-
-msgid "None"
-msgstr "なし"
-
-msgid "Add"
-msgstr "追加"
-
-msgid "Delete"
-msgstr "削除"
-
-msgid "Add PC Switcher"
-msgstr "PC Switcher を追加"
-
-msgid "Add a PC Switcher to the footer."
-msgstr "PC Switcher をフッターに追加する"
-
-msgid "Add default CSS"
-msgstr "デフォルトCSSを追加"
-
-msgid "Add a default CSS."
-msgstr "デフォルトCSSを追加する"
-
+#: multi-device-switcher.php:512
+#: multi-device-switcher.php:518
 msgid "Mobile"
 msgstr "モバイル"
 
+#: multi-device-switcher.php:512
+#: multi-device-switcher.php:518
 msgid "PC"
 msgstr "PC"
 
+#: multi-device-switcher.php:775
+msgid "Settings"
+msgstr "設定"
+
+#: multi-device-switcher.php:800
+msgid "Become a sponsor (GitHub Sponsors)"
+msgstr "スポンサーになる (GitHub Sponsors)"
+
+#: multi-device-switcher.php:912
+msgid "Theme"
+msgstr "テーマ"
+
+#: multi-device-switcher.php:914
+#: multi-device-switcher.php:1331
+msgid "Smart Phone Theme"
+msgstr "スマートフォン用テーマ"
+
+#: multi-device-switcher.php:923
+#: multi-device-switcher.php:926
+#: multi-device-switcher.php:955
+#: multi-device-switcher.php:958
+#: multi-device-switcher.php:987
+#: multi-device-switcher.php:990
+#: multi-device-switcher.php:1019
+#: multi-device-switcher.php:1022
+#: multi-device-switcher.php:1065
+#: multi-device-switcher.php:1068
+#: multi-device-switcher.php:1321
+#: multi-device-switcher.php:1376
+msgid "None"
+msgstr "なし"
+
+#: multi-device-switcher.php:947
+#: multi-device-switcher.php:1332
+msgid "Tablet PC Theme"
+msgstr "タブレット端末用テーマ"
+
+#: multi-device-switcher.php:979
+#: multi-device-switcher.php:1333
+msgid "Mobile Phone Theme"
+msgstr "携帯モバイル端末用テーマ"
+
+#: multi-device-switcher.php:1011
+#: multi-device-switcher.php:1334
+msgid "Game Platforms Theme"
+msgstr "ゲームプラットフォーム用テーマ"
+
+#: multi-device-switcher.php:1045
+msgid "Custom Switcher Theme"
+msgstr "Custom Switcher用テーマ"
+
+#: multi-device-switcher.php:1083
+msgid "Delete"
+msgstr "削除"
+
+#: multi-device-switcher.php:1083
 msgid "Are you sure you want to delete %1$s ?"
 msgstr "%1$s を削除してよろしいですか?"
 
+#: multi-device-switcher.php:1094
+#: multi-device-switcher.php:1096
+msgid "Add Custom Switcher"
+msgstr "Custom Switcher を追加"
+
+#: multi-device-switcher.php:1098
+msgid "Add"
+msgstr "追加"
+
+#: multi-device-switcher.php:1099
+msgid "20 characters max, alphanumeric"
+msgstr "半角英数字 20 文字以内"
+
+#: multi-device-switcher.php:1107
+msgid "UserAgent"
+msgstr "ユーザーエージェント"
+
+#: multi-device-switcher.php:1108
+msgid "Enter Comma-separated values (csv) format."
+msgstr "csv 形式で入力してください。"
+
+#: multi-device-switcher.php:1111
+msgid "Smart Phone"
+msgstr "スマートフォン"
+
+#: multi-device-switcher.php:1114
+msgid "Tablet PC"
+msgstr "タブレット端末"
+
+#: multi-device-switcher.php:1117
+msgid "Mobile Phone"
+msgstr "携帯モバイル端末"
+
+#: multi-device-switcher.php:1120
+msgid "Game Platforms"
+msgstr "ゲームプラットフォーム"
+
+#: multi-device-switcher.php:1124
+msgid "Reset Settings to Default UserAgent"
+msgstr "ユーザーエージェントをデフォルトにもどす"
+
+#: multi-device-switcher.php:1129
+msgid "Custom Switcher UserAgent"
+msgstr "Custom Switcher用ユーザーエージェント"
+
+#: multi-device-switcher.php:1151
+#: pc-switcher-widget.php:57
+msgid "PC Switcher"
+msgstr "PC Switcher"
+
+#: multi-device-switcher.php:1154
+#: multi-device-switcher.php:1156
+msgid "Add PC Switcher"
+msgstr "PC Switcher を追加"
+
+#: multi-device-switcher.php:1157
+msgid "Add a PC Switcher to the footer."
+msgstr "PC Switcher をフッターに追加する"
+
+#: multi-device-switcher.php:1160
+#: multi-device-switcher.php:1162
+msgid "Add default CSS"
+msgstr "デフォルトCSSを追加"
+
+#: multi-device-switcher.php:1163
+msgid "Add a default CSS."
+msgstr "デフォルトCSSを追加"
+
+#: multi-device-switcher.php:1170
 msgid "Disable Switcher"
 msgstr "切り替え無効"
 
+#: multi-device-switcher.php:1173
+#: multi-device-switcher.php:1175
 msgid "Path"
 msgstr "パス"
 
+#: multi-device-switcher.php:1180
+#: multi-device-switcher.php:1182
 msgid "Regex mode"
 msgstr "正規表現モード"
 
+#: multi-device-switcher.php:1183
 msgid "Enable Regex"
 msgstr "正規表現を有効化"
 
-msgid "Donationware"
-msgstr "ドネーションウェア (寄付)"
-
-msgid "If you like this plugin, please donate to support development and maintenance."
-msgstr "よろしければ、開発とメンテナンスのために寄付していただければうれしいです。"
-
-# pc-switcher-widget.php
-msgid "PC Switcher Widget add-on for the Multi Device Switcher. Use this widget to add the PC Switcher to a widget."
-msgstr ""
-
+#: pc-switcher-widget.php:54
 msgid "Add the PC Switcher to a widget."
 msgstr "PC Switcher をウィジェットに追加"
-
