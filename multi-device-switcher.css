@@ -6,11 +6,7 @@
 #admin-tabs ul.ui-tabs-nav li.ui-tabs-active,#admin-tabs ul.ui-tabs-nav li.ui-tabs-selected{color:#000;background:none;border-bottom-color:#f1f1f1;}
 #admin-tabs ul.ui-tabs-nav li.ui-tabs-active:hover,#admin-tabs ul.ui-tabs-nav li.ui-tabs-active:hover{background:none;}
 #admin-tabs ul.ui-tabs-nav a:focus,#admin-tabs ul.ui-tabs-nav a:active{outline-color:-moz-use-text-color;outline-style:none;outline-width:medium;}
-.wrap{width:60%; float:left;}
-#donate{width:34%; float:left; margin:2em 0;padding:0.4em;border:1px solid #ddd;}
 @media screen and (max-width:480px){}
 @media only screen and (max-width:768px){
 #admin-tabs ul.ui-tabs-nav{table-layout:fixed;}
-.wrap{width:auto; float:none;}
-#donate{width:auto; float:none; margin:2em 0.4em;}
 }

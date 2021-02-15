@@ -1165,31 +1165,6 @@ class Multi_Device_Switcher {
 </form>
 </div>
 
-<div id="donate">
-<h2><?php esc_html_e( 'Donationware', 'multi-device-switcher' ); ?></h2>
-<p><?php esc_html_e( 'If you like this plugin, please donate to support development and maintenance.', 'multi-device-switcher' ); ?></p>
-<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
-<input type="hidden" name="cmd" value="_s-xclick">
-<input type="hidden" name="hosted_button_id" value="9L53NELFMHTWW">
-<table>
-<tr><td><input type="hidden" name="on0" value="Donationware">Donationware</td></tr><tr><td><select name="os0">
-	<option value="1. Donate">1. Donate $3.00 USD</option>
-	<option value="2. Donate">2. Donate $5.00 USD</option>
-	<option value="3. Donate">3. Donate $7.00 USD</option>
-	<option value="4. Donate" selected="selected">4. Donate $10.00 USD</option>
-	<option value="5. Donate">5. Donate $20.00 USD</option>
-	<option value="6. Donate">6. Donate $30.00 USD</option>
-	<option value="7. Donate">7. Donate $40.00 USD</option>
-	<option value="8. Donate">8. Donate $50.00 USD</option>
-	<option value="9. Donate">9. Donate $60.00 USD</option>
-	<option value="10. Donate">10. Donate $70.00 USD</option>
-</select> </td></tr>
-</table>
-<input type="hidden" name="currency_code" value="USD">
-<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-<img alt="" border="0" src="https://www.paypalobjects.com/ja_JP/i/scr/pixel.gif" width="1" height="1">
-</form>
-</div>
 		<?php
 	}
 
