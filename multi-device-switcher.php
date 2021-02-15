@@ -162,6 +162,7 @@ class Multi_Device_Switcher {
 	public function init() {
 		add_filter( 'option_page_capability_' . $this->option_group, array( $this, 'option_page_capability' ) );
 		add_filter( 'plugin_action_links_' . plugin_basename( __MULTI_DEVICE_SWITCHER_FILE__ ), array( $this, 'plugin_action_links' ) );
+		add_filter( 'plugin_row_meta', array( $this, 'plugin_metadata_links' ), 10, 2 );
 
 		add_shortcode( 'multi', array( $this, 'shortcode_display_switcher' ) );
 	}
@@ -773,6 +774,30 @@ class Multi_Device_Switcher {
 		$settings_link = '<a href="themes.php?page=multi-device-switcher">' . __( 'Settings', 'multi-device-switcher' ) . '</a>';
 
 		array_unshift( $links, $settings_link );
+
+		return $links;
+	}
+	/**
+	 * Set links below a plugin on the Plugins page.
+	 *
+	 * Hooks to plugin_row_meta
+	 *
+	 * @see https://developer.wordpress.org/reference/hooks/plugin_row_meta/
+	 *
+	 * @access public
+	 *
+	 * @param array  $links  An array of the plugin's metadata.
+	 * @param string $file   Path to the plugin file relative to the plugins directory.
+	 *
+	 * @return array $links
+	 *
+	 * @since 1.8.0
+	 */
+	public function plugin_metadata_links( $links, $file ) {
+
+		if ( $file == plugin_basename( __MULTI_DEVICE_SWITCHER_FILE__ ) ) {
+			$links[] = '<a href="https://github.com/sponsors/thingsym">' . __( 'Become a sponsor (GitHub Sponsors)', 'multi-device-switcher' ) . '</a>';
+		}
 
 		return $links;
 	}
