@@ -7,8 +7,11 @@
     "wp-coding-standards/wpcs": "2.*",
     "phpmd/phpmd": "2.*",
     "phpstan/phpstan": "*",
-    "phpunit/phpunit": "7"
+    "phpunit/phpunit": "7",
+    "phpcompatibility/phpcompatibility-wp": "*",
+    "yoast/phpunit-polyfills": "^1.0.1"
   },
+  "prefer-stable" : true,
   "scripts": {
     "makepot:php": "php /usr/local/share/wp-i18n/makepot.php wp-plugin ../multi-device-switcher ../multi-device-switcher/languages/multi-device-switcher.pot",
     "makepot:wpcli": "wp i18n make-pot ./ ./languages/multi-device-switcher.pot --exclude=dist,bin,tests,node_modules,vendor",
