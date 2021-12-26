@@ -78,8 +78,10 @@ class PC_Switcher extends WP_Widget {
 		$name = $multi_device_switcher->get_device_theme();
 
 		if ( $name && 'None' !== $name ) {
+			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			echo $args['before_widget'];
 			multi_device_switcher_add_pc_switcher();
+			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			echo $args['after_widget'];
 		}
 	}

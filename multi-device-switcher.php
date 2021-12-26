@@ -198,6 +198,7 @@ class Multi_Device_Switcher {
 
 		add_action( 'init', array( $this, 'session' ) );
 
+		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		$server_ua  = isset( $_SERVER['HTTP_USER_AGENT'] ) ? $_SERVER['HTTP_USER_AGENT'] : '';
 		$user_agent = $this->get_options_user_agent();
 
@@ -470,9 +471,13 @@ class Multi_Device_Switcher {
 	 */
 	public function session() {
 		if ( isset( $_GET['pc-switcher'] ) ) {
+			// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 			setcookie( $this->cookie_name_pc_switcher, $_GET['pc-switcher'] ? '1' : '', 0, '/', '', is_ssl(), false );
 
-			$uri = preg_replace( '/^(.+?)(\?.*)$/', '$1', $_SERVER['REQUEST_URI'] );
+			if ( isset( $_SERVER['REQUEST_URI'] ) ) {
+				// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+				$uri = preg_replace( '/^(.+?)(\?.*)$/', '$1', $_SERVER['REQUEST_URI'] );
+			}
 
 			unset( $_GET['pc-switcher'] );
 			if ( ! empty( $_GET ) ) {
@@ -515,7 +520,11 @@ class Multi_Device_Switcher {
 			}
 
 			$uri  = is_ssl() ? 'https://' : 'http://';
-			$uri .= $_SERVER['HTTP_HOST'];
+
+			if ( isset( $_SERVER['HTTP_HOST'] ) ) {
+				// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+				$uri .= $_SERVER['HTTP_HOST'];
+			}
 
 			if ( isset( $_COOKIE[ $this->cookie_name_pc_switcher ] ) ) {
 				$uri .= add_query_arg( 'pc-switcher', 0 );
@@ -582,15 +591,20 @@ class Multi_Device_Switcher {
 		$options      = $this->get_options();
 		$disable_path = preg_split( '/\R/', $options['disable_path'], -1, PREG_SPLIT_NO_EMPTY );
 
+		if ( isset( $_SERVER['REQUEST_URI'] ) ) {
+			// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+			$request_uri = $_SERVER['REQUEST_URI'];
+		}
+
 		foreach ( (array) $disable_path as $path ) {
 			if ( $options['enable_regex'] ) {
-				if ( preg_match( '/' . $path . '/i', $_SERVER['REQUEST_URI'] ) ) {
+				if ( preg_match( '/' . $path . '/i', $request_uri ) ) {
 					$disable = true;
 					break;
 				}
 			}
 			else {
-				if ( preg_match( '/^' . preg_quote( (string) $path, '/' ) . '$/i', $_SERVER['REQUEST_URI'] ) ) {
+				if ( preg_match( '/^' . preg_quote( (string) $path, '/' ) . '$/i', $request_uri ) ) {
 					$disable = true;
 					break;
 				}
@@ -973,6 +987,7 @@ class Multi_Device_Switcher {
 			}
 			$html .= '</select>';
 		}
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo $html;
 		?>
 
@@ -1005,6 +1020,7 @@ class Multi_Device_Switcher {
 			}
 			$html .= '</select>';
 		}
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo $html;
 		?>
 
@@ -1037,6 +1053,7 @@ class Multi_Device_Switcher {
 			}
 			$html .= '</select>';
 		}
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo $html;
 		?>
 
@@ -1069,6 +1086,7 @@ class Multi_Device_Switcher {
 			}
 			$html .= '</select>';
 		}
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo $html;
 		?>
 
@@ -1116,6 +1134,7 @@ class Multi_Device_Switcher {
 				$html .= '</select>';
 				$html .= ' <span class="submit"><input type="submit" name="multi_device_switcher_options[delete_custom_switcher_' . $custom_switcher_name . ']" value="' . __( 'Delete', 'multi-device-switcher' ) . '" onclick="return confirm(\'' . esc_html( sprintf( __( 'Are you sure you want to delete %1$s ?', 'multi-device-switcher' ), $custom_switcher_name ) ) . '\');" class="button"></span>';
 			}
+			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			echo $html;
 			?>
 		</td>
