@@ -681,7 +681,7 @@ class Multi_Device_Switcher {
 			'multi-device-switcher-options',
 			plugins_url() . '/multi-device-switcher/multi-device-switcher.js',
 			array( 'jquery', 'jquery-ui-tabs' ),
-			$this->plugin_data['Version'],
+			$this->plugin_data['Version']
 		);
 	}
 
