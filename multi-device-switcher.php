@@ -806,9 +806,8 @@ class Multi_Device_Switcher {
 	 * @since 1.8.0
 	 */
 	public function plugin_metadata_links( $links, $file ) {
-
 		if ( $file == plugin_basename( __MULTI_DEVICE_SWITCHER_FILE__ ) ) {
-			$links[] = '<a href="https://github.com/sponsors/thingsym">' . __( 'Become a sponsor (GitHub Sponsors)', 'multi-device-switcher' ) . '</a>';
+			$links[] = '<a href="https://github.com/sponsors/thingsym">' . __( 'Become a sponsor', 'multi-device-switcher' ) . '</a>';
 		}
 
 		return $links;

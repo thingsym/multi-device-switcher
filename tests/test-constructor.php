@@ -70,6 +70,7 @@ class Test_Multi_Device_Switcher_Constructor extends WP_UnitTestCase {
 
 		$this->assertEquals( 10, has_filter( 'option_page_capability_multi_device_switcher', array( $this->multi_device_switcher, 'option_page_capability' ) ) );
 		$this->assertEquals( 10, has_filter( 'plugin_action_links_' . plugin_basename( __MULTI_DEVICE_SWITCHER_FILE__ ), array( $this->multi_device_switcher, 'plugin_action_links' ) ) );
+		$this->assertEquals( 10, has_filter( 'plugin_row_meta', array( $this->multi_device_switcher, 'plugin_metadata_links' ) ) );
 
 		$this->assertTrue( shortcode_exists( 'multi' ) );
 	}

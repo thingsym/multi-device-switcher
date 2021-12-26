@@ -333,6 +333,15 @@ class Test_Multi_Device_Switcher_Functions extends WP_UnitTestCase {
 	 * @test
 	 * @group functions
 	 */
+	public function plugin_metadata_links() {
+		$links = $this->multi_device_switcher->plugin_metadata_links( array(), plugin_basename( __MULTI_DEVICE_SWITCHER_FILE__ ) );
+		$this->assertContains( '<a href="https://github.com/sponsors/thingsym">Become a sponsor</a>', $links );
+	}
+
+	/**
+	 * @test
+	 * @group functions
+	 */
 	function customize_register() {
 		$this->markTestIncomplete( 'This test has not been implemented yet.' );
 	}
