@@ -155,7 +155,7 @@ class Multi_Device_Switcher {
 
 		add_action( 'admin_init', array( $this, 'register_settings' ) );
 		add_action( 'admin_menu', array( $this, 'add_option_page' ) );
-		add_action( 'customize_register', array( $this, 'customize_register' ) );
+		add_action( 'customize_register', array( $this, 'customizer' ) );
 		add_action( 'plugins_loaded', array( $this, 'load_file' ) );
 	}
 
@@ -1311,7 +1311,7 @@ class Multi_Device_Switcher {
 	 *
 	 * @since 1.3.1
 	 */
-	public function customize_register( $wp_customize ) {
+	public function customizer( $wp_customize ) {
 		$options               = $this->get_options();
 		$default_theme_options = $this->default_options;
 		$default_theme         = wp_get_theme()->get( 'Name' );
