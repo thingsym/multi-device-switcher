@@ -789,6 +789,7 @@ class Multi_Device_Switcher {
 
 		return $links;
 	}
+
 	/**
 	 * Set links below a plugin on the Plugins page.
 	 *
