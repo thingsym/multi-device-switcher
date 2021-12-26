@@ -17,9 +17,9 @@ class Multi_Device_Switcher_Command extends WP_CLI_Command {
 	 *
 	 * @access public
 	 *
-	 * @var string $options   The option name
+	 * @var string $option_name   The option name
 	 */
-	public $options = 'multi_device_switcher_options';
+	public $option_name = 'multi_device_switcher_options';
 
 	/**
 	 * Get status of settings
@@ -29,7 +29,7 @@ class Multi_Device_Switcher_Command extends WP_CLI_Command {
 	 *     wp multi-device status
 	 */
 	public function status( $args, $assoc_args ) {
-		$options = get_option( $this->options );
+		$options = get_option( $this->option_name );
 		$rows    = array();
 
 		$slug_table = array( 'None' => '' );
@@ -129,7 +129,7 @@ class Multi_Device_Switcher_Command extends WP_CLI_Command {
 		$slug  = isset( $args[1] ) ? $args[1] : null;
 		$theme = isset( $assoc_args['theme'] ) ? $assoc_args['theme'] : null;
 
-		$options = get_option( $this->options );
+		$options = get_option( $this->option_name );
 
 		if ( isset( $slug ) ) {
 			if ( '' == $slug || 'None' == $slug ) {
@@ -166,13 +166,13 @@ class Multi_Device_Switcher_Command extends WP_CLI_Command {
 				}
 				$options[ 'theme_' . $name ] = $theme;
 
-				update_option( $this->options, $options );
+				update_option( $this->option_name, $options );
 				WP_CLI::success( 'switch ' . $name . ' theme to ' . $theme );
 			}
 			elseif ( isset( $options[ 'custom_switcher_theme_' . $name ] ) ) {
 				$options[ 'custom_switcher_theme_' . $name ] = $theme;
 
-				update_option( $this->options, $options );
+				update_option( $this->option_name, $options );
 				WP_CLI::success( 'switch ' . $name . ' theme to ' . $theme );
 			}
 			else {
@@ -221,7 +221,7 @@ class Multi_Device_Switcher_Command extends WP_CLI_Command {
 		$name      = isset( $args[0] ) ? $args[0] : null;
 		$useragent = isset( $args[1] ) ? $args[1] : null;
 
-		$options = get_option( $this->options );
+		$options = get_option( $this->option_name );
 
 		if ( isset( $useragent ) ) {
 			if ( in_array( $name, array( 'smartphone', 'smart', 'tablet', 'mobile', 'game' ) ) ) {
@@ -230,13 +230,13 @@ class Multi_Device_Switcher_Command extends WP_CLI_Command {
 				}
 				$options[ 'userAgent_' . $name ] = $useragent;
 
-				update_option( $this->options, $options );
+				update_option( $this->option_name, $options );
 				WP_CLI::success( 'set ' . $name . ' UserAgent to ' . $useragent );
 			}
 			elseif ( isset( $options[ 'custom_switcher_theme_' . $name ] ) ) {
 				$options[ 'custom_switcher_userAgent_' . $name ] = $useragent;
 
-				update_option( $this->options, $options );
+				update_option( $this->option_name, $options );
 				WP_CLI::success( 'set ' . $name . ' UserAgent to ' . $useragent );
 			}
 			else {
@@ -269,7 +269,7 @@ class Multi_Device_Switcher_Command extends WP_CLI_Command {
 	 * @synopsis
 	 */
 	public function reset( $args, $assoc_args ) {
-		$options         = get_option( $this->options );
+		$options         = get_option( $this->option_name );
 		$default_options = multi_device_switcher_get_default_options();
 
 		$options['userAgent_smart']  = $default_options['userAgent_smart'];
@@ -277,7 +277,7 @@ class Multi_Device_Switcher_Command extends WP_CLI_Command {
 		$options['userAgent_mobile'] = $default_options['userAgent_mobile'];
 		$options['userAgent_game']   = $default_options['userAgent_game'];
 
-		update_option( $this->options, $options );
+		update_option( $this->option_name, $options );
 		WP_CLI::success( 'reset Settings to Default UserAgent' );
 	}
 
@@ -332,7 +332,7 @@ class Multi_Device_Switcher_Command extends WP_CLI_Command {
 			}
 		}
 
-		$options = get_option( $this->options );
+		$options = get_option( $this->option_name );
 		if ( in_array( $name, array( 'smartphone', 'smart', 'tablet', 'mobile', 'game' ) ) ) {
 			WP_CLI::error( 'Default Switcher can\'t add' );
 		}
@@ -359,7 +359,7 @@ class Multi_Device_Switcher_Command extends WP_CLI_Command {
 
 			$options[ 'custom_switcher_userAgent_' . $name ] = isset( $useragent ) ? $useragent : '';
 
-			update_option( $this->options, $options );
+			update_option( $this->option_name, $options );
 			WP_CLI::success( 'add ' . $name . ' Custom Switcher' );
 		}
 	}
@@ -382,7 +382,7 @@ class Multi_Device_Switcher_Command extends WP_CLI_Command {
 	public function delete( $args, $assoc_args ) {
 		$name = isset( $args[0] ) ? $args[0] : null;
 
-		$options = get_option( $this->options );
+		$options = get_option( $this->option_name );
 
 		if ( in_array( $name, array( 'smartphone', 'smart', 'tablet', 'mobile', 'game' ) ) ) {
 			WP_CLI::error( 'Default Switcher can\'t delete' );
@@ -391,7 +391,7 @@ class Multi_Device_Switcher_Command extends WP_CLI_Command {
 			unset( $options[ 'custom_switcher_theme_' . $name ] );
 			unset( $options[ 'custom_switcher_userAgent_' . $name ] );
 
-			update_option( $this->options, $options );
+			update_option( $this->option_name, $options );
 			WP_CLI::success( 'delete ' . $name . ' Custom Switcher' );
 		}
 		else {
@@ -422,16 +422,16 @@ class Multi_Device_Switcher_Command extends WP_CLI_Command {
 	public function pc_switcher( $args, $assoc_args ) {
 		$flag = isset( $args[0] ) ? $args[0] : null;
 
-		$options = get_option( $this->options );
+		$options = get_option( $this->option_name );
 
 		if ( 'on' == $flag ) {
 			$options['pc_switcher'] = 1;
-			update_option( $this->options, $options );
+			update_option( $this->option_name, $options );
 			WP_CLI::success( 'turn on PC Switcher' );
 		}
 		elseif ( 'off' == $flag ) {
 			$options['pc_switcher'] = 0;
-			update_option( $this->options, $options );
+			update_option( $this->option_name, $options );
 			WP_CLI::success( 'turn off PC Switcher' );
 		}
 		else {
@@ -461,16 +461,16 @@ class Multi_Device_Switcher_Command extends WP_CLI_Command {
 	public function css( $args, $assoc_args ) {
 		$flag = isset( $args[0] ) ? $args[0] : null;
 
-		$options = get_option( $this->options );
+		$options = get_option( $this->option_name );
 
 		if ( 'on' == $flag ) {
 			$options['default_css'] = 1;
-			update_option( $this->options, $options );
+			update_option( $this->option_name, $options );
 			WP_CLI::success( 'turn on default CSS' );
 		}
 		elseif ( 'off' == $flag ) {
 			$options['default_css'] = 0;
-			update_option( $this->options, $options );
+			update_option( $this->option_name, $options );
 			WP_CLI::success( 'turn off default CSS' );
 		}
 		else {
