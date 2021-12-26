@@ -318,15 +318,7 @@ class Test_Multi_Device_Switcher_Functions extends WP_UnitTestCase {
 	 */
 	function plugin_action_links() {
 		$links = $this->multi_device_switcher->plugin_action_links( array() );
-		$this->assertContains( 'themes.php?page=multi-device-switcher', $links[0] );
-	}
-
-	/**
-	 * @test
-	 * @group functions
-	 */
-	function render_option_page() {
-		$this->markTestIncomplete( 'This test has not been implemented yet.' );
+		$this->assertContains( '<a href="themes.php?page=multi-device-switcher">Settings</a>', $links );
 	}
 
 	/**
@@ -342,7 +334,7 @@ class Test_Multi_Device_Switcher_Functions extends WP_UnitTestCase {
 	 * @test
 	 * @group functions
 	 */
-	function customize_register() {
+	function render_option_page() {
 		$this->markTestIncomplete( 'This test has not been implemented yet.' );
 	}
 
@@ -355,6 +347,15 @@ class Test_Multi_Device_Switcher_Functions extends WP_UnitTestCase {
 
 		// $this->multi_device_switcher->load_file();
 		// var_dump(get_included_files());
+	}
+
+	/**
+	 * @test
+	 * @group functions
+	 */
+	function load_textdomain() {
+		$result = $this->multi_device_switcher->load_textdomain();
+		$this->assertNull( $result );
 	}
 
 	/**
