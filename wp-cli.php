@@ -13,13 +13,13 @@
 class Multi_Device_Switcher_Command extends WP_CLI_Command {
 
 	/**
-	 * Protected value.
+	 * Public variable.
 	 *
-	 * @access protected
+	 * @access public
 	 *
 	 * @var string $options   The option name
 	 */
-	private $options = 'multi_device_switcher_options';
+	public $options = 'multi_device_switcher_options';
 
 	/**
 	 * Get status of settings

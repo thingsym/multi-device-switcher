@@ -26,63 +26,63 @@ if ( ! defined( 'ABSPATH' ) ) {
 class Multi_Device_Switcher {
 
 	/**
-	 * Protected value.
+	 * Public variable.
 	 *
-	 * @access protected
+	 * @access public
 	 *
 	 * @var string $option_group   The group name of option
 	 */
-	protected $option_group = 'multi_device_switcher';
+	public $option_group = 'multi_device_switcher';
 
 	/**
-	 * Protected value.
+	 * Public variable.
 	 *
-	 * @access protected
+	 * @access public
 	 *
 	 * @var string $option_name   The option name
 	 */
-	protected $option_name = 'multi_device_switcher_options';
+	public $option_name = 'multi_device_switcher_options';
 
 	/**
-	 * Protected value.
+	 * Public variable.
 	 *
-	 * @access protected
+	 * @access public
 	 *
 	 * @var string $capability   The types of capability
 	 */
-	protected $capability = 'switch_themes';
+	public $capability = 'switch_themes';
 
 	/**
-	 * Protected value.
+	 * Public variable.
 	 *
-	 * @access protected
+	 * @access public
 	 *
 	 * @var string $cookie_name_multi_device_switcher
 	 */
-	protected $cookie_name_multi_device_switcher = 'multi-device-switcher';
+	public $cookie_name_multi_device_switcher = 'multi-device-switcher';
 
 	/**
-	 * Protected value.
+	 * Public variable.
 	 *
-	 * @access protected
+	 * @access public
 	 *
 	 * @var string $cookie_name_disable_switcher
 	 */
-	protected $cookie_name_disable_switcher = 'disable-switcher';
+	public $cookie_name_disable_switcher = 'disable-switcher';
 
 	/**
-	 * Protected value.
+	 * Public variable.
 	 *
-	 * @access protected
+	 * @access public
 	 *
 	 * @var string $cookie_name_pc_switcher
 	 */
-	protected $cookie_name_pc_switcher = 'pc-switcher';
+	public $cookie_name_pc_switcher = 'pc-switcher';
 
 	/**
-	 * Protected value.
+	 * Public variable.
 	 *
-	 * @access protected
+	 * @access public
 	 *
 	 * @var array $default_options {
 	 *   default options
@@ -103,7 +103,7 @@ class Multi_Device_Switcher {
 	 *
 	 * @since 1.7.0
 	 */
-	protected $default_options = array(
+	public $default_options = array(
 		'pc_switcher'      => 1,
 		'default_css'      => 1,
 		'theme_smartphone' => 'None',
@@ -119,13 +119,22 @@ class Multi_Device_Switcher {
 	);
 
 	/**
-	 * Public value.
+	 * Public variable.
 	 *
 	 * @access public
 	 *
 	 * @var string $device
 	 */
 	public $device = '';
+
+	/**
+	 * Public variable.
+	 *
+	 * @access public
+	 *
+	 * @var array|null $plugin_data
+	 */
+	public $plugin_data;
 
 	/**
 	 * Constructor
