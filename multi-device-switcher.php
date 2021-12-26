@@ -144,6 +144,7 @@ class Multi_Device_Switcher {
 	 * @since 1.0.0
 	 */
 	public function __construct() {
+		add_action( 'init', array( $this, 'load_plugin_data' ) );
 		add_action( 'init', array( $this, 'load_textdomain' ) );
 		add_action( 'init', array( $this, 'init' ) );
 
@@ -508,7 +509,8 @@ class Multi_Device_Switcher {
 					'pc-switcher-options',
 					plugins_url() . '/multi-device-switcher/pc-switcher.css',
 					array(),
-					'2013-03-20'
+					$this->plugin_data['Version'],
+					'all'
 				);
 			}
 
@@ -665,7 +667,7 @@ class Multi_Device_Switcher {
 			'multi-device-switcher-options',
 			plugins_url() . '/multi-device-switcher/multi-device-switcher.js',
 			array( 'jquery', 'jquery-ui-tabs' ),
-			'2011-08-22'
+			$this->plugin_data['Version'],
 		);
 	}
 
@@ -683,7 +685,8 @@ class Multi_Device_Switcher {
 			'multi-device-switcher-options',
 			plugins_url() . '/multi-device-switcher/multi-device-switcher.css',
 			array(),
-			'2011-08-22'
+			$this->plugin_data['Version'],
+			'all'
 		);
 	}
 
@@ -880,6 +883,29 @@ class Multi_Device_Switcher {
 			false,
 			dirname( plugin_basename( __MULTI_DEVICE_SWITCHER_FILE__ ) ) . '/languages/'
 		);
+	}
+
+	/**
+	 * Load plugin data
+	 *
+	 * @access public
+	 *
+	 * @return boolean
+	 *
+	 * @since 1.8.1
+	 */
+	public function load_plugin_data() {
+		if ( ! function_exists( 'get_plugin_data' ) ) {
+			require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+		}
+
+		$this->plugin_data = get_plugin_data( __MULTI_DEVICE_SWITCHER_FILE__ );
+
+		if ( ! $this->plugin_data ) {
+			return false;
+		}
+
+		return true;
 	}
 
 	/**

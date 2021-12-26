@@ -264,6 +264,8 @@ class Test_Multi_Device_Switcher_Functions extends WP_UnitTestCase {
 	 * @group functions
 	 */
 	function admin_enqueue() {
+		$this->multi_device_switcher->load_plugin_data();
+
 		$this->multi_device_switcher->admin_enqueue_scripts( '' );
 		$this->assertTrue( wp_script_is( 'multi-device-switcher-options' ) );
 
@@ -344,6 +346,14 @@ class Test_Multi_Device_Switcher_Functions extends WP_UnitTestCase {
 
 		// $this->multi_device_switcher->load_file();
 		// var_dump(get_included_files());
+	}
+
+	/**
+	 * @test
+	 * @group functions
+	 */
+	function load_plugin_data() {
+		$this->assertTrue( $this->multi_device_switcher->load_plugin_data() );
 	}
 
 }
