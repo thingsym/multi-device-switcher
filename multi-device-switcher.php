@@ -3,7 +3,7 @@
  * Plugin Name: Multi Device Switcher
  * Plugin URI:  https://github.com/thingsym/multi-device-switcher
  * Description: This WordPress plugin allows you to set a separate theme for device (Smart Phone, Tablet PC, Mobile Phone, Game and custom).
- * Version:     1.8.0
+ * Version:     1.8.1
  * Author:      thingsym
  * Author URI:  https://www.thingslabo.com/
  * License:     GPL2 or later
@@ -26,63 +26,63 @@ if ( ! defined( 'ABSPATH' ) ) {
 class Multi_Device_Switcher {
 
 	/**
-	 * Protected value.
+	 * Public variable.
 	 *
-	 * @access protected
+	 * @access public
 	 *
 	 * @var string $option_group   The group name of option
 	 */
-	protected $option_group = 'multi_device_switcher';
+	public $option_group = 'multi_device_switcher';
 
 	/**
-	 * Protected value.
+	 * Public variable.
 	 *
-	 * @access protected
+	 * @access public
 	 *
 	 * @var string $option_name   The option name
 	 */
-	protected $option_name = 'multi_device_switcher_options';
+	public $option_name = 'multi_device_switcher_options';
 
 	/**
-	 * Protected value.
+	 * Public variable.
 	 *
-	 * @access protected
+	 * @access public
 	 *
 	 * @var string $capability   The types of capability
 	 */
-	protected $capability = 'switch_themes';
+	public $capability = 'switch_themes';
 
 	/**
-	 * Protected value.
+	 * Public variable.
 	 *
-	 * @access protected
+	 * @access public
 	 *
 	 * @var string $cookie_name_multi_device_switcher
 	 */
-	protected $cookie_name_multi_device_switcher = 'multi-device-switcher';
+	public $cookie_name_multi_device_switcher = 'multi-device-switcher';
 
 	/**
-	 * Protected value.
+	 * Public variable.
 	 *
-	 * @access protected
+	 * @access public
 	 *
 	 * @var string $cookie_name_disable_switcher
 	 */
-	protected $cookie_name_disable_switcher = 'disable-switcher';
+	public $cookie_name_disable_switcher = 'disable-switcher';
 
 	/**
-	 * Protected value.
+	 * Public variable.
 	 *
-	 * @access protected
+	 * @access public
 	 *
 	 * @var string $cookie_name_pc_switcher
 	 */
-	protected $cookie_name_pc_switcher = 'pc-switcher';
+	public $cookie_name_pc_switcher = 'pc-switcher';
 
 	/**
-	 * Protected value.
+	 * Public variable.
 	 *
-	 * @access protected
+	 * @access public
 	 *
 	 * @var array $default_options {
 	 *   default options
@@ -103,7 +103,7 @@ class Multi_Device_Switcher {
 	 *
 	 * @since 1.7.0
 	 */
-	protected $default_options = array(
+	public $default_options = array(
 		'pc_switcher'      => 1,
 		'default_css'      => 1,
 		'theme_smartphone' => 'None',
@@ -119,13 +119,22 @@ class Multi_Device_Switcher {
 	);
 
 	/**
-	 * Public value.
+	 * Public variable.
 	 *
 	 * @access public
 	 *
 	 * @var string $device
 	 */
 	public $device = '';
+
+	/**
+	 * Public variable.
+	 *
+	 * @access public
+	 *
+	 * @var array|null $plugin_data
+	 */
+	public $plugin_data;
 
 	/**
 	 * Constructor
@@ -135,6 +144,7 @@ class Multi_Device_Switcher {
 	 * @since 1.0.0
 	 */
 	public function __construct() {
+		add_action( 'init', array( $this, 'load_plugin_data' ) );
 		add_action( 'init', array( $this, 'load_textdomain' ) );
 		add_action( 'init', array( $this, 'init' ) );
 
@@ -146,7 +156,7 @@ class Multi_Device_Switcher {
 
 		add_action( 'admin_init', array( $this, 'register_settings' ) );
 		add_action( 'admin_menu', array( $this, 'add_option_page' ) );
-		add_action( 'customize_register', array( $this, 'customize_register' ) );
+		add_action( 'customize_register', array( $this, 'customizer' ) );
 		add_action( 'plugins_loaded', array( $this, 'load_file' ) );
 	}
 
@@ -188,6 +198,7 @@ class Multi_Device_Switcher {
 
 		add_action( 'init', array( $this, 'session' ) );
 
+		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		$server_ua  = isset( $_SERVER['HTTP_USER_AGENT'] ) ? $_SERVER['HTTP_USER_AGENT'] : '';
 		$user_agent = $this->get_options_user_agent();
 
@@ -460,9 +471,13 @@ class Multi_Device_Switcher {
 	 */
 	public function session() {
 		if ( isset( $_GET['pc-switcher'] ) ) {
+			// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 			setcookie( $this->cookie_name_pc_switcher, $_GET['pc-switcher'] ? '1' : '', 0, '/', '', is_ssl(), false );
 
-			$uri = preg_replace( '/^(.+?)(\?.*)$/', '$1', $_SERVER['REQUEST_URI'] );
+			if ( isset( $_SERVER['REQUEST_URI'] ) ) {
+				// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+				$uri = preg_replace( '/^(.+?)(\?.*)$/', '$1', $_SERVER['REQUEST_URI'] );
+			}
 
 			unset( $_GET['pc-switcher'] );
 			if ( ! empty( $_GET ) ) {
@@ -499,12 +514,17 @@ class Multi_Device_Switcher {
 					'pc-switcher-options',
 					plugins_url() . '/multi-device-switcher/pc-switcher.css',
 					array(),
-					'2013-03-20'
+					$this->plugin_data['Version'],
+					'all'
 				);
 			}
 
 			$uri  = is_ssl() ? 'https://' : 'http://';
-			$uri .= $_SERVER['HTTP_HOST'];
+
+			if ( isset( $_SERVER['HTTP_HOST'] ) ) {
+				// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+				$uri .= $_SERVER['HTTP_HOST'];
+			}
 
 			if ( isset( $_COOKIE[ $this->cookie_name_pc_switcher ] ) ) {
 				$uri .= add_query_arg( 'pc-switcher', 0 );
@@ -571,15 +591,20 @@ class Multi_Device_Switcher {
 		$options      = $this->get_options();
 		$disable_path = preg_split( '/\R/', $options['disable_path'], -1, PREG_SPLIT_NO_EMPTY );
 
+		if ( isset( $_SERVER['REQUEST_URI'] ) ) {
+			// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+			$request_uri = $_SERVER['REQUEST_URI'];
+		}
+
 		foreach ( (array) $disable_path as $path ) {
 			if ( $options['enable_regex'] ) {
-				if ( preg_match( '/' . $path . '/i', $_SERVER['REQUEST_URI'] ) ) {
+				if ( preg_match( '/' . $path . '/i', $request_uri ) ) {
 					$disable = true;
 					break;
 				}
 			}
 			else {
-				if ( preg_match( '/^' . preg_quote( (string) $path, '/' ) . '$/i', $_SERVER['REQUEST_URI'] ) ) {
+				if ( preg_match( '/^' . preg_quote( (string) $path, '/' ) . '$/i', $request_uri ) ) {
 					$disable = true;
 					break;
 				}
@@ -656,7 +681,7 @@ class Multi_Device_Switcher {
 			'multi-device-switcher-options',
 			plugins_url() . '/multi-device-switcher/multi-device-switcher.js',
 			array( 'jquery', 'jquery-ui-tabs' ),
-			'2011-08-22'
+			$this->plugin_data['Version'],
 		);
 	}
 
@@ -674,7 +699,8 @@ class Multi_Device_Switcher {
 			'multi-device-switcher-options',
 			plugins_url() . '/multi-device-switcher/multi-device-switcher.css',
 			array(),
-			'2011-08-22'
+			$this->plugin_data['Version'],
+			'all'
 		);
 	}
 
@@ -777,6 +803,7 @@ class Multi_Device_Switcher {
 
 		return $links;
 	}
+
 	/**
 	 * Set links below a plugin on the Plugins page.
 	 *
@@ -791,12 +818,11 @@ class Multi_Device_Switcher {
 	 *
 	 * @return array $links
 	 *
-	 * @since 1.8.0
+	 * @since 1.8.1
 	 */
 	public function plugin_metadata_links( $links, $file ) {
-
 		if ( $file == plugin_basename( __MULTI_DEVICE_SWITCHER_FILE__ ) ) {
-			$links[] = '<a href="https://github.com/sponsors/thingsym">' . __( 'Become a sponsor (GitHub Sponsors)', 'multi-device-switcher' ) . '</a>';
+			$links[] = '<a href="https://github.com/sponsors/thingsym">' . __( 'Become a sponsor', 'multi-device-switcher' ) . '</a>';
 		}
 
 		return $links;
@@ -874,6 +900,29 @@ class Multi_Device_Switcher {
 	}
 
 	/**
+	 * Load plugin data
+	 *
+	 * @access public
+	 *
+	 * @return boolean
+	 *
+	 * @since 1.8.1
+	 */
+	public function load_plugin_data() {
+		if ( ! function_exists( 'get_plugin_data' ) ) {
+			require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+		}
+
+		$this->plugin_data = get_plugin_data( __MULTI_DEVICE_SWITCHER_FILE__ );
+
+		if ( ! $this->plugin_data ) {
+			return false;
+		}
+
+		return true;
+	}
+
+	/**
 	 * Display option page.
 	 *
 	 * @access public
@@ -938,6 +987,7 @@ class Multi_Device_Switcher {
 			}
 			$html .= '</select>';
 		}
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo $html;
 		?>
 
@@ -970,6 +1020,7 @@ class Multi_Device_Switcher {
 			}
 			$html .= '</select>';
 		}
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo $html;
 		?>
 
@@ -1002,6 +1053,7 @@ class Multi_Device_Switcher {
 			}
 			$html .= '</select>';
 		}
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo $html;
 		?>
 
@@ -1034,6 +1086,7 @@ class Multi_Device_Switcher {
 			}
 			$html .= '</select>';
 		}
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo $html;
 		?>
 
@@ -1081,6 +1134,7 @@ class Multi_Device_Switcher {
 				$html .= '</select>';
 				$html .= ' <span class="submit"><input type="submit" name="multi_device_switcher_options[delete_custom_switcher_' . $custom_switcher_name . ']" value="' . __( 'Delete', 'multi-device-switcher' ) . '" onclick="return confirm(\'' . esc_html( sprintf( __( 'Are you sure you want to delete %1$s ?', 'multi-device-switcher' ), $custom_switcher_name ) ) . '\');" class="button"></span>';
 			}
+			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			echo $html;
 			?>
 		</td>
@@ -1302,7 +1356,7 @@ class Multi_Device_Switcher {
 	 *
 	 * @since 1.3.1
 	 */
-	public function customize_register( $wp_customize ) {
+	public function customizer( $wp_customize ) {
 		$options               = $this->get_options();
 		$default_theme_options = $this->default_options;
 		$default_theme         = wp_get_theme()->get( 'Name' );

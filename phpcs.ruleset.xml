@@ -1,23 +1,76 @@
 <?xml version="1.0"?>
 <ruleset name="WordPress Coding Standards for theme/plugin">
-  <!-- See https://github.com/squizlabs/PHP_CodeSniffer/wiki/Annotated-ruleset.xml -->
-  <!-- See https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/blob/develop/WordPress-Core/ruleset.xml -->
+  <!-- See https://github.com/squizlabs/PHP_CodeSniffer/wiki/Annotated-Ruleset -->
+  <!-- See https://github.com/WordPress/WordPress-Coding-Standards/blob/develop/WordPress-Core/ruleset.xml -->
 
   <!-- Set a description for this ruleset. -->
   <description>Custom rules of WordPress Coding Standards for theme/plugin</description>
 
-  <!-- Include the WordPress ruleset, with exclusions. -->
-  <rule ref="WordPress">
-    <exclude name="WordPress.Files.FileName.InvalidClassFileName" />
-    <exclude name="Squiz.ControlStructures.ControlSignature.SpaceAfterCloseBrace" />
-    <exclude name="Squiz.Commenting.FunctionComment.Missing" />
-    <exclude name="Squiz.Commenting.FunctionComment.MissingParamComment" />
-    <exclude name="Squiz.Commenting.FunctionComment.MissingParamTag" />
-    <exclude name="WordPress.WP.I18n.NonSingularStringLiteralText" />
-    <exclude name="WordPress.WP.I18n.MissingTranslatorsComment" />
-    <exclude name="Generic.CodeAnalysis.EmptyStatement.DetectedIf" />
-  </rule>
+  <!-- Default tab width for indentation fixes and such. -->
+  <arg name="tab-width" value="4"/>
+
+  <!--
+    If no files or directories are specified on the command line
+    your custom standard can specify what files should be checked
+    instead.
+
+    Note that file and directory paths specified in a ruleset are
+    relative to the ruleset's location, and that specifying any file or
+    directory path on the command line will ignore all file tags.
+  -->
+
+  <file>.</file>
+
+  <!--
+    You can hard-code ignore patterns directly into your
+    custom standard so you don't have to specify the
+    patterns on the command line.
+
+    The following two tags are equivalent to the command line argument:
+    \-\-ignore=*/tests/*,*/data/*
+  -->
 
   <exclude-pattern>*/tests/*</exclude-pattern>
   <exclude-pattern>*/vendor/*</exclude-pattern>
+  <exclude-pattern>*/node_modules/*</exclude-pattern>
+
+  <!-- Annotated Ruleset https://github.com/squizlabs/PHP_CodeSniffer/wiki/Annotated-Ruleset -->
+  <arg name="extensions" value="php"/>
+  <arg name="colors"/>
+  <arg value="sp"/>
+
+  <!-- Include the WordPress ruleset, with exclusions. -->
+  <rule ref="WordPress.WP.I18n">
+    <properties>
+      <!-- Value: replace the text domain used. -->
+      <property name="text_domain" type="array" value="multi-device-switcher" />
+    </properties>
+  </rule>
+
+  <rule ref="WordPress">
+    <exclude name="Squiz.ControlStructures.ControlSignature.SpaceAfterCloseBrace" />
+    <exclude name="WordPress.Arrays.ArrayDeclaration.NoComma" />
+    <exclude name="WordPress.WP.I18n.MissingTranslatorsComment" />
+    <exclude name="Squiz.Commenting.VariableComment.Missing" />
+    <exclude name="Generic.WhiteSpace.ScopeIndent.Incorrect" />
+    <exclude name="Generic.WhiteSpace.ScopeIndent.IncorrectExact" />
+
+    <exclude name="Squiz.Commenting.FileComment.Missing" />
+    <exclude name="Squiz.Commenting.FileComment.SpacingAfterComment" />
+    <exclude name="Squiz.Commenting.BlockComment.NoEmptyLineBefore" />
+    <exclude name="Squiz.Commenting.InlineComment.InvalidEndChar" />
+    <exclude name="Squiz.Commenting.InlineComment.SpacingAfter" />
+
+    <exclude name="Squiz.Commenting.ClassComment" />
+    <exclude name="Squiz.Commenting.FunctionComment" />
+    <exclude name="Generic.Commenting.DocComment" />
+
+    <exclude name="WordPress.PHP.YodaConditions.NotYoda" />
+
+    <exclude name="WordPress.Files.FileName.InvalidClassFileName" />
+  </rule>
+
+  <rule ref="PHPCompatibilityWP">
+    <config name="testVersion" value="5.6-"/>
+  </rule>
 </ruleset>

@@ -264,6 +264,8 @@ class Test_Multi_Device_Switcher_Functions extends WP_UnitTestCase {
 	 * @group functions
 	 */
 	function admin_enqueue() {
+		$this->multi_device_switcher->load_plugin_data();
+
 		$this->multi_device_switcher->admin_enqueue_scripts( '' );
 		$this->assertTrue( wp_script_is( 'multi-device-switcher-options' ) );
 
@@ -316,7 +318,16 @@ class Test_Multi_Device_Switcher_Functions extends WP_UnitTestCase {
 	 */
 	function plugin_action_links() {
 		$links = $this->multi_device_switcher->plugin_action_links( array() );
-		$this->assertContains( 'themes.php?page=multi-device-switcher', $links[0] );
+		$this->assertContains( '<a href="themes.php?page=multi-device-switcher">Settings</a>', $links );
+	}
+
+	/**
+	 * @test
+	 * @group functions
+	 */
+	public function plugin_metadata_links() {
+		$links = $this->multi_device_switcher->plugin_metadata_links( array(), plugin_basename( __MULTI_DEVICE_SWITCHER_FILE__ ) );
+		$this->assertContains( '<a href="https://github.com/sponsors/thingsym">Become a sponsor</a>', $links );
 	}
 
 	/**
@@ -331,19 +342,28 @@ class Test_Multi_Device_Switcher_Functions extends WP_UnitTestCase {
 	 * @test
 	 * @group functions
 	 */
-	function customize_register() {
+	function load_file() {
 		$this->markTestIncomplete( 'This test has not been implemented yet.' );
+
+		// $this->multi_device_switcher->load_file();
+		// var_dump(get_included_files());
 	}
 
 	/**
 	 * @test
 	 * @group functions
 	 */
-	function load_file() {
-		$this->markTestIncomplete( 'This test has not been implemented yet.' );
+	function load_textdomain() {
+		$result = $this->multi_device_switcher->load_textdomain();
+		$this->assertNull( $result );
+	}
 
-		// $this->multi_device_switcher->load_file();
-		// var_dump(get_included_files());
+	/**
+	 * @test
+	 * @group functions
+	 */
+	function load_plugin_data() {
+		$this->assertTrue( $this->multi_device_switcher->load_plugin_data() );
 	}
 
 }
