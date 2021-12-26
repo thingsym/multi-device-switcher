@@ -57,7 +57,7 @@ class Test_Multi_Device_Switcher_Constructor extends WP_UnitTestCase {
 		$this->assertEquals( 10, has_filter( 'wp_headers', array( $this->multi_device_switcher, 'add_header_vary' ) ) );
 		$this->assertEquals( 10, has_action( 'plugins_loaded', array( $this->multi_device_switcher, 'switch_theme' ) ) );
 
-		$this->assertEquals( 10, has_action( 'customize_register', array( $this->multi_device_switcher, 'customize_register' ) ) );
+		$this->assertEquals( 10, has_action( 'customize_register', array( $this->multi_device_switcher, 'customizer' ) ) );
 		$this->assertEquals( 10, has_action( 'plugins_loaded', array( $this->multi_device_switcher, 'load_file' ) ) );
 	}
 
