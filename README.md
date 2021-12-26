@@ -407,6 +407,24 @@ Small patches and bug reports can be submitted a issue tracker in Github. Forkin
 
 ## Changelog
 
+* Version 1.8.1
+	* update japanese translation
+	* update pot
+	* imporve code with phpcs
+	* update wordpress-test-matrix
+	* fix test case
+	* fix plugin_metadata_links method
+	* add load_plugin_data method
+	* rename variable from options to option_name
+	* add test case for customizer
+	* rename method name
+	* update composer dependencies
+	* change from protected variable to public variable for unit test
+	* add timeout-minutes to workflows
+	* add phpunit-polyfills
+	* update install-wp-tests.sh
+	* tested up to 5.8.0
+	* fix .editorconfig
 * Version 1.8.0
 	* add test case
 	* add PHPDoc
