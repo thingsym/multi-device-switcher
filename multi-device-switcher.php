@@ -676,7 +676,7 @@ class Multi_Device_Switcher {
 	 *
 	 * @since 1.0.0
 	 */
-	public function admin_enqueue_scripts( $hook_suffix ) {
+	public function admin_enqueue_scripts( $hook_suffix = '' ) {
 		wp_enqueue_script(
 			'multi-device-switcher-options',
 			plugins_url() . '/multi-device-switcher/multi-device-switcher.js',
@@ -694,7 +694,7 @@ class Multi_Device_Switcher {
 	 *
 	 * @since 1.0.0
 	 */
-	public function admin_enqueue_styles( $hook_suffix ) {
+	public function admin_enqueue_styles( $hook_suffix = '' ) {
 		wp_enqueue_style(
 			'multi-device-switcher-options',
 			plugins_url() . '/multi-device-switcher/multi-device-switcher.css',
