@@ -134,7 +134,7 @@ class Multi_Device_Switcher {
 	 *
 	 * @var array|null $plugin_data
 	 */
-	public $plugin_data;
+	public $plugin_data = array();
 
 	/**
 	 * Constructor
