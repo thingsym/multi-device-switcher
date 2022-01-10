@@ -266,10 +266,10 @@ class Test_Multi_Device_Switcher_Functions extends WP_UnitTestCase {
 	function admin_enqueue() {
 		$this->multi_device_switcher->load_plugin_data();
 
-		$this->multi_device_switcher->admin_enqueue_scripts( '' );
+		$this->multi_device_switcher->admin_enqueue_scripts();
 		$this->assertTrue( wp_script_is( 'multi-device-switcher-options' ) );
 
-		$this->multi_device_switcher->admin_enqueue_styles( '' );
+		$this->multi_device_switcher->admin_enqueue_styles();
 		$this->assertTrue( wp_style_is( 'multi-device-switcher-options' ) );
 	}
 
@@ -296,8 +296,7 @@ class Test_Multi_Device_Switcher_Functions extends WP_UnitTestCase {
 	function add_option_page() {
 		$this->markTestIncomplete( 'This test has not been implemented yet.' );
 
-		$this->multi_device_switcher->add_option_page();
-
+		// $this->multi_device_switcher->add_option_page();
 		// $this->assertEquals( 10, has_action( 'load-appearance_page_multi-device-switcher', array( $this->multi_device_switcher, 'page_hook_suffix' ) ) );
 	}
 
@@ -362,8 +361,11 @@ class Test_Multi_Device_Switcher_Functions extends WP_UnitTestCase {
 	 * @test
 	 * @group functions
 	 */
-	function load_plugin_data() {
-		$this->assertTrue( $this->multi_device_switcher->load_plugin_data() );
+	public function load_plugin_data() {
+		$this->multi_device_switcher->load_plugin_data();
+		$result = $this->multi_device_switcher->plugin_data;
+
+		$this->assertTrue( is_array( $result ) );
 	}
 
 }

@@ -40,7 +40,9 @@ class Test_Multi_Device_Switcher_Constructor extends WP_UnitTestCase {
 		$this->assertEquals( $expected, $this->multi_device_switcher->default_options );
 
 		$this->assertEquals( '', $this->multi_device_switcher->device );
-		$this->assertNull( $this->multi_device_switcher->plugin_data );
+
+		$this->assertIsArray( $this->multi_device_switcher->plugin_data );
+		$this->assertEmpty( $this->multi_device_switcher->plugin_data );
 	}
 
 	/**
