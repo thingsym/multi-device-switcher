@@ -50,6 +50,7 @@ class Test_Multi_Device_Switcher_Constructor extends WP_UnitTestCase {
 	 * @group constructor
 	 */
 	function constructor() {
+		$this->assertEquals( 10, has_action( 'init', array( $this->multi_device_switcher, 'load_plugin_data' ) ) );
 		$this->assertEquals( 10, has_filter( 'init', array( $this->multi_device_switcher, 'load_textdomain' ) ) );
 		$this->assertEquals( 10, has_filter( 'init', array( $this->multi_device_switcher, 'init' ) ) );
 
