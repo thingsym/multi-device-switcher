@@ -407,6 +407,12 @@ Small patches and bug reports can be submitted a issue tracker in Github. Forkin
 
 ## Changelog
 
+* Version 1.8.2
+	* change requires at least to wordpress 4.9
+	* change requires to PHP 5.6
+	* add test case
+	* set the initial value an empty array
+	* add hook_suffix argument
 * Version 1.8.1
 	* update japanese translation
 	* update pot
@@ -557,6 +563,9 @@ Small patches and bug reports can be submitted a issue tracker in Github. Forkin
 
 ## Upgrade Notice
 
+* Version 1.8.2
+	* Requires at least version 4.9 of the WordPress
+	* Requires PHP version 5.6
 * Version 1.6.0
 	* Requires at least version 3.7 of the WordPress
 * Version 1.1.2
