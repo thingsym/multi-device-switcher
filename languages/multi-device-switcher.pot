@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Multi Device Switcher package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Multi Device Switcher 1.8.1\n"
+"Project-Id-Version: Multi Device Switcher 1.8.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/multi-device-"
 "switcher\n"
 "POT-Creation-Date: 2021-12-26 08:37:47+00:00\n"
@@ -21,7 +21,7 @@ msgstr ""
 msgid "PC"
 msgstr ""
 
-#. #-#-#-#-#  multi-device-switcher.pot (Multi Device Switcher 1.8.1)  #-#-#-#-#
+#. #-#-#-#-#  multi-device-switcher.pot (Multi Device Switcher 1.8.2)  #-#-#-#-#
 #. Plugin Name of the plugin/theme
 #: multi-device-switcher.php:755 multi-device-switcher.php:756
 #: multi-device-switcher.php:939 multi-device-switcher.php:1394
