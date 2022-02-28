@@ -144,9 +144,9 @@ class Multi_Device_Switcher {
 	 * @since 1.0.0
 	 */
 	public function __construct() {
-		add_action( 'init', array( $this, 'load_plugin_data' ) );
-		add_action( 'init', array( $this, 'load_textdomain' ) );
-		add_action( 'init', array( $this, 'init' ) );
+		add_action( 'plugins_loaded', array( $this, 'load_plugin_data' ) );
+		add_action( 'plugins_loaded', array( $this, 'load_textdomain' ) );
+		add_action( 'plugins_loaded', array( $this, 'init' ) );
 
 		if ( ! is_admin() ) {
 			add_filter( 'wp_headers', array( $this, 'add_header_vary' ) );
@@ -163,7 +163,7 @@ class Multi_Device_Switcher {
 	/**
 	 * Initialize.
 	 *
-	 * Hooks to init
+	 * Hooks to plugins_loaded
 	 *
 	 * @access public
 	 *
