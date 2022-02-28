@@ -2,7 +2,7 @@
 # This file is distributed under the GPL2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Multi Device Switcher 1.8.2\n"
+"Project-Id-Version: Multi Device Switcher 1.8.3\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/multi-device-switcher\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"

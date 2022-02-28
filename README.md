@@ -407,6 +407,13 @@ Small patches and bug reports can be submitted a issue tracker in Github. Forkin
 
 ## Changelog
 
+* Version 1.8.3
+	* update japanese translation
+	* update pot
+	* add composer script
+	* change makepot from php script to wp cli
+	* change plugin initialization to plugins_loaded hook
+	* replace assert from assertEquals to assertSame
 * Version 1.8.2
 	* change requires at least to wordpress 4.9
 	* change requires to PHP 5.6
