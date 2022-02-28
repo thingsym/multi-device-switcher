@@ -100,7 +100,7 @@ class Test_Multi_Device_Switcher_Local_Functions extends WP_UnitTestCase {
 		$actual  = multi_device_switcher_get_default_options();
 
 		$this->assertTrue( is_array( $actual ) );
-		$this->assertEquals( $expected, $actual );
+		$this->assertSame( $expected, $actual );
 	}
 
 }

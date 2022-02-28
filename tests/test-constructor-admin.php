@@ -17,16 +17,16 @@ class Test_Multi_Device_Switcher_Constructor_Admin extends WP_UnitTestCase {
 	 * @group constructor
 	 */
 	function constructor() {
-		$this->assertEquals( 10, has_filter( 'init', array( $this->multi_device_switcher, 'load_textdomain' ) ) );
-		$this->assertEquals( 10, has_filter( 'init', array( $this->multi_device_switcher, 'init' ) ) );
+		$this->assertSame( 10, has_filter( 'plugins_loaded', array( $this->multi_device_switcher, 'load_textdomain' ) ) );
+		$this->assertSame( 10, has_filter( 'plugins_loaded', array( $this->multi_device_switcher, 'init' ) ) );
 
-		$this->assertEquals( 10, has_action( 'admin_init', array( $this->multi_device_switcher, 'register_settings' ) ) );
-		$this->assertEquals( 10, has_action( 'admin_menu', array( $this->multi_device_switcher, 'add_option_page' ) ) );
+		$this->assertSame( 10, has_action( 'admin_init', array( $this->multi_device_switcher, 'register_settings' ) ) );
+		$this->assertSame( 10, has_action( 'admin_menu', array( $this->multi_device_switcher, 'add_option_page' ) ) );
 
 		$this->assertFalse( has_filter( 'wp_headers', array( $this->multi_device_switcher, 'add_header_vary' ) ) );
 		$this->assertFalse( has_action( 'plugins_loaded', array( $this->multi_device_switcher, 'switch_theme' ) ) );
 
-		$this->assertEquals( 10, has_action( 'customize_register', array( $this->multi_device_switcher, 'customizer' ) ) );
-		$this->assertEquals( 10, has_action( 'plugins_loaded', array( $this->multi_device_switcher, 'load_file' ) ) );
+		$this->assertSame( 10, has_action( 'customize_register', array( $this->multi_device_switcher, 'customizer' ) ) );
+		$this->assertSame( 10, has_action( 'plugins_loaded', array( $this->multi_device_switcher, 'load_file' ) ) );
 	}
 }

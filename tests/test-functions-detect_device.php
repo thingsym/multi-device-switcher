@@ -39,7 +39,7 @@ class Test_Multi_Device_Switcher_Functions_Detect_Device extends WP_UnitTestCase
 		$this->multi_device_switcher->detect_device();
 
 		$this->assertEmpty( $this->multi_device_switcher->device );
-		$this->assertEquals( 10, has_action( 'init', array( $this->multi_device_switcher, 'session' ) ) );
+		$this->assertSame( 10, has_action( 'init', array( $this->multi_device_switcher, 'session' ) ) );
 		$this->assertFalse( has_filter( 'wp_headers', array( $this->multi_device_switcher, 'set_cookie_rest_disable_switcher' ) ) );
 		$this->assertFalse( has_filter( 'wp_headers', array( $this->multi_device_switcher, 'set_cookie_enable_disable_switcher' ) ) );
 	}
@@ -52,16 +52,16 @@ class Test_Multi_Device_Switcher_Functions_Detect_Device extends WP_UnitTestCase
 		$GLOBALS['_SERVER']['HTTP_USER_AGENT'] = 'iPhone';
 		$this->multi_device_switcher->detect_device();
 
-		$this->assertEquals( 'smart', $this->multi_device_switcher->device );
-		$this->assertEquals( 10, has_action( 'init', array( $this->multi_device_switcher, 'session' ) ) );
+		$this->assertSame( 'smart', $this->multi_device_switcher->device );
+		$this->assertSame( 10, has_action( 'init', array( $this->multi_device_switcher, 'session' ) ) );
 		$this->assertFalse( has_filter( 'wp_headers', array( $this->multi_device_switcher, 'set_cookie_rest_disable_switcher' ) ) );
 		$this->assertFalse( has_filter( 'wp_headers', array( $this->multi_device_switcher, 'set_cookie_enable_disable_switcher' ) ) );
 
 		$GLOBALS['_SERVER']['HTTP_USER_AGENT'] = 'test1';
 		$this->multi_device_switcher->detect_device();
 
-		$this->assertEquals( 'custom_switcher_test', $this->multi_device_switcher->device );
-		$this->assertEquals( 10, has_action( 'init', array( $this->multi_device_switcher, 'session' ) ) );
+		$this->assertSame( 'custom_switcher_test', $this->multi_device_switcher->device );
+		$this->assertSame( 10, has_action( 'init', array( $this->multi_device_switcher, 'session' ) ) );
 		$this->assertFalse( has_filter( 'wp_headers', array( $this->multi_device_switcher, 'set_cookie_rest_disable_switcher' ) ) );
 		$this->assertFalse( has_filter( 'wp_headers', array( $this->multi_device_switcher, 'set_cookie_enable_disable_switcher' ) ) );
 
@@ -76,8 +76,8 @@ class Test_Multi_Device_Switcher_Functions_Detect_Device extends WP_UnitTestCase
 		$GLOBALS['_COOKIE']['disable-switcher'] = 1;
 		$this->multi_device_switcher->detect_device();
 
-		$this->assertEquals( 10, has_action( 'init', array( $this->multi_device_switcher, 'session' ) ) );
-		$this->assertEquals( 10, has_filter( 'wp_headers', array( $this->multi_device_switcher, 'set_cookie_rest_disable_switcher' ) ) );
+		$this->assertSame( 10, has_action( 'init', array( $this->multi_device_switcher, 'session' ) ) );
+		$this->assertSame( 10, has_filter( 'wp_headers', array( $this->multi_device_switcher, 'set_cookie_rest_disable_switcher' ) ) );
 		$this->assertFalse( has_filter( 'wp_headers', array( $this->multi_device_switcher, 'set_cookie_enable_disable_switcher' ) ) );
 
 		unset($GLOBALS['_COOKIE']['disable-switcher']);
@@ -112,7 +112,7 @@ class Test_Multi_Device_Switcher_Functions_Detect_Device extends WP_UnitTestCase
 		$this->assertTrue( $this->multi_device_switcher->is_disable_switcher() );
 		$this->assertFalse( has_action( 'init', array( $this->multi_device_switcher, 'session' ) ) );
 		$this->assertFalse( has_filter( 'wp_headers', array( $this->multi_device_switcher, 'set_cookie_rest_disable_switcher' ) ) );
-		$this->assertEquals( 10, has_filter( 'wp_headers', array( $this->multi_device_switcher, 'set_cookie_enable_disable_switcher' ) ) );
+		$this->assertSame( 10, has_filter( 'wp_headers', array( $this->multi_device_switcher, 'set_cookie_enable_disable_switcher' ) ) );
 
 		unset($GLOBALS['_SERVER']['REQUEST_URI']);
 	}
@@ -125,7 +125,7 @@ class Test_Multi_Device_Switcher_Functions_Detect_Device extends WP_UnitTestCase
 		add_action( 'multi_device_switcher/detect_device', array( $this, '_set_device' ) );
 		$this->multi_device_switcher->detect_device();
 
-		$this->assertEquals( 'smart', $this->multi_device_switcher->device );
+		$this->assertSame( 'smart', $this->multi_device_switcher->device );
 	}
 
 	function _set_device() {

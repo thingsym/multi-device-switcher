@@ -30,7 +30,7 @@ class Test_Multi_Device_Switcher_Options extends WP_UnitTestCase {
 		$actual  = $this->multi_device_switcher->get_default_options();
 
 		$this->assertTrue( is_array( $actual ) );
-		$this->assertEquals( $expected, $actual );
+		$this->assertSame( $expected, $actual );
 	}
 
 	/**
@@ -42,7 +42,7 @@ class Test_Multi_Device_Switcher_Options extends WP_UnitTestCase {
 		$actual  = $this->multi_device_switcher->get_options();
 
 		$this->assertTrue( is_array( $actual ) );
-		$this->assertEquals( $expected, $actual );
+		$this->assertSame( $expected, $actual );
 	}
 
 	/**
@@ -71,7 +71,7 @@ class Test_Multi_Device_Switcher_Options extends WP_UnitTestCase {
 		$actual = $this->multi_device_switcher->get_options();
 
 		$this->assertTrue( is_array( $actual ) );
-		$this->assertEquals( $expected, $actual );
+		$this->assertSame( $expected, $actual );
 	}
 
 	/**
@@ -99,12 +99,12 @@ class Test_Multi_Device_Switcher_Options extends WP_UnitTestCase {
 		add_filter( 'multi_device_switcher/get_options', array( $this, '_filter_options' ), 10 );
 
 		$options = $this->multi_device_switcher->get_options();
-		$this->assertEquals( $options['theme_smartphone'], 'aaa' );
+		$this->assertSame( $options['theme_smartphone'], 'aaa' );
 
 		add_filter( 'multi_device_switcher/get_option', array( $this, '_filter_option' ), 10, 2 );
 
 		$options = $this->multi_device_switcher->get_options( 'theme_smartphone' );
-		$this->assertEquals( $options, 'bbb' );
+		$this->assertSame( $options, 'bbb' );
 	}
 
 	public function _filter_options( $options ) {
@@ -115,8 +115,8 @@ class Test_Multi_Device_Switcher_Options extends WP_UnitTestCase {
 	}
 
 	public function _filter_option( $option, $name ) {
-		$this->assertEquals( $option, 'None' );
-		$this->assertEquals( $name, 'theme_smartphone' );
+		$this->assertSame( $option, 'None' );
+		$this->assertSame( $name, 'theme_smartphone' );
 
 		$option = 'bbb';
 		return $option;

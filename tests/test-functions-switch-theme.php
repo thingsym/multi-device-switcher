@@ -43,7 +43,7 @@ class Test_Multi_Device_Switcher_Functions_Switch_Theme extends WP_UnitTestCase 
 		$this->assertfalse( has_filter( 'template', array( $this->multi_device_switcher, 'get_template' ) ) );
 		$this->assertfalse( has_action( 'wp_footer', array( $this->multi_device_switcher, 'add_pc_switcher' ) ) );
 		$this->assertfalse( has_action( 'wp_headers', array( $this->multi_device_switcher, 'set_cookie_switch_theme' ) ) );
-		$this->assertEquals( 10, has_action( 'wp_headers', array( $this->multi_device_switcher, 'set_cookie_normal_theme' ) ) );
+		$this->assertSame( 10, has_action( 'wp_headers', array( $this->multi_device_switcher, 'set_cookie_normal_theme' ) ) );
 	}
 
 	/**
@@ -54,19 +54,19 @@ class Test_Multi_Device_Switcher_Functions_Switch_Theme extends WP_UnitTestCase 
 		$this->multi_device_switcher->device = 'smart';
 		$this->multi_device_switcher->switch_theme();
 
-		$this->assertEquals( 10, has_filter( 'stylesheet', array( $this->multi_device_switcher, 'get_stylesheet' ) ) );
-		$this->assertEquals( 10, has_filter( 'template', array( $this->multi_device_switcher, 'get_template' ) ) );
-		$this->assertEquals( 10, has_action( 'wp_footer', array( $this->multi_device_switcher, 'add_pc_switcher' ) ) );
-		$this->assertEquals( 10, has_action( 'wp_headers', array( $this->multi_device_switcher, 'set_cookie_switch_theme' ) ) );
+		$this->assertSame( 10, has_filter( 'stylesheet', array( $this->multi_device_switcher, 'get_stylesheet' ) ) );
+		$this->assertSame( 10, has_filter( 'template', array( $this->multi_device_switcher, 'get_template' ) ) );
+		$this->assertSame( 10, has_action( 'wp_footer', array( $this->multi_device_switcher, 'add_pc_switcher' ) ) );
+		$this->assertSame( 10, has_action( 'wp_headers', array( $this->multi_device_switcher, 'set_cookie_switch_theme' ) ) );
 		$this->assertfalse( has_action( 'wp_headers', array( $this->multi_device_switcher, 'set_cookie_normal_theme' ) ) );
 
 		$this->multi_device_switcher->device = 'custom_switcher_test';
 		$this->multi_device_switcher->switch_theme();
 
-		$this->assertEquals( 10, has_filter( 'stylesheet', array( $this->multi_device_switcher, 'get_stylesheet' ) ) );
-		$this->assertEquals( 10, has_filter( 'template', array( $this->multi_device_switcher, 'get_template' ) ) );
-		$this->assertEquals( 10, has_action( 'wp_footer', array( $this->multi_device_switcher, 'add_pc_switcher' ) ) );
-		$this->assertEquals( 10, has_action( 'wp_headers', array( $this->multi_device_switcher, 'set_cookie_switch_theme' ) ) );
+		$this->assertSame( 10, has_filter( 'stylesheet', array( $this->multi_device_switcher, 'get_stylesheet' ) ) );
+		$this->assertSame( 10, has_filter( 'template', array( $this->multi_device_switcher, 'get_template' ) ) );
+		$this->assertSame( 10, has_action( 'wp_footer', array( $this->multi_device_switcher, 'add_pc_switcher' ) ) );
+		$this->assertSame( 10, has_action( 'wp_headers', array( $this->multi_device_switcher, 'set_cookie_switch_theme' ) ) );
 		$this->assertfalse( has_action( 'wp_headers', array( $this->multi_device_switcher, 'set_cookie_normal_theme' ) ) );
 	}
 
@@ -81,8 +81,8 @@ class Test_Multi_Device_Switcher_Functions_Switch_Theme extends WP_UnitTestCase 
 
 		$this->assertFalse( has_filter( 'stylesheet', array( $this->multi_device_switcher, 'get_stylesheet' ) ) );
 		$this->assertFalse( has_filter( 'template', array( $this->multi_device_switcher, 'get_template' ) ) );
-		$this->assertEquals( 10, has_action( 'wp_footer', array( $this->multi_device_switcher, 'add_pc_switcher' ) ) );
-		$this->assertEquals( 10, has_action( 'wp_headers', array( $this->multi_device_switcher, 'set_cookie_switch_theme' ) ) );
+		$this->assertSame( 10, has_action( 'wp_footer', array( $this->multi_device_switcher, 'add_pc_switcher' ) ) );
+		$this->assertSame( 10, has_action( 'wp_headers', array( $this->multi_device_switcher, 'set_cookie_switch_theme' ) ) );
 		$this->assertfalse( has_action( 'wp_headers', array( $this->multi_device_switcher, 'set_cookie_normal_theme' ) ) );
 
 		unset($GLOBALS['_COOKIE']['pc-switcher']);

@@ -48,7 +48,7 @@ class Test_Multi_Device_Switcher_Functions extends WP_UnitTestCase {
 		);
 
 		$this->assertTrue( is_array($userAgent) );
-		$this->assertEquals( $expected, $userAgent );
+		$this->assertSame( $expected, $userAgent );
 	}
 
 	/**
@@ -56,13 +56,13 @@ class Test_Multi_Device_Switcher_Functions extends WP_UnitTestCase {
 	 * @group functions
 	 */
 	function get_stylesheet() {
-		$this->assertEquals( '', $this->multi_device_switcher->get_stylesheet() );
+		$this->assertSame( '', $this->multi_device_switcher->get_stylesheet() );
 
 		$this->multi_device_switcher->device = 'smart';
-		$this->assertEquals( 'twentysixteen', $this->multi_device_switcher->get_stylesheet( $stylesheet = '' ) );
+		$this->assertSame( 'twentysixteen', $this->multi_device_switcher->get_stylesheet( $stylesheet = '' ) );
 
 		$this->multi_device_switcher->device = 'custom_switcher_test';
-		$this->assertEquals( 'twentysixteen', $this->multi_device_switcher->get_stylesheet() );
+		$this->assertSame( 'twentysixteen', $this->multi_device_switcher->get_stylesheet() );
 	}
 
 	/**
@@ -70,13 +70,13 @@ class Test_Multi_Device_Switcher_Functions extends WP_UnitTestCase {
 	 * @group functions
 	 */
 	function get_template() {
-		$this->assertEquals( '', $this->multi_device_switcher->get_template() );
+		$this->assertSame( '', $this->multi_device_switcher->get_template() );
 
 		$this->multi_device_switcher->device = 'smart';
-		$this->assertEquals( 'twentysixteen', $this->multi_device_switcher->get_template() );
+		$this->assertSame( 'twentysixteen', $this->multi_device_switcher->get_template() );
 
 		$this->multi_device_switcher->device = 'custom_switcher_test';
-		$this->assertEquals( 'twentysixteen', $this->multi_device_switcher->get_template() );
+		$this->assertSame( 'twentysixteen', $this->multi_device_switcher->get_template() );
 	}
 
 	/**
@@ -87,10 +87,10 @@ class Test_Multi_Device_Switcher_Functions extends WP_UnitTestCase {
 		$this->assertEmpty( $this->multi_device_switcher->get_device_theme() );
 
 		$this->multi_device_switcher->device = 'smart';
-		$this->assertEquals( 'Twenty Sixteen', $this->multi_device_switcher->get_device_theme() );
+		$this->assertSame( 'Twenty Sixteen', $this->multi_device_switcher->get_device_theme() );
 
 		$this->multi_device_switcher->device = 'custom_switcher_test';
-		$this->assertEquals( 'Twenty Sixteen', $this->multi_device_switcher->get_device_theme() );
+		$this->assertSame( 'Twenty Sixteen', $this->multi_device_switcher->get_device_theme() );
 	}
 
 	/**
@@ -100,7 +100,7 @@ class Test_Multi_Device_Switcher_Functions extends WP_UnitTestCase {
 	function session() {
 		$this->markTestIncomplete( 'This test has not been implemented yet.' );
 
-		// $this->assertEquals( '', $this->multi_device_switcher->session() );
+		// $this->assertSame( '', $this->multi_device_switcher->session() );
 	}
 
 	/**
@@ -111,7 +111,7 @@ class Test_Multi_Device_Switcher_Functions extends WP_UnitTestCase {
 		$this->markTestIncomplete( 'This test has not been implemented yet.' );
 
 		// $this->multi_device_switcher->device = 'smart';
-		// $this->assertEquals( '', $this->multi_device_switcher->add_pc_switcher() );
+		// $this->assertSame( '', $this->multi_device_switcher->add_pc_switcher() );
 		// $this->assertTrue( wp_style_is( 'pc-switcher-options' ) );
 	}
 
@@ -211,20 +211,20 @@ class Test_Multi_Device_Switcher_Functions extends WP_UnitTestCase {
 			'device' => '',
 		);
 		$content = '';
-		$this->assertEquals( $content, $this->multi_device_switcher->shortcode_display_switcher( $atts, $content ) );
+		$this->assertSame( $content, $this->multi_device_switcher->shortcode_display_switcher( $atts, $content ) );
 
 		$atts = array(
 			'device' => '',
 		);
 		$content = "test";
-		$this->assertEquals( $content, $this->multi_device_switcher->shortcode_display_switcher( $atts, $content ) );
+		$this->assertSame( $content, $this->multi_device_switcher->shortcode_display_switcher( $atts, $content ) );
 
 		$this->multi_device_switcher->device = 'smart';
 		$atts = array(
 			'device' => 'smart',
 		);
 		$content = "test";
-		$this->assertEquals( $content, $this->multi_device_switcher->shortcode_display_switcher( $atts, $content ) );
+		$this->assertSame( $content, $this->multi_device_switcher->shortcode_display_switcher( $atts, $content ) );
 
 		$GLOBALS['_COOKIE']['pc-switcher'] = 1;
 		$this->multi_device_switcher->device = 'smart';
@@ -232,7 +232,7 @@ class Test_Multi_Device_Switcher_Functions extends WP_UnitTestCase {
 			'device' => 'smart',
 		);
 		$content = "test";
-		$this->assertEquals( '', $this->multi_device_switcher->shortcode_display_switcher( $atts, $content ) );
+		$this->assertSame( '', $this->multi_device_switcher->shortcode_display_switcher( $atts, $content ) );
 		unset($GLOBALS['_COOKIE']['pc-switcher']);
 	}
 
@@ -242,14 +242,14 @@ class Test_Multi_Device_Switcher_Functions extends WP_UnitTestCase {
 	 */
 	function add_header_vary() {
 		$headers = $this->multi_device_switcher->add_header_vary( array() );
-		$this->assertEquals( 'User-Agent', $headers['Vary'] );
+		$this->assertSame( 'User-Agent', $headers['Vary'] );
 
 		add_filter( 'multi_device_switcher/add_header_vary', function( $value ) {
 			return 'Accept-Encoding';
 		} );
 
 		$headers = $this->multi_device_switcher->add_header_vary( array() );
-		$this->assertEquals( 'Accept-Encoding', $headers['Vary'] );
+		$this->assertSame( 'Accept-Encoding', $headers['Vary'] );
 
 		add_filter( 'multi_device_switcher/add_header_vary', function( $value ) {
 			return null;
@@ -286,7 +286,7 @@ class Test_Multi_Device_Switcher_Functions extends WP_UnitTestCase {
 	 * @group functions
 	 */
 	function option_page_capability() {
-		$this->assertEquals( 'switch_themes', $this->multi_device_switcher->option_page_capability() );
+		$this->assertSame( 'switch_themes', $this->multi_device_switcher->option_page_capability() );
 	}
 
 	/**
@@ -297,7 +297,7 @@ class Test_Multi_Device_Switcher_Functions extends WP_UnitTestCase {
 		$this->markTestIncomplete( 'This test has not been implemented yet.' );
 
 		// $this->multi_device_switcher->add_option_page();
-		// $this->assertEquals( 10, has_action( 'load-appearance_page_multi-device-switcher', array( $this->multi_device_switcher, 'page_hook_suffix' ) ) );
+		// $this->assertSame( 10, has_action( 'load-appearance_page_multi-device-switcher', array( $this->multi_device_switcher, 'page_hook_suffix' ) ) );
 	}
 
 	/**
@@ -307,8 +307,8 @@ class Test_Multi_Device_Switcher_Functions extends WP_UnitTestCase {
 	function page_hook_suffix() {
 		$this->multi_device_switcher->page_hook_suffix();
 
-		$this->assertEquals( 10, has_action( 'admin_enqueue_scripts', array( $this->multi_device_switcher, 'admin_enqueue_scripts' ) ) );
-		$this->assertEquals( 10, has_action( 'admin_enqueue_scripts', array( $this->multi_device_switcher, 'admin_enqueue_styles' ) ) );
+		$this->assertSame( 10, has_action( 'admin_enqueue_scripts', array( $this->multi_device_switcher, 'admin_enqueue_scripts' ) ) );
+		$this->assertSame( 10, has_action( 'admin_enqueue_scripts', array( $this->multi_device_switcher, 'admin_enqueue_styles' ) ) );
 	}
 
 	/**

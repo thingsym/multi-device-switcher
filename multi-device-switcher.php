@@ -3,7 +3,7 @@
  * Plugin Name: Multi Device Switcher
  * Plugin URI:  https://github.com/thingsym/multi-device-switcher
  * Description: This WordPress plugin allows you to set a separate theme for device (Smart Phone, Tablet PC, Mobile Phone, Game and custom).
- * Version:     1.8.2
+ * Version:     1.8.3
  * Author:      thingsym
  * Author URI:  https://www.thingslabo.com/
  * License:     GPL2 or later
@@ -144,9 +144,9 @@ class Multi_Device_Switcher {
 	 * @since 1.0.0
 	 */
 	public function __construct() {
-		add_action( 'init', array( $this, 'load_plugin_data' ) );
-		add_action( 'init', array( $this, 'load_textdomain' ) );
-		add_action( 'init', array( $this, 'init' ) );
+		add_action( 'plugins_loaded', array( $this, 'load_plugin_data' ) );
+		add_action( 'plugins_loaded', array( $this, 'load_textdomain' ) );
+		add_action( 'plugins_loaded', array( $this, 'init' ) );
 
 		if ( ! is_admin() ) {
 			add_filter( 'wp_headers', array( $this, 'add_header_vary' ) );
@@ -163,7 +163,7 @@ class Multi_Device_Switcher {
 	/**
 	 * Initialize.
 	 *
-	 * Hooks to init
+	 * Hooks to plugins_loaded
 	 *
 	 * @access public
 	 *
@@ -1132,6 +1132,7 @@ class Multi_Device_Switcher {
 					}
 				}
 				$html .= '</select>';
+				/* translators: confirm: 1: custom switcher name */
 				$html .= ' <span class="submit"><input type="submit" name="multi_device_switcher_options[delete_custom_switcher_' . $custom_switcher_name . ']" value="' . __( 'Delete', 'multi-device-switcher' ) . '" onclick="return confirm(\'' . esc_html( sprintf( __( 'Are you sure you want to delete %1$s ?', 'multi-device-switcher' ), $custom_switcher_name ) ) . '\');" class="button"></span>';
 			}
 			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped

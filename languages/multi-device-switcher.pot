@@ -1,31 +1,51 @@
-# Copyright (C) 2021 Multi Device Switcher
-# This file is distributed under the same license as the Multi Device Switcher package.
+# Copyright (C) 2022 thingsym
+# This file is distributed under the GPL2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Multi Device Switcher 1.8.2\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/multi-device-"
-"switcher\n"
-"POT-Creation-Date: 2021-12-26 08:37:47+00:00\n"
+"Project-Id-Version: Multi Device Switcher 1.8.3\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/multi-device-switcher\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2021-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"POT-Creation-Date: 2022-02-28T07:21:41+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.5.0\n"
+"X-Domain: multi-device-switcher\n"
 
-#: multi-device-switcher.php:532 multi-device-switcher.php:538
+#. Plugin Name of the plugin
+#: multi-device-switcher.php:755
+#: multi-device-switcher.php:756
+#: multi-device-switcher.php:939
+#: multi-device-switcher.php:1395
+msgid "Multi Device Switcher"
+msgstr ""
+
+#. Plugin URI of the plugin
+msgid "https://github.com/thingsym/multi-device-switcher"
+msgstr ""
+
+#. Description of the plugin
+msgid "This WordPress plugin allows you to set a separate theme for device (Smart Phone, Tablet PC, Mobile Phone, Game and custom)."
+msgstr ""
+
+#. Author of the plugin
+msgid "thingsym"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://www.thingslabo.com/"
+msgstr ""
+
+#: multi-device-switcher.php:532
+#: multi-device-switcher.php:538
 msgid "Mobile"
 msgstr ""
 
-#: multi-device-switcher.php:532 multi-device-switcher.php:538
+#: multi-device-switcher.php:532
+#: multi-device-switcher.php:538
 msgid "PC"
-msgstr ""
-
-#. #-#-#-#-#  multi-device-switcher.pot (Multi Device Switcher 1.8.2)  #-#-#-#-#
-#. Plugin Name of the plugin/theme
-#: multi-device-switcher.php:755 multi-device-switcher.php:756
-#: multi-device-switcher.php:939 multi-device-switcher.php:1394
-msgid "Multi Device Switcher"
 msgstr ""
 
 #: multi-device-switcher.php:801
@@ -40,28 +60,38 @@ msgstr ""
 msgid "Theme"
 msgstr ""
 
-#: multi-device-switcher.php:963 multi-device-switcher.php:1385
+#: multi-device-switcher.php:963
+#: multi-device-switcher.php:1386
 msgid "Smart Phone Theme"
 msgstr ""
 
-#: multi-device-switcher.php:972 multi-device-switcher.php:975
-#: multi-device-switcher.php:1005 multi-device-switcher.php:1008
-#: multi-device-switcher.php:1038 multi-device-switcher.php:1041
-#: multi-device-switcher.php:1071 multi-device-switcher.php:1074
-#: multi-device-switcher.php:1118 multi-device-switcher.php:1121
-#: multi-device-switcher.php:1375 multi-device-switcher.php:1430
+#: multi-device-switcher.php:972
+#: multi-device-switcher.php:975
+#: multi-device-switcher.php:1005
+#: multi-device-switcher.php:1008
+#: multi-device-switcher.php:1038
+#: multi-device-switcher.php:1041
+#: multi-device-switcher.php:1071
+#: multi-device-switcher.php:1074
+#: multi-device-switcher.php:1118
+#: multi-device-switcher.php:1121
+#: multi-device-switcher.php:1376
+#: multi-device-switcher.php:1431
 msgid "None"
 msgstr ""
 
-#: multi-device-switcher.php:997 multi-device-switcher.php:1386
+#: multi-device-switcher.php:997
+#: multi-device-switcher.php:1387
 msgid "Tablet PC Theme"
 msgstr ""
 
-#: multi-device-switcher.php:1030 multi-device-switcher.php:1387
+#: multi-device-switcher.php:1030
+#: multi-device-switcher.php:1388
 msgid "Mobile Phone Theme"
 msgstr ""
 
-#: multi-device-switcher.php:1063 multi-device-switcher.php:1388
+#: multi-device-switcher.php:1063
+#: multi-device-switcher.php:1389
 msgid "Game Platforms Theme"
 msgstr ""
 
@@ -69,112 +99,102 @@ msgstr ""
 msgid "Custom Switcher Theme"
 msgstr ""
 
-#: multi-device-switcher.php:1136
+#. translators: confirm: 1: custom switcher name
+#: multi-device-switcher.php:1137
 msgid "Delete"
 msgstr ""
 
-#: multi-device-switcher.php:1136
+#. translators: confirm: 1: custom switcher name
+#: multi-device-switcher.php:1137
 msgid "Are you sure you want to delete %1$s ?"
 msgstr ""
 
-#: multi-device-switcher.php:1148 multi-device-switcher.php:1150
+#: multi-device-switcher.php:1149
+#: multi-device-switcher.php:1151
 msgid "Add Custom Switcher"
 msgstr ""
 
-#: multi-device-switcher.php:1152
+#: multi-device-switcher.php:1153
 msgid "Add"
 msgstr ""
 
-#: multi-device-switcher.php:1153
+#: multi-device-switcher.php:1154
 msgid "20 characters max, alphanumeric"
 msgstr ""
 
-#: multi-device-switcher.php:1161
+#: multi-device-switcher.php:1162
 msgid "UserAgent"
 msgstr ""
 
-#: multi-device-switcher.php:1162
+#: multi-device-switcher.php:1163
 msgid "Enter Comma-separated values (csv) format."
 msgstr ""
 
-#: multi-device-switcher.php:1165
+#: multi-device-switcher.php:1166
 msgid "Smart Phone"
 msgstr ""
 
-#: multi-device-switcher.php:1168
+#: multi-device-switcher.php:1169
 msgid "Tablet PC"
 msgstr ""
 
-#: multi-device-switcher.php:1171
+#: multi-device-switcher.php:1172
 msgid "Mobile Phone"
 msgstr ""
 
-#: multi-device-switcher.php:1174
+#: multi-device-switcher.php:1175
 msgid "Game Platforms"
 msgstr ""
 
-#: multi-device-switcher.php:1178
+#: multi-device-switcher.php:1179
 msgid "Reset Settings to Default UserAgent"
 msgstr ""
 
-#: multi-device-switcher.php:1183
+#: multi-device-switcher.php:1184
 msgid "Custom Switcher UserAgent"
 msgstr ""
 
-#: multi-device-switcher.php:1205 pc-switcher-widget.php:57
+#: multi-device-switcher.php:1206
+#: pc-switcher-widget.php:57
 msgid "PC Switcher"
 msgstr ""
 
-#: multi-device-switcher.php:1208 multi-device-switcher.php:1210
+#: multi-device-switcher.php:1209
+#: multi-device-switcher.php:1211
 msgid "Add PC Switcher"
 msgstr ""
 
-#: multi-device-switcher.php:1211
+#: multi-device-switcher.php:1212
 msgid "Add a PC Switcher to the footer."
 msgstr ""
 
-#: multi-device-switcher.php:1214 multi-device-switcher.php:1216
+#: multi-device-switcher.php:1215
+#: multi-device-switcher.php:1217
 msgid "Add default CSS"
 msgstr ""
 
-#: multi-device-switcher.php:1217
+#: multi-device-switcher.php:1218
 msgid "Add a default CSS."
 msgstr ""
 
-#: multi-device-switcher.php:1224
+#: multi-device-switcher.php:1225
 msgid "Disable Switcher"
 msgstr ""
 
-#: multi-device-switcher.php:1227 multi-device-switcher.php:1229
+#: multi-device-switcher.php:1228
+#: multi-device-switcher.php:1230
 msgid "Path"
 msgstr ""
 
-#: multi-device-switcher.php:1234 multi-device-switcher.php:1236
+#: multi-device-switcher.php:1235
+#: multi-device-switcher.php:1237
 msgid "Regex mode"
 msgstr ""
 
-#: multi-device-switcher.php:1237
+#: multi-device-switcher.php:1238
 msgid "Enable Regex"
 msgstr ""
 
 #: pc-switcher-widget.php:54
 msgid "Add the PC Switcher to a widget."
-msgstr ""
-
-#. Plugin URI of the plugin/theme
-msgid "https://github.com/thingsym/multi-device-switcher"
-msgstr ""
-
-#. Description of the plugin/theme
-msgid ""
-"This WordPress plugin allows you to set a separate theme for device (Smart "
-"Phone, Tablet PC, Mobile Phone, Game and custom)."
-msgstr ""
-
-#. Author of the plugin/theme
-msgid "thingsym"
-msgstr ""
-
-#. Author URI of the plugin/theme
-msgid "https://www.thingslabo.com/"
 msgstr ""
