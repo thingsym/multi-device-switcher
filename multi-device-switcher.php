@@ -1132,6 +1132,7 @@ class Multi_Device_Switcher {
 					}
 				}
 				$html .= '</select>';
+				/* translators: confirm: 1: custom switcher name */
 				$html .= ' <span class="submit"><input type="submit" name="multi_device_switcher_options[delete_custom_switcher_' . $custom_switcher_name . ']" value="' . __( 'Delete', 'multi-device-switcher' ) . '" onclick="return confirm(\'' . esc_html( sprintf( __( 'Are you sure you want to delete %1$s ?', 'multi-device-switcher' ), $custom_switcher_name ) ) . '\');" class="button"></span>';
 			}
 			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
