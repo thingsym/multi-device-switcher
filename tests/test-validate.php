@@ -31,7 +31,7 @@ class Test_Multi_Device_Switcher_Validate extends WP_UnitTestCase {
 		$actual = $this->multi_device_switcher->validate_options( $new_input );
 
 		$this->assertTrue( is_array( $actual ) );
-		$this->assertEquals( $expected, $actual );
+		$this->assertSame( $expected, $actual );
 	}
 
 	/**
@@ -71,7 +71,7 @@ class Test_Multi_Device_Switcher_Validate extends WP_UnitTestCase {
 		$actual = $this->multi_device_switcher->validate_options( $new_input );
 
 		$this->assertTrue( is_array( $actual ) );
-		$this->assertEquals( $expected, $actual );
+		$this->assertSame( $expected, $actual );
 	}
 
 	/**
@@ -112,7 +112,7 @@ class Test_Multi_Device_Switcher_Validate extends WP_UnitTestCase {
 		$actual = $this->multi_device_switcher->validate_options( $new_input );
 
 		$this->assertTrue( is_array( $actual ) );
-		$this->assertEquals( $expected, $actual );
+		$this->assertSame( $expected, $actual );
 	}
 
 	/**
@@ -156,11 +156,11 @@ class Test_Multi_Device_Switcher_Validate extends WP_UnitTestCase {
 		$actual = $this->multi_device_switcher->validate_options( $new_input );
 
 		$this->assertTrue( is_array( $actual ) );
-		$this->assertEquals( $expected, $actual );
+		$this->assertSame( $expected, $actual );
 		$this->assertArrayHasKey( 'custom_switcher_theme_test', $actual );
 		$this->assertArrayHasKey( 'custom_switcher_userAgent_test', $actual );
-		$this->assertEquals( 'None', $actual['custom_switcher_theme_test'] );
-		$this->assertEquals( '', $actual['custom_switcher_userAgent_test'] );
+		$this->assertSame( 'None', $actual['custom_switcher_theme_test'] );
+		$this->assertSame( '', $actual['custom_switcher_userAgent_test'] );
 	}
 
 	/**
@@ -202,7 +202,7 @@ class Test_Multi_Device_Switcher_Validate extends WP_UnitTestCase {
 		$actual = $this->multi_device_switcher->validate_options( $new_input );
 
 		$this->assertTrue( is_array( $actual ) );
-		$this->assertEquals( $expected, $actual );
+		$this->assertSame( $expected, $actual );
 		$this->assertFalse( isset( $actual['custom_switcher_theme_test'] ) );
 		$this->assertFalse( isset( $actual['custom_switcher_userAgent_test'] ) );
 	}
@@ -246,7 +246,7 @@ class Test_Multi_Device_Switcher_Validate extends WP_UnitTestCase {
 		$actual = $this->multi_device_switcher->validate_options( $new_input );
 
 		$this->assertTrue( is_array( $actual ) );
-		$this->assertEquals( $expected, $actual );
+		$this->assertSame( $expected, $actual );
 		$this->assertFalse( isset( $actual['custom_switcher_theme_test'] ) );
 		$this->assertFalse( isset( $actual['custom_switcher_userAgent_test'] ) );
 	}
@@ -291,7 +291,7 @@ class Test_Multi_Device_Switcher_Validate extends WP_UnitTestCase {
 		$actual = $this->multi_device_switcher->validate_options( $new_input );
 
 		$this->assertTrue( is_array( $actual ) );
-		$this->assertEquals( $expected, $actual );
+		$this->assertSame( $expected, $actual );
 		$this->assertFalse( isset( $actual['custom_switcher_theme_test'] ) );
 		$this->assertFalse( isset( $actual['custom_switcher_userAgent_test'] ) );
 	}
@@ -337,9 +337,9 @@ class Test_Multi_Device_Switcher_Validate extends WP_UnitTestCase {
 		$actual = $this->multi_device_switcher->validate_options( $new_input );
 
 		$this->assertTrue( is_array( $actual ) );
-		$this->assertEquals( $expected, $actual );
-		$this->assertEquals( 'Twenty Sixteen', $actual['custom_switcher_theme_test'] );
-		$this->assertEquals( 'test1,test2', $actual['custom_switcher_userAgent_test'] );
+		$this->assertSame( $expected, $actual );
+		$this->assertSame( 'Twenty Sixteen', $actual['custom_switcher_theme_test'] );
+		$this->assertSame( 'test1,test2', $actual['custom_switcher_userAgent_test'] );
 	}
 
 	/**
@@ -380,7 +380,7 @@ class Test_Multi_Device_Switcher_Validate extends WP_UnitTestCase {
 
 		$actual = $this->multi_device_switcher->validate_options( $new_input );
 
-		$this->assertEquals( $expected, $actual );
+		$this->assertSame( $expected, $actual );
 	}
 
 	public function _filter_options( $output, $new_input, $default_options ) {

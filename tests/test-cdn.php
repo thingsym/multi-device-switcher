@@ -47,7 +47,7 @@ class Test_Multi_Device_Switcher_Cdn extends WP_UnitTestCase {
 		add_action( 'multi_device_switcher/detect_device', array( $this, '_set_device_cloudfront' ) );
 		$this->multi_device_switcher->detect_device();
 
-		$this->assertEquals( '', $this->multi_device_switcher->device );
+		$this->assertSame( '', $this->multi_device_switcher->device );
 
 		$GLOBALS['_SERVER']['CloudFront-Is-Desktop-Viewer'] = false;
 		$GLOBALS['_SERVER']['CloudFront-Is-Mobile-Viewer'] = true;
@@ -57,7 +57,7 @@ class Test_Multi_Device_Switcher_Cdn extends WP_UnitTestCase {
 		add_action( 'multi_device_switcher/detect_device', array( $this, '_set_device_cloudfront' ) );
 		$this->multi_device_switcher->detect_device();
 
-		$this->assertEquals( 'smart', $this->multi_device_switcher->device );
+		$this->assertSame( 'smart', $this->multi_device_switcher->device );
 
 		$GLOBALS['_SERVER']['CloudFront-Is-Desktop-Viewer'] = false;
 		$GLOBALS['_SERVER']['CloudFront-Is-Mobile-Viewer'] = false;
@@ -67,7 +67,7 @@ class Test_Multi_Device_Switcher_Cdn extends WP_UnitTestCase {
 		add_action( 'multi_device_switcher/detect_device', array( $this, '_set_device_cloudfront' ) );
 		$this->multi_device_switcher->detect_device();
 
-		$this->assertEquals( 'game', $this->multi_device_switcher->device );
+		$this->assertSame( 'game', $this->multi_device_switcher->device );
 
 		$GLOBALS['_SERVER']['CloudFront-Is-Desktop-Viewer'] = false;
 		$GLOBALS['_SERVER']['CloudFront-Is-Mobile-Viewer'] = true;
@@ -77,7 +77,7 @@ class Test_Multi_Device_Switcher_Cdn extends WP_UnitTestCase {
 		add_action( 'multi_device_switcher/detect_device', array( $this, '_set_device_cloudfront' ) );
 		$this->multi_device_switcher->detect_device();
 
-		$this->assertEquals( 'tablet', $this->multi_device_switcher->device );
+		$this->assertSame( 'tablet', $this->multi_device_switcher->device );
 
 		unset($GLOBALS['_SERVER']['HTTP_USER_AGENT']);
 	}
@@ -109,28 +109,28 @@ class Test_Multi_Device_Switcher_Cdn extends WP_UnitTestCase {
 		add_action( 'multi_device_switcher/detect_device', array( $this, '_set_device_fastly' ) );
 		$this->multi_device_switcher->detect_device();
 
-		$this->assertEquals( '', $this->multi_device_switcher->device );
+		$this->assertSame( '', $this->multi_device_switcher->device );
 
 		$GLOBALS['_SERVER']['X-UA-Device'] = "smartphone";
 
 		add_action( 'multi_device_switcher/detect_device', array( $this, '_set_device_fastly' ) );
 		$this->multi_device_switcher->detect_device();
 
-		$this->assertEquals( 'smart', $this->multi_device_switcher->device );
+		$this->assertSame( 'smart', $this->multi_device_switcher->device );
 
 		$GLOBALS['_SERVER']['X-UA-Device'] = "tablet";
 
 		add_action( 'multi_device_switcher/detect_device', array( $this, '_set_device_fastly' ) );
 		$this->multi_device_switcher->detect_device();
 
-		$this->assertEquals( 'tablet', $this->multi_device_switcher->device );
+		$this->assertSame( 'tablet', $this->multi_device_switcher->device );
 
 		$GLOBALS['_SERVER']['X-UA-Device'] = "mobile";
 
 		add_action( 'multi_device_switcher/detect_device', array( $this, '_set_device_fastly' ) );
 		$this->multi_device_switcher->detect_device();
 
-		$this->assertEquals( 'mobile', $this->multi_device_switcher->device );
+		$this->assertSame( 'mobile', $this->multi_device_switcher->device );
 	}
 
 	function _set_device_fastly() {

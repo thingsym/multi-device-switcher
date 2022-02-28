@@ -39,4 +39,41 @@ class Test_Multi_Device_Switcher_Shortcode extends WP_UnitTestCase {
 		$this->assertTrue( shortcode_exists( 'multi' ) );
 	}
 
+	/**
+	 * @test
+	 * @group shortcode
+	 */
+	function shortcode_output_multi() {
+		$output = do_shortcode('[multi]pc[/multi]');
+		$content = 'pc';
+		$this->assertSame($content, $output);
+
+		// $GLOBALS['_COOKIE']['pc-switcher'] = 1;
+		// $this->multi_device_switcher->device = 'smart';
+
+		// var_dump($this->multi_device_switcher->device);
+		// var_dump($this->multi_device_switcher->is_multi_device( "smart" ));
+		// var_dump($this->multi_device_switcher->is_pc_switcher());
+
+		// $output = do_shortcode('[multi device="smart"]smart[/multi]');
+		// $content = 'smart';
+		// $this->assertSame($content, $output);
+
+
+		// $this->multi_device_switcher->device = 'custom_switcher_test';
+		// var_dump($this->multi_device_switcher->device);
+		// // var_dump($this->multi_device_switcher->is_multi_device( "test" ));
+		// // var_dump($this->multi_device_switcher->is_pc_switcher());
+		// $output = do_shortcode('[multi device="test"]test[/multi]');
+		// $expected = 'test';
+		// $this->assertSame($expected, $output);
+
+		$GLOBALS['_COOKIE']['pc-switcher'] = 1;
+		unset($GLOBALS['_COOKIE']['pc-switcher']);
+
+	}
+
 }
+
+# customized CSS
+# Display Switcher

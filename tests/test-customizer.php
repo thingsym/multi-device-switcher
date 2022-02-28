@@ -32,68 +32,68 @@ class Test_Multi_Device_Switcher_Customizer extends WP_UnitTestCase {
 	 */
 	function customizer() {
 		$section = $this->wp_customize->get_section( 'multi_device_switcher' );
-		$this->assertEquals( 'multi_device_switcher', $section->id );
-		$this->assertEquals( 80, $section->priority );
-		$this->assertEquals( 'Multi Device Switcher', $section->title );
+		$this->assertSame( 'multi_device_switcher', $section->id );
+		$this->assertSame( 80, $section->priority );
+		$this->assertSame( 'Multi Device Switcher', $section->title );
 
 
 		$setting = $this->wp_customize->get_setting( 'multi_device_switcher_options[theme_smartphone]' );
-		$this->assertEquals( 'multi_device_switcher_options[theme_smartphone]', $setting->id );
-		$this->assertEquals( 'option', $setting->type );
-		$this->assertEquals( 'switch_themes', $setting->capability );
-		$this->assertEquals( 'None', $setting->default );
-		$this->assertEquals( 'refresh', $setting->transport );
+		$this->assertSame( 'multi_device_switcher_options[theme_smartphone]', $setting->id );
+		$this->assertSame( 'option', $setting->type );
+		$this->assertSame( 'switch_themes', $setting->capability );
+		$this->assertSame( 'None', $setting->default );
+		$this->assertSame( 'refresh', $setting->transport );
 
-		$this->assertEquals( 'None', $setting->value() );
+		$this->assertSame( 'None', $setting->value() );
 
 		$control = $this->wp_customize->get_control( 'multi_device_switcher_options[theme_smartphone]' );
-		$this->assertEquals( 'multi_device_switcher', $control->section );
-		$this->assertEquals( 'select', $control->type );
+		$this->assertSame( 'multi_device_switcher', $control->section );
+		$this->assertSame( 'select', $control->type );
 		$this->assertIsArray( $control->choices );
 
 
 		$setting = $this->wp_customize->get_setting( 'multi_device_switcher_options[theme_tablet]' );
-		$this->assertEquals( 'multi_device_switcher_options[theme_tablet]', $setting->id );
-		$this->assertEquals( 'option', $setting->type );
-		$this->assertEquals( 'switch_themes', $setting->capability );
-		$this->assertEquals( 'None', $setting->default );
-		$this->assertEquals( 'refresh', $setting->transport );
+		$this->assertSame( 'multi_device_switcher_options[theme_tablet]', $setting->id );
+		$this->assertSame( 'option', $setting->type );
+		$this->assertSame( 'switch_themes', $setting->capability );
+		$this->assertSame( 'None', $setting->default );
+		$this->assertSame( 'refresh', $setting->transport );
 
-		$this->assertEquals( 'None', $setting->value() );
+		$this->assertSame( 'None', $setting->value() );
 
 		$control = $this->wp_customize->get_control( 'multi_device_switcher_options[theme_tablet]' );
-		$this->assertEquals( 'multi_device_switcher', $control->section );
-		$this->assertEquals( 'select', $control->type );
+		$this->assertSame( 'multi_device_switcher', $control->section );
+		$this->assertSame( 'select', $control->type );
 		$this->assertIsArray( $control->choices );
 
 
 		$setting = $this->wp_customize->get_setting( 'multi_device_switcher_options[theme_mobile]' );
-		$this->assertEquals( 'multi_device_switcher_options[theme_mobile]', $setting->id );
-		$this->assertEquals( 'option', $setting->type );
-		$this->assertEquals( 'switch_themes', $setting->capability );
-		$this->assertEquals( 'None', $setting->default );
-		$this->assertEquals( 'refresh', $setting->transport );
+		$this->assertSame( 'multi_device_switcher_options[theme_mobile]', $setting->id );
+		$this->assertSame( 'option', $setting->type );
+		$this->assertSame( 'switch_themes', $setting->capability );
+		$this->assertSame( 'None', $setting->default );
+		$this->assertSame( 'refresh', $setting->transport );
 
-		$this->assertEquals( 'None', $setting->value() );
+		$this->assertSame( 'None', $setting->value() );
 
 		$control = $this->wp_customize->get_control( 'multi_device_switcher_options[theme_mobile]' );
-		$this->assertEquals( 'multi_device_switcher', $control->section );
-		$this->assertEquals( 'select', $control->type );
+		$this->assertSame( 'multi_device_switcher', $control->section );
+		$this->assertSame( 'select', $control->type );
 		$this->assertIsArray( $control->choices );
 
 
 		$setting = $this->wp_customize->get_setting( 'multi_device_switcher_options[theme_game]' );
-		$this->assertEquals( 'multi_device_switcher_options[theme_game]', $setting->id );
-		$this->assertEquals( 'option', $setting->type );
-		$this->assertEquals( 'switch_themes', $setting->capability );
-		$this->assertEquals( 'None', $setting->default );
-		$this->assertEquals( 'refresh', $setting->transport );
+		$this->assertSame( 'multi_device_switcher_options[theme_game]', $setting->id );
+		$this->assertSame( 'option', $setting->type );
+		$this->assertSame( 'switch_themes', $setting->capability );
+		$this->assertSame( 'None', $setting->default );
+		$this->assertSame( 'refresh', $setting->transport );
 
-		$this->assertEquals( 'None', $setting->value() );
+		$this->assertSame( 'None', $setting->value() );
 
 		$control = $this->wp_customize->get_control( 'multi_device_switcher_options[theme_game]' );
-		$this->assertEquals( 'multi_device_switcher', $control->section );
-		$this->assertEquals( 'select', $control->type );
+		$this->assertSame( 'multi_device_switcher', $control->section );
+		$this->assertSame( 'select', $control->type );
 		$this->assertIsArray( $control->choices );
 	}
 
