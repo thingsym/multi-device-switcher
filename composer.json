@@ -30,7 +30,6 @@
       "@phpstan"
     ],
     "bats": "bats tests/cli",
-    "makepot:php": "php /usr/local/share/wp-i18n/makepot.php wp-plugin ../multi-device-switcher ../multi-device-switcher/languages/multi-device-switcher.pot",
     "makepot:wpcli": "wp i18n make-pot ./ ./languages/multi-device-switcher.pot --exclude=dist,bin,tests,node_modules,vendor",
     "msgfmt:ja": "msgfmt languages/multi-device-switcher-ja.po -o languages/multi-device-switcher-ja.mo"
   }
