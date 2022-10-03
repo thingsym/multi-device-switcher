@@ -6,7 +6,7 @@
  * Version:     1.8.3
  * Author:      thingsym
  * Author URI:  https://www.thingslabo.com/
- * License:     GPL2 or later
+ * License:     GPLv2 or later
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: multi-device-switcher
  * Domain Path: /languages/
