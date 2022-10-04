@@ -887,15 +887,15 @@ class Multi_Device_Switcher {
 	 *
 	 * @access public
 	 *
-	 * @return void
+	 * @return boolean
 	 *
 	 * @since 1.6.0
 	 */
 	public function load_textdomain() {
-		load_plugin_textdomain(
+		return load_plugin_textdomain(
 			'multi-device-switcher',
 			false,
-			dirname( plugin_basename( __MULTI_DEVICE_SWITCHER_FILE__ ) ) . '/languages/'
+			plugin_dir_path( __MULTI_DEVICE_SWITCHER_FILE__ ) . 'languages'
 		);
 	}
 

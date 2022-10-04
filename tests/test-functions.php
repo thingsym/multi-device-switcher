@@ -352,9 +352,41 @@ class Test_Multi_Device_Switcher_Functions extends WP_UnitTestCase {
 	 * @test
 	 * @group functions
 	 */
-	function load_textdomain() {
-		$result = $this->multi_device_switcher->load_textdomain();
-		$this->assertNull( $result );
+	public function load_textdomain() {
+		$loaded = $this->multi_device_switcher->load_textdomain();
+		$this->assertFalse( $loaded );
+
+		unload_textdomain( 'multi-device-switcher' );
+
+		add_filter( 'locale', [ $this, '_change_locale' ] );
+		add_filter( 'load_textdomain_mofile', [ $this, '_change_textdomain_mofile' ], 10, 2 );
+
+		$loaded = $this->multi_device_switcher->load_textdomain();
+		$this->assertTrue( $loaded );
+
+		remove_filter( 'load_textdomain_mofile', [ $this, '_change_textdomain_mofile' ] );
+		remove_filter( 'locale', [ $this, '_change_locale' ] );
+
+		unload_textdomain( 'multi-device-switcher' );
+	}
+
+	/**
+	 * hook for load_textdomain
+	 */
+	function _change_locale( $locale ) {
+		return 'ja';
+	}
+
+	function _change_textdomain_mofile( $mofile, $domain ) {
+		if ( $domain === 'multi-device-switcher' ) {
+			$locale = determine_locale();
+			$mofile = plugin_dir_path( __MULTI_DEVICE_SWITCHER_FILE__ ) . 'languages/multi-device-switcher-' . $locale . '.mo';
+
+			$this->assertSame( $locale, get_locale() );
+			$this->assertFileExists( $mofile );
+		}
+
+		return $mofile;
 	}
 
 	/**
