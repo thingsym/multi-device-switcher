@@ -437,6 +437,17 @@ For operation compatibility between PHP version and WordPress version, see below
 
 ## Changelog
 
+* Version 1.8.4
+	* tested up to 6.1.0
+	* update japanese translation
+	* update pot
+	* fix composer.json
+	* add test case
+	* update useragent
+	* fix load_textdomain method for testability
+	* add msgmerge to composer scripts
+	* add support section and enhance contribution section
+	* fix license
 * Version 1.8.3
 	* update japanese translation
 	* update pot

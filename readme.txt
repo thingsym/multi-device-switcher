@@ -4,8 +4,8 @@ Contributors: thingsym
 Link: https://github.com/thingsym/multi-device-switcher
 Donate link: https://github.com/sponsors/thingsym
 Tags: switcher, theme, ipad, iphone, android, tablet, mobile, game
-Stable tag: 1.8.3
-Tested up to: 6.0.0
+Stable tag: 1.8.4
+Tested up to: 6.1.0
 Requires at least: 4.9
 Requires PHP: 5.6
 License: GPLv2 or later
@@ -394,6 +394,18 @@ useragent        get or set UserAgent
 For more information about the Multi Device Switcher Command, see `wp help multi-device <SUBCOMMANDS>`.
 
 == Changelog ==
+
+= 1.8.4 =
+* tested up to 6.1.0
+* update japanese translation
+* update pot
+* fix composer.json
+* add test case
+* update useragent
+* fix load_textdomain method for testability
+* add msgmerge to composer scripts
+* add support section and enhance contribution section
+* fix license
 
 = 1.8.3 =
 * update japanese translation
