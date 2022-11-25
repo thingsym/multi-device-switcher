@@ -17,7 +17,7 @@ class Test_Multi_Device_Switcher_Functions extends WP_UnitTestCase {
 			'userAgent_smart' => 'iPhone, iPod, Android.*Mobile, dream, CUPCAKE, Windows Phone, IEMobile.*Touch, webOS, BB10.*Mobile, BlackBerry.*Mobile, Mobile.*Gecko',
 			'userAgent_tablet' => 'iPad, Kindle, Silk, Android(?!.*Mobile), Windows.*Touch, PlayBook, Tablet.*Gecko',
 			'userAgent_mobile' => 'DoCoMo, SoftBank, J-PHONE, Vodafone, KDDI, UP.Browser, WILLCOM, emobile, DDIPOCKET, Windows CE, BlackBerry, Symbian, PalmOS, Huawei, IAC, Nokia',
-			'userAgent_game' => 'PlayStation Portable, PlayStation Vita, PSP, PS2, PLAYSTATION 3, PlayStation 4, Nitro, Nintendo 3DS, Nintendo Wii, Nintendo WiiU, Xbox',
+			'userAgent_game' => 'PSP, PS2, PLAYSTATION 3, PlayStation (Portable|Vita|4|5), Nitro, Nintendo (3DS|Wii|WiiU|Switch), Xbox',
 			'disable_path' => '',
 			'enable_regex' => 0,
 			'custom_switcher_theme_test' => 'Twenty Sixteen',
@@ -43,7 +43,7 @@ class Test_Multi_Device_Switcher_Functions extends WP_UnitTestCase {
 			'smart' => array('iPhone', 'iPod', 'Android.*Mobile', 'dream', 'CUPCAKE', 'Windows Phone', 'IEMobile.*Touch', 'webOS', 'BB10.*Mobile', 'BlackBerry.*Mobile', 'Mobile.*Gecko'),
 			'tablet' => array('iPad', 'Kindle', 'Silk', 'Android(?!.*Mobile)', 'Windows.*Touch', 'PlayBook', 'Tablet.*Gecko'),
 			'mobile' => array('DoCoMo', 'SoftBank', 'J-PHONE', 'Vodafone', 'KDDI', 'UP.Browser', 'WILLCOM', 'emobile', 'DDIPOCKET', 'Windows CE', 'BlackBerry', 'Symbian', 'PalmOS', 'Huawei', 'IAC', 'Nokia'),
-			'game' => array('PlayStation Portable', 'PlayStation Vita', 'PSP', 'PS2', 'PLAYSTATION 3', 'PlayStation 4', 'Nitro', 'Nintendo 3DS', 'Nintendo Wii', 'Nintendo WiiU', 'Xbox'),
+			'game' => array('PSP', 'PS2', 'PLAYSTATION 3', 'PlayStation (Portable|Vita|4|5)', 'Nitro', 'Nintendo (3DS|Wii|WiiU|Switch)', 'Xbox'),
 			'custom_switcher_test' => array('test1', 'test2'),
 		);
 
@@ -159,7 +159,7 @@ class Test_Multi_Device_Switcher_Functions extends WP_UnitTestCase {
 			'userAgent_smart' => 'iPhone, iPod, Android.*Mobile, dream, CUPCAKE, Windows Phone, IEMobile.*Touch, webOS, BB10.*Mobile, BlackBerry.*Mobile, Mobile.*Gecko',
 			'userAgent_tablet' => 'iPad, Kindle, Silk, Android(?!.*Mobile), Windows.*Touch, PlayBook, Tablet.*Gecko',
 			'userAgent_mobile' => 'DoCoMo, SoftBank, J-PHONE, Vodafone, KDDI, UP.Browser, WILLCOM, emobile, DDIPOCKET, Windows CE, BlackBerry, Symbian, PalmOS, Huawei, IAC, Nokia',
-			'userAgent_game' => 'PlayStation Portable, PlayStation Vita, PSP, PS2, PLAYSTATION 3, PlayStation 4, Nitro, Nintendo 3DS, Nintendo Wii, Nintendo WiiU, Xbox',
+			'userAgent_game' => 'PSP, PS2, PLAYSTATION 3, PlayStation (Portable|Vita|4|5), Nitro, Nintendo (3DS|Wii|WiiU|Switch), Xbox',
 			'disable_path' => "/test\n/abc\n",
 			'enable_regex' => 0,
 			'custom_switcher_theme_test' => 'Twenty Sixteen',
@@ -184,7 +184,7 @@ class Test_Multi_Device_Switcher_Functions extends WP_UnitTestCase {
 			'userAgent_smart' => 'iPhone, iPod, Android.*Mobile, dream, CUPCAKE, Windows Phone, IEMobile.*Touch, webOS, BB10.*Mobile, BlackBerry.*Mobile, Mobile.*Gecko',
 			'userAgent_tablet' => 'iPad, Kindle, Silk, Android(?!.*Mobile), Windows.*Touch, PlayBook, Tablet.*Gecko',
 			'userAgent_mobile' => 'DoCoMo, SoftBank, J-PHONE, Vodafone, KDDI, UP.Browser, WILLCOM, emobile, DDIPOCKET, Windows CE, BlackBerry, Symbian, PalmOS, Huawei, IAC, Nokia',
-			'userAgent_game' => 'PlayStation Portable, PlayStation Vita, PSP, PS2, PLAYSTATION 3, PlayStation 4, Nitro, Nintendo 3DS, Nintendo Wii, Nintendo WiiU, Xbox',
+			'userAgent_game' => 'PSP, PS2, PLAYSTATION 3, PlayStation (Portable|Vita|4|5), Nitro, Nintendo (3DS|Wii|WiiU|Switch), Xbox',
 			'disable_path' => "^\/te\nbc$\n",
 			'enable_regex' => 1,
 			'custom_switcher_theme_test' => 'Twenty Sixteen',
@@ -352,9 +352,41 @@ class Test_Multi_Device_Switcher_Functions extends WP_UnitTestCase {
 	 * @test
 	 * @group functions
 	 */
-	function load_textdomain() {
-		$result = $this->multi_device_switcher->load_textdomain();
-		$this->assertNull( $result );
+	public function load_textdomain() {
+		$loaded = $this->multi_device_switcher->load_textdomain();
+		$this->assertFalse( $loaded );
+
+		unload_textdomain( 'multi-device-switcher' );
+
+		add_filter( 'locale', [ $this, '_change_locale' ] );
+		add_filter( 'load_textdomain_mofile', [ $this, '_change_textdomain_mofile' ], 10, 2 );
+
+		$loaded = $this->multi_device_switcher->load_textdomain();
+		$this->assertTrue( $loaded );
+
+		remove_filter( 'load_textdomain_mofile', [ $this, '_change_textdomain_mofile' ] );
+		remove_filter( 'locale', [ $this, '_change_locale' ] );
+
+		unload_textdomain( 'multi-device-switcher' );
+	}
+
+	/**
+	 * hook for load_textdomain
+	 */
+	function _change_locale( $locale ) {
+		return 'ja';
+	}
+
+	function _change_textdomain_mofile( $mofile, $domain ) {
+		if ( $domain === 'multi-device-switcher' ) {
+			$locale = determine_locale();
+			$mofile = plugin_dir_path( __MULTI_DEVICE_SWITCHER_FILE__ ) . 'languages/multi-device-switcher-' . $locale . '.mo';
+
+			$this->assertSame( $locale, get_locale() );
+			$this->assertFileExists( $mofile );
+		}
+
+		return $mofile;
 	}
 
 	/**

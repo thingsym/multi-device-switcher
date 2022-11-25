@@ -3,10 +3,10 @@
  * Plugin Name: Multi Device Switcher
  * Plugin URI:  https://github.com/thingsym/multi-device-switcher
  * Description: This WordPress plugin allows you to set a separate theme for device (Smart Phone, Tablet PC, Mobile Phone, Game and custom).
- * Version:     1.8.3
+ * Version:     1.8.4
  * Author:      thingsym
  * Author URI:  https://www.thingslabo.com/
- * License:     GPL2 or later
+ * License:     GPLv2 or later
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: multi-device-switcher
  * Domain Path: /languages/
@@ -113,7 +113,7 @@ class Multi_Device_Switcher {
 		'userAgent_smart'  => 'iPhone, iPod, Android.*Mobile, dream, CUPCAKE, Windows Phone, IEMobile.*Touch, webOS, BB10.*Mobile, BlackBerry.*Mobile, Mobile.*Gecko',
 		'userAgent_tablet' => 'iPad, Kindle, Silk, Android(?!.*Mobile), Windows.*Touch, PlayBook, Tablet.*Gecko',
 		'userAgent_mobile' => 'DoCoMo, SoftBank, J-PHONE, Vodafone, KDDI, UP.Browser, WILLCOM, emobile, DDIPOCKET, Windows CE, BlackBerry, Symbian, PalmOS, Huawei, IAC, Nokia',
-		'userAgent_game'   => 'PlayStation Portable, PlayStation Vita, PSP, PS2, PLAYSTATION 3, PlayStation 4, Nitro, Nintendo 3DS, Nintendo Wii, Nintendo WiiU, Xbox',
+		'userAgent_game'   => 'PSP, PS2, PLAYSTATION 3, PlayStation (Portable|Vita|4|5), Nitro, Nintendo (3DS|Wii|WiiU|Switch), Xbox',
 		'disable_path'     => '',
 		'enable_regex'     => 0,
 	);
@@ -887,15 +887,15 @@ class Multi_Device_Switcher {
 	 *
 	 * @access public
 	 *
-	 * @return void
+	 * @return boolean
 	 *
 	 * @since 1.6.0
 	 */
 	public function load_textdomain() {
-		load_plugin_textdomain(
+		return load_plugin_textdomain(
 			'multi-device-switcher',
 			false,
-			dirname( plugin_basename( __MULTI_DEVICE_SWITCHER_FILE__ ) ) . '/languages/'
+			plugin_dir_path( __MULTI_DEVICE_SWITCHER_FILE__ ) . 'languages'
 		);
 	}
 

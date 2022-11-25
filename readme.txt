@@ -4,18 +4,18 @@ Contributors: thingsym
 Link: https://github.com/thingsym/multi-device-switcher
 Donate link: https://github.com/sponsors/thingsym
 Tags: switcher, theme, ipad, iphone, android, tablet, mobile, game
-Stable tag: 1.8.3
-Tested up to: 6.0.0
+Stable tag: 1.8.4
+Tested up to: 6.1.0
 Requires at least: 4.9
 Requires PHP: 5.6
-License: GPL2 or later
+License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-This WordPress plugin allows you to set a separate theme for device (Smart Phone, Tablet PC, Mobile Phone, Game and custom).
+Multi Device Switcher plugin allows you to set a separate theme for device (Smart Phone, Tablet PC, Mobile Phone, Game and custom).
 
 == Description ==
 
-This WordPress plugin allows you to set a separate theme for device (Smart Phone, Tablet PC, Mobile Phone, Game and custom).
+Multi Device Switcher plugin allows you to set a separate theme for device (Smart Phone, Tablet PC, Mobile Phone, Game and custom).
 This plugin detects if your site is being viewed by UserAgent, and switches to selected theme.
 The Custom Switcher can add every device.
 
@@ -29,9 +29,12 @@ The Custom Switcher can add every device.
 * Can be using **is_multi_device()** function that detect of the device.
 * **Multi Device Switcher Command** command-line tool (required WP-CLI)
 
-= Test Matrix =
+= Support =
 
-For operation compatibility between PHP version and WordPress version, see below [Github Actions](https://github.com/thingsym/multi-device-switcher/actions).
+If you have any trouble, you can use the forums or report bugs.
+
+* Forum: [https://wordpress.org/support/plugin/multi-device-switcher/](https://wordpress.org/support/plugin/multi-device-switcher/)
+* Issues: [https://github.com/thingsym/multi-device-switcher/issues](https://github.com/thingsym/multi-device-switcher/issues)
 
 = Contribution =
 
@@ -39,12 +42,39 @@ Small patches and bug reports can be submitted a issue tracker in Github. Forkin
 
 Translating a plugin takes a lot of time, effort, and patience. I really appreciate the hard work from these contributors.
 
-If you have created or updated your own language pack, you can send gettext PO and MO files to author. I can bundle it into Multi Device Switcher.
+If you have created or updated your own language pack, you can send gettext PO and MO files to author. I can bundle it into plugin.
 
-* [multi-device-switcher - GitHub](https://github.com/thingsym/multi-device-switcher)
-* [Multi Device Switcher - WordPress Plugin](https://wordpress.org/plugins/multi-device-switcher/)
+* [VCS - GitHub](https://github.com/thingsym/multi-device-switcher)
+* [Homepage - WordPress Plugin](https://wordpress.org/plugins/multi-device-switcher/)
 * [Translate Multi Device Switcher into your language.](https://translate.wordpress.org/projects/wp-plugins/multi-device-switcher)
-* [Developer Blog (Japanese) - http://blog.thingslabo.com/ ](https://blog.thingslabo.com/archives/category/multi_device_switcher)
+
+You can also contribute by answering issues on the forums.
+
+* Forum: [https://wordpress.org/support/plugin/multi-device-switcher/](https://wordpress.org/support/plugin/multi-device-switcher/)
+* Issues: [https://github.com/thingsym/multi-device-switcher/issues](https://github.com/thingsym/multi-device-switcher/issues)
+
+= Patches and Bug Fixes =
+
+Forking on Github is another good way. You can send a pull request.
+
+1. Fork [Multi Device Switcher](https://github.com/thingsym/multi-device-switcher) from GitHub repository
+2. Create a feature branch: git checkout -b my-new-feature
+3. Commit your changes: git commit -am 'Add some feature'
+4. Push to the branch: git push origin my-new-feature
+5. Create new Pull Request
+
+= Contribute guidlines =
+
+If you would like to contribute, here are some notes and guidlines.
+
+* All development happens on the **develop** branch, so it is always the most up-to-date
+* The **master** branch only contains tagged releases
+* If you are going to be submitting a pull request, please submit your pull request to the **develop** branch
+* See about [forking](https://help.github.com/articles/fork-a-repo/) and [pull requests](https://help.github.com/articles/using-pull-requests/)
+
+= Test Matrix =
+
+For operation compatibility between PHP version and WordPress version, see below [Github Actions](https://github.com/thingsym/multi-device-switcher/actions).
 
 == Screenshots ==
 
@@ -364,6 +394,18 @@ useragent        get or set UserAgent
 For more information about the Multi Device Switcher Command, see `wp help multi-device <SUBCOMMANDS>`.
 
 == Changelog ==
+
+= 1.8.4 =
+* tested up to 6.1.0
+* update japanese translation
+* update pot
+* fix composer.json
+* add test case
+* update useragent
+* fix load_textdomain method for testability
+* add msgmerge to composer scripts
+* add support section and enhance contribution section
+* fix license
 
 = 1.8.3 =
 * update japanese translation

@@ -101,7 +101,7 @@ setup() {
   assert_lines_equal "smartphone (Smart Phone)	None		iPhone, iPod, Android.*Mobile, dream, CUPCAKE, Windows Phone, IEMobile.*Touch, webOS, BB10.*Mobile, BlackBerry.*Mobile, Mobile.*Gecko" 2
   assert_lines_equal "tablet (Tablet PC)	None		iPad, Kindle, Silk, Android(?!.*Mobile), Windows.*Touch, PlayBook, Tablet.*Gecko" 3
   assert_lines_equal "mobile (Mobile Phone)	None		DoCoMo, SoftBank, J-PHONE, Vodafone, KDDI, UP.Browser, WILLCOM, emobile, DDIPOCKET, Windows CE, BlackBerry, Symbian, PalmOS, Huawei, IAC, Nokia" 4
-  assert_lines_equal "game (Game Platforms)	None		PlayStation Portable, PlayStation Vita, PSP, PS2, PLAYSTATION 3, PlayStation 4, Nitro, Nintendo 3DS, Nintendo Wii, Nintendo WiiU, Xbox" 5
+  assert_lines_equal "game (Game Platforms)	None		PSP, PS2, PLAYSTATION 3, PlayStation (Portable|Vita|4|5), Nitro, Nintendo (3DS|Wii|WiiU|Switch), Xbox" 5
 }
 
 @test "add Custom Switcher" {
