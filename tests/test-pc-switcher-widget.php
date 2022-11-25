@@ -58,9 +58,9 @@ class Test_pc_switcher_Pc_Switcher_Widget extends WP_UnitTestCase {
 		$widget = ob_get_clean();
 
 		// var_dump($widget);
-		// $this->assertRegExp( '#<h3 class="widget-title">aaaaa</h3>#', $widget );
+		// $this->assertMatchesRegularExpression( '#<h3 class="widget-title">aaaaa</h3>#', $widget );
 
-		// $this->markTestIncomplete( 'This test has not been implemented yet.' );
+		$this->markTestIncomplete( 'This test has not been implemented yet.' );
 	}
 
 	/**
@@ -68,7 +68,12 @@ class Test_pc_switcher_Pc_Switcher_Widget extends WP_UnitTestCase {
 	 * @group widget
 	 */
 	function update_case() {
-		$this->markTestIncomplete( 'This test has not been implemented yet.' );
+		$new_instance = array();
+		$expected     = array();
+
+		$validate = $this->pc_switcher->update( $new_instance, array() );
+
+		$this->assertSame( $validate, $expected );
 	}
 
 	/**
