@@ -79,7 +79,7 @@ class Test_Multi_Device_Switcher_Cdn extends WP_UnitTestCase {
 
 		$this->assertSame( 'tablet', $this->multi_device_switcher->device );
 
-		unset($GLOBALS['_SERVER']['HTTP_USER_AGENT']);
+		unset( $GLOBALS['_SERVER']['HTTP_USER_AGENT'] );
 	}
 
 	function _set_device_cloudfront() {

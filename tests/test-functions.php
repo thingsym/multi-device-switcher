@@ -27,7 +27,6 @@ class Test_Multi_Device_Switcher_Functions extends WP_UnitTestCase {
 		update_option( 'multi_device_switcher_options', $options );
 	}
 
-
 	function tearDown() {
 		parent::tearDown();
 	}
@@ -107,18 +106,6 @@ class Test_Multi_Device_Switcher_Functions extends WP_UnitTestCase {
 	 * @test
 	 * @group functions
 	 */
-	function add_pc_switcher() {
-		$this->markTestIncomplete( 'This test has not been implemented yet.' );
-
-		// $this->multi_device_switcher->device = 'smart';
-		// $this->assertSame( '', $this->multi_device_switcher->add_pc_switcher() );
-		// $this->assertTrue( wp_style_is( 'pc-switcher-options' ) );
-	}
-
-	/**
-	 * @test
-	 * @group functions
-	 */
 	function is_multi_device() {
 		$this->assertTrue( $this->multi_device_switcher->is_multi_device() );
 		$this->assertFalse( $this->multi_device_switcher->is_multi_device( 'smart' ) );
@@ -139,7 +126,7 @@ class Test_Multi_Device_Switcher_Functions extends WP_UnitTestCase {
 
 		$GLOBALS['_COOKIE']['pc-switcher'] = 1;
 		$this->assertTrue( $this->multi_device_switcher->is_pc_switcher() );
-		unset($GLOBALS['_COOKIE']['pc-switcher']);
+		unset( $GLOBALS['_COOKIE']['pc-switcher'] );
 	}
 
 	/**
@@ -199,7 +186,7 @@ class Test_Multi_Device_Switcher_Functions extends WP_UnitTestCase {
 		$GLOBALS['_SERVER']['REQUEST_URI'] = '/abc';
 		$this->assertTrue( $this->multi_device_switcher->is_disable_switcher() );
 
-		unset($GLOBALS['_SERVER']['REQUEST_URI']);
+		unset( $GLOBALS['_SERVER']['REQUEST_URI'] );
 	}
 
 	/**
@@ -233,7 +220,7 @@ class Test_Multi_Device_Switcher_Functions extends WP_UnitTestCase {
 		);
 		$content = "test";
 		$this->assertSame( '', $this->multi_device_switcher->shortcode_display_switcher( $atts, $content ) );
-		unset($GLOBALS['_COOKIE']['pc-switcher']);
+		unset( $GLOBALS['_COOKIE']['pc-switcher'] );
 	}
 
 	/**
@@ -277,8 +264,17 @@ class Test_Multi_Device_Switcher_Functions extends WP_UnitTestCase {
 	 * @test
 	 * @group functions
 	 */
-	function admin_init() {
-		$this->markTestIncomplete( 'This test has not been implemented yet.' );
+	function register_settings() {
+		$this->multi_device_switcher->register_settings();
+
+		global $wp_registered_settings;
+		global $wp_settings_sections;
+		global $wp_settings_fields;
+
+		$this->assertTrue( isset( $wp_registered_settings['multi_device_switcher_options'] ) );
+		$this->assertSame( 'multi_device_switcher', $wp_registered_settings['multi_device_switcher_options']['group'] );
+		$this->assertTrue( in_array( $this->multi_device_switcher, $wp_registered_settings['multi_device_switcher_options']['sanitize_callback'] ) );
+		$this->assertTrue( in_array( 'validate_options', $wp_registered_settings['multi_device_switcher_options']['sanitize_callback'] ) );
 	}
 
 	/**

@@ -240,7 +240,7 @@ class Test_Detect_Useragent extends WP_UnitTestCase {
 			$this->assertSame( $case[ 'device' ], $this->multi_device_switcher->device, $case[ 'massage' ] );
 
 			$this->multi_device_switcher->device = '';
-			unset($GLOBALS['_SERVER']['HTTP_USER_AGENT']);
+			unset( $GLOBALS['_SERVER']['HTTP_USER_AGENT'] );
 		}
 	}
 
