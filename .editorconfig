@@ -11,7 +11,7 @@ trim_trailing_whitespace = true
 indent_style = tab
 indent_size = 2
 
-[*.{json,yml,xml,neon}]
+[*.{json,yml,xml,neon,bats}]
 indent_style = space
 
 [*.md]
