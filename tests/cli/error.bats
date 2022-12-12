@@ -13,6 +13,8 @@ setup() {
 }
 
 @test "switch theme - fail" {
+  wp theme activate twentynineteen
+
   run wp multi-device theme smartphone twentynineteen
 
   assert_failure
@@ -101,6 +103,8 @@ setup() {
   assert_failure
   assert_status 1
   assert_equal "Error: Custom Switcher already exists"
+
+  wp theme activate twentynineteen
 
   run wp multi-device delete testtest
   run wp multi-device add testtest twentynineteen "iPad, Kindle, Sony Tablet, Nexus 7"
