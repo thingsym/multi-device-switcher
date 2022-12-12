@@ -494,6 +494,25 @@ class Multi_Device_Switcher {
 	}
 
 	/**
+	 * Enqueue styles for default_css
+	 *
+	 * @access public
+	 *
+	 * @return void
+	 *
+	 * @since 1.8.5
+	 */
+	public function enqueue_styles() {
+		wp_enqueue_style(
+			'pc-switcher-options',
+			plugins_url() . '/multi-device-switcher/pc-switcher.css',
+			array(),
+			$this->plugin_data['Version'],
+			'all'
+		);
+	}
+
+	/**
 	 * Add pc switcher button.
 	 *
 	 * @access public
@@ -514,13 +533,7 @@ class Multi_Device_Switcher {
 
 		if ( $pc_switcher && $name && 'None' !== $name ) {
 			if ( $options['default_css'] ) {
-				wp_enqueue_style(
-					'pc-switcher-options',
-					plugins_url() . '/multi-device-switcher/pc-switcher.css',
-					array(),
-					$this->plugin_data['Version'],
-					'all'
-				);
+				$this->enqueue_styles();
 			}
 
 			$uri = is_ssl() ? 'https://' : 'http://';
