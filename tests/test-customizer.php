@@ -102,7 +102,37 @@ class Test_Multi_Device_Switcher_Customizer extends WP_UnitTestCase {
 	 * @group customizer
 	 */
 	function save_case() {
-		$this->markTestIncomplete( 'This test has not been implemented yet.' );
+		$this->wp_customize->set_post_value( 'multi_device_switcher_options[theme_smartphone]', 'none' );
+		$setting = $this->wp_customize->get_setting( 'multi_device_switcher_options[theme_smartphone]' );
+		$setting->save();
+		$this->assertSame( 'none', $setting->value() );
+
+		$option = $this->multi_device_switcher->get_options( 'theme_smartphone' );
+		$this->assertSame( 'none', $option );
+
+		$this->wp_customize->set_post_value( 'multi_device_switcher_options[theme_tablet]', 'none' );
+		$setting = $this->wp_customize->get_setting( 'multi_device_switcher_options[theme_tablet]' );
+		$setting->save();
+		$this->assertSame( 'none', $setting->value() );
+
+		$option = $this->multi_device_switcher->get_options( 'theme_tablet' );
+		$this->assertSame( 'none', $option );
+
+		$this->wp_customize->set_post_value( 'multi_device_switcher_options[theme_mobile]', 'none' );
+		$setting = $this->wp_customize->get_setting( 'multi_device_switcher_options[theme_mobile]' );
+		$setting->save();
+		$this->assertSame( 'none', $setting->value() );
+
+		$option = $this->multi_device_switcher->get_options( 'theme_mobile' );
+		$this->assertSame( 'none', $option );
+
+		$this->wp_customize->set_post_value( 'multi_device_switcher_options[theme_game]', 'none' );
+		$setting = $this->wp_customize->get_setting( 'multi_device_switcher_options[theme_game]' );
+		$setting->save();
+		$this->assertSame( 'none', $setting->value() );
+
+		$option = $this->multi_device_switcher->get_options( 'theme_game' );
+		$this->assertSame( 'none', $option );
 	}
 
 }

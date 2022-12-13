@@ -132,7 +132,7 @@ class Multi_Device_Switcher_Command extends WP_CLI_Command {
 		$options = get_option( $this->option_name );
 
 		if ( isset( $slug ) ) {
-			if ( '' == $slug || 'None' == $slug ) {
+			if ( '' === $slug || 'None' === $slug ) {
 				$theme = 'None';
 			}
 		}
@@ -141,7 +141,7 @@ class Multi_Device_Switcher_Command extends WP_CLI_Command {
 		$themes     = wp_get_themes();
 		foreach ( $themes as $theme_slug => $header ) {
 			$slug_table[ $header->get( 'Name' ) ] = $theme_slug;
-			if ( $slug == $theme_slug ) {
+			if ( $slug === $theme_slug ) {
 				$theme = $header->get( 'Name' );
 			}
 		}
@@ -152,7 +152,7 @@ class Multi_Device_Switcher_Command extends WP_CLI_Command {
 
 		if ( isset( $theme ) ) {
 			$default_theme = wp_get_theme()->get( 'Name' );
-			if ( $default_theme == $theme ) {
+			if ( $default_theme === $theme ) {
 				WP_CLI::error( $theme . ' theme is in active' );
 			}
 
@@ -160,8 +160,8 @@ class Multi_Device_Switcher_Command extends WP_CLI_Command {
 				WP_CLI::error( $theme . ' theme is not installed' );
 			}
 
-			if ( in_array( $name, array( 'smartphone', 'smart', 'tablet', 'mobile', 'game' ) ) ) {
-				if ( 'smart' == $name ) {
+			if ( in_array( $name, array( 'smartphone', 'smart', 'tablet', 'mobile', 'game' ), true ) ) {
+				if ( 'smart' === $name ) {
 					$name = 'smartphone';
 				}
 				$options[ 'theme_' . $name ] = $theme;
@@ -180,8 +180,8 @@ class Multi_Device_Switcher_Command extends WP_CLI_Command {
 			}
 		}
 		else {
-			if ( in_array( $name, array( 'smartphone', 'smart', 'tablet', 'mobile', 'game' ) ) ) {
-				if ( 'smart' == $name ) {
+			if ( in_array( $name, array( 'smartphone', 'smart', 'tablet', 'mobile', 'game' ), true ) ) {
+				if ( 'smart' === $name ) {
 					$name = 'smartphone';
 				}
 				WP_CLI::success( $options[ 'theme_' . $name ] . ' | ' . $slug_table[ $options[ 'theme_' . $name ] ] );
@@ -224,8 +224,8 @@ class Multi_Device_Switcher_Command extends WP_CLI_Command {
 		$options = get_option( $this->option_name );
 
 		if ( isset( $useragent ) ) {
-			if ( in_array( $name, array( 'smartphone', 'smart', 'tablet', 'mobile', 'game' ) ) ) {
-				if ( 'smartphone' == $name ) {
+			if ( in_array( $name, array( 'smartphone', 'smart', 'tablet', 'mobile', 'game' ), true ) ) {
+				if ( 'smartphone' === $name ) {
 					$name = 'smart';
 				}
 				$options[ 'userAgent_' . $name ] = $useragent;
@@ -244,8 +244,8 @@ class Multi_Device_Switcher_Command extends WP_CLI_Command {
 			}
 		}
 		else {
-			if ( in_array( $name, array( 'smartphone', 'smart', 'tablet', 'mobile', 'game' ) ) ) {
-				if ( 'smartphone' == $name ) {
+			if ( in_array( $name, array( 'smartphone', 'smart', 'tablet', 'mobile', 'game' ), true ) ) {
+				if ( 'smartphone' === $name ) {
 					$name = 'smart';
 				}
 				WP_CLI::success( $options[ 'userAgent_' . $name ] );
@@ -327,13 +327,13 @@ class Multi_Device_Switcher_Command extends WP_CLI_Command {
 		$themes     = wp_get_themes();
 		foreach ( $themes as $theme_slug => $header ) {
 			$slug_table[ $header->get( 'Name' ) ] = $theme_slug;
-			if ( ! isset( $assoc_args['theme'] ) && $slug == $theme_slug ) {
+			if ( ! isset( $assoc_args['theme'] ) && $slug === $theme_slug ) {
 				$theme = $header->get( 'Name' );
 			}
 		}
 
 		$options = get_option( $this->option_name );
-		if ( in_array( $name, array( 'smartphone', 'smart', 'tablet', 'mobile', 'game' ) ) ) {
+		if ( in_array( $name, array( 'smartphone', 'smart', 'tablet', 'mobile', 'game' ), true ) ) {
 			WP_CLI::error( 'Default Switcher can\'t add' );
 		}
 		elseif ( isset( $options[ 'custom_switcher_theme_' . $name ] ) ) {
@@ -341,7 +341,7 @@ class Multi_Device_Switcher_Command extends WP_CLI_Command {
 		}
 		else {
 			$default_theme = wp_get_theme()->get( 'Name' );
-			if ( $default_theme == $theme ) {
+			if ( $default_theme === $theme ) {
 				WP_CLI::error( $theme . ' theme is in active' );
 			}
 
@@ -384,7 +384,7 @@ class Multi_Device_Switcher_Command extends WP_CLI_Command {
 
 		$options = get_option( $this->option_name );
 
-		if ( in_array( $name, array( 'smartphone', 'smart', 'tablet', 'mobile', 'game' ) ) ) {
+		if ( in_array( $name, array( 'smartphone', 'smart', 'tablet', 'mobile', 'game' ), true ) ) {
 			WP_CLI::error( 'Default Switcher can\'t delete' );
 		}
 		elseif ( isset( $options[ 'custom_switcher_theme_' . $name ] ) ) {
@@ -424,12 +424,12 @@ class Multi_Device_Switcher_Command extends WP_CLI_Command {
 
 		$options = get_option( $this->option_name );
 
-		if ( 'on' == $flag ) {
+		if ( 'on' === $flag ) {
 			$options['pc_switcher'] = 1;
 			update_option( $this->option_name, $options );
 			WP_CLI::success( 'turn on PC Switcher' );
 		}
-		elseif ( 'off' == $flag ) {
+		elseif ( 'off' === $flag ) {
 			$options['pc_switcher'] = 0;
 			update_option( $this->option_name, $options );
 			WP_CLI::success( 'turn off PC Switcher' );
@@ -463,12 +463,12 @@ class Multi_Device_Switcher_Command extends WP_CLI_Command {
 
 		$options = get_option( $this->option_name );
 
-		if ( 'on' == $flag ) {
+		if ( 'on' === $flag ) {
 			$options['default_css'] = 1;
 			update_option( $this->option_name, $options );
 			WP_CLI::success( 'turn on default CSS' );
 		}
-		elseif ( 'off' == $flag ) {
+		elseif ( 'off' === $flag ) {
 			$options['default_css'] = 0;
 			update_option( $this->option_name, $options );
 			WP_CLI::success( 'turn off default CSS' );

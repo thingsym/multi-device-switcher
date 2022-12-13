@@ -3,7 +3,7 @@
  * Plugin Name: Multi Device Switcher
  * Plugin URI:  https://github.com/thingsym/multi-device-switcher
  * Description: This WordPress plugin allows you to set a separate theme for device (Smart Phone, Tablet PC, Mobile Phone, Game and custom).
- * Version:     1.8.4
+ * Version:     1.8.5
  * Author:      thingsym
  * Author URI:  https://www.thingslabo.com/
  * License:     GPLv2 or later
@@ -470,23 +470,46 @@ class Multi_Device_Switcher {
 	 * @since 1.0.0
 	 */
 	public function session() {
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		if ( isset( $_GET['pc-switcher'] ) ) {
-			// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-			setcookie( $this->cookie_name_pc_switcher, $_GET['pc-switcher'] ? '1' : '', 0, '/', '', is_ssl(), false );
+			// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			setcookie( $this->cookie_name_pc_switcher, sanitize_text_field( wp_unslash( $_GET['pc-switcher'] ) ) ? '1' : '', 0, '/', '', is_ssl(), false );
 
 			if ( isset( $_SERVER['REQUEST_URI'] ) ) {
 				// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 				$uri = preg_replace( '/^(.+?)(\?.*)$/', '$1', $_SERVER['REQUEST_URI'] );
 			}
 
+			// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			unset( $_GET['pc-switcher'] );
+			// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			if ( ! empty( $_GET ) ) {
+				// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 				$uri = $uri . '?' . http_build_query( $_GET );
 			}
 
-			wp_redirect( esc_url( $uri ) );
+			wp_safe_redirect( esc_url( $uri ) );
 			exit;
 		}
+	}
+
+	/**
+	 * Enqueue styles for default_css
+	 *
+	 * @access public
+	 *
+	 * @return void
+	 *
+	 * @since 1.8.5
+	 */
+	public function enqueue_styles() {
+		wp_enqueue_style(
+			'pc-switcher-options',
+			plugins_url() . '/multi-device-switcher/pc-switcher.css',
+			array(),
+			$this->plugin_data['Version'],
+			'all'
+		);
 	}
 
 	/**
@@ -510,16 +533,10 @@ class Multi_Device_Switcher {
 
 		if ( $pc_switcher && $name && 'None' !== $name ) {
 			if ( $options['default_css'] ) {
-				wp_enqueue_style(
-					'pc-switcher-options',
-					plugins_url() . '/multi-device-switcher/pc-switcher.css',
-					array(),
-					$this->plugin_data['Version'],
-					'all'
-				);
+				$this->enqueue_styles();
 			}
 
-			$uri  = is_ssl() ? 'https://' : 'http://';
+			$uri = is_ssl() ? 'https://' : 'http://';
 
 			if ( isset( $_SERVER['HTTP_HOST'] ) ) {
 				// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
@@ -681,7 +698,8 @@ class Multi_Device_Switcher {
 			'multi-device-switcher-options',
 			plugins_url() . '/multi-device-switcher/multi-device-switcher.js',
 			array( 'jquery', 'jquery-ui-tabs' ),
-			$this->plugin_data['Version']
+			$this->plugin_data['Version'],
+			false
 		);
 	}
 
@@ -821,7 +839,7 @@ class Multi_Device_Switcher {
 	 * @since 1.8.1
 	 */
 	public function plugin_metadata_links( $links, $file ) {
-		if ( $file == plugin_basename( __MULTI_DEVICE_SWITCHER_FILE__ ) ) {
+		if ( $file === plugin_basename( __MULTI_DEVICE_SWITCHER_FILE__ ) ) {
 			$links[] = '<a href="https://github.com/sponsors/thingsym">' . __( 'Become a sponsor', 'multi-device-switcher' ) . '</a>';
 		}
 
@@ -910,7 +928,7 @@ class Multi_Device_Switcher {
 	 */
 	public function load_plugin_data() {
 		if ( ! function_exists( 'get_plugin_data' ) ) {
-			require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+			require_once ABSPATH . 'wp-admin/includes/plugin.php';
 		}
 
 		$this->plugin_data = get_plugin_data( __MULTI_DEVICE_SWITCHER_FILE__ );
@@ -1321,7 +1339,7 @@ class Multi_Device_Switcher {
 		}
 
 		if ( isset( $input['add_custom_switcher'] ) && ! empty( $input['custom_switcher'] ) && ! isset( $output[ 'custom_switcher_theme_' . $input['custom_switcher'] ] ) ) {
-			if ( ! in_array( $input['custom_switcher'], array( 'smartphone', 'smart', 'tablet', 'mobile', 'game' ) )
+			if ( ! in_array( $input['custom_switcher'], array( 'smartphone', 'smart', 'tablet', 'mobile', 'game' ), true )
 					&& preg_match( '/^[A-Za-z0-9]{1,20}$/', $input['custom_switcher'] ) ) {
 				$output[ 'custom_switcher_theme_' . $input['custom_switcher'] ]     = 'None';
 				$output[ 'custom_switcher_userAgent_' . $input['custom_switcher'] ] = '';

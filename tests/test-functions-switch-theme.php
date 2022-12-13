@@ -78,6 +78,7 @@ class Test_Multi_Device_Switcher_Functions_Switch_Theme extends WP_UnitTestCase 
 		$this->multi_device_switcher->device = 'smart';
 		$GLOBALS['_COOKIE']['pc-switcher'] = 1;
 		$this->multi_device_switcher->switch_theme();
+		unset( $GLOBALS['_COOKIE']['pc-switcher'] );
 
 		$this->assertFalse( has_filter( 'stylesheet', array( $this->multi_device_switcher, 'get_stylesheet' ) ) );
 		$this->assertFalse( has_filter( 'template', array( $this->multi_device_switcher, 'get_template' ) ) );
@@ -85,7 +86,6 @@ class Test_Multi_Device_Switcher_Functions_Switch_Theme extends WP_UnitTestCase 
 		$this->assertSame( 10, has_action( 'wp_headers', array( $this->multi_device_switcher, 'set_cookie_switch_theme' ) ) );
 		$this->assertfalse( has_action( 'wp_headers', array( $this->multi_device_switcher, 'set_cookie_normal_theme' ) ) );
 
-		unset($GLOBALS['_COOKIE']['pc-switcher']);
 	}
 
 }

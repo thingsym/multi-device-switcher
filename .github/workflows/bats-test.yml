@@ -1,0 +1,89 @@
+name: Bats test
+
+on:
+  push:
+    branches:
+      - '**'
+      - '!svn-trunk'
+      - '!test-matrix'
+    tags-ignore:
+      - '**'
+  pull_request:
+    branches:
+      - '**'
+
+jobs:
+  bats:
+    name: WordPress ${{ matrix.wordpress }} * PHP v${{ matrix.php }} * ${{ matrix.os }} * Multisite ${{ matrix.multisite }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
+
+    strategy:
+      fail-fast: false
+
+      matrix:
+        os: [ ubuntu-20.04 ]
+        php: [ '7.4' ]
+        wordpress: [ latest ]
+        multisite: [ 0 ]
+
+    env:
+      PHP_VERSION: ${{ matrix.php }}
+      WP_VERSION: ${{ matrix.wordpress }}
+      WP_MULTISITE: ${{ matrix.multisite }}
+
+    services:
+      database:
+        image: mysql:5.7
+        ports:
+          - 3306:3306
+        env:
+          MYSQL_ROOT_PASSWORD: root
+        options: --health-cmd "mysqladmin ping -h 0.0.0.0" --health-interval 20s --health-timeout 10s --health-retries 10
+
+    steps:
+      - name: Setup PHP v${{ matrix.php }}
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: mbstring, intl, php-mysql
+
+      - name: Install WP-CLI
+        run: |
+          curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+          chmod +x wp-cli.phar
+          mv wp-cli.phar /usr/local/bin/wp
+
+      - name: chown to runner:docker
+        run: sudo chown -R runner:docker /var/www/html
+
+      - name: Install WordPress
+        run: |
+          wp core download --version=${{ matrix.wordpress }}
+          wp config create --dbhost=0.0.0.0:3306 --dbname=wordpress_test --dbuser=root --dbpass=root --force
+          wp db create --allow-root
+          wp core install --url=example.com --title=Example --admin_user=admin --admin_password=admin --admin_email=admin@example.com
+        working-directory: /var/www/html
+
+      - name: Install default WordPress theme
+        run: |
+          wp theme install twentysixteen
+          wp theme install twentyfifteen
+          wp theme install twentynineteen
+        working-directory: /var/www/html
+
+      - uses: actions/checkout@v3
+
+      - name: Move plugin
+        run: cp -r /home/runner/work/multi-device-switcher/multi-device-switcher /var/www/html/wp-content/plugins/multi-device-switcher
+
+      - name: Active Plugin
+        run: wp plugin activate multi-device-switcher
+        working-directory: /var/www/html
+
+      - name: Setup Bats
+        uses: mig4/setup-bats@v1
+
+      - name: Run Bats test
+        run: bats tests/cli
+        working-directory: /var/www/html/wp-content/plugins/multi-device-switcher

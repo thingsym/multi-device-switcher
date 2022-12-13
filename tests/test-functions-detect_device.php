@@ -65,7 +65,7 @@ class Test_Multi_Device_Switcher_Functions_Detect_Device extends WP_UnitTestCase
 		$this->assertFalse( has_filter( 'wp_headers', array( $this->multi_device_switcher, 'set_cookie_rest_disable_switcher' ) ) );
 		$this->assertFalse( has_filter( 'wp_headers', array( $this->multi_device_switcher, 'set_cookie_enable_disable_switcher' ) ) );
 
-		unset($GLOBALS['_SERVER']['HTTP_USER_AGENT']);
+		unset( $GLOBALS['_SERVER']['HTTP_USER_AGENT'] );
 	}
 
 	/**
@@ -75,12 +75,12 @@ class Test_Multi_Device_Switcher_Functions_Detect_Device extends WP_UnitTestCase
 	function detect_device_enable_disable_switcher() {
 		$GLOBALS['_COOKIE']['disable-switcher'] = 1;
 		$this->multi_device_switcher->detect_device();
+		unset( $GLOBALS['_COOKIE']['disable-switcher'] );
 
 		$this->assertSame( 10, has_action( 'init', array( $this->multi_device_switcher, 'session' ) ) );
 		$this->assertSame( 10, has_filter( 'wp_headers', array( $this->multi_device_switcher, 'set_cookie_rest_disable_switcher' ) ) );
 		$this->assertFalse( has_filter( 'wp_headers', array( $this->multi_device_switcher, 'set_cookie_enable_disable_switcher' ) ) );
 
-		unset($GLOBALS['_COOKIE']['disable-switcher']);
 	}
 
 	/**
@@ -114,7 +114,7 @@ class Test_Multi_Device_Switcher_Functions_Detect_Device extends WP_UnitTestCase
 		$this->assertFalse( has_filter( 'wp_headers', array( $this->multi_device_switcher, 'set_cookie_rest_disable_switcher' ) ) );
 		$this->assertSame( 10, has_filter( 'wp_headers', array( $this->multi_device_switcher, 'set_cookie_enable_disable_switcher' ) ) );
 
-		unset($GLOBALS['_SERVER']['REQUEST_URI']);
+		unset($GLOBALS['_SERVER']['REQUEST_URI'] );
 	}
 
 	/**
