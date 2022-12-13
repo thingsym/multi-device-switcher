@@ -437,6 +437,17 @@ For operation compatibility between PHP version and WordPress version, see below
 
 ## Changelog
 
+* Version 1.8.5
+	* add phpcs job to ci
+	* add healthcheck to database container
+	* add bats test to ci
+	* fix bats test case
+	* add test case
+	* fix phpcs.ruleset.xml
+	* add enqueue_styles method
+	* imporve code with phpcs
+	* fix composer scripts
+	* update github actions
 * Version 1.8.4
 	* tested up to 6.1.0
 	* update japanese translation
