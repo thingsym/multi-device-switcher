@@ -39,6 +39,7 @@ jobs:
           - 3306:3306
         env:
           MYSQL_ROOT_PASSWORD: root
+        options: --health-cmd "mysqladmin ping -h 0.0.0.0" --health-interval 20s --health-timeout 10s --health-retries 10
 
     steps:
       - uses: actions/checkout@v3
