@@ -31,12 +31,12 @@ class Test_Multi_Device_Switcher_Pc_Switcher extends WP_UnitTestCase {
 	}
 
 	function tearDown() {
-		parent::tearDown();
-
 		$GLOBALS['_SERVER']['REQUEST_URI'] = '';
 		wp_dequeue_style( 'pc-switcher-options' );
 		$this->multi_device_switcher->device = '';
 		unset( $GLOBALS['_COOKIE']['pc-switcher'] );
+
+		parent::tearDown();
 	}
 
 	/**

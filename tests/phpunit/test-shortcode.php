@@ -28,12 +28,11 @@ class Test_Multi_Device_Switcher_Shortcode extends WP_UnitTestCase {
 		update_option( 'multi_device_switcher_options', $options );
 	}
 
-	function tearDown() {
-		parent::tearDown();
-
+	public function tearDown(): void {
 		$GLOBALS['_SERVER']['REQUEST_URI'] = '';
 		unset( $GLOBALS['_COOKIE']['pc-switcher'] );
 
+		parent::tearDown();
 	}
 
 	/**

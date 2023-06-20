@@ -3,7 +3,7 @@
 class Test_Multi_Device_Switcher_Pc_Switcher extends WP_UnitTestCase {
 	public $multi_device_switcher;
 
-	public function setUp(): void {
+	public function tearDown(): void {
 		parent::setUp();
 
 		$this->multi_device_switcher = new Multi_Device_Switcher();
@@ -31,13 +31,13 @@ class Test_Multi_Device_Switcher_Pc_Switcher extends WP_UnitTestCase {
 		$GLOBALS['_SERVER']['REQUEST_URI'] = '';
 	}
 
-	function tearDown() {
-		parent::tearDown();
-
+	public function tearDown(): void {
 		$GLOBALS['_SERVER']['REQUEST_URI'] = '';
 		wp_dequeue_style( 'pc-switcher-options' );
 		$this->multi_device_switcher->device = '';
 		unset( $GLOBALS['_COOKIE']['pc-switcher'] );
+
+		parent::tearDown();
 	}
 
 	/**

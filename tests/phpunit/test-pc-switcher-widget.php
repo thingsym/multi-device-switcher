@@ -33,14 +33,14 @@ class Test_pc_switcher_Pc_Switcher_Widget extends WP_UnitTestCase {
 		$this->pc_switcher = new PC_Switcher();
 	}
 
-	function tearDown() {
-		parent::tearDown();
-
+	public function tearDown(): void {
 		$GLOBALS['_SERVER']['REQUEST_URI'] = '';
 		unset( $GLOBALS['_COOKIE']['pc-switcher'] );
 
 		global $multi_device_switcher;
 		$multi_device_switcher->device = '';
+
+		parent::tearDown();
 	}
 
 	/**
