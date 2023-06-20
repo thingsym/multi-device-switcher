@@ -3,8 +3,8 @@
 class Test_Multi_Device_Switcher_Cdn extends WP_UnitTestCase {
 	public $multi_device_switcher;
 
-	public function setUp(): void {
-		parent::setUp();
+	public function set_up(): void {
+		parent::set_up();
 
 		$this->multi_device_switcher = new Multi_Device_Switcher();
 
@@ -28,8 +28,8 @@ class Test_Multi_Device_Switcher_Cdn extends WP_UnitTestCase {
 		update_option( 'multi_device_switcher_options', $options );
 	}
 
-	public function tearDown(): void {
-		parent::tearDown();
+	public function tear_down(): void {
+		parent::tear_down();
 	}
 
 	/**
