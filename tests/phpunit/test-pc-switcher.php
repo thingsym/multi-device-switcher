@@ -3,7 +3,7 @@
 class Test_Multi_Device_Switcher_Pc_Switcher extends WP_UnitTestCase {
 	public $multi_device_switcher;
 
-	public function tearDown(): void {
+	public function setUp(): void {
 		parent::setUp();
 
 		$this->multi_device_switcher = new Multi_Device_Switcher();
