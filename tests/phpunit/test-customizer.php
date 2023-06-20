@@ -2,6 +2,7 @@
 
 class Test_Multi_Device_Switcher_Customizer extends WP_UnitTestCase {
 	public $multi_device_switcher;
+	public $wp_customize;
 
 	public function setUp(): void {
 		parent::setUp();

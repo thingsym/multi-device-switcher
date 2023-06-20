@@ -2,6 +2,7 @@
 
 class Test_pc_switcher_Pc_Switcher_Widget extends WP_UnitTestCase {
 	public $multi_device_switcher;
+	public $pc_switcher;
 
 	public function setUp(): void {
 		parent::setUp();

@@ -1,6 +1,7 @@
 <?php
 
 class Test_Multi_Device_Switcher_Local_Functions extends WP_UnitTestCase {
+	public $multi_device_switcher;
 
 	public function setUp(): void {
 		parent::setUp();
