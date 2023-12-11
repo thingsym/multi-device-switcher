@@ -435,6 +435,14 @@ If you would like to contribute, here are some notes and guidlines.
 
 For operation compatibility between PHP version and WordPress version, see below [Github Actions](https://github.com/thingsym/multi-device-switcher/actions).
 
+## Known bugs
+
+### WordPress Core version 6.4 - 6.4.1
+
+* Theme doesn't switch properly
+* Bug report: https://core.trac.wordpress.org/ticket/59847
+* It seems to have been caused by a change (breaking change) at https://core.trac.wordpress.org/changeset/56635. The bug is fixed in https://core.trac.wordpress.org/changeset/57129 (fixed in WordPress 6.4.2)
+
 ## Changelog
 
 * Version 1.8.5

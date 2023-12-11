@@ -27,10 +27,6 @@ class Test_Multi_Device_Switcher_Functions extends WP_UnitTestCase {
 		update_option( 'multi_device_switcher_options', $options );
 	}
 
-	function tearDown() {
-		parent::tearDown();
-	}
-
 	/**
 	 * @test
 	 * @group functions
