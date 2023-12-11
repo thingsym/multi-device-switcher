@@ -64,7 +64,7 @@ class Test_pc_switcher_Pc_Switcher_Widget extends WP_UnitTestCase {
 		$this->assertArrayHasKey( 'classname', $this->pc_switcher->widget_options );
 		$this->assertSame( 'widget_pc_switcher', $this->pc_switcher->widget_options['classname'] );
 		$this->assertArrayHasKey( 'description', $this->pc_switcher->widget_options );
-		$this->assertContains( 'Add the PC Switcher to a widget.', $this->pc_switcher->widget_options['description'] );
+		$this->assertStringContainsStringIgnoringCase( 'Add the PC Switcher to a widget.', $this->pc_switcher->widget_options['description'] );
 		$this->assertArrayHasKey( 'customize_selective_refresh', $this->pc_switcher->widget_options );
 		$this->assertTrue( $this->pc_switcher->widget_options['customize_selective_refresh'] );
 
