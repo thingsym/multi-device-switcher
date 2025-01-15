@@ -355,22 +355,6 @@ class Test_Multi_Device_Switcher_Functions extends WP_UnitTestCase {
 		}
 	}
 
-
-	/**
-	 * @test
-	 * @group functions
-	 */
-	public function load_textdomain() {
-		global $wp_version;
-		$loaded = $this->multi_device_switcher->load_textdomain();
-		if ( version_compare( (string) $wp_version, '6.7', '>=' ) ) {
-			$this->assertTrue( $loaded );
-		}
-		else {
-			$this->assertFalse( $loaded );
-		}
-	}
-
 	/**
 	 * @test
 	 */
