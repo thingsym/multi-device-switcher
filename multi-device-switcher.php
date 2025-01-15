@@ -913,7 +913,7 @@ class Multi_Device_Switcher {
 		return load_plugin_textdomain(
 			'multi-device-switcher',
 			false,
-			plugin_dir_path( __MULTI_DEVICE_SWITCHER_FILE__ ) . 'languages'
+			'multi-device-switcher/languages'
 		);
 	}
 
