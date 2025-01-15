@@ -346,10 +346,22 @@ class Test_Multi_Device_Switcher_Functions extends WP_UnitTestCase {
 	 * @group functions
 	 */
 	public function load_textdomain() {
+		global $wp_version;
 		$loaded = $this->multi_device_switcher->load_textdomain();
-		$this->assertFalse( $loaded );
+		if ( version_compare( (string) $wp_version, '6.7', '>=' ) ) {
+			$this->assertTrue( $loaded );
+		}
+		else {
+			$this->assertFalse( $loaded );
+		}
+	}
 
+	/**
+	 * @test
+	 */
+	public function load_textdomain_change() {
 		unload_textdomain( 'multi-device-switcher' );
+		$this->assertFalse( isset( $l10n[ 'multi-device-switcher' ] ) );
 
 		add_filter( 'locale', [ $this, '_change_locale' ] );
 		add_filter( 'load_textdomain_mofile', [ $this, '_change_textdomain_mofile' ], 10, 2 );
@@ -357,10 +369,13 @@ class Test_Multi_Device_Switcher_Functions extends WP_UnitTestCase {
 		$loaded = $this->multi_device_switcher->load_textdomain();
 		$this->assertTrue( $loaded );
 
+		$this->assertSame( 'ja', get_locale() );
+
 		remove_filter( 'load_textdomain_mofile', [ $this, '_change_textdomain_mofile' ] );
 		remove_filter( 'locale', [ $this, '_change_locale' ] );
 
 		unload_textdomain( 'multi-device-switcher' );
+		$this->assertFalse( isset( $l10n[ 'multi-device-switcher' ] ) );
 	}
 
 	/**
@@ -372,7 +387,7 @@ class Test_Multi_Device_Switcher_Functions extends WP_UnitTestCase {
 
 	function _change_textdomain_mofile( $mofile, $domain ) {
 		if ( $domain === 'multi-device-switcher' ) {
-			$locale = determine_locale();
+			$locale = get_locale();
 			$mofile = plugin_dir_path( __MULTI_DEVICE_SWITCHER_FILE__ ) . 'languages/multi-device-switcher-' . $locale . '.mo';
 
 			$this->assertSame( $locale, get_locale() );
