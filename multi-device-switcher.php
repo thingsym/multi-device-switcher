@@ -144,7 +144,7 @@ class Multi_Device_Switcher {
 	 * @since 1.0.0
 	 */
 	public function __construct() {
-		add_action( 'plugins_loaded', array( $this, 'load_plugin_data' ) );
+		add_action( 'init', array( $this, 'load_plugin_data' ) );
 		add_action( 'plugins_loaded', array( $this, 'load_textdomain' ) );
 		add_action( 'plugins_loaded', array( $this, 'init' ) );
 
