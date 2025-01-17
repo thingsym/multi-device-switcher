@@ -445,6 +445,15 @@ For operation compatibility between PHP version and WordPress version, see below
 
 ## Changelog
 
+* Version 1.8.6
+	* update japanese translation
+	* update pot
+	* fix relative path in the argument of load_plugin_textdomain function
+	* the "_doing_it_wrong" warning, which has appeared in WordPress 6.7 and later[#15]
+	* update github workflows
+	* add Known bugs section to document
+	* add phpunit-legacy job
+	* ci support php 8.0 later
 * Version 1.8.5
 	* add phpcs job to ci
 	* add healthcheck to database container
