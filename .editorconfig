@@ -11,11 +11,13 @@ trim_trailing_whitespace = true
 indent_style = tab
 indent_size = 2
 
-[*.{json,yml,xml,neon,bats}]
+[*.{js,json,yml,xml,neon}]
 indent_style = space
 
 [*.md]
 trim_trailing_whitespace = false
+indent_style = space
+indent_size = 2
 
 [readme.txt]
 trim_trailing_whitespace = false

@@ -5,13 +5,13 @@ This plugin detects if your site is being viewed by UserAgent, and switches to s
 
 ## Features
 
-- Set a separate theme for device (Smart Phone, Tablet PC, Mobile Phone, Game), switches to selected theme.
-- Add every device by the **Custom Switcher**.
-- Add links 'Mobile' or 'PC' in the theme by the **PC Switcher**, switch to the default theme.
-- Switch the content of the post or page for each device by the **Display Switcher** Shortcode.
-- Disable the switching of the theme by a particular URL by the **Disable Switcher**.
-- Can be using is_multi_device() function that detect of the device.
-- **Multi Device Switcher Command** command-line tool (required WP-CLI)
+* Set a separate theme for device (Smart Phone, Tablet PC, Mobile Phone, Game), switches to selected theme.
+* Add every device by the **Custom Switcher**.
+* Add links 'Mobile' or 'PC' in the theme by the **PC Switcher**, switch to the default theme.
+* Switch the content of the post or page for each device by the **Display Switcher** Shortcode.
+* Disable the switching of the theme by a particular URL by the **Disable Switcher**.
+* Can be using is_multi_device() function that detect of the device.
+* **Multi Device Switcher Command** command-line tool (required WP-CLI)
 
 ## How do I use it ?
 
@@ -25,11 +25,11 @@ This plugin detects if your site is being viewed by UserAgent, and switches to s
 
 ## Screenshot
 
-<img src="screenshot-1.png">
-<img src="screenshot-2.png">
-<img src="screenshot-3.png">
-<img src="screenshot-4.png">
-<img src="screenshot-5.png">
+<img src="screenshot-1.png" alt="">
+<img src="screenshot-2.png" alt="">
+<img src="screenshot-3.png" alt="">
+<img src="screenshot-4.png" alt="">
+<img src="screenshot-5.png" alt="">
 
 ## How to add the Custom Switcher
 
@@ -42,7 +42,7 @@ This plugin detects if your site is being viewed by UserAgent, and switches to s
 
 There are three ways how to Using the PC Switcher.
 
-<img src="screenshot-4.png">
+<img src="screenshot-4.png" alt="">
 
 ### 1. Add a PC Switcher to the footer
 
@@ -57,12 +57,14 @@ There are three ways how to Using the PC Switcher.
 3. Drag and drop the title bars 'PC Switcher' into the desired area.
 4. Have fun!
 
-### 3. For the theme authors and developers, add a PC Switcher to your theme.
+### 3. For the theme authors and developers, add a PC Switcher to your theme
 
 1. Add the following code into the PHP files, when you develop your theme.
-```
+
+```php
 <?php if ( function_exists('multi_device_switcher_add_pc_switcher') ) { multi_device_switcher_add_pc_switcher(); } ?>
 ```
+
 2. Have fun!
 
 ### Using default CSS and customized CSS
@@ -75,14 +77,14 @@ You can design the PC Switcher in the Style Sheet.
 
 #### HTML output of the PC Switcher
 
-```
- <div class="pc-switcher"><span class="active">Mobile</span><a href="http://DOMEIN/PATH/TO/?pc-switcher=1">PC</a></div>
+```html
+<div class="pc-switcher"><span class="active">Mobile</span><a href="http://DOMEIN/PATH/TO/?pc-switcher=1">PC</a></div>
 ```
 
 #### HTML output of the PC Switcher when switched
 
-```
- <div class="pc-switcher"><a href="http://DOMEIN/PATH/TO/?pc-switcher=0">Mobile</a><span class="active">PC</span></div>
+```html
+<div class="pc-switcher"><a href="http://DOMEIN/PATH/TO/?pc-switcher=0">Mobile</a><span class="active">PC</span></div>
 ```
 
 ## How to use the Display Switcher Shortcode
@@ -93,9 +95,9 @@ Add the shortcode `[multi]` in a post or page and use the `device` attribute to 
 
 ### Attributes
 
-**device**
+#### device
 
-(string | empty) The name of the device
+(string|empty) The name of the device
 
 * smart
 * tablet
@@ -107,7 +109,7 @@ if empty, detect the desktop PC
 
 ### Example Shortcode
 
-```
+```text
 [multi]pc or other specific stuff here[/multi]
 [multi device="smart"]smartphone specific stuff here[/multi]
 [multi device="tablet"]tablet specific stuff here[/multi]
@@ -116,7 +118,7 @@ if empty, detect the desktop PC
 
 For theme or plugin developers. Filters The Display Switcher Shortcode through hooks. In that case, edit theme or plugin files.
 
-```
+```php
 <?php
 echo do_shortcode('[multi device="smart"]smartphone specific stuff here[/multi]');
 ?>
@@ -132,14 +134,14 @@ The **Disable Switcher** disable the switching of the theme by a particular URL.
 
 ### Example
 
-```
+```text
 /sample-page
 /2015/01/hello-world
 ```
 
-##### Regex mode (in the case of regular expression)
+### Regex mode (in the case of regular expression)
 
-```
+```text
 \/sample\-
 \/2015\/01
 ```
@@ -147,7 +149,6 @@ The **Disable Switcher** disable the switching of the theme by a particular URL.
 ## UserAgent option Samples
 
 * [Default UserAgent](https://github.com/thingsym/multi-device-switcher/wiki/Default-UserAgent)
-
 
 ## Detect the device by JavaScript
 
@@ -161,21 +162,21 @@ Multi Device Switcher set the Cookie that holds the state of the switch. You can
 
 ### Example
 
-```
- <script src="http://DOMEIN/PATH/TO/jquery.cookie.js"></script>
- <script>
- (function($) {
- 	$(function() {
- 		if ( $.cookie( 'multi-device-switcher' ) == 'smart' ) {
- 			/* smartphone specific stuff here */
- 		} else if ( $.cookie( 'multi-device-switcher' ) == 'tablet' ) {
- 			/* tablet specific stuff here */
- 		} else {
- 			/* pc or other specific stuff here */
- 		}
- 	});
- })(jQuery);
- </script>
+```javascript
+<script src="http://DOMEIN/PATH/TO/jquery.cookie.js"></script>
+<script>
+(function($) {
+$(function() {
+  if ( $.cookie( 'multi-device-switcher' ) == 'smart' ) {
+    /* smartphone specific stuff here */
+  } else if ( $.cookie( 'multi-device-switcher' ) == 'tablet' ) {
+    /* tablet specific stuff here */
+  } else {
+    /* pc or other specific stuff here */
+  }
+});
+})(jQuery);
+</script>
 ```
 
 ## is_multi_device() function
@@ -184,29 +185,29 @@ Multi Device Switcher set the Cookie that holds the state of the switch. You can
 
 ### Usage
 
-```
+```php
 <?php is_multi_device('smart'); ?>
 ```
 
 ### Example
 
-```
+```php
 <?php
 if ( function_exists( 'is_multi_device' ) ) {
-	if ( is_multi_device('smart') ) {
-		/* Display and echo smartphone specific stuff here */
-	} elseif ( is_multi_device('tablet') ) {
-		/* Display and echo tablet specific stuff here */
-	} else {
-		/* Display and echo pc or other specific stuff here */
-	}
+  if ( is_multi_device('smart') ) {
+    /* Display and echo smartphone specific stuff here */
+  } elseif ( is_multi_device('tablet') ) {
+    /* Display and echo tablet specific stuff here */
+  } else {
+    /* Display and echo pc or other specific stuff here */
+  }
 }
 ?>
 ```
 
 ### Parameters
 
-**device name** (required)
+#### device name (required)
 
 (string) The name of the device
 
@@ -226,20 +227,20 @@ if ( function_exists( 'is_multi_device' ) ) {
 
 ### Usage
 
-```
+```php
 <?php is_pc_switcher(); ?>
 ```
 
 ### Example
 
-```
+```php
 <?php
 if ( function_exists( 'is_pc_switcher' ) ) {
-	if ( is_pc_switcher() ) {
-		/* Theme switched by the PC Switcher. Display and echo specific stuff here */
-	} else {
-		/* Display and echo specific stuff here */
-	}
+  if ( is_pc_switcher() ) {
+    /* Theme switched by the PC Switcher. Display and echo specific stuff here */
+  } else {
+    /* Display and echo specific stuff here */
+  }
 }
 ?>
 ```
@@ -252,27 +253,26 @@ None
 
 (boolean) Return the state of PC Switcher.
 
-
 ## is_disable_switcher() function
 
 **is_disable_switcher()** function is a boolean function, meaning it returns either TRUE or FALSE. Return the state of disabled by the Multi_Device_Switcher class.
 
 ### Usage
 
-```
+```php
 <?php is_disable_switcher(); ?>
 ```
 
 ### Example
 
-```
+```php
 <?php
 if ( function_exists( 'is_disable_switcher' ) ) {
-	if ( is_disable_switcher() ) {
-		/* Disabled. Display and echo specific stuff here */
-	} else {
-		/* Display and echo specific stuff here */
-	}
+  if ( is_disable_switcher() ) {
+    /* Disabled. Display and echo specific stuff here */
+  } else {
+    /* Display and echo specific stuff here */
+  }
 }
 ?>
 ```
@@ -306,78 +306,98 @@ Add-on the Multi Device Switcher Command, when you activate the plugin "Multi De
 
 ### NAME
 
-	wp multi-device
+```text
+wp multi-device
+```
 
 ### DESCRIPTION
 
-	Multi Device Switcher Command
+```text
+Multi Device Switcher Command
+```
 
 ### SYNOPSIS
 
-	wp multi-device <command>
+```text
+wp multi-device <command>
+```
 
 ### SUBCOMMANDS
 
-	add              add Custom Switcher
-	css              turn on/off default CSS
-	delete           delete Custom Switcher
-	pc-switcher      turn on/off PC Switcher
-	reset            reset Settings to Default UserAgent
-	status           get status of settings
-	theme            get or switch a theme
-	useragent        get or set UserAgent
-
+```text
+add              add Custom Switcher
+css              turn on/off default CSS
+delete           delete Custom Switcher
+pc-switcher      turn on/off PC Switcher
+reset            reset Settings to Default UserAgent
+status           get status of settings
+theme            get or switch a theme
+useragent        get or set UserAgent
+```
 
 For more information about the Multi Device Switcher Command, see `wp help multi-device <SUBCOMMANDS>`.
-
 
 ### Command examples
 
 get status of settings
 
-	wp multi-device status
+```bash
+wp multi-device status
 
-	Active Theme: Twenty Fifteen | twentyfifteen
-	+--------------------------+-----------------+----------------+-------------------------------------------------------------------------+
-	| Device                   | Theme           | Slug           | UserAgent                                                               |
-	+--------------------------+-----------------+----------------+-------------------------------------------------------------------------+
-	| smartphone (Smart Phone) | Twenty Fourteen | twentyfourteen | iPhone, iPod, Android, dream, CUPCAKE, Windows Phone, webOS, BB10, Blac |
-	|                          |                 |                | kBerry8707, BlackBerry9000, BlackBerry9300, BlackBerry9500, BlackBerry9 |
-	|                          |                 |                | 530, BlackBerry9520, BlackBerry9550, BlackBerry9700, BlackBerry 93, Bla |
-	|                          |                 |                | ckBerry 97, BlackBerry 99, BlackBerry 98                                |
-	| tablet (Tablet PC)       | Twenty Thirteen | twentythirteen | iPad, Kindle, Sony Tablet, Nexus 7                                      |
-	| mobile (Mobile Phone)    | Twenty Twelve   | twentytwelve   | DoCoMo, SoftBank, J-PHONE, Vodafone, KDDI, UP.Browser, WILLCOM, emobile |
-	|                          |                 |                | , DDIPOCKET, Windows CE, BlackBerry, Symbian, PalmOS, Huawei, IAC, Noki |
-	|                          |                 |                | a                                                                       |
-	| game (Game Platforms)    | Twenty Eleven   | twentyeleven   | PlayStation Portable, PlayStation Vita, PSP, PS2, PLAYSTATION 3, PlaySt |
-	|                          |                 |                | ation 4, Nitro, Nintendo 3DS, Nintendo Wii, Nintendo WiiU, Xbox         |
-	+--------------------------+-----------------+----------------+-------------------------------------------------------------------------+
-	PC Switcher: on
-	default CSS: on
+Active Theme: Twenty Fifteen | twentyfifteen
++--------------------------+-----------------+----------------+-------------------------------------------------------------------------+
+| Device                   | Theme           | Slug           | UserAgent                                                               |
++--------------------------+-----------------+----------------+-------------------------------------------------------------------------+
+| smartphone (Smart Phone) | Twenty Fourteen | twentyfourteen | iPhone, iPod, Android, dream, CUPCAKE, Windows Phone, webOS, BB10, Blac |
+|                          |                 |                | kBerry8707, BlackBerry9000, BlackBerry9300, BlackBerry9500, BlackBerry9 |
+|                          |                 |                | 530, BlackBerry9520, BlackBerry9550, BlackBerry9700, BlackBerry 93, Bla |
+|                          |                 |                | ckBerry 97, BlackBerry 99, BlackBerry 98                                |
+| tablet (Tablet PC)       | Twenty Thirteen | twentythirteen | iPad, Kindle, Sony Tablet, Nexus 7                                      |
+| mobile (Mobile Phone)    | Twenty Twelve   | twentytwelve   | DoCoMo, SoftBank, J-PHONE, Vodafone, KDDI, UP.Browser, WILLCOM, emobile |
+|                          |                 |                | , DDIPOCKET, Windows CE, BlackBerry, Symbian, PalmOS, Huawei, IAC, Noki |
+|                          |                 |                | a                                                                       |
+| game (Game Platforms)    | Twenty Eleven   | twentyeleven   | PlayStation Portable, PlayStation Vita, PSP, PS2, PLAYSTATION 3, PlaySt |
+|                          |                 |                | ation 4, Nitro, Nintendo 3DS, Nintendo Wii, Nintendo WiiU, Xbox         |
++--------------------------+-----------------+----------------+-------------------------------------------------------------------------+
+PC Switcher: on
+default CSS: on
+```
 
 switch twentyfifteen in theme of smartphone using theme slug
 
-    wp multi-device theme smartphone twentyfifteen
+```bash
+wp multi-device theme smartphone twentyfifteen
+```
 
 set UserAgent in theme of tablet
 
-    wp multi-device useragent tablet 'iPad, Kindle, Sony Tablet, Nexus 7'
+```bash
+wp multi-device useragent tablet 'iPad, Kindle, Sony Tablet, Nexus 7'
+```
 
 add example Custom Switcher
 
-    wp multi-device add example
+```bash
+wp multi-device add example
+```
 
 add example Custom Switcher. set twentyfifteen theme and UserAgent using theme slug
 
-    wp multi-device add example twentyfifteen 'iPad, Kindle, Sony Tablet, Nexus 7'
+```bash
+wp multi-device add example twentyfifteen 'iPad, Kindle, Sony Tablet, Nexus 7'
+```
 
 delete example Custom Switcher
 
-    wp multi-device delete example
+```bash
+wp multi-device delete example
+```
 
 turn on default CSS
 
-    wp multi-device css on
+```bash
+wp multi-device css on
+```
 
 ## WordPress Plugin Directory
 
@@ -387,7 +407,7 @@ Multi Device Switcher is hosted on the WordPress Plugin Directory.
 
 ## Resources
 
-* [Developer Blog (Japanese) - http://blog.thingslabo.com/ ](https://blog.thingslabo.com/archives/category/multi_device_switcher)
+* [Developer Blog (Japanese) - http://blog.thingslabo.com/](https://blog.thingslabo.com/archives/category/multi_device_switcher)
 
 ## Support
 
@@ -440,212 +460,215 @@ For operation compatibility between PHP version and WordPress version, see below
 ### WordPress Core version 6.4 - 6.4.1
 
 * Theme doesn't switch properly
-* Bug report: https://core.trac.wordpress.org/ticket/59847
-* It seems to have been caused by a change (breaking change) at https://core.trac.wordpress.org/changeset/56635. The bug is fixed in https://core.trac.wordpress.org/changeset/57129 (fixed in WordPress 6.4.2)
+* Bug report: [#59847](https://core.trac.wordpress.org/ticket/59847)
+* It seems to have been caused by a change (breaking change) at [Changeset 56635](https://core.trac.wordpress.org/changeset/56635). The bug is fixed in [Changeset 57129](https://core.trac.wordpress.org/changeset/57129) (fixed in WordPress 6.4.2)
 
 ## Changelog
 
 * Version 1.8.6
-	* update japanese translation
-	* update pot
-	* fix relative path in the argument of load_plugin_textdomain function
-	* the "_doing_it_wrong" warning, which has appeared in WordPress 6.7 and later[#15]
-	* update github workflows
-	* add Known bugs section to document
-	* add phpunit-legacy job
-	* ci support php 8.0 later
+  * update japanese translation
+  * update pot
+  * fix relative path in the argument of load_plugin_textdomain function
+  * the "_doing_it_wrong" warning, which has appeared in WordPress 6.7 and later[#15]
+  * update github workflows
+  * add Known bugs section to document
+  * add phpunit-legacy job
+  * ci support php 8.0 later
 * Version 1.8.5
-	* add phpcs job to ci
-	* add healthcheck to database container
-	* add bats test to ci
-	* fix bats test case
-	* add test case
-	* fix phpcs.ruleset.xml
-	* add enqueue_styles method
-	* imporve code with phpcs
-	* fix composer scripts
-	* update github actions
+  * add phpcs job to ci
+  * add healthcheck to database container
+  * add bats test to ci
+  * fix bats test case
+  * add test case
+  * fix phpcs.ruleset.xml
+  * add enqueue_styles method
+  * imporve code with phpcs
+  * fix composer scripts
+  * update github actions
 * Version 1.8.4
-	* tested up to 6.1.0
-	* update japanese translation
-	* update pot
-	* fix composer.json
-	* add test case
-	* update useragent
-	* fix load_textdomain method for testability
-	* add msgmerge to composer scripts
-	* add support section and enhance contribution section
-	* fix license
+  * tested up to 6.1.0
+  * update japanese translation
+  * update pot
+  * fix composer.json
+  * add test case
+  * update useragent
+  * fix load_textdomain method for testability
+  * add msgmerge to composer scripts
+  * add support section and enhance contribution section
+  * fix license
 * Version 1.8.3
-	* update japanese translation
-	* update pot
-	* add composer script
-	* change makepot from php script to wp cli
-	* change plugin initialization to plugins_loaded hook
-	* replace assert from assertEquals to assertSame
+  * update japanese translation
+  * update pot
+  * add composer script
+  * change makepot from php script to wp cli
+  * change plugin initialization to plugins_loaded hook
+  * replace assert from assertEquals to assertSame
 * Version 1.8.2
-	* change requires at least to wordpress 4.9
-	* change requires to PHP 5.6
-	* add test case
-	* set the initial value an empty array
-	* add hook_suffix argument
+  * change requires at least to wordpress 4.9
+  * change requires to PHP 5.6
+  * add test case
+  * set the initial value an empty array
+  * add hook_suffix argument
 * Version 1.8.1
-	* update japanese translation
-	* update pot
-	* imporve code with phpcs
-	* update wordpress-test-matrix
-	* fix test case
-	* fix plugin_metadata_links method
-	* add load_plugin_data method
-	* rename variable from options to option_name
-	* add test case for customizer
-	* rename method name
-	* update composer dependencies
-	* change from protected variable to public variable for unit test
-	* add timeout-minutes to workflows
-	* add phpunit-polyfills
-	* update install-wp-tests.sh
-	* tested up to 5.8.0
-	* fix .editorconfig
+  * update japanese translation
+  * update pot
+  * imporve code with phpcs
+  * update wordpress-test-matrix
+  * fix test case
+  * fix plugin_metadata_links method
+  * add load_plugin_data method
+  * rename variable from options to option_name
+  * add test case for customizer
+  * rename method name
+  * update composer dependencies
+  * change from protected variable to public variable for unit test
+  * add timeout-minutes to workflows
+  * add phpunit-polyfills
+  * update install-wp-tests.sh
+  * tested up to 5.8.0
+  * fix .editorconfig
 * Version 1.8.0
-	* add test case
-	* add PHPDoc
-	* update japanese translation
-	* update pot
-	* fix composer.json
-	* add FUNDING.yml
-	* change donate link
-	* add sponsor link
-	* add GitHub actions for CI/CD, remove .travis.yml
+  * add test case
+  * add PHPDoc
+  * update japanese translation
+  * update pot
+  * fix composer.json
+  * add FUNDING.yml
+  * change donate link
+  * add sponsor link
+  * add GitHub actions for CI/CD, remove .travis.yml
 * Version 1.7.0
-	* add test case for cdn
-	* add multi_device_switcher/detect_device action hook
-	* split switch_theme method into detect_device and switch_theme
-	* fix wp-cli
-	* add bats test case for cli
-	* refactoring with phpstan
-	* fix default options via method
-	* change tag name
-	* change method name
-	* improve get_options method
-	* replace from get_default_options() to class value default_options
-	* fix not valid snake_case format
-	* add public as access modifier keywords
-	* add PHPDoc
-	* add reset-wp-tests.sh, uninstall-wp-tests.sh
-	* fix header
-	* fix textdomain
-	* fix indent and reformat with phpcs and phpcbf
-	* add composer.json for test
-	* add static code analysis config
+  * add test case for cdn
+  * add multi_device_switcher/detect_device action hook
+  * split switch_theme method into detect_device and switch_theme
+  * fix wp-cli
+  * add bats test case for cli
+  * refactoring with phpstan
+  * fix default options via method
+  * change tag name
+  * change method name
+  * improve get_options method
+  * replace from get_default_options() to class value default_options
+  * fix not valid snake_case format
+  * add public as access modifier keywords
+  * add PHPDoc
+  * add reset-wp-tests.sh, uninstall-wp-tests.sh
+  * fix header
+  * fix textdomain
+  * fix indent and reformat with phpcs and phpcbf
+  * add composer.json for test
+  * add static code analysis config
 * Version 1.6.2
-	* add prefix into hook tag, change tag name from add_header_vary to multi_device_switcher_add_header_vary
-	* for php5.3, change called function via hook from anonymous function to public function
+  * add prefix into hook tag, change tag name from add_header_vary to multi_device_switcher_add_header_vary
+  * for php5.3, change called function via hook from anonymous function to public function
 * Version 1.6.1
-	* add test cases
-	* add add_header_vary filter
-	* improve cookie settings via wp_headers hook
-	* change readme.md file name to upper case
-	* add LICENSE file
+  * add test cases
+  * add add_header_vary filter
+  * improve cookie settings via wp_headers hook
+  * change readme.md file name to upper case
+  * add LICENSE file
 * Version 1.6.0
-	* change Requires at least version 3.7
-	* remove cache with PC Switcher widget
-	* add init function
-	* change hook destination from plugin_action_links to plugin_action_links_{$plugin_file}
-	* add load_textdomain function
-	* add define variable \_\_MULTI_DEVICE_SWITCHER_FILE\_\_
-	* check class Multi_Device_Switcher
-	* check ABSPATH
-	* add isset to conditional statement
-	* fix boolean
-	* add tests
+  * change Requires at least version 3.7
+  * remove cache with PC Switcher widget
+  * add init function
+  * change hook destination from plugin_action_links to plugin_action_links_{$plugin_file}
+  * add load_textdomain function
+  * add define variable \_\_MULTI_DEVICE_SWITCHER_FILE\_\_
+  * check class Multi_Device_Switcher
+  * check ABSPATH
+  * add isset to conditional statement
+  * fix boolean
+  * add tests
 * Version 1.5.4
   * fixed: fix property keyword for testability
   * fixed: fix add_action 'customize_register' with \_\_construct()
   * fixed: fix capability
 * Version 1.5.3
-	* fixed: add function multi_device_switcher_get_default_options for wp multi-device [#9](https://github.com/thingsym/multi-device-switcher/pull/9)
+  * fixed: add function multi_device_switcher_get_default_options for wp multi-device [#9](https://github.com/thingsym/multi-device-switcher/pull/9)
 * Version 1.5.2
-	* fixed: fix setcookie() [#8](https://github.com/thingsym/multi-device-switcher/pull/8)
+  * fixed: fix setcookie() [#8](https://github.com/thingsym/multi-device-switcher/pull/8)
 * Version 1.5.1
-	* fixed: fix preg_split()
+  * fixed: fix preg_split()
 * Version 1.5.0
-	* fixed: refactoring by the PHP_CodeSniffer
-	* fixed: change admin functions to class/object methods
+  * fixed: refactoring by the PHP_CodeSniffer
+  * fixed: change admin functions to class/object methods
 * Version 1.4.2
-	* edited: edit readme
-	* new features: Display Switcher Shortcode
-	* updated: update default UserAgent
-	* fixed: fix pc-switcher ssl url
+  * edited: edit readme
+  * new features: Display Switcher Shortcode
+  * updated: update default UserAgent
+  * fixed: fix pc-switcher ssl url
 * Version 1.4.1
-	* edited: edit readme
-	* new features: is_disable_switcher() function
-	* new features: is_pc_switcher() function
-	* fixed: fix redirect url and pc-switcher url
+  * edited: edit readme
+  * new features: is_disable_switcher() function
+  * new features: is_pc_switcher() function
+  * fixed: fix redirect url and pc-switcher url
 * Version 1.4.0
-	* edited: edit readme
-	* added: add cookies 'multi-device-switcher', 'disable-switcher'
-	* new features: Disable Switcher
-	* fixed: fix get_options_userAgent(), multi_device_switcher_get_options()
-	* fixed: add reserved words validate
-	* new features: Multi Device Switcher Command
-	* added: add option settings into Theme Customizer
-	* fixed: refactoring by the PHP_CodeSniffer
+  * edited: edit readme
+  * added: add cookies 'multi-device-switcher', 'disable-switcher'
+  * new features: Disable Switcher
+  * fixed: fix get_options_userAgent(), multi_device_switcher_get_options()
+  * fixed: add reserved words validate
+  * new features: Multi Device Switcher Command
+  * added: add option settings into Theme Customizer
+  * fixed: refactoring by the PHP_CodeSniffer
 * Version 1.3.0
-	* fixed: fix script, style, html and readme
-	* new features: is_multi_device() function
-	* fixed: fix translation
-	* updated: update default UserAgent
-	* fixed: replace WP_PLUGIN_URL with plugins_url()
-	* fixed: using Page Hook Suffix
-	* merged: pull request [#3](https://github.com/thingsym/multi-device-switcher/pull/3)
+  * fixed: fix script, style, html and readme
+  * new features: is_multi_device() function
+  * fixed: fix translation
+  * updated: update default UserAgent
+  * fixed: replace WP_PLUGIN_URL with plugins_url()
+  * fixed: using Page Hook Suffix
+  * merged: pull request [#3](https://github.com/thingsym/multi-device-switcher/pull/3)
 * Version 1.2.3
-	* fixed: fix redirect uri with query string, using add_query_arg
-	* fixed: fix translation
-	* fixed: fix readme
+  * fixed: fix redirect uri with query string, using add_query_arg
+  * fixed: fix translation
+  * fixed: fix readme
 * Version 1.2.2
-	* improved: improve responsiveness UI
-	* fixed: fix html
+  * improved: improve responsiveness UI
+  * fixed: fix html
 * Version 1.2.1
-	* fixed: delete add_contextual_help
-	* fixed: fix readme and html
+  * fixed: delete add_contextual_help
+  * fixed: fix readme and html
 * Version 1.2.0
-	* added: add PC Switcher Widget
-	* new features: PC Switcher
-	* added: add the settings link to the plugin page
+  * added: add PC Switcher Widget
+  * new features: PC Switcher
+  * added: add the settings link to the plugin page
 * Version 1.1.2
-	* required: at least version 3.4
-	* fixed: fix tabs and buttons
+  * required: at least version 3.4
+  * fixed: fix tabs and buttons
 * Version 1.1.1
-	* fixed: change the order of the UserAgent detection
-	* updated: update default UserAgent
-	* added: add HTTP/1.1 Vary header
+  * fixed: change the order of the UserAgent detection
+  * updated: update default UserAgent
+  * added: add HTTP/1.1 Vary header
 * Version 1.1.0
-	* new features: Custom Switcher
+  * new features: Custom Switcher
 * Version 1.0.4
-	* fixed: fix the object model PHP5, \_\_construct() to replace Multi_Device_Switcher
-	* fixed: wp_get_themes(), and wp_get_theme() to replace get_themes(), get_theme()
+  * fixed: fix the object model PHP5, \_\_construct() to replace Multi_Device_Switcher
+  * fixed: wp_get_themes(), and wp_get_theme() to replace get_themes(), get_theme()
 * Version 1.0.3
-	* updated: update screenshots
-	* fixed: fix reset button
+  * updated: update screenshots
+  * fixed: fix reset button
 * Version 1.0.2
-	* added: add file uninstall.php
-	* fixed: split admin_enqueue_scripts() into two functions
-	* fixed: detects is_admin()
+  * added: add file uninstall.php
+  * fixed: split admin_enqueue_scripts() into two functions
+  * fixed: detects is_admin()
 * Version 1.0.1
-	* fixed: split multi_device_switcher_init() into two functions
+  * fixed: split multi_device_switcher_init() into two functions
 * Version 1.0.0
-	* Initial release.
+  * Initial release.
 
 ## Upgrade Notice
 
+* Version 1.8.7
+  * Requires at least version 5.9 of the WordPress
+  * Requires PHP version 7.4
 * Version 1.8.2
-	* Requires at least version 4.9 of the WordPress
-	* Requires PHP version 5.6
+  * Requires at least version 4.9 of the WordPress
+  * Requires PHP version 5.6
 * Version 1.6.0
-	* Requires at least version 3.7 of the WordPress
+  * Requires at least version 3.7 of the WordPress
 * Version 1.1.2
-	* Requires at least version 3.4 of the WordPress
+  * Requires at least version 3.4 of the WordPress
 
 ## License
 

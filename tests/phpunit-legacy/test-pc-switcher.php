@@ -120,8 +120,8 @@ class Test_Multi_Device_Switcher_Pc_Switcher extends WP_UnitTestCase {
 		$this->multi_device_switcher->add_pc_switcher();
 		$result = ob_get_clean();
 
-		$this->assertRegExp( '/' . preg_quote( 'pc-switcher=1' ) . '/', $result );
-		$this->assertRegExp( '/' . preg_quote( 'class="active">Mobile' ) . '/', $result );
+		$this->assertMatchesRegularExpression( '/' . preg_quote( 'pc-switcher=1' ) . '/', $result );
+		$this->assertMatchesRegularExpression( '/' . preg_quote( 'class="active">Mobile' ) . '/', $result );
 		$this->assertTrue( wp_style_is( 'pc-switcher-options' ) );
 
 		wp_dequeue_style( 'pc-switcher-options' );
@@ -129,8 +129,8 @@ class Test_Multi_Device_Switcher_Pc_Switcher extends WP_UnitTestCase {
 		$this->multi_device_switcher->add_pc_switcher( 0 );
 		$result = ob_get_clean();
 
-		$this->assertRegExp( '/' . preg_quote( 'pc-switcher=1' ) . '/', $result );
-		$this->assertRegExp( '/' . preg_quote( 'class="active">Mobile' ) . '/', $result );
+		$this->assertMatchesRegularExpression( '/' . preg_quote( 'pc-switcher=1' ) . '/', $result );
+		$this->assertMatchesRegularExpression( '/' . preg_quote( 'class="active">Mobile' ) . '/', $result );
 		$this->assertTrue( wp_style_is( 'pc-switcher-options' ) );
 
 		wp_dequeue_style( 'pc-switcher-options' );
@@ -138,8 +138,8 @@ class Test_Multi_Device_Switcher_Pc_Switcher extends WP_UnitTestCase {
 		$this->multi_device_switcher->add_pc_switcher( 1 );
 		$result = ob_get_clean();
 
-		$this->assertRegExp( '/' . preg_quote( 'pc-switcher=1' ) . '/', $result );
-		$this->assertRegExp( '/' . preg_quote( 'class="active">Mobile' ) . '/', $result );
+		$this->assertMatchesRegularExpression( '/' . preg_quote( 'pc-switcher=1' ) . '/', $result );
+		$this->assertMatchesRegularExpression( '/' . preg_quote( 'class="active">Mobile' ) . '/', $result );
 		$this->assertTrue( wp_style_is( 'pc-switcher-options' ) );
 
 		$GLOBALS['_COOKIE']['pc-switcher'] = 1;
@@ -150,8 +150,8 @@ class Test_Multi_Device_Switcher_Pc_Switcher extends WP_UnitTestCase {
 		$result = ob_get_clean();
 		unset( $GLOBALS['_COOKIE']['pc-switcher'] );
 
-		$this->assertRegExp( '/' . preg_quote( 'pc-switcher=0' ) . '/', $result );
-		$this->assertRegExp( '/' . preg_quote( 'class="active">PC' ) . '/', $result );
+		$this->assertMatchesRegularExpression( '/' . preg_quote( 'pc-switcher=0' ) . '/', $result );
+		$this->assertMatchesRegularExpression( '/' . preg_quote( 'class="active">PC' ) . '/', $result );
 		$this->assertTrue( wp_style_is( 'pc-switcher-options' ) );
 
 		wp_dequeue_style( 'pc-switcher-options' );
@@ -160,8 +160,8 @@ class Test_Multi_Device_Switcher_Pc_Switcher extends WP_UnitTestCase {
 		$result = ob_get_clean();
 		unset( $GLOBALS['_COOKIE']['pc-switcher'] );
 
-		$this->assertRegExp( '/' . preg_quote( 'pc-switcher=1' ) . '/', $result );
-		$this->assertRegExp( '/' . preg_quote( 'class="active">Mobile' ) . '/', $result );
+		$this->assertMatchesRegularExpression( '/' . preg_quote( 'pc-switcher=1' ) . '/', $result );
+		$this->assertMatchesRegularExpression( '/' . preg_quote( 'class="active">Mobile' ) . '/', $result );
 		$this->assertTrue( wp_style_is( 'pc-switcher-options' ) );
 
 		wp_dequeue_style( 'pc-switcher-options' );
@@ -170,8 +170,8 @@ class Test_Multi_Device_Switcher_Pc_Switcher extends WP_UnitTestCase {
 		$result = ob_get_clean();
 		unset( $GLOBALS['_COOKIE']['pc-switcher'] );
 
-		$this->assertRegExp( '/' . preg_quote( 'pc-switcher=1' ) . '/', $result );
-		$this->assertRegExp( '/' . preg_quote( 'class="active">Mobile' ) . '/', $result );
+		$this->assertMatchesRegularExpression( '/' . preg_quote( 'pc-switcher=1' ) . '/', $result );
+		$this->assertMatchesRegularExpression( '/' . preg_quote( 'class="active">Mobile' ) . '/', $result );
 		$this->assertTrue( wp_style_is( 'pc-switcher-options' ) );
 	}
 
@@ -271,8 +271,8 @@ class Test_Multi_Device_Switcher_Pc_Switcher extends WP_UnitTestCase {
 		$this->multi_device_switcher->add_pc_switcher( 1 );
 		$result = ob_get_clean();
 
-		$this->assertRegExp( '/' . preg_quote( 'pc-switcher=1' ) . '/', $result );
-		$this->assertRegExp( '/' . preg_quote( 'class="active">Mobile' ) . '/', $result );
+		$this->assertMatchesRegularExpression( '/' . preg_quote( 'pc-switcher=1' ) . '/', $result );
+		$this->assertMatchesRegularExpression( '/' . preg_quote( 'class="active">Mobile' ) . '/', $result );
 		$this->assertTrue( wp_style_is( 'pc-switcher-options' ) );
 	}
 

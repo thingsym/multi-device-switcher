@@ -5,9 +5,9 @@ Link: https://github.com/thingsym/multi-device-switcher
 Donate link: https://github.com/sponsors/thingsym
 Tags: switcher, theme, ipad, iphone, android, tablet, mobile, game
 Stable tag: 1.8.6
-Tested up to: 6.7.1
-Requires at least: 4.9
-Requires PHP: 5.6
+Tested up to: 7.0
+Requires at least: 5.9
+Requires PHP: 7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -626,6 +626,10 @@ For more information about the Multi Device Switcher Command, see `wp help multi
 * Initial release
 
 == Upgrade Notice ==
+
+= 1.8.7 =
+* Requires at least version 5.9 of the WordPress
+* Requires PHP version 7.4
 
 = 1.8.2 =
 * Requires at least version 4.9 of the WordPress

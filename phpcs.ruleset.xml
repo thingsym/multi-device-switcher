@@ -43,7 +43,9 @@
   <rule ref="WordPress.WP.I18n">
     <properties>
       <!-- Value: replace the text domain used. -->
-      <property name="text_domain" type="array" value="multi-device-switcher" />
+      <property name="text_domain" type="array">
+        <element value="multi-device-switcher"/>
+      </property>
     </properties>
   </rule>
 
@@ -69,6 +71,7 @@
 
     <exclude name="WordPress.Files.FileName.InvalidClassFileName" />
     <exclude name="WordPress.NamingConventions.ValidHookName.UseUnderscores" />
+    <exclude name="Universal.Files.SeparateFunctionsFromOO.Mixed" />
   </rule>
 
   <rule ref="PHPCompatibilityWP">
