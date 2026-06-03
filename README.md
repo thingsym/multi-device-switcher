@@ -465,6 +465,16 @@ For operation compatibility between PHP version and WordPress version, see below
 
 ## Changelog
 
+* Version 1.8.7
+  * tested up to 7.0
+  * change requires at least to wordpress 5.9
+  * change requires to PHP 7.4
+  * improve code with phpcs
+  * fix test case
+  * update github workflows
+  * update phpunit v9 and wpcs v3
+  * update composer dependencies
+  * update wp-tests script
 * Version 1.8.6
   * update japanese translation
   * update pot
