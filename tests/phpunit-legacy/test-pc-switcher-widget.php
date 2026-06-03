@@ -98,8 +98,8 @@ class Test_pc_switcher_Pc_Switcher_Widget extends WP_UnitTestCase {
 		$this->pc_switcher->widget( $args, $instance );
 		$widget = ob_get_clean();
 
-		$this->assertRegExp( '/' . preg_quote( 'pc-switcher=1' ) . '/', $widget );
-		$this->assertRegExp( '/' . preg_quote( 'class="active">Mobile' ) . '/', $widget );
+		$this->assertMatchesRegularExpression( '/' . preg_quote( 'pc-switcher=1' ) . '/', $widget );
+		$this->assertMatchesRegularExpression( '/' . preg_quote( 'class="active">Mobile' ) . '/', $widget );
 
 		$GLOBALS['_COOKIE']['pc-switcher'] = 1;
 
@@ -107,8 +107,8 @@ class Test_pc_switcher_Pc_Switcher_Widget extends WP_UnitTestCase {
 		$this->pc_switcher->widget( $args, $instance );
 		$widget = ob_get_clean();
 
-		$this->assertRegExp( '/' . preg_quote( 'pc-switcher=0' ) . '/', $widget );
-		$this->assertRegExp( '/' . preg_quote( 'class="active">PC' ) . '/', $widget );
+		$this->assertMatchesRegularExpression( '/' . preg_quote( 'pc-switcher=0' ) . '/', $widget );
+		$this->assertMatchesRegularExpression( '/' . preg_quote( 'class="active">PC' ) . '/', $widget );
 	}
 
 	/**
@@ -156,8 +156,8 @@ class Test_pc_switcher_Pc_Switcher_Widget extends WP_UnitTestCase {
 		$this->pc_switcher->widget( $args, $instance );
 		$widget = ob_get_clean();
 
-		$this->assertRegExp( '/' . preg_quote( 'pc-switcher=1' ) . '/', $widget );
-		$this->assertRegExp( '/' . preg_quote( 'class="active">Mobile' ) . '/', $widget );
+		$this->assertMatchesRegularExpression( '/' . preg_quote( 'pc-switcher=1' ) . '/', $widget );
+		$this->assertMatchesRegularExpression( '/' . preg_quote( 'class="active">Mobile' ) . '/', $widget );
 
 		$GLOBALS['_COOKIE']['pc-switcher'] = 1;
 
@@ -165,8 +165,8 @@ class Test_pc_switcher_Pc_Switcher_Widget extends WP_UnitTestCase {
 		$this->pc_switcher->widget( $args, $instance );
 		$widget = ob_get_clean();
 
-		$this->assertRegExp( '/' . preg_quote( 'pc-switcher=0' ) . '/', $widget );
-		$this->assertRegExp( '/' . preg_quote( 'class="active">PC' ) . '/', $widget );
+		$this->assertMatchesRegularExpression( '/' . preg_quote( 'pc-switcher=0' ) . '/', $widget );
+		$this->assertMatchesRegularExpression( '/' . preg_quote( 'class="active">PC' ) . '/', $widget );
 	}
 
 	/**

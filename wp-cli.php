@@ -179,6 +179,7 @@ class Multi_Device_Switcher_Command extends WP_CLI_Command {
 				WP_CLI::error( $name . ' don\'t exist' );
 			}
 		}
+		// phpcs:ignore Universal.ControlStructures.DisallowLonelyIf.Found
 		else {
 			if ( in_array( $name, array( 'smartphone', 'smart', 'tablet', 'mobile', 'game' ), true ) ) {
 				if ( 'smart' === $name ) {
@@ -243,6 +244,7 @@ class Multi_Device_Switcher_Command extends WP_CLI_Command {
 				WP_CLI::error( $name . ' don\'t exist' );
 			}
 		}
+		// phpcs:ignore Universal.ControlStructures.DisallowLonelyIf.Found
 		else {
 			if ( in_array( $name, array( 'smartphone', 'smart', 'tablet', 'mobile', 'game' ), true ) ) {
 				if ( 'smartphone' === $name ) {

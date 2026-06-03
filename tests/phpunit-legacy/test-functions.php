@@ -357,6 +357,7 @@ class Test_Multi_Device_Switcher_Functions extends WP_UnitTestCase {
 
 	/**
 	 * @test
+	 * @group functions
 	 */
 	public function load_textdomain_change() {
 		unload_textdomain( 'multi-device-switcher' );
