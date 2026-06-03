@@ -71,6 +71,7 @@
 
     <exclude name="WordPress.Files.FileName.InvalidClassFileName" />
     <exclude name="WordPress.NamingConventions.ValidHookName.UseUnderscores" />
+    <exclude name="Universal.Files.SeparateFunctionsFromOO.Mixed" />
   </rule>
 
   <rule ref="PHPCompatibilityWP">
