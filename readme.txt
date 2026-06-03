@@ -627,6 +627,10 @@ For more information about the Multi Device Switcher Command, see `wp help multi
 
 == Upgrade Notice ==
 
+= 1.8.7 =
+* Requires at least version 5.9 of the WordPress
+* Requires PHP version 7.4
+
 = 1.8.2 =
 * Requires at least version 4.9 of the WordPress
 * Requires PHP version 5.6
